@@ -88,7 +88,7 @@
 					<div id="main" role="main">
 						<div class="inner">
 							<h1>EU AI Act Essentials: High-Risk Module</h1>
-							<p>An interactive branching scenario from <em>EU AI Act Essentials</em>, a MOOC I built for the German non-profit learning platform KI-Campus (2024/2025). You play Lea, a product manager who checks a new HR product idea against the EU AI Act together with her compliance officer – and every decision has consequences. It takes about 20 minutes. <b>The module is in German.</b> Short on time? Jump to the <a href="#design-notes">designer’s notes</a>.</p>
+							<p>An interactive branching scenario from <em>EU AI Act Essentials</em>, a MOOC I built for the German non-profit learning platform KI-Campus (2024/2025). You play Lea, a product manager who checks a new HR product idea against the EU AI Act together with her compliance officer – and every decision has consequences. It takes about 20 minutes. It runs in English; the German original is one click away (switch <b>DE | EN</b> at the top of the module). Short on time? Jump to the <a href="#design-notes">designer’s notes</a>.</p>
 							<p><b>After this module you can:</b></p>
 							<ul>
 								<li>assess a product idea for its risk level under the EU AI Act,</li>
@@ -97,7 +97,7 @@
 							</ul>
 
 							<!-- ============ AI ACT MODULE START (self-contained: copy everything down to AI ACT MODULE END) ============ -->
-							<!-- All German texts live in the JSON block below (id="aia-content"). Add ?review to the page URL to highlight corrected and new texts. -->
+							<!-- All texts live in two JSON blocks below: German original (id="aia-content") and English translation (id="aia-content-en"), same structure. The DE | EN switch, ?lang=de / ?lang=en and the remembered choice pick the language (default: English). Add ?review to highlight corrected and new texts. -->
 							<style>
 								@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,700,900');
 
@@ -168,6 +168,13 @@
 									font-size: 0.7em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.25em; color: var(--aia-fg-bold);
 								}
 								#aia-module .aia-stepper { display: flex; flex-wrap: wrap; gap: 0.35em; }
+								#aia-module .aia-lang { display: inline-flex; border-radius: var(--aia-radius); box-shadow: inset 0 0 0 1px var(--aia-border); background: var(--aia-bg); }
+								#aia-module .aia-lang-btn {
+									padding: 0.45em 0.8em; border-radius: var(--aia-radius); cursor: pointer;
+									font-size: 0.65em; font-weight: 900; letter-spacing: 0.18em; color: var(--aia-fg-bold) !important; transition: background 0.2s, color 0.2s;
+								}
+								#aia-module .aia-lang-btn:hover { color: var(--aia-pink-text) !important; }
+								#aia-module .aia-lang-btn[aria-pressed="true"] { background: var(--aia-dark); color: #ffffff !important; }
 								#aia-module .aia-stepper li {
 									display: inline-flex; align-items: center; gap: 0.5em; padding: 0.35em 0.75em 0.35em 0.4em;
 									border-radius: 2em; box-shadow: inset 0 0 0 1px var(--aia-border);
@@ -638,10 +645,14 @@
 								<div class="aia-player">
 									<div class="aia-top">
 										<p class="aia-brand" id="aia-brand"></p>
-										<ol class="aia-stepper" id="aia-stepper" aria-label="Fortschritt"></ol>
+										<ol class="aia-stepper" id="aia-stepper"></ol>
+										<div class="aia-lang" id="aia-lang" role="group">
+											<button type="button" class="aia-lang-btn" data-lang="en" lang="en" aria-label="English">EN</button>
+											<button type="button" class="aia-lang-btn" data-lang="de" lang="de" aria-label="Deutsch">DE</button>
+										</div>
 									</div>
 									<div class="aia-body">
-										<aside class="aia-side" id="aia-side" aria-label="Lagebild">
+										<aside class="aia-side" id="aia-side">
 											<button type="button" class="aia-side-toggle" id="aia-side-toggle" aria-expanded="false" aria-controls="aia-side-content"><span></span></button>
 											<div class="aia-side-content" id="aia-side-content">
 												<section class="aia-panel">
@@ -666,13 +677,14 @@
 									</div>
 								</div>
 								<p class="aia-sr" id="aia-announce" aria-live="polite"></p>
-								<noscript><p>Dieses interaktive Modul benötigt JavaScript.</p></noscript>
+								<noscript><p>This interactive module requires JavaScript. · Dieses interaktive Modul benötigt JavaScript.</p></noscript>
 								<script type="application/json" id="aia-content">
 {
   "meta": {
     "_hinweis": "Alle Texte des Moduls. Jeder Text hat ein Feld q (Quelle): skript = unverändert aus dem Kursskript, korrigiert = Skripttext mit inhaltlicher oder sprachlicher Korrektur, neu = neu ergänzt. Mit ?review in der URL werden korrigierte und neue Texte im Modul farbig markiert. Begriffe in [[…]] öffnen eine Glossar-Erklärung; [[Anzeige|Begriff]] zeigt einen anderen Text an als den Glossar-Eintrag.",
     "version": 1,
-    "stand": "November 2026"
+    "stand": "November 2026",
+    "artikelUrl": "https://artificialintelligenceact.eu/de/article/{n}/"
   },
 
   "ui": {
@@ -748,7 +760,10 @@
       "schlecht-sehr": "Sehr sicher – aber verfehlt. Ein klarer Fall fürs Nachschlagen.",
       "schlecht-ziemlich": "Ziemlich sicher – aber verfehlt.",
       "schlecht-geraten": "Geraten – und verfehlt. Gut, dass du unsicher warst: Hier lohnt sich ein Blick in den Artikel."
-    }
+    },
+    "fortschritt": "Fortschritt",
+    "sprache": "Sprache",
+    "quelle": { "label": "Quelle", "korrigiert": "korrigiert", "neu": "neu" }
   },
 
   "personen": {
@@ -830,7 +845,7 @@
       "punkte": [
         { "t": "Die technische Dokumentation wird erstellt, bevor das System in Verkehr gebracht wird – und danach laufend aktuell gehalten.", "q": "neu" },
         { "t": "Sie belegt, dass das System die Anforderungen erfüllt, und enthält die Angaben aus Anhang IV, z. B. Zweck, Aufbau, Daten, Tests und Risikomanagement.", "q": "neu" },
-        { "t": "Neu durch den Digital Omnibus (2026): Kleine und mittlere Unternehmen (einschließlich Start-ups) dürfen die Angaben in vereinfachter Form vorlegen.", "q": "neu" }
+        { "t": "Kleine und mittlere Unternehmen (einschließlich Start-ups) dürfen die Angaben in vereinfachter Form vorlegen.", "q": "neu" }
       ]
     },
     "12": {
@@ -868,7 +883,7 @@
         { "t": "Das System muss über seinen gesamten Lebenszyklus ein angemessenes Maß an Genauigkeit, Robustheit und Cybersicherheit erreichen.", "q": "neu" },
         { "t": "Die Genauigkeitswerte stehen in der Betriebsanleitung.", "q": "neu" },
         { "t": "Es muss widerstandsfähig gegen Fehler und Manipulationsversuche sein, z. B. gegen vergiftete Trainingsdaten oder gezielt präparierte Eingaben.", "q": "neu" },
-        { "t": "Lernt das System im Betrieb weiter, müssen Rückkopplungsschleifen verhindert werden, bei denen verzerrte Ergebnisse die künftigen Eingaben beeinflussen.", "q": "neu" }
+        { "t": "Lernt das System im Betrieb weiter, müssen Rückkopplungsschleifen, bei denen verzerrte Ergebnisse die künftigen Eingaben beeinflussen, ausgeschlossen oder so gering wie möglich gehalten werden.", "q": "neu" }
       ]
     }
   },
@@ -923,7 +938,7 @@
       },
       {
         "id": "d",
-        "frage": { "t": "(1)(d) Nutzt das System Risikobewertungen, um vorherzusagen, ob eine Person eine Straftat begehen wird, basierend auf Profiling oder der Bewertung von Persönlichkeitsmerkmalen?", "q": "skript" },
+        "frage": { "t": "(1)(d) Nutzt das System Risikobewertungen, um vorherzusagen, ob eine Person eine Straftat begehen wird, ausschließlich basierend auf Profiling oder der Bewertung von Persönlichkeitsmerkmalen?", "q": "korrigiert" },
         "loesung": "nein",
         "richtig": { "t": "HappyWorkers bewertet Engagement und Leistung – Straftaten sagt es nicht voraus.", "q": "neu" },
         "falsch": { "t": "HappyWorkers bewertet Engagement und Leistung, sagt aber keine Straftaten voraus. Dieses Verbot zielt auf Kriminalitätsprognosen, die allein auf Profiling beruhen.", "q": "neu" }
@@ -1080,7 +1095,7 @@
       "optionen": [
         {
           "id": "A1", "urteil": "gut", "kurz": "strenge Daten-Governance", "weiter": "art13a",
-          "text": { "t": "„Wir können strenge Datenverwaltungspraktiken implementieren und sicherstellen, dass die Daten relevant, repräsentativ, unverzerrt sind und im Einklang mit der DSGVO erhoben und verarbeitet werden. Dies beinhaltet auch gründliche Datenprüfungs- und -bereinigungsprozesse.“", "q": "korrigiert" },
+          "text": { "t": "„Wir können strenge Datenverwaltungspraktiken implementieren und sicherstellen, dass die Daten relevant und repräsentativ sind, auf Verzerrungen geprüft und so weit wie möglich davon bereinigt werden und im Einklang mit der DSGVO erhoben und verarbeitet werden. Dies beinhaltet auch gründliche Datenprüfungs- und -bereinigungsprozesse.“", "q": "korrigiert" },
           "reaktion": { "t": "„Sehr gut. Geprüfte, saubere Daten sind die Grundlage für faire Ergebnisse.“", "q": "neu" },
           "warum": { "t": "Relevante, repräsentative und auf Verzerrungen geprüfte Daten – das ist der Kern von Art. 10.", "q": "neu" }
         },
@@ -1413,11 +1428,769 @@
         "optionen": [
           { "id": "b15a", "urteil": "gut", "kurz": "offenlegen, testen, absichern", "text": { "t": "„Wir nennen die Genauigkeitswerte in der Betriebsanleitung, testen regelmäßig die Robustheit und schützen das System gegen Manipulation, z. B. durch gezielt präparierte Nachrichten.“", "q": "neu" }, "reaktion": { "t": "„Sehr gut – Genauigkeit, Robustheit und Cybersicherheit über den ganzen Lebenszyklus.“", "q": "neu" }, "warum": { "t": "Art. 15 verlangt alle drei Aspekte – dauerhaft, nicht nur im Test.", "q": "neu" } },
           { "id": "b15b", "urteil": "schlecht", "kurz": "94 % reichen", "text": { "t": "„94 % ist ein super Wert – damit sind wir fertig.“", "q": "neu" }, "reaktion": { "t": "„Ein einzelner Testwert ist eine Momentaufnahme. Art. 15 verlangt angemessene Genauigkeit über den ganzen Lebenszyklus – plus Robustheit gegen Fehler und Schutz gegen Angriffe. Und: 6 % Fehler bedeuten bei vielen Mitarbeitenden viele falsche Bewertungen.“", "q": "neu" }, "warum": { "t": "Ein guter Testwert ersetzt weder Robustheit noch Cybersicherheit.", "q": "neu" } },
-          { "id": "b15c", "urteil": "teil", "kurz": "im Betrieb ständig weitertrainieren", "text": { "t": "„Wir trainieren das Modell im laufenden Betrieb ständig mit neuen Chats weiter, damit es immer besser wird.“", "q": "neu" }, "reaktion": { "t": "„Weiterlernen klingt gut, birgt aber ein Risiko: Verzerrte Ergebnisse können als neue Trainingsdaten zurückfließen und sich selbst verstärken. Art. 15 verlangt, solche Rückkopplungsschleifen zu verhindern oder abzufedern.“", "q": "neu" }, "warum": { "t": "Weiterlernen ist erlaubt – aber nur mit Schutz vor Rückkopplungsschleifen.", "q": "neu" } }
+          { "id": "b15c", "urteil": "teil", "kurz": "im Betrieb ständig weitertrainieren", "text": { "t": "„Wir trainieren das Modell im laufenden Betrieb ständig mit neuen Chats weiter, damit es immer besser wird.“", "q": "neu" }, "reaktion": { "t": "„Weiterlernen klingt gut, birgt aber ein Risiko: Verzerrte Ergebnisse können als neue Trainingsdaten zurückfließen und sich selbst verstärken. Art. 15 verlangt, solche Rückkopplungsschleifen auszuschließen oder so gering wie möglich zu halten.“", "q": "neu" }, "warum": { "t": "Weiterlernen ist erlaubt – aber nur mit Schutz vor Rückkopplungsschleifen.", "q": "neu" } }
         ]
       }
     ],
     "ergebnis": { "t": "„Bonus geschafft: {n} von 3 Anforderungen getroffen. Damit kennst du jetzt alle Anforderungen aus den Artikeln 9–15.“", "q": "neu" }
+  }
+}
+								</script>
+								<script type="application/json" id="aia-content-en">
+{
+  "meta": {
+    "_hinweis": "English version of all module texts, translated from the German original (#aia-content). Legal terms follow the official English text of Regulation (EU) 2024/1689. Each text keeps the q field of its German source (skript = unchanged from the course script, korrigiert = corrected script text, neu = newly added), so ?review shows the same markers. Terms in [[…]] open a glossary note; [[shown|Key]] shows a different text than the glossary key.",
+    "version": 1,
+    "stand": "November 2026",
+    "artikelUrl": "https://artificialintelligenceact.eu/article/{n}/"
+  },
+
+  "ui": {
+    "modulTitel": "EU AI Act · High risk",
+    "phasen": ["Rule out prohibitions", "Classify", "Requirements", "Review", "Bonus"],
+    "aufgabe": "Your task",
+    "weiter": "Continue",
+    "hinweis": "Hint",
+    "hinweisVon": "Hint from Martina",
+    "nachschlagen": "look up",
+    "lagebild": "Overview",
+    "lagebildZeigen": "Show overview",
+    "lagebildVerbergen": "Hide overview",
+    "pyramide": "Risk pyramid",
+    "steckbrief": "Product profile",
+    "deinWeg": "Your path",
+    "zeitplan": "Schedule",
+    "imPlan": "on schedule",
+    "verzoegerung": "delay",
+    "monat": "month",
+    "monate": "months",
+    "nochNichts": "No decisions yet.",
+    "ueberlegt": "Martina is thinking …",
+    "erinnerung": "Remember",
+    "sicherFrage": "How confident are you?",
+    "sicher": { "geraten": "Guessed", "ziemlich": "Fairly confident", "sehr": "Very confident" },
+    "trifftZu": "Applies",
+    "trifftNichtZu": "Doesn’t apply",
+    "urteil": { "gut": "met", "teil": "partly met", "schlecht": "missed" },
+    "richtig": "Correct",
+    "nichtGanz": "Not quite",
+    "kurzErklaert": "In short",
+    "begriff": "Term",
+    "entscheidung": "Decision {n} of 4",
+    "bereitsProbiert": "already tried",
+    "waehleOption": "Choose an option – then say how confident you are.",
+    "startButton": "Start the check",
+    "direktButton": "Go straight to the scenario (Art. 9–14)",
+    "direktHinweis": "You’ve already completed the check under Art. 5 and Art. 6.",
+    "ergebnisButton": "Show result",
+    "losButton": "Let’s go",
+    "zurAuswertung": "Go to the review",
+    "weiterTransfer": "On to the transfer check",
+    "weiterFahrplan": "On to the roadmap",
+    "szenarioNeu": "Restart the scenario",
+    "modulNeu": "Restart the whole module",
+    "abHierNeu": "Replay from here",
+    "bonusStart": "Start the bonus round",
+    "bonusZurueck": "Back to the roadmap",
+    "checkScore": "You assessed {n} of 5 points correctly on the first try.",
+    "logCheck": "Art. 5 · Checklist {n}/5",
+    "logTwist": "What if … · webcam idea",
+    "logAnhang": "Annex III · point 4 (attempt {n})",
+    "logAnhangOffen": "Annex III · looking for the category",
+    "log63": "Art. 6(3) · high risk confirmed",
+    "logUebersprungen": "Art. 5 and Art. 6 · already checked",
+    "logNachgebessert": "reworked",
+    "pyrStatus": {
+      "start": "Not classified yet",
+      "pruefung": "Checking …",
+      "ausgeschlossen": "ruled out",
+      "kandidat": "HappyWorkers?",
+      "ergebnis": "HappyWorkers"
+    },
+    "review": "Review mode: <b>yellow</b> = corrected script text · <b>pink</b> = newly added text · unmarked = script text. Interface texts (buttons, labels) are not marked. The markers refer to the German course script this English version was translated from.",
+    "kalibrierung": {
+      "gut-sehr": "Very confident – and right. Great!",
+      "gut-ziemlich": "Fairly confident – and right.",
+      "gut-geraten": "Guessed – and right. Read the reasoning, so luck turns into knowledge.",
+      "teil-sehr": "Very confident – but only partly right. One to look up.",
+      "teil-ziemlich": "Fairly confident – partly right.",
+      "teil-geraten": "Guessed – partly right. The article is worth a look.",
+      "schlecht-sehr": "Very confident – but missed. A clear case for looking it up.",
+      "schlecht-ziemlich": "Fairly confident – but missed.",
+      "schlecht-geraten": "Guessed – and missed. Good thing you weren’t sure: the article is worth a look here."
+    },
+    "fortschritt": "Progress",
+    "sprache": "Language",
+    "quelle": { "label": "Source", "korrigiert": "corrected script text", "neu": "newly added" }
+  },
+
+  "personen": {
+    "lea": { "name": "Lea", "rolle": "Product Manager · Solutions GmbH", "du": "You as Lea" },
+    "martina": { "name": "Martina", "rolle": "Compliance Officer · Solutions GmbH" },
+    "dev": { "name": "Development team", "rolle": "Message in the team chat" }
+  },
+
+  "steckbrief": {
+    "q": "neu",
+    "zeilen": [
+      ["Product", "HappyWorkers"],
+      ["Purpose", "Monitor employees’ performance and engagement at work – spot problems earlier than with surveys"],
+      ["Data", "Email and chat traffic (communication patterns)"],
+      ["Users", "HR teams of the companies that use HappyWorkers"],
+      ["Role of Solutions GmbH", "develops and sells HappyWorkers"]
+    ]
+  },
+
+  "pyramide": [
+    { "id": "verboten", "name": "Unacceptable risk", "info": "prohibited" },
+    { "id": "hoch", "name": "High risk", "info": "strict obligations" },
+    { "id": "begrenzt", "name": "Limited risk", "info": "transparency obligations" },
+    { "id": "minimal", "name": "Minimal risk", "info": "no specific obligations" }
+  ],
+
+  "glossar": {
+    "Provider": { "t": "Whoever develops an AI system (or has it developed) and places it on the market under their own name – here, Solutions GmbH.", "q": "neu" },
+    "Deployer": { "t": "Whoever uses an AI system under their own authority in a professional context – here, for example, the HR departments of the companies that use HappyWorkers.", "q": "neu" },
+    "Profiling": { "t": "The automated processing of personal data to evaluate personal aspects of a person – such as their performance at work, reliability or behaviour.", "q": "neu" },
+    "Annex III": { "t": "The list of areas in which AI systems are considered high-risk, e.g. education, employment or law enforcement.", "q": "neu" },
+    "Automation bias": { "t": "The tendency to rely automatically or excessively on the output of an AI system – even when it is wrong.", "q": "neu" }
+  },
+
+  "artikel": {
+    "5": {
+      "titel": "Art. 5 – Prohibited AI practices",
+      "url": "https://artificialintelligenceact.eu/article/5/",
+      "punkte": [
+        { "t": "AI practices with unacceptable risk are prohibited, e.g. manipulative techniques, exploiting vulnerabilities, social scoring, predicting criminal offences based solely on profiling, untargeted scraping of facial images, emotion recognition in the workplace and in education institutions, biometric categorisation based on sensitive characteristics, and real-time remote biometric identification for law enforcement.", "q": "neu" },
+        { "t": "The prohibitions have applied since 2 February 2025.", "q": "neu" },
+        { "t": "New through the Digital Omnibus (2026): from 2 December 2026, AI systems that generate non-consensual intimate deepfakes or child sexual abuse material are also prohibited.", "q": "neu" },
+        { "t": "Here, Lea checks a simplified selection – in practice, the whole list needs to be checked.", "q": "neu" }
+      ]
+    },
+    "6": {
+      "titel": "Art. 6 – When is an AI system high-risk?",
+      "url": "https://artificialintelligenceact.eu/article/6/",
+      "punkte": [
+        { "t": "Route 1 (para. 1 + Annex I): the AI system is a safety component of a product – or is itself a product – that is covered by EU product legislation and requires a third-party conformity assessment, e.g. medical devices or machinery.", "q": "neu" },
+        { "t": "Route 2 (para. 2 + Annex III): the system falls into one of the areas in [[Annex III]], e.g. employment and workers’ management.", "q": "neu" },
+        { "t": "Exception (para. 3): an Annex III system is not high-risk if it does not pose a significant risk of harm – for example because it only performs a narrow procedural task. This never applies, however, if the system performs [[profiling|Profiling]].", "q": "neu" },
+        { "t": "Anyone relying on the exception must document their assessment before placing the system on the market (para. 4).", "q": "neu" }
+      ]
+    },
+    "9": {
+      "titel": "Art. 9 – Risk management system",
+      "url": "https://artificialintelligenceact.eu/article/9/",
+      "punkte": [
+        { "t": "A continuous, iterative process throughout the system’s entire lifecycle – with regular review and updating.", "q": "neu" },
+        { "t": "Identify and evaluate risks to health, safety and fundamental rights – including under reasonably foreseeable misuse.", "q": "neu" },
+        { "t": "Take targeted measures to mitigate the risks, and test the system before placing it on the market.", "q": "neu" },
+        { "t": "Findings from live operation feed back into the process.", "q": "neu" }
+      ]
+    },
+    "10": {
+      "titel": "Art. 10 – Data and data governance",
+      "url": "https://artificialintelligenceact.eu/article/10/",
+      "punkte": [
+        { "t": "Training, validation and testing data must be relevant to the purpose, sufficiently representative and, to the best extent possible, free of errors and complete.", "q": "neu" },
+        { "t": "The data is examined for possible biases that could lead to discrimination – and measures are taken to detect and mitigate them.", "q": "neu" },
+        { "t": "The origin, collection and preparation of the data are documented in a traceable way.", "q": "neu" },
+        { "t": "Data protection still applies: the GDPR applies in addition.", "q": "neu" }
+      ]
+    },
+    "11": {
+      "titel": "Art. 11 – Technical documentation",
+      "url": "https://artificialintelligenceact.eu/article/11/",
+      "punkte": [
+        { "t": "The technical documentation is drawn up before the system is placed on the market – and kept up to date afterwards.", "q": "neu" },
+        { "t": "It demonstrates that the system meets the requirements and contains the information set out in Annex IV, e.g. purpose, design, data, testing and risk management.", "q": "neu" },
+        { "t": "Small and medium-sized enterprises, including start-ups, may provide this information in a simplified form.", "q": "neu" }
+      ]
+    },
+    "12": {
+      "titel": "Art. 12 – Record-keeping",
+      "url": "https://artificialintelligenceact.eu/article/12/",
+      "punkte": [
+        { "t": "High-risk AI systems must be able to record events automatically (logs) over their entire lifetime.", "q": "neu" },
+        { "t": "The logs help to identify risks, to monitor the system after it has been placed on the market, and to monitor its operation.", "q": "neu" },
+        { "t": "The aim is traceability – not hoarding all content. The GDPR still applies.", "q": "neu" }
+      ]
+    },
+    "13": {
+      "titel": "Art. 13 – Transparency and provision of information to deployers",
+      "url": "https://artificialintelligenceact.eu/article/13/",
+      "punkte": [
+        { "t": "The system must be transparent enough for [[deployers|Deployer]] to interpret its output correctly and use it appropriately.", "q": "neu" },
+        { "t": "This includes instructions for use that are concise, complete, correct and clear, and comprehensible to deployers.", "q": "neu" },
+        { "t": "Among other things, they set out the intended purpose, accuracy and limitations, foreseeable misuse and known risks, information on the data, and the human oversight measures.", "q": "neu" }
+      ]
+    },
+    "14": {
+      "titel": "Art. 14 – Human oversight",
+      "url": "https://artificialintelligenceact.eu/article/14/",
+      "punkte": [
+        { "t": "High-risk AI must be designed so that natural persons can effectively oversee it while it is in use.", "q": "neu" },
+        { "t": "The people overseeing it must understand the system’s capacities and limitations, interpret its output correctly and remain aware of [[automation bias|Automation bias]].", "q": "neu" },
+        { "t": "They must be able to disregard or override the output and to stop the system.", "q": "neu" },
+        { "t": "The [[provider|Provider]] builds oversight measures into the system or specifies which measures the deployers implement.", "q": "neu" }
+      ]
+    },
+    "15": {
+      "titel": "Art. 15 – Accuracy, robustness and cybersecurity",
+      "url": "https://artificialintelligenceact.eu/article/15/",
+      "punkte": [
+        { "t": "Throughout its lifecycle, the system must achieve an appropriate level of accuracy, robustness and cybersecurity.", "q": "neu" },
+        { "t": "The accuracy levels are declared in the instructions for use.", "q": "neu" },
+        { "t": "It must be resilient against errors and manipulation attempts, e.g. poisoned training data or deliberately crafted inputs.", "q": "neu" },
+        { "t": "If the system continues to learn during operation, feedback loops in which biased outputs influence future inputs must be eliminated or reduced as far as possible.", "q": "neu" }
+      ]
+    }
+  },
+
+  "links": {
+    "anhang3": { "label": "Annex III", "url": "https://artificialintelligenceact.eu/annex/3/" },
+    "omnibus": { "label": "Digital Omnibus on AI", "url": "https://artificialintelligenceact.eu/ai-act-explorer/digital-omnibus/" }
+  },
+
+  "intro": {
+    "eyebrow": "Getting started",
+    "titel": "Your assignment",
+    "rolle": { "t": "You step into the role of Lea. Together with Martina from compliance, you check whether a new product idea is compatible with the EU AI Act – and what needs to be done.", "q": "neu" },
+    "absaetze": [
+      { "t": "Lea is a product manager at the company “Solutions GmbH”.", "q": "skript" },
+      { "t": "On Lea’s screen is an idea for a new AI application: “HappyWorkers”, a tool designed to monitor employee performance and engagement in the workplace.", "q": "korrigiert" },
+      { "t": "AI-based engagement monitoring tools can broaden the HR team’s perspective and make it possible to spot problems earlier than with traditional surveys.", "q": "skript" },
+      { "t": "AI-based monitoring tools can focus on different aspects of employee behaviour and recognise patterns that point to declining engagement and performance. In this specific example, that would be done by analysing email and chat traffic and taking a closer look at communication patterns.", "q": "skript" }
+    ]
+  },
+
+  "prognose": {
+    "eyebrow": "Before you start",
+    "titel": "Your gut feeling",
+    "frage": { "t": "Before you check systematically: which risk tier of the AI Act do you think HappyWorkers falls into?", "q": "neu" },
+    "aufgabe": { "t": "Choose a tier. There’s no right or wrong yet.", "q": "neu" },
+    "notiert": { "t": "Noted! At the end, we’ll see whether your gut feeling was right.", "q": "neu" },
+    "weiter": "On to the checklist"
+  },
+
+  "checkliste": {
+    "eyebrow": "① Rule out prohibitions",
+    "titel": "Rule out unacceptable risk",
+    "lea": { "t": "First, Lea wants to make sure that, in this specific setting, the idea does not fall into the “unacceptable risk” category.", "q": "skript" },
+    "untertitel": { "t": "Lea’s simplified compliance checklist (Art. 5)", "q": "korrigiert" },
+    "aufgabe": { "t": "Check each point for HappyWorkers: does it apply or not?", "q": "neu" },
+    "hinweis": { "t": "Compare each point with the product profile in the overview: what exactly does HappyWorkers do – and what doesn’t it do?", "q": "neu" },
+    "punkte": [
+      {
+        "id": "a",
+        "frage": { "t": "(1)(a) Does the system use subliminal techniques to manipulate individuals?", "q": "skript" },
+        "loesung": "nein",
+        "richtig": { "t": "HappyWorkers analyses communication, but it doesn’t influence employees’ behaviour subliminally or manipulatively.", "q": "neu" },
+        "falsch": { "t": "What’s prohibited are techniques that manipulate people without their awareness and harm them as a result. HappyWorkers analyses communication – it doesn’t influence anyone subliminally.", "q": "neu" }
+      },
+      {
+        "id": "c",
+        "frage": { "t": "(1)(c) Does the system evaluate people over a period of time based on their social behaviour or personality (“social scoring”), in a way that leads to them being treated unfavourably in other areas of life, or disproportionately?", "q": "korrigiert" },
+        "loesung": "nein",
+        "richtig": { "t": "At least in this simplified check: HappyWorkers only evaluates behaviour within the work context the data comes from. If the results led to disproportionate disadvantages, though, we would have to take a closer look.", "q": "neu" },
+        "falsch": { "t": "Good question – but social scoring means evaluations that put people at a disadvantage in other areas of life, or disproportionately. HappyWorkers stays within the work context the data comes from. Still, it’s worth keeping an eye on how the results are used.", "q": "neu" }
+      },
+      {
+        "id": "d",
+        "frage": { "t": "(1)(d) Does the system use risk assessments to predict whether a person will commit a criminal offence, based solely on profiling or on assessing personality traits?", "q": "korrigiert" },
+        "loesung": "nein",
+        "richtig": { "t": "HappyWorkers evaluates engagement and performance – it doesn’t predict criminal offences.", "q": "neu" },
+        "falsch": { "t": "HappyWorkers evaluates engagement and performance, but it doesn’t predict criminal offences. This prohibition targets crime predictions based solely on profiling.", "q": "neu" }
+      },
+      {
+        "id": "f",
+        "frage": { "t": "(1)(f) Does the system infer the emotions of people in the workplace or in education institutions (emotion recognition)?", "q": "korrigiert" },
+        "loesung": "nein",
+        "richtig": { "t": "But only just! What’s prohibited is emotion recognition in the workplace based on biometric data, e.g. from facial expressions or voice. HappyWorkers analyses texts and communication patterns, not biometric data. Keep this point in mind – it’ll come up again shortly.", "q": "neu" },
+        "falsch": { "t": "Understandable – “engagement” sounds like feelings. But the prohibition covers emotion recognition based on biometric data, e.g. from facial expressions or voice. HappyWorkers analyses texts and communication patterns. Keep this point in mind – it’ll come up again shortly.", "q": "neu" }
+      },
+      {
+        "id": "h",
+        "frage": { "t": "(1)(h) Does the system use real-time remote biometric identification in publicly accessible spaces for law enforcement purposes?", "q": "korrigiert" },
+        "loesung": "nein",
+        "richtig": { "t": "HappyWorkers doesn’t identify anyone by their biometric features – and it has nothing to do with law enforcement.", "q": "neu" },
+        "falsch": { "t": "HappyWorkers doesn’t recognise people by biometric features such as their face, and it isn’t about law enforcement.", "q": "neu" }
+      }
+    ]
+  },
+
+  "checkErgebnis": {
+    "eyebrow": "① Rule out prohibitions",
+    "titel": "Result",
+    "ergebnisLabel": "Result",
+    "ergebnis": { "t": "For now, in this setting, the application does not appear to fall into this category.", "q": "skript" },
+    "begruendungLabel": "Reasoning",
+    "begruendung": { "t": "The AI system “HappyWorkers” does not fall into the “unacceptable risk” category, as it shows none of the prohibited features listed in Article 5.", "q": "skript" }
+  },
+
+  "twist": {
+    "eyebrow": "① Rule out prohibitions · What if …?",
+    "titel": "A new idea from the development team",
+    "einleitung": { "t": "Shortly after the check, a message arrives from the development team:", "q": "neu" },
+    "nachricht": { "t": "“We could upgrade HappyWorkers: using the webcam, it reads people’s facial expressions in team meetings to gauge the mood. Then HR can see straight away who’s unhappy!”", "q": "neu" },
+    "aufgabe": { "t": "Does this idea change your assessment?", "q": "neu" },
+    "optionen": [
+      {
+        "id": "verboten", "urteil": "gut",
+        "text": { "t": "Yes – that would make HappyWorkers prohibited.", "q": "neu" },
+        "feedback": { "t": "Exactly. Emotion recognition in the workplace based on biometric data such as facial expressions is prohibited under Art. 5(1)(f). The only exceptions are for medical or safety reasons.", "q": "neu" }
+      },
+      {
+        "id": "einwilligung", "urteil": "schlecht",
+        "text": { "t": "No – if employees agree beforehand, it’s allowed.", "q": "neu" },
+        "feedback": { "t": "A common misconception: the prohibition has no exception for consent – only for medical or safety reasons. In the workplace, genuinely voluntary consent would be difficult anyway. The idea would be prohibited.", "q": "neu" }
+      },
+      {
+        "id": "hochrisiko", "urteil": "schlecht",
+        "text": { "t": "No – emotion recognition is “only” high-risk.", "q": "neu" },
+        "feedback": { "t": "Almost: emotion recognition is indeed listed among the high-risk systems in Annex III (point 1). In the workplace and in education institutions, however, it’s prohibited altogether (Art. 5(1)(f)).", "q": "neu" }
+      }
+    ],
+    "abschluss": { "t": "Lea drops the idea. HappyWorkers sticks to texts and communication patterns – and so stays outside the prohibited zone.", "q": "neu" }
+  },
+
+  "meeting": {
+    "eyebrow": "② Classify",
+    "titel": "Meeting with Martina",
+    "einleitung": { "t": "Lea then sets up a meeting with Martina to check together whether the AI system could fall into the “high risk” category.", "q": "skript" },
+    "martinaIst": { "t": "Martina is a compliance officer at the company “Solutions GmbH”.", "q": "skript" },
+    "martina": { "t": "“Let’s start with Article 6 of the EU AI Act. It describes which categories of AI systems can potentially be considered high-risk. We need to look at paragraph 1 (a) and (b) together with Annex I, and paragraph 2 together with Annex III.”", "q": "korrigiert" }
+  },
+
+  "anhang3": {
+    "eyebrow": "② Classify",
+    "titel": "Which category in Annex III?",
+    "einleitung": { "t": "Martina looks at the product description:", "q": "skript" },
+    "martina": { "t": "“I’m fairly sure your AI system could fit one of the categories in Annex III – but which one?”", "q": "skript" },
+    "aufgabe": { "t": "Click the right category.", "q": "skript" },
+    "liste": { "t": "The categories in Annex III (excerpt):", "q": "skript" },
+    "hinweis": { "t": "Who does HappyWorkers monitor? Read the categories with that question in mind.", "q": "neu" },
+    "falsch1": { "t": "Martina shakes her head slightly.", "q": "neu" },
+    "falsch1Nudge": { "t": "Look at the product profile again: who does HappyWorkers monitor?", "q": "neu" },
+    "falsch2": { "t": "Martina frowns. “No, that category doesn’t quite fit. It would have to be something to do with ‘workers’.”", "q": "skript" },
+    "falsch3": { "t": "Martina points to the list: “Look here – number 4.”", "q": "neu" },
+    "richtig": { "t": "“You’re right! Annex III, point 4(b), states that AI systems that monitor the behaviour of employees or evaluate their performance can be considered high-risk AI systems.”", "q": "skript" },
+    "kategorien": [
+      { "nr": 1, "text": { "t": "Biometrics, in so far as their use is permitted under relevant Union or national law.", "q": "skript" }, "warumNicht": { "t": "HappyWorkers doesn’t process biometric data such as faces, voices or fingerprints – it processes texts from emails and chats.", "q": "neu" } },
+      { "nr": 2, "text": { "t": "AI systems intended to be used as safety components in the management and operation of critical digital infrastructure, road traffic, or in the supply of water, gas, heating or electricity.", "q": "skript" }, "warumNicht": { "t": "HappyWorkers doesn’t control any critical infrastructure – it’s about people at work, not electricity, water or traffic.", "q": "neu" } },
+      { "nr": 3, "text": { "t": "Education and vocational training: access or admission to institutions, evaluation of learning outcomes, assessment of the appropriate level of education, monitoring of students’ behaviour during tests", "q": "skript" }, "warumNicht": { "t": "Close – this one is also about evaluating people. But HappyWorkers doesn’t evaluate learners in education institutions; it evaluates employees in their jobs.", "q": "neu" } },
+      { "nr": 4, "text": { "t": "Employment, workers’ management and access to self-employment: recruitment or selection of natural persons, making decisions affecting the terms of work-related relationships", "q": "skript" }, "richtig": true },
+      { "nr": 5, "text": { "t": "Access to and enjoyment of essential private services and essential public services and benefits.", "q": "skript" }, "warumNicht": { "t": "This covers things like creditworthiness, social benefits or insurance. HappyWorkers doesn’t decide on any such services.", "q": "neu" } },
+      { "nr": 6, "text": { "t": "Law enforcement, in so far as their use is permitted under relevant Union or national law.", "q": "skript" }, "warumNicht": { "t": "HappyWorkers isn’t used by the police or law enforcement authorities.", "q": "neu" } },
+      { "nr": 7, "text": { "t": "Migration, asylum and border control management, in so far as their use is permitted under relevant Union or national law.", "q": "skript" }, "warumNicht": { "t": "HappyWorkers has nothing to do with migration, asylum or border control.", "q": "neu" } },
+      { "nr": 8, "text": { "t": "Administration of justice and democratic processes", "q": "skript" }, "warumNicht": { "t": "HappyWorkers supports neither courts nor elections or other democratic processes.", "q": "neu" } }
+    ]
+  },
+
+  "art63": {
+    "eyebrow": "② Classify",
+    "titel": "Is HappyWorkers really high-risk?",
+    "martina": { "t": "“Just because a system is listed in Annex III doesn’t automatically mean it’s classified as high-risk. We need to check whether it poses a significant risk to health, safety or fundamental rights.”", "q": "skript" },
+    "frage": { "t": "“Does your system pose such a risk?”", "q": "skript" },
+    "optionen": [
+      {
+        "id": "nein", "urteil": "schlecht",
+        "text": { "t": "No, the system is harmless, because it only analyses data that is available anyway.", "q": "skript" },
+        "feedback": { "t": "“Even if the data is available, continuous monitoring can seriously intrude on privacy and violate fundamental rights.”", "q": "skript" }
+      },
+      {
+        "id": "ja", "urteil": "gut",
+        "text": { "t": "Yes, it interferes with fundamental rights, because it affects employees’ privacy.", "q": "skript" },
+        "feedback": { "t": "“Correct. A system that continuously monitors communication and derives patterns from it can seriously intrude on employees’ privacy and potentially have discriminatory effects.”", "q": "skript" }
+      }
+    ],
+    "profiling": { "t": "“And there’s a second, very clear reason: Art. 6(3) does provide exceptions – for example, when a system only performs a narrow procedural task. But an Annex III system that performs [[profiling|Profiling]] is always considered high-risk. HappyWorkers evaluates individual employees based on their communication – that’s profiling.”", "q": "neu" },
+    "fazit": { "t": "That settles it: HappyWorkers is a high-risk AI system. And as the developer of HappyWorkers, Solutions GmbH is a [[provider|Provider]] within the meaning of the AI Act – with all the obligations that come with it.", "q": "neu" },
+    "weiter": "On to the requirements"
+  },
+
+  "start": {
+    "eyebrow": "③ Requirements",
+    "titel": "The thought experiment",
+    "martina": { "t": "“Now that we know you’re the provider of a high-risk system, we need to make sure it meets the regulatory requirements of the EU AI Act. Let’s take a closer look at some of the requirements in Articles 8–15 in a thought experiment, to understand why they matter. I’ll pick a few of the requirements, and you decide how we could put compliance into practice.”", "q": "skript" },
+    "regeln": { "t": "“Every decision affects the next steps – there are several possible endings. After each choice, tell me how confident you are. And don’t worry: if something goes wrong, we can rework it. That costs time, though.”", "q": "neu" }
+  },
+
+  "kosten": { "9": 3, "10": 2, "13": 1, "14": 1 },
+
+  "knoten": {
+    "art9": {
+      "artikel": 9, "ebene": 1, "titel": "Risk management",
+      "frage": { "t": "“Let’s start by setting up a robust risk management system (Art. 9). It’s the foundation of our compliance efforts. Which approach do you think comes closest to a robust risk management system? What happens if you choose wrongly?”", "q": "korrigiert" },
+      "erinnerung": { "t": "HappyWorkers evaluates people. Mistakes can affect careers and fundamental rights – the classification showed that.", "q": "neu" },
+      "hinweis": { "t": "Pay attention to how long the risk management lasts: only until launch – or beyond?", "q": "neu" },
+      "optionen": [
+        {
+          "id": "A", "urteil": "gut", "kurz": "continuous over the lifecycle", "weiter": "art10a",
+          "text": { "t": "“We could set up a system for continuous risk identification, analysis, evaluation and mitigation throughout the system’s entire lifecycle. This includes rigorous testing and documentation at every stage. It would require a lot of resources and a dedicated team.”", "q": "skript" },
+          "reaktion": { "t": "“Excellent choice, Lea! By opting for this approach, we’re laying a strong foundation.”", "q": "skript" },
+          "warum": { "t": "That’s exactly what Art. 9 requires: a continuous, iterative process throughout the entire lifecycle.", "q": "neu" }
+        },
+        {
+          "id": "B", "urteil": "schlecht", "kurz": "reactive, after incidents", "weiter": "art10b",
+          "text": { "t": "“Alternatively, we could opt for a more reactive approach and address risks mainly when they’re identified through user feedback or after incidents have occurred. This would be less resource-intensive up front.”", "q": "skript" },
+          "reaktion": { "t": "“Hmm, a reactive approach to risk management doesn’t meet the requirements of Art. 9. An approach like that would mean you overlook problems until it’s too late.”", "q": "skript" },
+          "warum": { "t": "Art. 9 requires risks to be identified and mitigated proactively – not only after incidents.", "q": "neu" }
+        },
+        {
+          "id": "C", "urteil": "teil", "kurz": "one-off analysis before launch", "weiter": "art10b",
+          "text": { "t": "“We carry out a thorough risk analysis with all departments before launch and document it properly. After that, the topic is closed and we focus on operations.”", "q": "neu" },
+          "reaktion": { "t": "“Thorough is good – but once isn’t enough. Risks change: new data, new uses, new kinds of errors. Art. 9 requires a continuous process that is regularly reviewed and updated – after launch, too.”", "q": "neu" },
+          "warum": { "t": "A one-off analysis is a start, but not yet a risk management system: Art. 9 requires regular review throughout the entire lifecycle.", "q": "neu" }
+        }
+      ]
+    },
+
+    "art10a": {
+      "artikel": 10, "ebene": 2, "titel": "Data governance",
+      "frage": { "t": "“Now we need to take care of data governance (Art. 10). It’s closely intertwined with risk management. Since we’re working with employee data, we need to ensure its quality and integrity. Let’s look at possible approaches.”", "q": "korrigiert" },
+      "erinnerung": { "t": "HappyWorkers analyses email and chat traffic – personal data of colleagues.", "q": "neu" },
+      "hinweis": { "t": "Ask yourself: does the option make sure the data is fit for the purpose – that is, relevant, representative and examined for biases?", "q": "neu" },
+      "optionen": [
+        {
+          "id": "A1", "urteil": "gut", "kurz": "strict data governance", "weiter": "art13a",
+          "text": { "t": "“We can implement strict data governance practices and make sure the data is relevant and representative, examined for biases and cleared of them as far as possible, and collected and processed in line with the GDPR. This also includes thorough data checking and cleaning processes.”", "q": "korrigiert" },
+          "reaktion": { "t": "“Very good. Checked, clean data is the basis for fair results.”", "q": "neu" },
+          "warum": { "t": "Relevant, representative data that has been examined for biases – that’s the core of Art. 10.", "q": "neu" }
+        },
+        {
+          "id": "A2", "urteil": "schlecht", "kurz": "anonymisation only", "weiter": "art13e",
+          "text": { "t": "“Or we could focus primarily on anonymisation after the data has been collected, which is less rigorous and easier to implement, but might not fully address potential biases or data quality problems.”", "q": "skript" },
+          "reaktion": { "t": "“Anonymisation protects privacy – but it doesn’t straighten out skewed data. Biases and quality problems remain in the system.”", "q": "neu" },
+          "warum": { "t": "Art. 10 requires more than data protection: the data must be relevant, representative and examined for biases.", "q": "neu" }
+        },
+        {
+          "id": "A3", "urteil": "schlecht", "kurz": "as much data as possible", "weiter": "art13e",
+          "text": { "t": "“We just put as many emails and chats as possible into training. The more data, the less bias – it evens out statistically.”", "q": "neu" },
+          "reaktion": { "t": "“Unfortunately not: more data often just reproduces existing patterns – and prejudices – more strongly. Art. 10 requires data that is relevant and representative for the purpose, and a targeted examination for biases. And from a data protection point of view: as much as necessary, not as much as possible.”", "q": "neu" },
+          "warum": { "t": "Data volume is no substitute for data governance: relevance, representativeness and bias checks are mandatory.", "q": "neu" }
+        }
+      ]
+    },
+
+    "art10b": {
+      "artikel": 10, "ebene": 2, "titel": "Data governance",
+      "frage": { "t": "“While we work on implementing robust risk management, we can address our system’s data quality and data governance (such as the relevant design choices or detecting bias, Art. 10).”", "q": "korrigiert" },
+      "erinnerung": { "t": "Risk management is still on shaky ground – and HappyWorkers works with employees’ emails and chats.", "q": "neu" },
+      "hinweis": { "t": "Ask yourself: does the option make sure the data is fit for the purpose – that is, relevant, representative and examined for biases?", "q": "neu" },
+      "optionen": [
+        {
+          "id": "B1", "urteil": "teil", "kurz": "attempt comprehensive data governance", "weiter": "art13e",
+          "text": { "t": "“We could always try to implement comprehensive data governance, but without a robust risk management system it will be difficult to identify and address all potential risks and problems.”", "q": "skript" },
+          "reaktion": { "t": "“The right direction! But without working risk management, we don’t know exactly what to look for in the data.”", "q": "neu" },
+          "warum": { "t": "Good data governance needs risk management that tells you which risks the data may contain.", "q": "neu" }
+        },
+        {
+          "id": "B2", "urteil": "schlecht", "kurz": "basic anonymisation only", "weiter": "art13e",
+          "text": { "t": "“Alternatively, we could focus on basic anonymisation, but that exposes us to greater risks regarding data quality and bias.”", "q": "skript" },
+          "reaktion": { "t": "“That protects privacy to some extent – but quality problems and biases go undetected.”", "q": "neu" },
+          "warum": { "t": "Art. 10 requires more than data protection: the data must be relevant, representative and examined for biases.", "q": "neu" }
+        },
+        {
+          "id": "B3", "urteil": "schlecht", "kurz": "as much data as possible", "weiter": "art13e",
+          "text": { "t": "“We just put as many emails and chats as possible into training. The more data, the less bias – it evens out statistically.”", "q": "neu" },
+          "reaktion": { "t": "“Unfortunately not: more data often just reproduces existing patterns – and prejudices – more strongly. Art. 10 requires data that is relevant and representative for the purpose, and a targeted examination for biases. And from a data protection point of view: as much as necessary, not as much as possible.”", "q": "neu" },
+          "warum": { "t": "Data volume is no substitute for data governance: relevance, representativeness and bias checks are mandatory.", "q": "neu" }
+        }
+      ]
+    },
+
+    "art13a": {
+      "artikel": 13, "ebene": 3, "titel": "Transparency",
+      "frage": { "t": "“Alongside risk management and data governance, we could now take a closer look at transparency (Art. 13). We need to give the [[deployers|Deployer]] of ‘HappyWorkers’ clear information. I’ll suggest three options.”", "q": "korrigiert" },
+      "erinnerung": { "t": "Solutions GmbH is the [[provider|Provider]] of HappyWorkers. The companies that use it are [[deployers|Deployer]] – they can only handle it as well as we inform them.", "q": "neu" },
+      "hinweis": { "t": "Art. 13 requires information that is relevant and comprehensible to deployers – including limitations and foreseeable misuse.", "q": "neu" },
+      "optionen": [
+        {
+          "id": "A11", "urteil": "schlecht", "kurz": "short description only", "weiter": "art14b",
+          "text": { "t": "“We limit ourselves to a short description of the system and general notes on its use, without going into details such as foreseeable misuse or the training data.”", "q": "skript" },
+          "reaktion": { "t": "“That’s too thin. Limitations, foreseeable misuse and the data used are exactly what matters to deployers.”", "q": "neu" },
+          "warum": { "t": "Art. 13 explicitly lists, among other things, the purpose, limitations, foreseeable misuse and information on the data.", "q": "neu" }
+        },
+        {
+          "id": "A12", "urteil": "gut", "kurz": "manual and training", "weiter": "art14a",
+          "text": { "t": "“For example, we write a detailed manual explaining how the system works, its intended purpose, foreseeable misuse, the data used and its limitations. We also offer training for the deployers.”", "q": "korrigiert" },
+          "reaktion": { "t": "“Very good! Anyone using HappyWorkers will know what it can do – and what it can’t.”", "q": "neu" },
+          "warum": { "t": "Clear instructions for use covering purpose, limitations, risks and data meet the core of Art. 13.", "q": "neu" }
+        },
+        {
+          "id": "A13", "urteil": "teil", "kurz": "full developer documentation", "weiter": "art14b",
+          "text": { "t": "“We publish the complete technical developer documentation, with model architecture, parameters and code excerpts. It doesn’t get more complete than that.”", "q": "neu" },
+          "reaktion": { "t": "“Complete – but for whom? An HR team can do little with model architecture and code. Art. 13 requires information that is relevant, accessible and comprehensible to deployers: purpose, limitations, risks and how to interpret the output correctly.”", "q": "neu" },
+          "warum": { "t": "Transparency doesn’t mean “show everything”, but “explain the right things clearly”.", "q": "neu" }
+        }
+      ]
+    },
+
+    "art13e": {
+      "artikel": 13, "ebene": 3, "titel": "Transparency",
+      "frage": { "t": "“Even though we’ve had challenges in certain areas, we still need to take care of transparency (Art. 13). The question is: how comprehensive can we be under these circumstances?”", "q": "skript" },
+      "erinnerung": { "t": "Because risk management or data governance has gaps, we’re missing important analyses of HappyWorkers.", "q": "neu" },
+      "hinweis": { "t": "Art. 13 requires information that is relevant and comprehensible to deployers – including limitations and foreseeable misuse.", "q": "neu" },
+      "optionen": [
+        {
+          "id": "X1", "urteil": "teil", "kurz": "manual with basic information", "weiter": "art14e",
+          "text": { "t": "“We try to write a manual that sets out everything the system can do and what technical capabilities it has. Because of the earlier problems, though, we’re missing important analyses and information to make it complete and good. We can only offer basic information and a general description of the system’s purpose.”", "q": "korrigiert" },
+          "reaktion": { "t": "“We’re doing our best – but without the missing analyses, the manual will have gaps.”", "q": "neu" },
+          "warum": { "t": "A manual is the right idea – but Art. 13 also requires information on limitations and risks, which we’re missing here.", "q": "neu" }
+        },
+        {
+          "id": "X2", "urteil": "schlecht", "kurz": "very short description", "weiter": "art14e",
+          "text": { "t": "“We only provide a very short description of the system and its functions. More isn’t possible because of our limited resources and the problems we’ve had.”", "q": "skript" },
+          "reaktion": { "t": "“That leaves deployers with hardly any idea what they’re getting into.”", "q": "neu" },
+          "warum": { "t": "A short description doesn’t meet Art. 13.", "q": "neu" }
+        },
+        {
+          "id": "X3", "urteil": "schlecht", "kurz": "promise “objective and unbiased”", "weiter": "art14e",
+          "text": { "t": "“We write in the instructions that HappyWorkers evaluates ‘objectively and without bias’. That builds trust with customers.”", "q": "neu" },
+          "reaktion": { "t": "“Trust comes from honesty, not from marketing promises. Art. 13 requires us to disclose accuracy, limitations and known risks. Precisely because we’re missing analyses, we can’t back up ‘unbiased’ at all.”", "q": "neu" },
+          "warum": { "t": "Art. 13 requires honest information on accuracy, limitations and risks – not marketing promises.", "q": "neu" }
+        }
+      ]
+    },
+
+    "art14a": {
+      "artikel": 14, "ebene": 4, "titel": "Human oversight",
+      "frage": { "t": "“Now it’s about human oversight (Art. 14). It’s a kind of emergency brake for the AI. The human operators must always keep an eye on the system and be able to intervene if necessary. These people need to be very well trained and know exactly when to step in to avert danger. How do we make sure they’re able to do that?”", "q": "korrigiert" },
+      "erinnerung": { "t": "Thanks to the manual and the training, everyone involved knows what HappyWorkers can do – and what it can’t.", "q": "neu" },
+      "hinweis": { "t": "Effective oversight means: understanding the system, interpreting its output correctly, being able to intervene and override – and not relying blindly on the AI.", "q": "neu" },
+      "optionen": [
+        {
+          "id": "A121", "urteil": "gut", "kurz": "trained team with the power to intervene", "weiter": "E1",
+          "text": { "t": "“We train a team that fully understands how the system works and can monitor it and intervene when needed. The team can override the system’s decisions. It is also trained in interpreting the AI system’s output.”", "q": "skript" },
+          "reaktion": { "t": "“That’s what an emergency brake that actually works looks like.”", "q": "neu" },
+          "warum": { "t": "Understand, interpret, override, stop – these are the core elements of Art. 14(4).", "q": "neu" }
+        },
+        {
+          "id": "A122", "urteil": "teil", "kurz": "team with limited ability to intervene", "weiter": "E2",
+          "text": { "t": "“We put a team in place that monitors the system, but it has only limited options to intervene or override decisions; after all, the AI system has been built with the utmost care so that it always stays safe.”", "q": "skript" },
+          "reaktion": { "t": "“Care in building it is no substitute for an emergency brake. Even a carefully built system makes mistakes.”", "q": "neu" },
+          "warum": { "t": "Art. 14 requires that people can override the output and stop the system – however carefully it has been built.", "q": "neu" }
+        },
+        {
+          "id": "A123", "urteil": "teil", "kurz": "HR approves every evaluation", "weiter": "E2",
+          "text": { "t": "“Every evaluation has to be approved by someone in HR before it takes effect. They click ‘Confirm’ – so there’s always a human in the loop.”", "q": "neu" },
+          "reaktion": { "t": "“A human in the loop is only as good as their options. Someone clicking ‘Confirm’ every minute usually accepts the results unchecked. That’s exactly the [[automation bias|Automation bias]] Art. 14 warns about.”", "q": "neu" },
+          "warum": { "t": "An approval click isn’t effective oversight if time, understanding and real ways to intervene are missing.", "q": "neu" }
+        }
+      ]
+    },
+
+    "art14b": {
+      "artikel": 14, "ebene": 4, "titel": "Human oversight",
+      "frage": { "t": "“Transparency wasn’t ideal, and that now affects human oversight (Art. 14) too. We’re struggling to fully convey how the system works and where its limits are. What should we do now?”", "q": "skript" },
+      "erinnerung": { "t": "The information for deployers has gaps – the oversight team doesn’t know exactly where HappyWorkers’ limits lie.", "q": "neu" },
+      "hinweis": { "t": "Effective oversight means: understanding the system, interpreting its output correctly, being able to intervene and override – and not relying blindly on the AI.", "q": "neu" },
+      "optionen": [
+        {
+          "id": "A111", "urteil": "teil", "kurz": "team without enough information", "weiter": "E3",
+          "text": { "t": "“We put a team in place, but because of the lack of information, it’s only partly able to understand the system and monitor it effectively.”", "q": "skript" },
+          "reaktion": { "t": "“At least someone is watching – but without understanding what the system does, oversight is only worth half as much.”", "q": "neu" },
+          "warum": { "t": "Art. 14 requires the people providing oversight to understand the system’s capacities and limitations.", "q": "neu" }
+        },
+        {
+          "id": "A112", "urteil": "schlecht", "kurz": "minimal oversight", "weiter": "E4",
+          "text": { "t": "“Minimal human oversight: we only have very limited resources for monitoring, and the team can only respond to obvious problems.”", "q": "skript" },
+          "reaktion": { "t": "“That way, we only see the tip of the iceberg.”", "q": "neu" },
+          "warum": { "t": "Only reacting to obvious problems isn’t effective oversight.", "q": "neu" }
+        },
+        {
+          "id": "A113", "urteil": "schlecht", "kurz": "a second AI checks", "weiter": "E4",
+          "text": { "t": "“We let a second AI system check HappyWorkers’ output. That’s faster and cheaper than any team.”", "q": "neu" },
+          "reaktion": { "t": "“A second AI can help with checking – but it’s no substitute for human oversight. Art. 14 explicitly requires natural persons who can understand and monitor the system and intervene.”", "q": "neu" },
+          "warum": { "t": "Art. 14 requires oversight by natural persons – AI checks alone aren’t enough.", "q": "neu" }
+        }
+      ]
+    },
+
+    "art14e": {
+      "artikel": 14, "ebene": 4, "titel": "Human oversight",
+      "frage": { "t": "“Our decisions so far make it almost impossible to implement effective human oversight (Art. 14). We have neither the resources nor the necessary information about the AI system. What should we do?”", "q": "skript" },
+      "erinnerung": { "t": "Risk management, data and transparency all have gaps – and now that limits oversight, too.", "q": "neu" },
+      "hinweis": { "t": "Effective oversight means: understanding the system, interpreting its output correctly, being able to intervene and override – and not relying blindly on the AI.", "q": "neu" },
+      "optionen": [
+        {
+          "id": "X11", "urteil": "teil", "kurz": "minimal oversight with an off switch", "weiter": "E5",
+          "text": { "t": "“Minimal human oversight: we deploy a small team, but because of the lack of transparency and the system’s complexity, it’s hardly able to respond appropriately. They’re trained in the bare essentials and can switch the system off if needed.”", "q": "skript" },
+          "reaktion": { "t": "“An off switch is an important building block – but without understanding, nobody knows when to press it.”", "q": "neu" },
+          "warum": { "t": "Being able to stop the system is part of Art. 14 – but oversight only becomes effective with understanding and training.", "q": "neu" }
+        },
+        {
+          "id": "X12", "urteil": "schlecht", "kurz": "no oversight", "weiter": "E5",
+          "text": { "t": "“No human oversight: we have no resources at all for human oversight. The system runs without any human control, which is risky.”", "q": "skript" },
+          "reaktion": { "t": "“That won’t work: without human oversight, HappyWorkers doesn’t comply with Art. 14 – and couldn’t be placed on the market like this at all.”", "q": "neu" },
+          "warum": { "t": "Human oversight is mandatory for high-risk AI.", "q": "neu" }
+        },
+        {
+          "id": "X13", "urteil": "teil", "kurz": "leave oversight to the deployers", "weiter": "E5",
+          "text": { "t": "“We write in the instructions for use that the deployers have to take care of human oversight themselves. Then it’s their responsibility.”", "q": "neu" },
+          "reaktion": { "t": "“Partly right: some oversight measures are indeed implemented by the deployers. But as the [[provider|Provider]], we have to build HappyWorkers so that it can be effectively overseen, and specify the measures concretely. One sentence in the instructions isn’t enough.”", "q": "neu" },
+          "warum": { "t": "Art. 14(1) and (3): the provider must make oversight technically possible and specify concrete measures.", "q": "neu" }
+        }
+      ]
+    }
+  },
+
+  "enden": {
+    "E1": {
+      "name": "On track", "typ": "erfolg",
+      "text": { "t": "“Lea, you did it! Thanks to your careful decisions on every requirement, you’ve already come much closer to compliance in our thought experiment! I can see that you’ve understood the essence of the selected, relevant articles.”", "q": "skript" },
+      "teaser": { "t": "Everything right – on the first try.", "q": "neu" }
+    },
+    "E1b": {
+      "name": "On track – with detours", "typ": "erfolg",
+      "text": { "t": "“Lea, you did it – even though we had to rework things along the way. That’s exactly how compliance works in practice: identify risks, correct them, document them. A delay of {monate} is annoying, but far cheaper than having to take HappyWorkers off the market later.”", "q": "neu" },
+      "teaser": { "t": "Made it – with detours.", "q": "neu" }
+    },
+    "E2": {
+      "name": "Tighten oversight", "typ": "teil",
+      "text": { "t": "“We did our best … but human oversight that is only partly in place could lead to problems in this thought experiment. In that case, we’d have to rework it and invest more resources to make sure the team understands the system well and can intervene more effectively. It’s a valuable lesson that every requirement of the EU AI Act has to be taken seriously.”", "q": "skript" },
+      "teaser": { "t": "What happens when oversight can’t intervene properly?", "q": "neu" }
+    },
+    "E3": {
+      "name": "Monitoring blind", "typ": "teil",
+      "text": { "t": "“The team is doing its best – but without enough information, it can hardly spot HappyWorkers’ errors and limitations. In this thought experiment, we’d have to improve the instructions for use and train the team before HappyWorkers could be used safely. The lesson: transparency (Art. 13) is the prerequisite for effective human oversight (Art. 14).”", "q": "neu" },
+      "teaser": { "t": "What happens when the oversight team doesn’t understand the system?", "q": "neu" }
+    },
+    "E4": {
+      "name": "Taken off the market", "typ": "schwer",
+      "text": { "t": "“The minimal information and inadequate human oversight could have serious consequences in this thought experiment. We might even have to take ‘HappyWorkers’ off the market temporarily to fix the problems. That’s a major setback, and it shows how important comprehensive transparency and well-resourced human oversight are.”", "q": "skript" },
+      "teaser": { "t": "What happens when transparency and oversight fall short?", "q": "neu" }
+    },
+    "E5": {
+      "name": "Stumbling blocks", "typ": "schwer",
+      "text": { "t": "“Phew! We hit a few stumbling blocks … We didn’t achieve compliance, but we learned a lot on our way through this thought experiment. Shall we try again?”", "q": "skript" },
+      "teaser": { "t": "What happens when the foundation is already shaky?", "q": "neu" }
+    }
+  },
+  "endenReihenfolge": ["E1", "E1b", "E2", "E3", "E4", "E5"],
+
+  "ende": {
+    "eyebrow": "③ Requirements · Ending",
+    "titel": "How it turned out",
+    "neuEntdeckt": "New ending discovered",
+    "entdeckt": "{n} of 6 endings discovered"
+  },
+
+  "nachbessern": {
+    "frage": { "t": "“Compliance is an iterative process. Let’s rework it! But where do we start? Which decision was the cause?”", "q": "neu" },
+    "aufgabe": { "t": "Choose the decision you want to rework. Every correction costs time.", "q": "neu" },
+    "button": "rework here (+{monate})",
+    "erfuellt": "met – nothing to rework",
+    "keineOption": "no better option",
+    "ok": { "t": "“Good analysis! Back to {artikel}. That will cost us about {monate}, but better now than after the first incident.”", "q": "neu" },
+    "blockiert": { "t": "“At this point, earlier decisions left us without a good option. The cause lies further back.”", "q": "neu" }
+  },
+
+  "weg": {
+    "eyebrow": "④ Review",
+    "titel": "Your path through the thought experiment",
+    "pfadTitel": "Your decisions",
+    "zuvor": "before",
+    "kalibTitel": "Your self-assessment",
+    "kalibSehrFalsch": { "t": "For {n} answer(s), you were very confident but got it wrong. That’s exactly when it pays to look it up in the legal text.", "q": "neu" },
+    "kalibGeratenRichtig": { "t": "For {n} answer(s), you guessed and got it right. Take another look at the reasoning there, so luck turns into knowledge.", "q": "neu" },
+    "kalibGut": { "t": "Your self-assessment matches your results well.", "q": "neu" },
+    "kalibZahlen": "{sicher} of {gesamt} answers “very confident” · {richtig} of {gesamt} met",
+    "prognoseTitel": "Your gut feeling",
+    "prognose": { "t": "Your assessment at the start: {tipp}. Result of the check: High risk.", "q": "neu" },
+    "prognoseRichtig": { "t": "Good guess!", "q": "neu" },
+    "prognoseFalsch": { "t": "Surprised? That’s exactly why a systematic check is worth it.", "q": "neu" },
+    "prognoseKeine": { "t": "You skipped the assessment at the start.", "q": "neu" },
+    "nachgeschlagenTitel": "Looked up",
+    "nachgeschlagen": { "t": "You opened these articles in the legal text: {liste}.", "q": "neu" },
+    "nichtsNachgeschlagen": { "t": "You haven’t opened any article in the legal text yet. Give it a try – the “look up ↗” links take you straight there.", "q": "neu" },
+    "endenTitel": "Endings discovered",
+    "endenText": { "t": "Every decision leads somewhere else. Replay from any decision and discover the other endings.", "q": "neu" }
+  },
+
+  "transfer": {
+    "eyebrow": "④ Review · Transfer check",
+    "titel": "New week, new ideas",
+    "martina": { "t": "“Four teams come to you with AI projects. Assign each project to the right risk tier.”", "q": "neu" },
+    "aufgabe": { "t": "Choose a risk tier for each project.", "q": "neu" },
+    "faelle": [
+      { "text": { "t": "A spam filter sorts unwanted advertising out of the company mailbox.", "q": "neu" }, "loesung": "minimal", "feedback": { "t": "Minimal risk: the spam filter doesn’t make decisions about people. The AI Act sets no specific requirements here.", "q": "neu" } },
+      { "text": { "t": "A chatbot answers customers’ questions on the website.", "q": "neu" }, "loesung": "begrenzt", "feedback": { "t": "Limited risk: users must be informed that they are interacting with an AI (transparency obligation, Art. 50).", "q": "neu" } },
+      { "text": { "t": "An AI pre-sorts job applications and ranks the candidates.", "q": "neu" }, "loesung": "hoch", "feedback": { "t": "High risk: the selection of applicants falls under Annex III, point 4(a) – the same area as HappyWorkers.", "q": "neu" } },
+      { "text": { "t": "A tool uses the webcam to detect employees’ mood in team meetings.", "q": "neu" }, "loesung": "verboten", "feedback": { "t": "Prohibited: emotion recognition in the workplace based on biometric data (Art. 5(1)(f)). Remember the idea from the development team?", "q": "neu" } }
+    ],
+    "ergebnis": "{n} of 4 classified correctly."
+  },
+
+  "fahrplan": {
+    "eyebrow": "④ Review · Roadmap",
+    "titel": "The road to compliance",
+    "martina": { "t": "“HappyWorkers isn’t finished yet. Our thought experiment picked out some of the requirements – here’s the whole road to compliance for providers of high-risk AI.”", "q": "neu" },
+    "status": { "modul": "practised in the module", "bonus": "practised in the bonus round", "offen": "still open" },
+    "schritte": [
+      { "titel": { "t": "Rule out prohibited practices", "q": "neu" }, "text": { "t": "Check whether a practice under Art. 5 applies.", "q": "neu" }, "artikel": [5], "status": "modul" },
+      { "titel": { "t": "Classify", "q": "neu" }, "text": { "t": "Annex I or Annex III? Check the exception under Art. 6(3) – it never applies if the system performs profiling.", "q": "neu" }, "artikel": [6], "anhang": true, "status": "modul" },
+      { "titel": { "t": "Meet the requirements (Art. 8–15)", "q": "neu" }, "teile": [
+          { "nr": 9, "name": "Risk management", "status": "modul" },
+          { "nr": 10, "name": "Data governance", "status": "modul" },
+          { "nr": 11, "name": "Technical documentation", "status": "bonus" },
+          { "nr": 12, "name": "Record-keeping", "status": "bonus" },
+          { "nr": 13, "name": "Transparency", "status": "modul" },
+          { "nr": 14, "name": "Human oversight", "status": "modul" },
+          { "nr": 15, "name": "Accuracy, robustness and cybersecurity", "status": "bonus" }
+        ] },
+      { "titel": { "t": "Set up a quality management system", "q": "neu" }, "text": { "t": "Processes, responsibilities and documentation that ensure compliance on an ongoing basis.", "q": "neu" }, "artikel": [17], "status": "offen" },
+      { "titel": { "t": "Carry out the conformity assessment", "q": "neu" }, "text": { "t": "For HappyWorkers (Annex III, point 4): internal control under Annex VI. This is followed by the EU declaration of conformity (Art. 47) and the CE marking (Art. 48).", "q": "neu" }, "artikel": [43, 47, 48], "status": "offen" },
+      { "titel": { "t": "Register in the EU database", "q": "neu" }, "text": { "t": "Before placing the system on the market.", "q": "neu" }, "artikel": [49], "status": "offen" },
+      { "titel": { "t": "After market entry: monitor and report", "q": "neu" }, "text": { "t": "Post-market monitoring and reporting of serious incidents.", "q": "neu" }, "artikel": [72, 73], "status": "offen" }
+    ],
+    "wann": {
+      "titel": "When does this apply?",
+      "punkte": [
+        { "t": "The prohibitions in Art. 5 have applied since 2 February 2025.", "q": "neu" },
+        { "t": "Two new prohibitions (Art. 5(1)(ba) and (bb), inserted by the Digital Omnibus) apply from 2 December 2026.", "q": "neu" },
+        { "t": "The obligations for high-risk systems under Annex III – including HappyWorkers – apply from 2 December 2027. The original date was 2 August 2026; the Digital Omnibus (Regulation (EU) 2026/1744, in force since 27 July 2026) postponed it.", "q": "neu" }
+      ],
+      "stand": "As of November 2026 – deadlines may change."
+    },
+    "bonusTeaser": { "t": "We left out three requirements from Art. 8–15. Try the bonus round!", "q": "neu" },
+    "bonusFertig": { "t": "Bonus round complete – you now know all the requirements in Art. 9–15.", "q": "neu" }
+  },
+
+  "bonus": {
+    "eyebrow": "Bonus round",
+    "titel": "Three requirements still missing",
+    "martina": { "t": "“We left out three requirements from Articles 8–15 in the thought experiment: technical documentation (Art. 11), record-keeping (Art. 12), and accuracy, robustness and cybersecurity (Art. 15). Fancy a bonus round?”", "q": "neu" },
+    "fragen": [
+      {
+        "id": "b11", "artikel": 11, "titel": "Technical documentation",
+        "frage": { "t": "“When do we draw up the technical documentation for HappyWorkers?”", "q": "neu" },
+        "optionen": [
+          { "id": "b11a", "urteil": "gut", "kurz": "before launch, kept up to date", "text": { "t": "“Before HappyWorkers is placed on the market – and we keep it up to date afterwards.”", "q": "neu" }, "reaktion": { "t": "“Right. The documentation has to be in place before the system is placed on the market – and it grows with every change.”", "q": "neu" }, "warum": { "t": "Art. 11: drawn up before the system is placed on the market, and kept up to date afterwards.", "q": "neu" } },
+          { "id": "b11b", "urteil": "schlecht", "kurz": "only on request", "text": { "t": "“Only when an authority asks for it – before that, it would be wasted work.”", "q": "neu" }, "reaktion": { "t": "“Too late: the technical documentation must be available before the system is placed on the market. It’s also the basis for the conformity assessment.”", "q": "neu" }, "warum": { "t": "No documentation, no conformity assessment – and without that, no access to the market.", "q": "neu" } },
+          { "id": "b11c", "urteil": "schlecht", "kurz": "the code is the documentation", "text": { "t": "“Our well-commented source code is the documentation.”", "q": "neu" }, "reaktion": { "t": "“Code comments help developers, but Annex IV requires much more: purpose, design, data, testing, risk management and oversight measures – in a form that authorities and notified bodies can follow.”", "q": "neu" }, "warum": { "t": "The technical documentation follows Annex IV and is aimed at authorities, not just the development team.", "q": "neu" } }
+        ]
+      },
+      {
+        "id": "b12", "artikel": 12, "titel": "Record-keeping",
+        "frage": { "t": "“What does HappyWorkers store in its logs?”", "q": "neu" },
+        "optionen": [
+          { "id": "b12a", "urteil": "gut", "kurz": "events, for traceability", "text": { "t": "“The system records events automatically, so it’s possible to trace how results came about and where risks occur.”", "q": "neu" }, "reaktion": { "t": "“Exactly – traceability is the aim of Art. 12.”", "q": "neu" }, "warum": { "t": "Art. 12: automatic recording of events over the system’s entire lifetime.", "q": "neu" } },
+          { "id": "b12b", "urteil": "schlecht", "kurz": "store nothing at all", "text": { "t": "“We’d rather not store anything at all – that’s the most privacy-friendly option.”", "q": "neu" }, "reaktion": { "t": "“Data protection matters, but Art. 12 requires that the system can record events automatically. The trick is to log in a way that is traceable yet keeps data to a minimum.”", "q": "neu" }, "warum": { "t": "Without logs, there’s no way to trace how an evaluation came about.", "q": "neu" } },
+          { "id": "b12c", "urteil": "schlecht", "kurz": "store all messages permanently", "text": { "t": "“We store all emails and chats permanently – better safe than sorry.”", "q": "neu" }, "reaktion": { "t": "“Logs are meant to make processes traceable, not to hoard all content. Storing all messages permanently would be highly problematic under data protection law.”", "q": "neu" }, "warum": { "t": "Logging means recording events – not collecting all content.", "q": "neu" } }
+        ]
+      },
+      {
+        "id": "b15", "artikel": 15, "titel": "Accuracy, robustness and cybersecurity",
+        "frage": { "t": "“HappyWorkers achieves 94% accuracy in testing. What does that mean for Art. 15?”", "q": "neu" },
+        "optionen": [
+          { "id": "b15a", "urteil": "gut", "kurz": "disclose, test, secure", "text": { "t": "“We state the accuracy levels in the instructions for use, regularly test the system’s robustness and protect it against manipulation, e.g. through deliberately crafted messages.”", "q": "neu" }, "reaktion": { "t": "“Very good – accuracy, robustness and cybersecurity throughout the entire lifecycle.”", "q": "neu" }, "warum": { "t": "Art. 15 requires all three aspects – permanently, not just in testing.", "q": "neu" } },
+          { "id": "b15b", "urteil": "schlecht", "kurz": "94% is enough", "text": { "t": "“94% is a great figure – so we’re done.”", "q": "neu" }, "reaktion": { "t": "“A single test figure is a snapshot. Art. 15 requires an appropriate level of accuracy throughout the entire lifecycle – plus robustness against errors and protection against attacks. And with many employees, 6% errors means many wrong evaluations.”", "q": "neu" }, "warum": { "t": "A good test figure is no substitute for robustness or cybersecurity.", "q": "neu" } },
+          { "id": "b15c", "urteil": "teil", "kurz": "keep retraining during operation", "text": { "t": "“We keep retraining the model on new chats during operation, so it keeps getting better.”", "q": "neu" }, "reaktion": { "t": "“Continuous learning sounds good, but it carries a risk: biased outputs can flow back in as new training data and reinforce themselves. Art. 15 requires such feedback loops to be eliminated or reduced as far as possible.”", "q": "neu" }, "warum": { "t": "Continuous learning is allowed – but only with safeguards against feedback loops.", "q": "neu" } }
+        ]
+      }
+    ],
+    "ergebnis": { "t": "“Bonus complete: {n} of 3 requirements met. You now know all the requirements in Articles 9–15.”", "q": "neu" }
   }
 }
 								</script>
@@ -1429,9 +2202,16 @@
 									var root = document.getElementById('aia-module');
 									var dataEl = document.getElementById('aia-content');
 									if (!root || !dataEl) return;
-									var C;
-									try { C = JSON.parse(dataEl.textContent); } catch (e) { return; }
-									var U = C.ui;
+									/* Two languages: German original + English translation (same structure). */
+									var CONTENT = {};
+									try { CONTENT.de = JSON.parse(dataEl.textContent); } catch (e) { return; }
+									try { CONTENT.en = JSON.parse(document.getElementById('aia-content-en').textContent); } catch (e) { /* English missing: German only */ }
+									var C, U, LANG;
+									function useLang(l) {
+										LANG = CONTENT[l] ? l : 'de';
+										C = CONTENT[LANG]; U = C.ui;
+										root.setAttribute('lang', LANG);
+									}
 
 									/* ---------- Settings ---------- */
 									var reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -1450,6 +2230,12 @@
 										return s;
 									}
 									var store = readStore();
+									/* Language: ?lang=de|en in the URL, then the remembered choice, then English */
+									(function () {
+										var q = null;
+										try { q = new URLSearchParams(window.location.search).get('lang'); } catch (e) { q = null; }
+										useLang(q === 'de' || q === 'en' ? q : (store.lang === 'de' || store.lang === 'en' ? store.lang : 'en'));
+									})();
 									function saveStore() {
 										memStore = store;
 										try { window.localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) { /* storage blocked: keep in memory */ }
@@ -1482,7 +2268,7 @@
 										var n = el(tag, cls, rich(fmt(t, vars)));
 										if (q) {
 											n.setAttribute('data-q', q);
-											if (REVIEW && q !== 'skript') n.title = 'Quelle: ' + q;
+											if (REVIEW && q !== 'skript') n.title = U.quelle.label + ': ' + (U.quelle[q] || q);
 										}
 										return n;
 									}
@@ -1545,10 +2331,15 @@
 									var tiers = [];
 
 									function buildChrome() {
+										stepper.innerHTML = ''; pyrList.innerHTML = ''; tiers = [];
+										stepper.setAttribute('aria-label', U.fortschritt);
+										side.setAttribute('aria-label', U.lagebild);
+										$('aia-lang').setAttribute('aria-label', U.sprache);
+										each($('aia-lang').children, function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === LANG)); });
 										$('aia-brand').textContent = U.modulTitel;
 										$('aia-pyr-title').textContent = U.pyramide;
 										$('aia-log-title').textContent = U.deinWeg;
-										sideToggle.firstChild.textContent = U.lagebildZeigen;
+										sideToggle.firstChild.textContent = side.classList.contains('is-open') ? U.lagebildVerbergen : U.lagebildZeigen;
 										U.phasen.forEach(function (name, i) {
 											var li = el('li', null, '<span class="aia-step-nr" aria-hidden="true">' + (i < 4 ? i + 1 : '★') + '</span><span class="aia-step-label">' + name + '</span>');
 											stepper.appendChild(li);
@@ -1562,6 +2353,7 @@
 										var brief = $('aia-brief');
 										brief.querySelector('summary').textContent = U.steckbrief;
 										var dl = brief.querySelector('dl');
+										dl.innerHTML = '';
 										dl.setAttribute('data-q', C.steckbrief.q);
 										C.steckbrief.zeilen.forEach(function (z) {
 											dl.appendChild(el('dt', null, z[0]));
@@ -1573,13 +2365,13 @@
 											lg.innerHTML = U.review;
 											lg.hidden = false;
 										}
-										sideToggle.addEventListener('click', function () {
-											var open = !side.classList.contains('is-open');
-											side.classList.toggle('is-open', open);
-											sideToggle.setAttribute('aria-expanded', String(open));
-											sideToggle.firstChild.textContent = open ? U.lagebildVerbergen : U.lagebildZeigen;
-										});
 									}
+									sideToggle.addEventListener('click', function () {
+										var open = !side.classList.contains('is-open');
+										side.classList.toggle('is-open', open);
+										sideToggle.setAttribute('aria-expanded', String(open));
+										sideToggle.firstChild.textContent = open ? U.lagebildVerbergen : U.lagebildZeigen;
+									});
 
 									/* ---------- State ---------- */
 									var S;
@@ -1709,15 +2501,21 @@
 										w.appendChild(txt('p', null, t));
 										parent.appendChild(w);
 									}
-									function lookupLink(label, url, compact) {
+									function lookupLink(label, url, compact, key) {
 										var a = el('a', 'aia-lookup', label + (compact ? '' : ' ' + U.nachschlagen) + ' ↗');
 										a.href = url; a.target = '_blank'; a.rel = 'noopener';
-										a.addEventListener('click', function () { if (S.lookups.indexOf(label) < 0) S.lookups.push(label); });
+										key = key || label;
+										a.addEventListener('click', function () { if (S.lookups.indexOf(key) < 0) S.lookups.push(key); });
 										return a;
 									}
 									function artLink(nr, compact) {
 										var a = C.artikel[String(nr)];
-										return lookupLink('Art. ' + nr, a ? a.url : 'https://artificialintelligenceact.eu/de/article/' + nr + '/', compact);
+										return lookupLink('Art. ' + nr, a ? a.url : fmt(C.meta.artikelUrl, { n: nr }), compact);
+									}
+									function linkTo(k, compact) { return lookupLink(C.links[k].label, C.links[k].url, compact, 'links:' + k); }
+									function lookupLabel(k) {
+										var m = /^links:(\w+)$/.exec(k);
+										return m && C.links[m[1]] ? C.links[m[1]].label : k;
 									}
 									function footer(parent, o) {
 										if (o.hint) {
@@ -2060,7 +2858,7 @@
 												grid.appendChild(b);
 											});
 											sc.appendChild(grid);
-											prim = footer(sc, { hint: A.hinweis, links: [lookupLink(C.links.anhang3.label, C.links.anhang3.url), artLink(6)], primary: { label: U.weiter, onClick: sArt63, disabled: true } });
+											prim = footer(sc, { hint: A.hinweis, links: [linkTo('anhang3'), artLink(6)], primary: { label: U.weiter, onClick: sArt63, disabled: true } });
 										});
 									}
 
@@ -2123,6 +2921,7 @@
 
 									function sDecision(nodeId, preface) {
 										S.phase = 2;
+										if (preface && preface.fix) preface = { t: fmt(C.nachbessern.ok.t, { artikel: 'Art. ' + preface.fix.nr, monate: months(preface.fix.m) }), q: C.nachbessern.ok.q };
 										var node = C.knoten[nodeId];
 										render(function (sc) {
 											head(sc, fmt(U.entscheidung, { n: node.ebene }) + ' · Art. ' + node.artikel, node.titel);
@@ -2237,7 +3036,7 @@
 										S.delay += m;
 										S.fixes.push({ node: e.node, months: m });
 										S.path = S.path.slice(0, idx);
-										sDecision(e.node, { t: fmt(C.nachbessern.ok.t, { artikel: 'Art. ' + node.artikel, monate: months(m) }), q: C.nachbessern.ok.q });
+										sDecision(e.node, { fix: { nr: node.artikel, m: m } });
 									}
 
 									/* ---------- ④ Auswertung ---------- */
@@ -2303,7 +3102,7 @@
 											} else gs.appendChild(txt('p', null, W.prognoseKeine));
 
 											var ls = section(sc, W.nachgeschlagenTitel);
-											ls.appendChild(S.lookups.length ? txt('p', null, W.nachgeschlagen, { liste: S.lookups.join(', ') }) : txt('p', null, W.nichtsNachgeschlagen));
+											ls.appendChild(S.lookups.length ? txt('p', null, W.nachgeschlagen, { liste: S.lookups.map(lookupLabel).join(', ') }) : txt('p', null, W.nichtsNachgeschlagen));
 
 											var es = section(sc, W.endenTitel + ' · ' + store.endings.length + '/' + C.endenReihenfolge.length);
 											es.appendChild(txt('p', null, W.endenText));
@@ -2417,7 +3216,7 @@
 													li.appendChild(ul);
 												}
 												(s.artikel || []).forEach(function (nr) { links.appendChild(artLink(nr, true)); });
-												if (s.anhang) links.appendChild(lookupLink(C.links.anhang3.label, C.links.anhang3.url, true));
+												if (s.anhang) links.appendChild(linkTo('anhang3', true));
 												li.appendChild(links);
 												ol.appendChild(li);
 											});
@@ -2429,7 +3228,7 @@
 											F.wann.punkte.forEach(function (p) { ul2.appendChild(txt('li', null, p)); });
 											w.appendChild(ul2);
 											var st = el('p', 'aia-when-stand', F.wann.stand + ' ');
-											st.appendChild(lookupLink(C.links.omnibus.label, C.links.omnibus.url, true));
+											st.appendChild(linkTo('omnibus', true));
 											w.appendChild(st);
 											sc.appendChild(w);
 
@@ -2542,6 +3341,40 @@
 										b.setAttribute('aria-controls', def.id);
 									});
 
+									/* ---------- Language switch: redraw the current screen in the other language, progress kept ---------- */
+									var current = null;
+									function tracked(fn, remap) {
+										return function () {
+											current = { fn: fn, args: Array.prototype.slice.call(arguments), remap: remap };
+											return fn.apply(null, current.args);
+										};
+									}
+									function sameOpt(list, o) { for (var i = 0; i < list.length; i++) if (list[i].id === o.id) return list[i]; return o; }
+									sIntro = tracked(sIntro, function (a) { return [true]; });
+									sPrognose = tracked(sPrognose); sCheck = tracked(sCheck); sCheckResult = tracked(sCheckResult); sTwist = tracked(sTwist);
+									sMeeting = tracked(sMeeting); sAnnex = tracked(sAnnex); sArt63 = tracked(sArt63); sStart = tracked(sStart);
+									sDecision = tracked(sDecision);
+									sReaction = tracked(sReaction, function (a) { return [a[0], sameOpt(C.knoten[a[0]].optionen, a[1]), a[2]]; });
+									sEnding = tracked(sEnding); sWeg = tracked(sWeg); sTransfer = tracked(sTransfer); sFahrplan = tracked(sFahrplan);
+									sBonusIntro = tracked(sBonusIntro); sBonusQ = tracked(sBonusQ); sBonusEnd = tracked(sBonusEnd);
+									sBonusReaction = tracked(sBonusReaction, function (a) { return [a[0], sameOpt(C.bonus.fragen[a[0]].optionen, a[1]), a[2]]; });
+									each($('aia-lang').children, function (b) {
+										b.addEventListener('click', function () {
+											var l = b.getAttribute('data-lang');
+											if (l === LANG || !CONTENT[l]) return;
+											useLang(l);
+											store.lang = l; saveStore();
+											buildChrome();
+											if (current) {
+												var args = current.remap ? current.remap(current.args) : current.args;
+												current.args = args;
+												current.fn.apply(null, args);
+											}
+											announce(l === 'en' ? 'English' : 'Deutsch');
+											try { b.focus({ preventScroll: true }); } catch (e) { b.focus(); }
+										});
+									});
+
 									/* ---------- Start ---------- */
 									S = freshState();
 									buildChrome();
@@ -2574,6 +3407,8 @@
 									<li>Which decisions send most learners into rework, to see where the content needs strengthening.</li>
 									<li>How often learners open the law text, as a sign they’re building the habit of checking the source.</li>
 								</ul>
+								<h3>Translation</h3>
+								<p>The module was built in German for KI-Campus. The English version uses the official English terms of the AI Act (Regulation (EU) 2024/1689) for every legal concept, such as <em>provider</em>, <em>deployer</em> and <em>human oversight</em>, and keeps the conversational tone of the original. Learners can switch between English and German at any point without losing their progress.</p>
 								<p>Read how the full course came together in the <a href="case-eu-ai-act.html">EU AI Act case study</a>.</p>
 							</section>
 						</div>
