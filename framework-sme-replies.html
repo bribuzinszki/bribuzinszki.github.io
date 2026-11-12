@@ -1,0 +1,584 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="en">
+	<head>
+		<title>How I Get SMEs to Reply · Brigitta Buzinszki</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Seven steps that get subject matter experts to reply, from the first coffee chat to calling in the big guns. With a quick diagnosis quiz." />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Brigitta Buzinszki" />
+		<meta property="og:title" content="How I Get SMEs to Reply · Brigitta Buzinszki" />
+		<meta property="og:description" content="Seven steps that get subject matter experts to reply, from the first coffee chat to calling in the big guns. With a quick diagnosis quiz." />
+		<meta property="og:url" content="https://bribuzinszki.github.io/framework-sme-replies.html" />
+		<meta property="og:image" content="https://bribuzinszki.github.io/images/og-image.png" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<link rel="icon" href="images/favicon-32.png" type="image/png" sizes="32x32" />
+		<link rel="icon" href="images/logo.svg" type="image/svg+xml" />
+		<link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="index.html" class="logo">
+									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Brigitta Buzinszki</span>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+							<!-- Contact (scrolls with the page, unlike the fixed Menu button) -->
+								<ul class="contact-icons">
+									<li><a href="mailto:b.buzinszki@gmail.com" class="icon solid fa-envelope" aria-label="Email"><span class="label">Email</span></a></li>
+									<li><a href="https://www.linkedin.com/in/brigitta-buzinszki-946b92165/" class="icon brands fa-linkedin-in" aria-label="LinkedIn"><span class="label">LinkedIn</span></a></li>
+								</ul>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li>
+								<a href="index.html#try-it">Try It Yourself</a>
+								<ul>
+									<li><a href="rag-exercise.html">Grounding AI with RAG</a></li>
+									<li><a href="eu-ai-act-high-risk.html">EU AI Act: High Risk Applications</a></li>
+									<li><a href="inference-exercise.html">Inference</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="index.html#case-studies">Case Studies</a>
+								<ul>
+									<li><a href="case-intro-to-llms.html">Intro to LLMs</a></li>
+									<li><a href="case-eu-ai-act.html">EU AI Act Essentials</a></li>
+									<li><a href="case-technical-onboarding.html">Technical Onboarding for Engineers</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="index.html#frameworks">Field-Tested Frameworks</a>
+								<ul>
+									<li><a href="framework-sme-feedback.html">SME Feedback Framework</a></li>
+									<li><a href="framework-sme-replies.html">How I Get SMEs to Reply</a></li>
+								</ul>
+							</li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main" role="main">
+						<div class="inner">
+
+							<!-- ============ SME REPLIES START (article plus self-contained styles and quiz script, all namespaced under #smr) ============ -->
+							<style>
+								#smr {
+									/* Palette from the portfolio (Phantom greys + the accessible accent shades); one colour per phase */
+									--smr-fg: #585858;
+									--smr-fg-bold: #3c3b3b;
+									--smr-fg-light: #6e6e6e;
+									--smr-bg: #ffffff;
+									--smr-bg-alt: #f6f6f6;
+									--smr-dark: #333333;
+									--smr-border: #c9c9c9;
+									--smr-pink: #c2335b;
+									--smr-blue: #0c6ea7;
+									--smr-teal: #277166;
+									--smr-radius: 4px;
+								}
+								#smr *, #smr *::before, #smr *::after { box-sizing: border-box; }
+								#smr [hidden] { display: none !important; }
+								#smr :focus-visible { outline: 2px solid var(--smr-pink); outline-offset: 3px; }
+								#smr .p1 { --smr-phase: var(--smr-pink); }
+								#smr .p2 { --smr-phase: var(--smr-blue); }
+								#smr .p3 { --smr-phase: var(--smr-teal); }
+
+								/* Small outlined label, same family as the landing page's section chips */
+								#smr .smr-chip {
+									display: inline-block; padding: 0.35em 0.7em 0.35em 0.85em; border: 1px solid currentColor; border-radius: var(--smr-radius);
+									font-size: 0.7em; font-weight: 900; line-height: 1.4; letter-spacing: 0.25em; text-transform: uppercase;
+									color: var(--smr-phase, var(--smr-pink));
+								}
+								#smr .smr-eyebrow { display: block; font-size: 0.7em; font-weight: 900; letter-spacing: 0.25em; text-transform: uppercase; color: var(--smr-pink); }
+
+								/* ---------- Hero: title and lead next to the "missing" poster ---------- */
+								#smr .smr-hero { display: grid; grid-template-columns: minmax(0, 1fr) 15.5em; gap: 3em; align-items: center; margin-bottom: 1em; }
+								#smr .smr-hero h1 { margin-bottom: 0.5em; }
+								#smr .smr-poster {
+									position: relative; padding: 1.8em 1.4em 1.5em; text-align: center; background: var(--smr-bg-alt);
+									border: 2px dashed var(--smr-fg); border-radius: var(--smr-radius); transform: rotate(2.5deg);
+									box-shadow: 0 10px 24px -14px rgba(0, 0, 0, 0.35); line-height: 1.45;
+								}
+								#smr .smr-poster::before {
+									content: ''; position: absolute; top: -0.6em; left: 50%; width: 1.1em; height: 1.1em; margin-left: -0.55em;
+									border-radius: 50%; background: var(--smr-pink); box-shadow: inset -2px -2px 0 rgba(0, 0, 0, 0.2);
+								}
+								#smr .smr-poster-head { display: block; font-size: 1.5em; font-weight: 900; letter-spacing: 0.3em; text-transform: uppercase; margin-right: -0.3em; color: var(--smr-pink); }
+								#smr .smr-poster-who { display: block; margin: 0.35em 0 0.9em; font-weight: 700; color: var(--smr-fg-bold); }
+								#smr .smr-poster dl { margin: 0; font-size: 0.85em; }
+								#smr .smr-poster dt { display: inline; font-weight: 700; color: var(--smr-fg-bold); }
+								#smr .smr-poster dd { display: inline; margin: 0; }
+								#smr .smr-poster dd::after { content: ''; display: block; }
+								#smr .smr-poster-foot { display: block; margin-top: 0.9em; padding-top: 0.7em; border-top: 1px solid var(--smr-border); font-size: 0.8em; font-style: italic; }
+
+								/* ---------- Route overview: 3 phases, 7 steps ---------- */
+								#smr .smr-bridge { margin-top: 2em; }
+								#smr .smr-route { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5em; margin: 0; padding: 1.75em; border: 1px solid var(--smr-border); border-radius: var(--smr-radius); }
+								#smr .smr-route > .smr-eyebrow { grid-column: 1 / -1; margin-bottom: -0.5em; }
+								#smr .smr-route ol { list-style: none; margin: 0.9em 0 0; padding: 0; }
+								#smr .smr-route li { margin: 0 0 0.5em; padding: 0; }
+								#smr .smr-route a { display: flex; align-items: center; gap: 0.7em; min-height: 44px; border-bottom: 0; color: var(--smr-fg-bold); font-weight: 700; line-height: 1.3; }
+								#smr .smr-route a:hover { color: var(--smr-phase) !important; }
+								#smr .smr-num {
+									flex: none; display: inline-flex; align-items: center; justify-content: center; width: 2em; height: 2em;
+									border-radius: 50%; background: var(--smr-phase); color: #ffffff; font-weight: 900; font-size: 0.85em;
+								}
+
+								/* ---------- Diagnostic quiz ---------- */
+								#smr .smr-quiz { margin: 3em 0 0; padding: 1.75em; background: var(--smr-bg-alt); border-radius: var(--smr-radius); }
+								#smr .smr-quiz h2 { margin: 0.6em 0 0.2em; font-size: 1.25em; letter-spacing: -0.01em; text-transform: none; font-weight: 700; }
+								#smr .smr-quiz-meta { margin: 0 0 1em; font-size: 0.9em; color: var(--smr-fg-light); }
+								#smr .smr-quiz-q { margin: 0 0 1em; font-size: 1.1em; color: var(--smr-fg-bold); }
+								#smr .smr-quiz-btns { display: flex; flex-wrap: wrap; gap: 0.75em; }
+								#smr .smr-btn {
+									display: inline-flex; align-items: center; justify-content: center; min-width: 7em; height: auto; min-height: 44px; padding: 0 1.6em;
+									line-height: 1.2; white-space: normal; border-radius: var(--smr-radius); cursor: pointer;
+									font-size: 0.75em; font-weight: 900; letter-spacing: 0.25em; text-transform: uppercase;
+									background: var(--smr-bg); color: var(--smr-fg) !important; box-shadow: inset 0 0 0 2px var(--smr-fg); transition: color 0.2s, box-shadow 0.2s;
+								}
+								#smr .smr-btn:hover { color: var(--smr-pink) !important; box-shadow: inset 0 0 0 2px var(--smr-pink); }
+								#smr .smr-quiz-result { margin: 0; padding: 1.1em 1.25em; background: var(--smr-bg); border-left: 4px solid var(--smr-phase, var(--smr-pink)); border-radius: var(--smr-radius); color: var(--smr-fg-bold); }
+								#smr .smr-quiz-result:empty { display: none; }
+								#smr .smr-quiz-result a { font-weight: 700; }
+								#smr .smr-quiz-again { margin-top: 1em; }
+								#smr .smr-quiz-steps { display: flex; gap: 0.35em; margin: 0 0 1em; padding: 0; list-style: none; }
+								#smr .smr-quiz-steps li { width: 2.2em; height: 0.35em; padding: 0; border-radius: 0.2em; background: var(--smr-border); }
+								#smr .smr-quiz-steps li.is-done { background: var(--smr-fg); }
+
+								/* ---------- Phase headings (main level: grey divider, filled chip, large sentence-case title) ---------- */
+								#smr .smr-phase { margin-top: 4em; padding-top: 3em; border-top: 1px solid var(--smr-border); }
+								#smr .smr-phase-head { margin: 0 0 0.5em; }
+								#smr .smr-chip.is-filled { background: var(--smr-phase); border-color: var(--smr-phase); color: #ffffff; }
+								#smr .smr-phase-head h2 { margin: 0.6em 0 0.25em; font-size: 1.9em; font-weight: 700; line-height: 1.25; letter-spacing: -0.02em; text-transform: none; color: var(--smr-fg-bold); }
+								#smr .smr-phase-head p { margin: 0; font-size: 1.1em; }
+
+								/* ---------- Step headings (sub level: small spaced capitals, outlined chip on the same line) ---------- */
+								#smr .smr-step { scroll-margin-top: 1.5em; margin: 2.75em 0 1em; }
+								#smr .smr-step .smr-chip { margin: 0 0.9em 0.3em 0; font-size: 0.65em; vertical-align: 0.15em; }
+								#smr .smr-closing { margin-top: 4em; padding-top: 3em; border-top: 1px solid var(--smr-border); }
+
+								/* ---------- Callouts and pull quote ---------- */
+								/* "From the field" notes: closed by default, native details/summary */
+								#smr .smr-note { margin: 0 0 2em; background: var(--smr-bg-alt); border-left: 4px solid var(--smr-phase); border-radius: var(--smr-radius); }
+								#smr .smr-note summary {
+									display: flex; align-items: center; justify-content: space-between; gap: 1em; min-height: 44px; padding: 0.6em 1.4em;
+									cursor: pointer; list-style: none; font-weight: 700; color: var(--smr-fg-bold);
+								}
+								#smr .smr-note summary::-webkit-details-marker { display: none; }
+								#smr .smr-note summary::after { content: '+'; flex: none; font-size: 1.4em; font-weight: 300; line-height: 1; color: var(--smr-phase); transition: transform 0.2s; }
+								#smr .smr-note[open] summary::after { transform: rotate(45deg); }
+								#smr .smr-note summary:hover { color: var(--smr-phase); }
+								#smr .smr-note summary b { color: var(--smr-phase); font-weight: 900; font-size: 0.75em; letter-spacing: 0.25em; text-transform: uppercase; margin-right: 0.6em; }
+								#smr .smr-note p { margin: 0; padding: 0 1.4em 1.2em; }
+								#smr .smr-quote { margin: 0 0 2em; padding: 0 0 0 1em; border-left: 0; font-style: normal; font-size: 1.45em; font-weight: 700; line-height: 1.35; letter-spacing: -0.015em; color: var(--smr-fg-bold); }
+								#smr .smr-quote::before { content: '\201C'; display: block; height: 0.55em; font-size: 2.2em; line-height: 1; color: var(--smr-pink); }
+
+								/* ---------- "Easier than" cards with effort meters ---------- */
+								#smr .smr-sr { position: absolute; width: 1px; height: 1px; margin: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+								#smr .smr-pairs { margin: 2em 0 2.5em; }
+								#smr .smr-pair { display: grid; grid-template-columns: 15em minmax(0, 1fr); gap: 2em; align-items: start; margin: 0 0 2em; }
+								#smr .smr-pair > p { margin: 0; }
+								#smr .smr-card { padding: 1.1em 1.25em 1em; border: 1px solid var(--smr-border); border-radius: var(--smr-radius); }
+								#smr .smr-effort { display: flex; align-items: center; justify-content: space-between; gap: 0.75em; font-weight: 700; color: var(--smr-fg-bold); }
+								#smr .smr-effort.is-hard { font-weight: 300; color: var(--smr-fg); }
+								#smr .smr-meter { display: inline-flex; gap: 3px; }
+								#smr .smr-meter i { display: block; width: 0.55em; height: 1em; border-radius: 2px; background: var(--smr-bg-alt); box-shadow: inset 0 0 0 1px var(--smr-border); }
+								#smr .smr-effort .smr-meter i.on { background: var(--smr-blue); box-shadow: none; }
+								#smr .smr-effort.is-hard .smr-meter i.on { background: var(--smr-fg-light); }
+								#smr .smr-than { display: block; margin: 0.35em 0; font-size: 0.75em; font-weight: 900; letter-spacing: 0.25em; text-transform: uppercase; color: var(--smr-fg-light); }
+
+								/* ---------- Before/after chat ---------- */
+								#smr .smr-chats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5em; margin: 0 0 2.5em; }
+								#smr .smr-chat { margin: 0; }
+								#smr .smr-chat figcaption { margin-bottom: 0.6em; }
+								#smr .smr-chat-box { padding: 1.1em 1.2em; border: 1px solid var(--smr-border); border-radius: var(--smr-radius); background: var(--smr-bg); }
+								#smr .smr-msg { display: grid; grid-template-columns: 2.2em minmax(0, 1fr); gap: 0 0.75em; }
+								#smr .smr-msg + .smr-msg { margin-top: 1em; padding-top: 1em; border-top: 1px solid var(--smr-bg-alt); }
+								#smr .smr-avatar { grid-row: span 2; display: flex; align-items: center; justify-content: center; width: 2.2em; height: 2.2em; border-radius: var(--smr-radius); background: var(--smr-dark); color: #ffffff; font-size: 0.85em; font-weight: 900; }
+								#smr .smr-avatar.is-sme { background: var(--smr-teal); }
+								#smr .smr-who { font-size: 0.9em; font-weight: 700; color: var(--smr-fg-bold); }
+								#smr .smr-who small { margin-left: 0.4em; font-weight: 300; color: var(--smr-fg-light); }
+								#smr .smr-msg p { margin: 0.15em 0 0; line-height: 1.55; }
+								#smr .smr-status { display: block; margin-top: 0.8em; font-size: 0.8em; color: var(--smr-fg-light); }
+								#smr .smr-status.is-ghosted::before { content: '\2713\2713  '; letter-spacing: -0.15em; margin-right: 0.3em; }
+
+								@media screen and (max-width: 980px) {
+									#smr .smr-chats { grid-template-columns: minmax(0, 1fr); }
+								}
+								@media screen and (max-width: 736px) {
+									#smr .smr-hero { grid-template-columns: minmax(0, 1fr); gap: 1.5em; }
+									#smr .smr-poster { max-width: 16em; margin: 0 auto 1em; }
+									#smr .smr-route { grid-template-columns: minmax(0, 1fr); padding: 1.25em; gap: 1em; }
+									#smr .smr-quiz { padding: 1.25em; }
+									#smr .smr-quote { font-size: 1.25em; }
+									#smr .smr-pair { grid-template-columns: minmax(0, 1fr); gap: 0.9em; }
+									#smr .smr-card { max-width: 18em; }
+									#smr .smr-phase-head h2 { font-size: 1.5em; }
+								}
+								@media (prefers-reduced-motion: reduce) {
+									#smr .smr-poster { transform: none; }
+									#smr .smr-btn, #smr .smr-note summary::after { transition: none; }
+								}
+							</style>
+
+							<article id="smr">
+								<div class="smr-hero">
+									<div>
+										<h1>How I get SMEs to reply to me</h1>
+										<p class="cs-lead">Seven steps, from the first coffee chat to calling in the big guns.</p>
+									</div>
+									<aside class="smr-poster" aria-label="A missing person poster for a subject matter expert">
+										<span class="smr-poster-head">Missing</span>
+										<span class="smr-poster-who">Subject Matter Expert</span>
+										<dl>
+											<dt>Last seen:</dt> <dd>in a meeting</dd>
+											<dt>Answers to:</dt> <dd>“quick question?”</dd>
+										</dl>
+										<span class="smr-poster-foot">If found, please reply.</span>
+									</aside>
+								</div>
+
+								<p>You join a new company, you get your first task – and then you sit on it for a good while, because nobody replies to you. It’s as if something had wiped out all the subject matter experts (SMEs) who were supposed to let their wisdom rain down on the masterpiece you’re creating.</p>
+								<p>Still, customers need to be enabled, playbooks need to be updated and infographics need to be corrected. So how do we get our SMEs talking to us?</p>
+								<p>Here is my approach, in short. I’m not claiming universal truth, nor am I saying this is the perfect way to go about it. I’m only saying that these steps have served me pretty well for the last decade or so. That’s why I want to share them with you, as a last resort before you file a missing person’s report for your SMEs.</p>
+
+								<p class="smr-bridge"><b>Two ways to use this page:</b> starting a new project? Follow the route from step 1. Already waiting on a silent SME? Take the quick check below and jump straight to the step you need.</p>
+
+								<nav class="smr-route" aria-label="The seven steps">
+									<span class="smr-eyebrow">The route</span>
+									<div class="p1">
+										<span class="smr-chip">Before you ask</span>
+										<ol>
+											<li><a href="#step-1"><span class="smr-num">1</span>Build a personal relationship</a></li>
+											<li><a href="#step-2"><span class="smr-num">2</span>Have a wingman</a></li>
+											<li><a href="#step-3"><span class="smr-num">3</span>Get proper buy-in</a></li>
+										</ol>
+									</div>
+									<div class="p2">
+										<span class="smr-chip">When you ask</span>
+										<ol start="4">
+											<li><a href="#step-4"><span class="smr-num">4</span>Make it easy</a></li>
+											<li><a href="#step-5"><span class="smr-num">5</span>Set clear expectations</a></li>
+										</ol>
+									</div>
+									<div class="p3">
+										<span class="smr-chip">When they go quiet</span>
+										<ol start="6">
+											<li><a href="#step-6"><span class="smr-num">6</span>Go where the people are</a></li>
+											<li><a href="#step-7"><span class="smr-num">7</span>The last resort</a></li>
+										</ol>
+									</div>
+								</nav>
+
+								<section class="smr-quiz" id="smr-quiz" aria-labelledby="smr-quiz-title">
+									<span class="smr-eyebrow">Quick check &middot; Why isn’t my SME replying?</span>
+									<h2 id="smr-quiz-title">Already waiting on a reply?</h2>
+									<p class="smr-quiz-meta">Four yes/no questions, about 30 seconds. I’ll point you to the step to try next.</p>
+									<div id="smr-quiz-ask">
+										<ol class="smr-quiz-steps" id="smr-quiz-steps" aria-hidden="true"><li></li><li></li><li></li><li></li></ol>
+										<p class="smr-quiz-q" id="smr-quiz-q"></p>
+										<div class="smr-quiz-btns">
+											<button type="button" class="smr-btn" id="smr-yes">Yes</button>
+											<button type="button" class="smr-btn" id="smr-no">No</button>
+										</div>
+									</div>
+									<p class="smr-quiz-result" id="smr-quiz-result" aria-live="polite"></p>
+									<button type="button" class="smr-btn smr-quiz-again" id="smr-again" hidden>Start over</button>
+									<noscript><p class="smr-quiz-result">The quiz needs JavaScript. Use the route above: if your SME doesn’t know you, start at step 1; if their manager doesn’t know about your project, step 3; if your ask is big, step 4; if it has no deadline, step 5.</p></noscript>
+								</section>
+
+								<section class="smr-phase p1" aria-labelledby="phase-1">
+									<header class="smr-phase-head">
+										<span class="smr-chip is-filled">Phase 1</span>
+										<h2 id="phase-1">Before you ask</h2>
+										<p>Lay the groundwork before you need anything.</p>
+									</header>
+
+									<h3 class="smr-step" id="step-1"><span class="smr-chip">Step 1 of 7</span>Build a personal relationship</h3>
+									<p>When joining a new company, I always recommend taking the first couple of weeks to schedule coffee chats with as many people as possible, your future SMEs among them. If you enable customers, those will probably be the product managers, the product and solution engineers, and your customer success team. Since your enablement piece will be customer-facing, you also want to be on very good terms with marketing (copy and design).</p>
+									<p>Companies are busy places. People always need to prioritize, and when push comes to shove, you don’t want to be the meeting that gets cut or the message that’s left unanswered. How important your enablement piece is will vary from SME to SME, so make sure your own importance stays constant:</p>
+									<blockquote class="smr-quote">Be a human first, and a learning experience designer second.</blockquote>
+
+									<h3 class="smr-step" id="step-2"><span class="smr-chip">Step 2 of 7</span>Have a wingman</h3>
+									<p>Okay, but we can’t always be friends with everyone, or you haven’t yet had the chance to build a relationship with this specific person. This is where your first weeks of coffee chats and your solid knowledge of who gets along with whom come into play.</p>
+									<p>Ask someone you know has a good relationship with the SME to put in a word for you, or to introduce you and join your first couple of meetings or Slack conversations. Your wingman usually turns out to be someone who has been at the company long enough to know most people, and who you truly get along with.</p>
+									<details class="smr-note">
+										<summary><span><b>From the field</b>who makes a good wingman</span></summary>
+										<p>Seniority has nothing to do with whether someone makes a good wingman. Some of my best wingmen were juniors, young and full of energy. Time at the company, however, is usually a good indicator of wingman quality. And odds are, if you like the person, others like them too.</p>
+									</details>
+
+									<h3 class="smr-step" id="step-3"><span class="smr-chip">Step 3 of 7</span>Get proper buy-in</h3>
+									<p>The project is green-lit, you got buy-in for your work! But did you really?</p>
+									<p>Your manager or a certain department might position your project as important, but odds are the managers of your SMEs haven’t even heard of it, or have only heard of it in passing.</p>
+									<p>Especially at start-ups, communication can be erratic. It happens at the water cooler at odd times or in private Slack messages, and one important piece of information gets buried under the next crisis. Enablement only becomes important on onboarding or launch day. Until then, you’re a footnote, something that can be pushed to tomorrow, and you don’t live at the forefront of people’s minds.</p>
+									<p>This is why it’s good etiquette to follow proper project management protocol and make sure all your stakeholders, your SMEs’ managers included, get a short memo on your project: what it is, when it happens and how much of your SMEs’ time it will take away from their other work.</p>
+									<p>Have the managers approve that time in advance. I’ve often seen SMEs unsure whether they were even allowed to prioritize my project. Approval from above puts their minds at ease and makes them feel better about taking those 30 minutes to green-light your script.</p>
+								</section>
+
+								<section class="smr-phase p2" aria-labelledby="phase-2">
+									<header class="smr-phase-head">
+										<span class="smr-chip is-filled">Phase 2</span>
+										<h2 id="phase-2">When you ask</h2>
+										<p>Make your request the easiest thing on their list.</p>
+									</header>
+
+									<h3 class="smr-step" id="step-4"><span class="smr-chip">Step 4 of 7</span>Make it easy</h3>
+									<p>We all love an easy task first thing in the morning: something we can quickly knock off our endless to-do list that makes us feel productive. Wouldn’t it be great if your ask served that purpose? If your request is the easy thing your SMEs can get through quickly, you’re more likely to get a reply.</p>
+									<p>But how do we make it easy for our experts?</p>
+									<div class="smr-pairs">
+										<div class="smr-pair">
+											<h4 class="smr-sr">Answering is easier than explaining</h4>
+											<div class="smr-card" aria-hidden="true">
+												<span class="smr-effort">Answering <span class="smr-meter" role="img" aria-label="low effort"><i class="on"></i><i></i><i></i></span></span>
+												<span class="smr-than">is easier than</span>
+												<span class="smr-effort is-hard">explaining <span class="smr-meter" role="img" aria-label="high effort"><i class="on"></i><i class="on"></i><i class="on"></i></span></span>
+											</div>
+											<p>Read and learn as much as you can about the product or topic before you kick off the conversation with your SMEs. You don’t have to become an expert yourself, but you should know the material well enough to ask clarifying questions. It’s okay to ask for good sources, so you know you’re learning from the right material, but your SME shouldn’t be your primary source of information. They are there to clear up doubts and point you in the right direction.</p>
+										</div>
+										<div class="smr-pair">
+											<h4 class="smr-sr">Approving is easier than ideating</h4>
+											<div class="smr-card" aria-hidden="true">
+												<span class="smr-effort">Approving <span class="smr-meter" role="img" aria-label="low effort"><i class="on"></i><i></i><i></i></span></span>
+												<span class="smr-than">is easier than</span>
+												<span class="smr-effort is-hard">ideating <span class="smr-meter" role="img" aria-label="high effort"><i class="on"></i><i class="on"></i><i class="on"></i></span></span>
+											</div>
+											<p>Instead of asking for ideas and topics for a curriculum, come with a draft and ask them to approve it. Odds are they will want to add some things and take out or highlight others, but it’s easier to start from something than from an empty page. You don’t have to get it right the first time, but you have to put in the effort to get close.</p>
+										</div>
+										<div class="smr-pair">
+											<h4 class="smr-sr">Correcting is easier than drafting</h4>
+											<div class="smr-card" aria-hidden="true">
+												<span class="smr-effort">Correcting <span class="smr-meter" role="img" aria-label="low effort"><i class="on"></i><i></i><i></i></span></span>
+												<span class="smr-than">is easier than</span>
+												<span class="smr-effort is-hard">drafting <span class="smr-meter" role="img" aria-label="high effort"><i class="on"></i><i class="on"></i><i class="on"></i></span></span>
+											</div>
+											<p>Take the sources your SME pointed you to and the answers they gave you, and start drafting. Ideally, you work in a modular way: what you learn from your SME’s corrections on the first module, you carry over to the second, which in turn makes your SME’s job easier. This way, “a quick read” really is quick enough for them to want to do it.</p>
+										</div>
+									</div>
+
+									<p>Again, and this is important: you don’t have to get it right the first time, but you do have to do the drafting and redrafting on your own. Your SME is the eye that spots the flaws only an expert could. They are not your co-writer (unless they want to be – in that case, take that very rare offer and cherish the experience).</p>
+
+									<h3 class="smr-step" id="step-5"><span class="smr-chip">Step 5 of 7</span>Set clear expectations</h3>
+									<p>You asked for a reply, but you didn’t say by when. Now your ask sits behind all the other asks that came with a deadline.</p>
+									<p>You asked for feedback, but you didn’t say what it should look like. Now you might be stuck with one-liners like “Dive deeper on this topic” or “Too long, make it shorter”. (If that has already happened to you, I have a framework for that: the <a href="framework-sme-feedback.html">SME Feedback Framework</a>.)</p>
+									<p>All of this costs time, because you’ll be busy writing reminders and asking for clarifications. Compare these two asks:</p>
+									<div class="smr-chats">
+										<figure class="smr-chat">
+											<figcaption><span class="smr-chip" style="--smr-phase: var(--smr-fg-light)">Vague ask</span></figcaption>
+											<div class="smr-chat-box">
+												<div class="smr-msg">
+													<span class="smr-avatar" aria-hidden="true">You</span>
+													<span class="smr-who">You <small>Monday 9:14</small></span>
+													<p>Hey! Could you take a look at the module when you get a chance? 🙏</p>
+												</div>
+												<span class="smr-status is-ghosted">Seen &middot; 6 days ago</span>
+											</div>
+										</figure>
+										<figure class="smr-chat">
+											<figcaption><span class="smr-chip">Clear ask</span></figcaption>
+											<div class="smr-chat-box">
+												<div class="smr-msg">
+													<span class="smr-avatar" aria-hidden="true">You</span>
+													<span class="smr-who">You <small>Monday 9:14</small></span>
+													<p>Hi Sam, could you check module 2 for factual errors by Thursday? It takes about 20 minutes. Please leave each comment as What / Why / How (format in the doc).</p>
+												</div>
+												<div class="smr-msg">
+													<span class="smr-avatar is-sme" aria-hidden="true">S</span>
+													<span class="smr-who">Sam <small>Tuesday 8:52</small></span>
+													<p>Done! Two notes inside. ✅</p>
+												</div>
+											</div>
+										</figure>
+									</div>
+									<p>Clear expectations on the time it takes, what feedback should look like, the deadline and any other asks make it easier for your SME to act, and save you time and frustration.</p>
+									<details class="smr-note">
+										<summary><span><b>From the field</b>afraid of sounding pushy?</span></summary>
+										<p>Some people shy away from clear expectations because they feel pushy or demanding. Don’t. Set those deadlines, and cut people some slack when they can’t meet them. A missed deadline is your clue that something else is going on: have a conversation, offer help, or work out another way to reach the goal you have to hit.</p>
+									</details>
+								</section>
+
+								<section class="smr-phase p3" aria-labelledby="phase-3">
+									<header class="smr-phase-head">
+										<span class="smr-chip is-filled">Phase 3</span>
+										<h2 id="phase-3">When they go quiet</h2>
+										<p>Still quiet? Time to step it up.</p>
+									</header>
+
+									<h3 class="smr-step" id="step-6"><span class="smr-chip">Step 6 of 7</span>Go where the people are</h3>
+									<p>So, you’ve done everything above, and your SME is still dragging their feet.</p>
+									<p>Well, buckle up: you’re going on a field trip to where your SME is!</p>
+									<p>This works best in hybrid or on-site settings: catch your SME during a lunch break or at the water cooler. People feel uncomfortable looking you in the eye when they know they’ve been brushing you off. A short reminder that yes, you do indeed exist, and no, you’re not mad, just slightly disappointed, often does the trick. Watch that magical message appear in your DMs the same day or the next, and you’re back on track.</p>
+									<details class="smr-note">
+										<summary><span><b>From the field</b>how often I’ve needed this</span></summary>
+										<p>I’ve only needed this twice, both times during chaotic periods at the companies in question. People had to prioritize in tough ways, and enablement is always the first thing to slide down the priority list. All it took was a quick lunch and a few niceties, and the ball was rolling again.</p>
+									</details>
+
+									<h3 class="smr-step" id="step-7"><span class="smr-chip">Step 7 of 7</span>The last resort</h3>
+									<p>But what if you work remotely, or that SME works from another office, and you’re running out of ideas?</p>
+									<p>Well, you call in the big guns: you ask your manager to talk to your SME’s manager.</p>
+									<p>Ideally, that conversation happened before the project was even green-lit. Sometimes, though, it takes another quick exchange at a higher level to put priorities into perspective. When SMEs don’t reply, it’s usually because their manager has given them other tasks with tighter deadlines, or has forgotten to factor in the time allocated to your project. A quick reminder between two peers often solves the issue.</p>
+									<p>Your manager can also help you understand why communication is tougher than usual, since they have a better overview of what’s going on across the company. That might give you new ideas on how to approach the matter and find a way of working that fits this specific project.</p>
+								</section>
+
+								<section class="smr-closing">
+									<p>I hope these tips helped you find your SMEs again. If so, congrats! If not, you might need higher powers than I can conjure up here.</p>
+									<p><b>Either way, happy building!</b></p>
+								</section>
+							</article>
+
+							<script>
+								(function () {
+									'use strict';
+									var root = document.getElementById('smr-quiz');
+									if (!root) return;
+
+									/* ---------- Content (edit here). Each question: [question, step(s) to try if the answer is No, advice]. ---------- */
+									var QUESTIONS = [
+										['Do you have a personal relationship with your SME, from a coffee chat or otherwise?', [1, 2], 'Start with step 1: build a personal relationship. No time for that? Find a wingman (step 2) who can introduce you.'],
+										['Does your SME’s manager know about your project, and has the time it takes been approved?', [3], 'Go to step 3: get proper buy-in. Your SME may simply not feel allowed to prioritize your project.'],
+										['Is your ask quick to do: answering, approving or correcting, rather than explaining, ideating or drafting?', [4], 'Go to step 4: make it easy. Bring a draft for them to react to, not a blank page.'],
+										['Did you give a deadline, a time estimate and a format for the feedback?', [5], 'Go to step 5: set clear expectations. Without a deadline, your ask waits behind every ask that has one.']
+									];
+									var ALL_YES = ['You’ve done the groundwork. Time for a field trip (step 6), or, if you’re remote, the last resort (step 7).', [6, 7]];
+									var TITLES = { 1: 'Build a personal relationship', 2: 'Have a wingman', 3: 'Get proper buy-in', 4: 'Make it easy', 5: 'Set clear expectations', 6: 'Go where the people are', 7: 'The last resort' };
+									var PHASE = { 1: 'p1', 2: 'p1', 3: 'p1', 4: 'p2', 5: 'p2', 6: 'p3', 7: 'p3' };
+
+									var ask = document.getElementById('smr-quiz-ask');
+									var q = document.getElementById('smr-quiz-q');
+									var bars = document.getElementById('smr-quiz-steps').children;
+									var result = document.getElementById('smr-quiz-result');
+									var again = document.getElementById('smr-again');
+									var yes = document.getElementById('smr-yes');
+									var i = 0;
+
+									function show() {
+										q.textContent = 'Question ' + (i + 1) + ' of ' + QUESTIONS.length + ': ' + QUESTIONS[i][0];
+										for (var k = 0; k < bars.length; k++) bars[k].className = k < i ? 'is-done' : '';
+									}
+
+									function finish(text, steps) {
+										ask.hidden = true;
+										result.className = 'smr-quiz-result ' + PHASE[steps[0]];
+										result.textContent = text + ' ';
+										steps.forEach(function (s, n) {
+											var a = document.createElement('a');
+											a.href = '#step-' + s;
+											a.textContent = 'Jump to step ' + s + ': ' + TITLES[s] + ' →';
+											if (n) result.appendChild(document.createTextNode(' · '));
+											result.appendChild(a);
+										});
+										again.hidden = false;
+									}
+
+									yes.addEventListener('click', function () {
+										i++;
+										if (i < QUESTIONS.length) { show(); yes.focus(); }
+										else { finish(ALL_YES[0], ALL_YES[1]); again.focus(); }
+									});
+									document.getElementById('smr-no').addEventListener('click', function () {
+										finish(QUESTIONS[i][2], QUESTIONS[i][1]);
+										again.focus();
+									});
+									again.addEventListener('click', function () {
+										i = 0;
+										result.textContent = '';
+										again.hidden = true;
+										ask.hidden = false;
+										show();
+										yes.focus();
+									});
+
+									show();
+								})();
+							</script>
+							<!-- ============ SME REPLIES END ============ -->
+
+							<nav class="cs-pager" aria-label="Frameworks">
+								<a href="index.html#frameworks">← All frameworks</a>
+								<a href="framework-sme-feedback.html">Next framework: SME Feedback Framework →</a>
+							</nav>
+						</div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<!-- Hidden for now: contact form and social links (contact icons are in the top bar)
+							<section>
+								<h2>Get in touch</h2>
+								<form method="post" action="#">
+									<div class="fields">
+										<div class="field half">
+											<input type="text" name="name" id="name" placeholder="Name" />
+										</div>
+										<div class="field half">
+											<input type="email" name="email" id="email" placeholder="Email" />
+										</div>
+										<div class="field">
+											<textarea name="message" id="message" placeholder="Message"></textarea>
+										</div>
+									</div>
+									<ul class="actions">
+										<li><input type="submit" value="Send" class="primary" /></li>
+									</ul>
+								</form>
+							</section>
+							<section>
+								<h2>Follow</h2>
+								<ul class="icons">
+									<li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-500px"><span class="label">500px</span></a></li>
+									<li><a href="#" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
+									<li><a href="#" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
+								</ul>
+							</section>
+							-->
+							<ul class="copyright">
+								<li>&copy; Brigitta Buzinszki. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

@@ -144,6 +144,12 @@
 				}
 			}
 
+			&.style7 {
+				> .image:before {
+					background-color: _palette(accent7);
+				}
+			}
+
 			body:not(.is-touch) & {
 				&:hover {
 					> .image {
