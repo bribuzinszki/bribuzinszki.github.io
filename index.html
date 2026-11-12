@@ -87,13 +87,233 @@
 				<!-- Main -->
 					<div id="main" role="main">
 						<div class="inner">
+							<!-- Hero: intro text next to a 10-second interactive lesson -->
+							<div class="hero">
 							<header>
-								<h1>Your favourite Learning Experience Designer and Enablement Lead</h1>		
+								<h1>Your favourite <span class="hl">Learning Experience Designer</span> and Enablement Lead</h1>		
 								<p>Multilingual Learning Experience Designer and Enablement Lead with 6+ years of experience designing high-impact
 corporate training, digital learning paths, and technical enablement programs at AI native and not yet AI literate companies. 
 									Proven track record of building onboarding tracks, adoption playbooks, and scaled enablement programs from the ground up. 
 									Combines strong instructional design principles with data-driven optimization and cross-functional leadership.</p>
 							</header>
+								<!-- ============ HERO LESSON START (10-second "be the model" lesson; styles, markup and script are self-contained) ============ -->
+								<style>
+									.hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 3.5em; align-items: start; }
+									@media screen and (max-width: 980px) {
+										.hero { grid-template-columns: minmax(0, 1fr); gap: 0; }
+									}
+
+									#hp-lesson {
+										/* Palette from the portfolio (Phantom greys + the accessible accent shades) */
+										--hp-fg: #585858;
+										--hp-fg-bold: #3c3b3b;
+										--hp-fg-light: #6e6e6e;
+										--hp-bg: #ffffff;
+										--hp-bg-alt: #f6f6f6;
+										--hp-dark: #333333;
+										--hp-border: #c9c9c9;
+										--hp-pink: #c2335b;
+										--hp-blue: #0c6ea7;
+										--hp-teal: #277166;
+										--hp-radius: 4px;
+										font-family: 'Source Sans Pro', Helvetica, sans-serif;
+										font-size: clamp(15px, 0.85em, 18px);
+										font-weight: 300;
+										line-height: 1.65;
+										letter-spacing: normal;
+										color: var(--hp-fg);
+										text-align: left;
+										max-width: 34em;
+										margin: 0.6em 0 2em 0;
+										padding: 1.5em 1.6em 1.6em;
+										background: var(--hp-bg);
+										border: 1px solid var(--hp-border);
+										border-radius: var(--hp-radius);
+									}
+									/* Neutralise the template's global element styles inside the lesson */
+									#hp-lesson *, #hp-lesson *::before, #hp-lesson *::after { box-sizing: border-box; }
+									#hp-lesson p { margin: 0; padding: 0; font: inherit; color: inherit; letter-spacing: normal; text-transform: none; }
+									#hp-lesson button {
+										-webkit-appearance: none; appearance: none; margin: 0; border: 0; height: auto; overflow: visible;
+										font: inherit; line-height: inherit; letter-spacing: normal; text-transform: none; white-space: normal;
+									}
+									#hp-lesson [hidden] { display: none !important; }
+									#hp-lesson :focus-visible { outline: 2px solid var(--hp-pink); outline-offset: 3px; }
+									#hp-lesson .hp-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+									#hp-lesson .hp-eyebrow { display: block; font-size: 0.7em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.25em; color: var(--hp-pink); }
+									#hp-lesson .hp-title { margin-top: 0.5em; font-size: 1.15em; font-weight: 700; line-height: 1.4; color: var(--hp-fg-bold); }
+
+									/* Context: the sentence so far, as token chips, with a blank for the next token */
+									#hp-lesson .hp-ctx { display: flex; flex-wrap: wrap; gap: 0.4em; margin-top: 1em; }
+									#hp-lesson .hp-chip {
+										display: inline-flex; align-items: center; justify-content: center; min-width: 2.4em; min-height: 2.2em; padding: 0.2em 0.6em;
+										border-radius: var(--hp-radius); background: var(--hp-bg-alt); border: 1px solid var(--hp-border);
+										font-weight: 700; line-height: 1.25; color: var(--hp-fg-bold);
+									}
+									#hp-lesson .hp-slot { min-width: 3.6em; background: var(--hp-bg); border: 1px dashed var(--hp-fg-light); }
+									#hp-lesson .hp-slot:not(.is-filled)::after { content: ''; width: 2px; height: 1.1em; background: var(--hp-pink); animation: hp-blink 1.1s steps(1) infinite; }
+									#hp-lesson .hp-slot.is-filled { background: var(--hp-dark); border: 1px solid var(--hp-dark); color: #ffffff; animation: hp-in 0.3s ease-out both; }
+									#hp-lesson .hp-slot.is-filled.is-best { background: var(--hp-teal); border-color: var(--hp-teal); }
+
+									/* Candidates: each one is a button; its probability bar stays striped until a token is picked */
+									#hp-lesson .hp-cands { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5em; margin-top: 1.1em; }
+									#hp-lesson .hp-cand {
+										display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "tok pct" "bar bar"; align-items: baseline; gap: 0.35em 0.6em;
+										min-height: 44px; padding: 0.55em 0.8em 0.7em; border-radius: var(--hp-radius); text-align: left; cursor: pointer;
+										color: var(--hp-fg) !important; background: var(--hp-bg); box-shadow: inset 0 0 0 1px var(--hp-border);
+										transition: box-shadow 0.2s, background 0.2s;
+									}
+									#hp-lesson .hp-cands.is-hidden .hp-cand:hover { box-shadow: inset 0 0 0 2px var(--hp-pink); }
+									#hp-lesson .hp-cands:not(.is-hidden) .hp-cand { cursor: default; }
+									#hp-lesson .hp-cand-w { grid-area: tok; font-weight: 700; color: var(--hp-fg-bold); }
+									#hp-lesson .hp-pct { grid-area: pct; font-weight: 700; color: var(--hp-fg-bold); font-variant-numeric: tabular-nums; }
+									#hp-lesson .hp-bar { grid-area: bar; display: block; height: 0.6em; border-radius: 0.4em; background: var(--hp-bg-alt); overflow: hidden; }
+									#hp-lesson .hp-fill { display: block; width: 0; height: 100%; border-radius: 0.4em; background: var(--hp-blue); transition: width 0.6s ease-out; }
+									#hp-lesson .hp-cands.is-hidden .hp-bar { background: repeating-linear-gradient(-45deg, var(--hp-bg-alt) 0 6px, #e6e6e6 6px 12px); }
+									#hp-lesson .hp-cand.is-guess { box-shadow: inset 0 0 0 2px var(--hp-dark); }
+									#hp-lesson .hp-cand.is-guess .hp-cand-w::after { content: " \00B7  your pick"; font-weight: 300; font-size: 0.85em; color: var(--hp-fg-light); }
+									#hp-lesson .hp-cand.is-best { background: rgba(39, 113, 102, 0.08); box-shadow: inset 0 0 0 2px var(--hp-teal); }
+									#hp-lesson .hp-cand.is-best .hp-fill { background: var(--hp-teal); }
+
+									#hp-lesson .hp-feedback { margin-top: 1em; color: var(--hp-fg-bold); }
+									#hp-lesson .hp-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6em 1.4em; margin-top: 1em; }
+									#hp-lesson .hp-actions a { font-weight: 700; }
+									#hp-lesson .hp-again {
+										display: inline-flex; align-items: center; min-height: 44px; padding: 0 1.4em; border-radius: var(--hp-radius); cursor: pointer;
+										font-size: 0.7em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.25em; background: transparent;
+										color: var(--hp-fg) !important; box-shadow: inset 0 0 0 2px var(--hp-fg); transition: color 0.2s, box-shadow 0.2s;
+									}
+									#hp-lesson .hp-again:hover { color: var(--hp-pink) !important; box-shadow: inset 0 0 0 2px var(--hp-pink); }
+									#hp-lesson .hp-small { margin-top: 0.9em; font-size: 0.8em; color: var(--hp-fg-light); }
+
+									@keyframes hp-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+									@keyframes hp-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+									@media screen and (max-width: 480px) {
+										#hp-lesson { padding: 1.2em 1.1em 1.3em; }
+										#hp-lesson .hp-cands { grid-template-columns: minmax(0, 1fr); }
+									}
+									@media (prefers-reduced-motion: reduce) {
+										#hp-lesson .hp-slot::after, #hp-lesson .hp-slot.is-filled { animation: none !important; }
+										#hp-lesson .hp-fill, #hp-lesson .hp-cand, #hp-lesson .hp-again { transition: none !important; }
+									}
+								</style>
+
+								<aside id="hp-lesson" aria-labelledby="hp-title">
+									<span class="hp-eyebrow">10-second lesson &middot; be the model</span>
+									<p class="hp-title" id="hp-title">You are a language model. Which token comes next?</p>
+									<p class="hp-ctx">
+										<span class="hp-chip">Good</span>
+										<span class="hp-chip">training</span>
+										<span class="hp-chip">changes</span>
+										<span class="hp-chip">what</span>
+										<span class="hp-chip">people</span>
+										<span class="hp-chip hp-slot" id="hp-slot"><span class="hp-sr">blank</span></span>
+									</p>
+									<div class="hp-cands is-hidden" id="hp-cands" role="group" aria-label="Candidate tokens"></div>
+									<p class="hp-feedback" id="hp-feedback" aria-live="polite"></p>
+									<div id="hp-after" hidden>
+										<div class="hp-actions">
+											<a href="inference-exercise.html">Play the full 8-minute version &rarr;</a>
+											<button type="button" class="hp-again" id="hp-again">Try again</button>
+										</div>
+										<p class="hp-small">Probabilities are illustrative.</p>
+									</div>
+									<noscript><p class="hp-feedback">This mini lesson needs JavaScript. The most likely next token is &ldquo;do&rdquo;: good training changes what people do.</p></noscript>
+								</aside>
+
+								<script>
+									(function () {
+										'use strict';
+										var root = document.getElementById('hp-lesson');
+										if (!root) return;
+
+										/* ---------- Content (edit here). Each candidate: [token, probability %, feedback]. Probabilities are illustrative. ---------- */
+										var BEST = 'do';
+										var HINT = 'Pick the token you think the model would choose.';
+										var CANDS = [
+											['know', 31, 'Plausible, but “do” scores higher (52%), here and in my work: knowing isn’t doing, so I design for what people do on the job.'],
+											['banana', 0.01, 'Almost nothing. A model scores every token it knows, even absurd ones. “do” scores highest with 52%.'],
+											['do', 52, 'Good instinct. “do” scores highest. You just ran one step of inference: the model scores every possible next token and picks one. It is also how I design: learning sticks when people do.'],
+											['click', 3, 'Only 3%. Clicking “next” isn’t learning. “do” scores highest with 52%.']
+										];
+
+										var slot = document.getElementById('hp-slot');
+										var cands = document.getElementById('hp-cands');
+										var feedback = document.getElementById('hp-feedback');
+										var after = document.getElementById('hp-after');
+										var again = document.getElementById('hp-again');
+										var buttons = [];
+										var done = false;
+
+										function el(tag, cls, text) {
+											var n = document.createElement(tag);
+											n.className = cls;
+											if (text !== undefined) n.textContent = text;
+											return n;
+										}
+
+										CANDS.forEach(function (c, i) {
+											var b = el('button', 'hp-cand');
+											b.type = 'button';
+											b.appendChild(el('span', 'hp-cand-w', c[0]));
+											b.appendChild(el('span', 'hp-pct', '?'));
+											var bar = el('span', 'hp-bar');
+											bar.appendChild(el('span', 'hp-fill'));
+											b.appendChild(bar);
+											b.addEventListener('click', function () { pick(i); });
+											cands.appendChild(b);
+											buttons.push(b);
+										});
+
+										function reset() {
+											done = false;
+											cands.classList.add('is-hidden');
+											buttons.forEach(function (b, i) {
+												b.classList.remove('is-guess', 'is-best');
+												b.removeAttribute('aria-disabled');
+												b.setAttribute('aria-label', CANDS[i][0]);
+												b.querySelector('.hp-pct').textContent = '?';
+												b.querySelector('.hp-fill').style.width = '0';
+											});
+											slot.classList.remove('is-filled', 'is-best');
+											slot.innerHTML = '<span class="hp-sr">blank</span>';
+											feedback.textContent = HINT;
+											after.hidden = true;
+										}
+
+										function pick(i) {
+											if (done) return;
+											done = true;
+											var c = CANDS[i];
+											cands.classList.remove('is-hidden');
+											buttons.forEach(function (b, j) {
+												var p = CANDS[j][1];
+												b.setAttribute('aria-disabled', 'true');
+												b.setAttribute('aria-label', CANDS[j][0] + ', ' + p + '%' + (j === i ? ', your pick' : ''));
+												b.querySelector('.hp-pct').textContent = p + '%';
+												b.querySelector('.hp-fill').style.width = Math.max(p, 1.5) + '%';
+												if (j === i) b.classList.add('is-guess');
+												if (CANDS[j][0] === BEST) b.classList.add('is-best');
+											});
+											slot.textContent = c[0];
+											slot.classList.add('is-filled');
+											if (c[0] === BEST) slot.classList.add('is-best');
+											feedback.textContent = c[2];
+											after.hidden = false;
+										}
+
+										again.addEventListener('click', function () {
+											reset();
+											buttons[0].focus();
+										});
+
+										reset();
+									})();
+								</script>
+								<!-- ============ HERO LESSON END ============ -->
+							</div>
 							<!-- Try It Yourself -->
 							<section id="try-it" class="portfolio-section">
 								<header class="section-header">

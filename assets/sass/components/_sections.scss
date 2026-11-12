@@ -108,3 +108,33 @@
 		letter-spacing: 0.25em;
 		text-transform: uppercase;
 	}
+
+///
+/// Own look (landing page): thin pink underline in the headline, section numbers as token chips,
+/// chip-style tile labels. Mirrors the "Own look" block at the end of assets/css/main.css.
+///
+
+	.hl {
+		text-decoration: underline;
+		text-decoration-color: transparentize(_palette(accent1), 0.55);
+		text-decoration-thickness: 0.09em;
+		text-underline-offset: 0.14em;
+		text-decoration-skip-ink: auto;
+	}
+
+	.portfolio-section .section-number {
+		display: inline-block;
+		padding: 0.45em 0.7em 0.45em 0.85em;
+		border: solid 1px currentColor;
+		border-radius: _size(border-radius);
+		letter-spacing: 0.15em;
+
+		&:after {
+			display: none;
+		}
+	}
+
+	.tiles article > a .tile-label {
+		background-color: rgba(255, 255, 255, 0.12);
+		border-radius: 6px;
+	}

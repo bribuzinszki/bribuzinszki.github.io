@@ -180,3 +180,11 @@
 			}
 		}
 	}
+
+// Own look: token-chip logo (images/logo.svg) is wider than tall.
+// Mirrors the "Own look" block at the end of assets/css/main.css.
+
+	#header .logo .symbol img {
+		width: auto;
+		height: 1.75em;
+	}

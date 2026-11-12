@@ -3679,3 +3679,37 @@ input, select, textarea {
 		}
 
 	}
+
+/* Own look: token-chip logo next to the name; thin pink underline in the headline;
+   section numbers as token chips; chip-style tile labels.
+   Mirrors the "Own look" blocks in assets/sass/layout/_header.scss and assets/sass/components/_sections.scss. */
+
+	#header .logo .symbol img {
+			width: auto;
+			height: 1.75em;
+		}
+
+	.hl {
+		text-decoration: underline;
+		text-decoration-color: rgba(194, 51, 91, 0.45);
+		text-decoration-thickness: 0.09em;
+		text-underline-offset: 0.14em;
+		text-decoration-skip-ink: auto;
+	}
+
+	.portfolio-section .section-number {
+		display: inline-block;
+		padding: 0.45em 0.7em 0.45em 0.85em;
+		border: solid 1px currentColor;
+		border-radius: 4px;
+		letter-spacing: 0.15em;
+	}
+
+		.portfolio-section .section-number:after {
+			display: none;
+		}
+
+	.tiles article > a .tile-label {
+		background-color: rgba(255, 255, 255, 0.12);
+		border-radius: 6px;
+	}
