@@ -370,6 +370,8 @@
 #tz .tz-tl-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4em 1.25em; margin-top: 0.75em; font-size: 0.85em; color: var(--tz-fg-light); }
 #tz .tz-tl-go { font-weight: 700; color: var(--tz-pink); }
 #tz .tz-tl-go.is-done { color: var(--tz-teal); }
+#tz .tz-cover { margin-top: 2.25em; border: 1px solid var(--tz-line); border-radius: var(--tz-radius); overflow: hidden; }
+#tz .tz-cover svg { display: block; width: 100%; height: auto; }
 #tz .tz-storage { max-width: 36em; }
 #tz .tz-storage a, #tz .tz-storage button { color: inherit !important; border-bottom: dotted 1px; }
 #tz .tz-storage a:hover, #tz .tz-storage button:hover { color: var(--tz-pink) !important; border-bottom-color: transparent; }
