@@ -1,0 +1,989 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="en">
+	<head>
+		<title>Working with AI Agents: Module 1 · Brigitta Buzinszki</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Module 1 of a story-based course on AI agents: watch an agent’s first task go wrong, find out why, and start building your own agent." />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Brigitta Buzinszki" />
+		<meta property="og:title" content="Working with AI Agents: Module 1 · Brigitta Buzinszki" />
+		<meta property="og:description" content="Module 1 of a story-based course on AI agents: watch an agent’s first task go wrong, find out why, and start building your own agent." />
+		<meta property="og:url" content="https://bribuzinszki.github.io/agents-module-1.html" />
+		<meta property="og:image" content="https://bribuzinszki.github.io/images/og-image.png" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<link rel="icon" href="images/favicon-32.png" type="image/png" sizes="32x32" />
+		<link rel="icon" href="images/logo.svg" type="image/svg+xml" />
+		<link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/agents-course.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="index.html" class="logo">
+									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Brigitta Buzinszki</span>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+							<!-- Contact (scrolls with the page, unlike the fixed Menu button) -->
+								<ul class="contact-icons">
+									<li><a href="mailto:b.buzinszki@gmail.com" class="icon solid fa-envelope" aria-label="Email"><span class="label">Email</span></a></li>
+									<li><a href="https://www.linkedin.com/in/brigitta-buzinszki-946b92165/" class="icon brands fa-linkedin-in" aria-label="LinkedIn"><span class="label">LinkedIn</span></a></li>
+								</ul>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li>
+								<a href="index.html#try-it">Try It Yourself</a>
+								<ul>
+									<li><a href="rag-exercise.html">Grounding AI with RAG</a></li>
+									<li><a href="eu-ai-act-high-risk.html">EU AI Act: High Risk Applications</a></li>
+									<li><a href="inference-exercise.html">Inference</a></li>
+									<li><a href="agents-course.html">Working with AI Agents</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="index.html#case-studies">Case Studies</a>
+								<ul>
+									<li><a href="case-intro-to-llms.html">Intro to LLMs</a></li>
+									<li><a href="case-eu-ai-act.html">EU AI Act Essentials</a></li>
+									<li><a href="case-technical-onboarding.html">Technical Onboarding for Engineers</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="index.html#frameworks">Field-Tested Frameworks</a>
+								<ul>
+									<li><a href="framework-sme-feedback.html">SME Feedback Framework</a></li>
+									<li><a href="framework-sme-replies.html">How I Get SMEs to Reply</a></li>
+								</ul>
+							</li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main" role="main">
+						<div class="inner">
+
+							<!-- ============ AGENTS COURSE · MODULE 1 START (styles: assets/css/agents-course.css; markup and script below, namespaced under #tz) ============ -->
+							<div id="tz">
+
+								<!-- Course bar + day stepper -->
+								<nav class="tz-coursebar" aria-label="Course">
+									<a href="agents-course.html">Working with AI Agents</a>
+									<span>Module 1 of 5</span>
+								</nav>
+								<ol class="tz-steps" aria-label="Course modules">
+									<li class="is-now" aria-current="step"><b>Mon</b><span>Meet the agent</span></li>
+									<li><b>Tue</b><span>What to hand off</span></li>
+									<li><b>Wed</b><span>Give it a proper brief</span></li>
+									<li><b>Thu</b><span>Set the boundaries</span></li>
+									<li><b>Fri</b><span>Check before it ships</span></li>
+								</ol>
+
+								<!-- Module header -->
+								<header class="tz-mhead">
+									<span class="tz-kicker">Module 1 &middot; Monday</span>
+									<h1>Meet the agent</h1>
+									<p class="tz-lead">Marina asks an AI agent to organise her team&rsquo;s offsite, and it almost invites the whole company. Find out why, and start building an agent that won&rsquo;t.</p>
+									<p class="tz-meta">About 10 minutes &middot; 4 activities &middot; Builds part 1 of 5 of your agent</p>
+									<div class="tz-outcomes">
+										<span class="tz-eyebrow">By the end of this module you can</span>
+										<ul>
+											<li>tell when you need an agent and when a chat assistant will do</li>
+											<li>describe the loop every agent follows: plan, act, observe, repeat, stop</li>
+											<li>spot where an agent&rsquo;s run went off track, and say why</li>
+											<li>recognise the moment a human has to approve</li>
+										</ul>
+									</div>
+								</header>
+
+								<div class="tz-progress" aria-hidden="true"><span id="tz-bar"></span></div>
+
+								<div class="tz-layout">
+									<details class="tz-toc" id="tz-toc" open>
+										<summary>In this module</summary>
+										<ol>
+											<li><a href="#tz-s0">Your assignment</a></li>
+											<li><a href="#tz-s1">An agent joins the company</a></li>
+											<li data-act="pick"><a href="#tz-s2">Chat or agent? <small>Activity</small></a></li>
+											<li><a href="#tz-s3">The first task</a></li>
+											<li><a href="#tz-s4">124 recipients?</a></li>
+											<li data-act="run"><a href="#tz-s5">Watch the run <small>Activity</small></a></li>
+											<li><a href="#tz-s6">What went wrong</a></li>
+											<li data-act="build"><a href="#tz-s7">Make it work <small>Activity</small></a></li>
+											<li data-act="quiz"><a href="#tz-s8">Rafael has questions <small>Activity</small></a></li>
+											<li data-act="done"><a href="#tz-s9">Module complete <small></small></a></li>
+										</ol>
+									</details>
+
+									<div class="tz-content">
+
+										<!-- 00 · Your assignment -->
+										<section class="tz-sec" id="tz-s0" aria-labelledby="tz-h0">
+											<div class="tz-sec-head"><span class="tz-num">00</span><span class="tz-eyebrow">Before you start</span></div>
+											<h2 class="tz-h" id="tz-h0">Your assignment</h2>
+											<div class="tz-assign">
+												<span class="tz-eyebrow is-pink">Your role</span>
+												<p class="tz-assign-lead">You step into the shoes of <b>Marina</b>, Head of Operations at BestSolutions. This week, your company switches on an AI agent. By Friday, it has to work for your team, without embarrassing anyone.</p>
+												<p>Today you&rsquo;ll find out what an agent actually does, check one&rsquo;s work step by step, and start building your own.</p>
+											</div>
+											<div class="tz-predict" id="tz-guess">
+												<span class="tz-eyebrow">Your gut feeling</span>
+												<p class="tz-q-text">Marina has used AI chat for months. What do you expect an agent to do differently?</p>
+												<div class="tz-causes" role="group" aria-label="Your gut feeling">
+													<button type="button" class="tz-opt" data-k="smart">It&rsquo;s a smarter chat that gives better answers</button>
+													<button type="button" class="tz-opt" data-k="act">It can take actions on its own, in other tools</button>
+													<button type="button" class="tz-opt" data-k="know">It knows everything about the company</button>
+												</div>
+												<p class="tz-mini">There&rsquo;s no right or wrong yet. We&rsquo;ll come back to this at the end of Monday.</p>
+												<p class="tz-fb" id="tz-guess-fb" aria-live="polite"></p>
+											</div>
+										</section>
+
+										<!-- 01 · The announcement -->
+										<section class="tz-sec" id="tz-s1" aria-labelledby="tz-h1">
+											<div class="tz-sec-head"><span class="tz-num">01</span><span class="tz-eyebrow">Monday, 8:45</span></div>
+											<h2 class="tz-h" id="tz-h1">An agent joins the company</h2>
+											<p class="tz-narr">BestSolutions moves goods for 300 shops across S&atilde;o Paulo. In two years it grew from 40 to 120 people, but the back office didn&rsquo;t grow with it.</p>
+											<p class="tz-narr">Marina&rsquo;s ops team of eight spends its days on invoices, bookings and reports. Customers wait two days for answers. Then, on Monday morning, a message lands in the company channel.</p>
+											<div class="tz-visual tz-msg">
+												<span class="tz-avatar" aria-hidden="true">R</span>
+												<span class="tz-who">Rafael <small>CEO &middot; #all-company &middot; 8:45</small></span>
+												<p>Good morning, everyone! Over the weekend, Lucas and the IT team switched on Taskzilla Agent in the workspace we already use. It doesn&rsquo;t just chat: it can do tasks for us, from bookings to reports. I want every team using it by Friday, so we can give that time back to our customers.</p>
+											</div>
+											<p class="tz-narr tz-gap">Marina reads it twice. She likes the AI chat: it writes her tricky emails and summarises long documents. But an AI that <em>does</em> things in her name? If it gets something wrong, it&rsquo;s her name on it. And when is she supposed to learn a new tool this week?</p>
+											<p class="tz-narr tz-gap">Her team chat is already buzzing.</p>
+											<div class="tz-thread">
+												<div class="tz-msg">
+													<span class="tz-avatar is-dark" aria-hidden="true">A</span>
+													<span class="tz-who">Ana <small>Junior analyst &middot; 8:47</small></span>
+													<p>Finally!! Can it do the invoice run? Can it do <em>all</em> the invoice runs?</p>
+												</div>
+												<div class="tz-msg">
+													<span class="tz-avatar is-teal" aria-hidden="true">J</span>
+													<span class="tz-who">Jo&atilde;o <small>Senior ops specialist &middot; 8:49</small></span>
+													<p>Last time an AI wrote to a client, we spent a week apologising. I&rsquo;ll wait and see.</p>
+												</div>
+											</div>
+										</section>
+
+										<!-- 02 · Chat or agent? -->
+										<section class="tz-sec" id="tz-s2" aria-labelledby="tz-h2">
+											<div class="tz-sec-head"><span class="tz-num">02</span><span class="tz-eyebrow">Monday, 8:55</span></div>
+											<h2 class="tz-h" id="tz-h2">Chat or agent?</h2>
+											<p class="tz-narr">Lucas from IT, who set Taskzilla up, stops by with a coffee. Marina asks the obvious question: isn&rsquo;t this just the chat with a new name?</p>
+											<div class="tz-visual tz-msg is-guide">
+												<span class="tz-avatar is-teal" aria-hidden="true">L</span>
+												<span class="tz-who">Lucas <small>IT &middot; set up Taskzilla</small></span>
+												<p>&ldquo;Same kind of AI model underneath. The difference is what it&rsquo;s allowed to do. The chat <b>answers</b>: it works with what you give it, and you take every next step. The agent gets a <b>goal</b>: it plans the steps, uses tools like search, calendar and email, and keeps going until it thinks it&rsquo;s done.&rdquo;</p>
+											</div>
+											<div class="tz-visual tz-split">
+												<figure>
+													<figcaption><span class="tz-chip">Taskzilla Chat &middot; answers</span></figcaption>
+													<div class="tz-card">
+														<p>You ask: <b>&ldquo;Ideas for an offsite venue?&rdquo;</b> It replies with a list. Then you check dates, compare prices, write the email and send it.</p>
+														<ul class="tz-points">
+															<li>Works with what you give it</li>
+															<li>You take every next step</li>
+															<li>Nothing happens outside the chat</li>
+														</ul>
+													</div>
+												</figure>
+												<figure>
+													<figcaption><span class="tz-chip is-pink">Taskzilla Agent &middot; acts</span></figcaption>
+													<div class="tz-card">
+														<p>You say: <b>&ldquo;Organise the offsite.&rdquo;</b> It searches venues, compares prices, finds contacts, drafts the email, and asks to send it.</p>
+														<ul class="tz-points">
+															<li>Gets a goal, not a question</li>
+															<li>Plans and takes the steps itself</li>
+															<li>Uses your tools and accounts</li>
+														</ul>
+													</div>
+												</figure>
+											</div>
+											<div class="tz-visual tz-msg is-guide">
+												<span class="tz-avatar is-teal" aria-hidden="true">L</span>
+												<span class="tz-who">Lucas</span>
+												<p>&ldquo;More done, less control. That&rsquo;s the trade-off.&rdquo;</p>
+											</div>
+
+											<div class="tz-band tz-gap">
+												<div class="tz-sec-head"><span class="tz-tag-activity">Activity 1 of 4</span><span class="tz-quiet">About 1 minute</span></div>
+												<h3 class="tz-h2">Marina&rsquo;s Monday list</h3>
+												<p class="tz-narr">Marina tests the idea on her own to-do list. For each task: would you use the chat or the agent?</p>
+												<ul class="tz-rows tz-visual" id="tz-pick-rows">
+													<li data-answer="chat" data-fb="Chat. It&rsquo;s a writing job: you give it the text, it gives you a better version, and you decide what to send."><span>Rewrite a tense email to a supplier so it sounds friendlier</span><span class="tz-seg" role="group" aria-label="Rewrite a tense email"><button type="button" data-v="chat" aria-pressed="false">Chat</button><button type="button" data-v="agent" aria-pressed="false">Agent</button></span></li>
+													<li data-answer="chat" data-fb="Chat. It answers from the document you give it. No steps, no tools, nothing leaves the conversation."><span>Summarise a 20-page transport contract before a call</span><span class="tz-seg" role="group" aria-label="Summarise a contract"><button type="button" data-v="chat" aria-pressed="false">Chat</button><button type="button" data-v="agent" aria-pressed="false">Agent</button></span></li>
+													<li data-answer="agent" data-fb="Agent. It needs a tool (the tracker), many steps and real actions (emails). Exactly what an agent is for, and exactly where it needs good limits."><span>Find every late delivery in the tracking system and email each customer an update</span><span class="tz-seg" role="group" aria-label="Find late deliveries and email customers"><button type="button" data-v="chat" aria-pressed="false">Chat</button><button type="button" data-v="agent" aria-pressed="false">Agent</button></span></li>
+													<li data-answer="agent" data-fb="Agent. Searching, comparing, contacting and drafting: several steps across several tools."><span>Organise the March team offsite: venue, date, invitation</span><span class="tz-seg" role="group" aria-label="Organise the offsite"><button type="button" data-v="chat" aria-pressed="false">Chat</button><button type="button" data-v="agent" aria-pressed="false">Agent</button></span></li>
+													<li data-answer="chat" data-fb="Chat, as a thinking partner: it can lay out pros and cons. But the decision, and the relationship, stay with Marina."><span>Decide whether to renew the contract with a struggling supplier</span><span class="tz-seg" role="group" aria-label="Decide on a supplier contract"><button type="button" data-v="chat" aria-pressed="false">Chat</button><button type="button" data-v="agent" aria-pressed="false">Agent</button></span></li>
+												</ul>
+												<p class="tz-fb is-good tz-summary" id="tz-pick-sum" aria-live="polite"></p>
+											</div>
+										</section>
+
+										<!-- 03 · The first task -->
+										<section class="tz-sec" id="tz-s3" aria-labelledby="tz-h3">
+											<div class="tz-sec-head"><span class="tz-num">03</span><span class="tz-eyebrow">Monday, 9:02</span></div>
+											<h2 class="tz-h" id="tz-h3">The first task</h2>
+											<p class="tz-narr">Lucas has barely left when Rafael messages Marina directly.</p>
+											<div class="tz-visual tz-msg">
+												<span class="tz-avatar" aria-hidden="true">R</span>
+												<span class="tz-who">Rafael <small>CEO &middot; 9:02</small></span>
+												<p>Marina, can you have the agent sort out the March offsite? Let&rsquo;s see what it can do.</p>
+											</div>
+											<p class="tz-narr tz-gap">Searching, comparing, contacting: agent work. Marina has a full morning, so she types fast, clicks Run, and heads into her 9:15 meeting.</p>
+											<div class="tz-visual tz-app">
+												<div class="tz-app-bar">
+													<span class="tz-logo"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#f2849e" d="M4 20c0-7 4-14 11-14 3 0 5 2 5 4l-3 1 2 2-3 1 1 2c-3 1-6 0-7-2l-2 6z"/><circle cx="15.5" cy="9" r="1.2" fill="#333333"/></svg>Taskzilla <span class="tz-pill">Agent</span></span>
+													<span class="tz-app-meta">New task</span>
+												</div>
+												<div class="tz-app-body">
+													<span class="tz-eyebrow">Marina&rsquo;s request</span>
+													<p class="tz-prompt">Find three venues in S&atilde;o Paulo for our team offsite on 12 March, under R$5,000, and draft an invitation to the team.</p>
+													<div class="tz-running"><span class="tz-run-badge"><span class="tz-dots" aria-hidden="true"><i></i><i></i><i></i></span>Running</span><span>Started 9:03</span></div>
+												</div>
+											</div>
+											<p class="tz-narr tz-gap">Venues, a date, an invitation. How hard can it be?</p>
+										</section>
+
+										<!-- 04 · The pop-up + the loop -->
+										<section class="tz-sec" id="tz-s4" aria-labelledby="tz-h4">
+											<div class="tz-sec-head"><span class="tz-num">04</span><span class="tz-eyebrow">Monday, 10:00</span></div>
+											<h2 class="tz-h" id="tz-h4">Wait. 124 recipients?</h2>
+											<p class="tz-narr">Back at her desk, a notification is waiting.</p>
+											<div class="tz-visual tz-approve is-preview">
+												<span class="tz-eyebrow is-pink">Taskzilla Agent wants to send an email</span>
+												<dl>
+													<dt>To</dt><dd>all-staff (124 recipients)</dd>
+													<dt>Subject</dt><dd>You&rsquo;re invited: BestSolutions offsite, 12 March</dd>
+												</dl>
+												<div class="tz-actions"><span class="tz-btn">Send</span><span class="tz-btn is-ghost">Review first</span></div>
+											</div>
+											<p class="tz-narr tz-gap">Her stomach drops. 124 people is the whole company, Rafael included. Her team is eight. What else did the agent do while she was gone?</p>
+											<p class="tz-narr tz-gap">She doesn&rsquo;t click anything. She calls Lucas, who pulls up a chair and opens the agent&rsquo;s activity log.</p>
+											<div class="tz-visual tz-msg is-guide">
+												<span class="tz-avatar is-teal" aria-hidden="true">L</span>
+												<span class="tz-who">Lucas</span>
+												<p>&ldquo;Before we read it, you need to know how an agent works. Every agent, whatever the task, runs the same loop.&rdquo;</p>
+											</div>
+											<div class="tz-visual">
+												<svg class="tz-loop-svg" viewBox="0 0 640 200" role="img" aria-labelledby="tz-loop-title">
+													<title id="tz-loop-title">The agent loop: plan, act, observe; repeat if not done, otherwise stop</title>
+													<defs><marker id="tz-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#6e6e6e"/></marker></defs>
+													<g class="tz-edge"><path d="M130 84H164" marker-end="url(#tz-arrow)"/><path d="M310 84H344" marker-end="url(#tz-arrow)"/></g>
+													<g class="tz-edge" data-stage="stop"><path d="M470 84H524" marker-end="url(#tz-arrow)"/><text x="497" y="72">done</text></g>
+													<g class="tz-edge" data-stage="repeat"><path d="M410 108V156H75V112" marker-end="url(#tz-arrow)"/><text x="242" y="180">Repeat: not done yet</text></g>
+													<g class="tz-node" data-stage="plan"><rect x="20" y="60" width="110" height="48" rx="8"/><text x="75" y="90">Plan</text></g>
+													<g class="tz-node" data-stage="act"><rect x="170" y="60" width="140" height="48" rx="8"/><text x="240" y="90">Act: use a tool</text></g>
+													<g class="tz-node" data-stage="observe"><rect x="350" y="60" width="120" height="48" rx="8"/><text x="410" y="90">Observe</text></g>
+													<g class="tz-node" data-stage="stop"><rect x="530" y="60" width="100" height="48" rx="8"/><text x="580" y="90">Stop</text></g>
+												</svg>
+												<p class="tz-mini" style="margin:0 0 1em">Select a stage to follow Marina&rsquo;s offsite task through the loop.</p>
+												<div class="tz-stages" role="group" aria-label="Stages of the loop">
+													<button type="button" class="tz-stage" data-stage="plan"><span class="tz-stage-num">1</span><b>Plan</b><span>Break the request into steps: find venues, compare prices, pick three, find &ldquo;the team&rdquo;, draft an invitation.</span></button>
+													<button type="button" class="tz-stage" data-stage="act"><span class="tz-stage-num">2</span><b>Act: use a tool</b><span>Use a tool it&rsquo;s allowed to use, here a web search. Tools can be search, calendar, contacts, email or files.</span></button>
+													<button type="button" class="tz-stage" data-stage="observe"><span class="tz-stage-num">3</span><b>Observe</b><span>Read what came back (14 venues with prices) and ask: am I done?</span></button>
+													<button type="button" class="tz-stage" data-stage="repeat"><span class="tz-stage-num">&#8634;</span><b>Repeat</b><span>Not done yet, so plan the next step and go round again.</span></button>
+													<button type="button" class="tz-stage" data-stage="stop"><span class="tz-stage-num">&#10003;</span><b>Stop</b><span>Stop when it <em>thinks</em> the task is done.</span></button>
+												</div>
+											</div>
+											<div class="tz-visual tz-msg is-guide">
+												<span class="tz-avatar is-teal" aria-hidden="true">L</span>
+												<span class="tz-who">Lucas</span>
+												<p>&ldquo;That last step is the catch. &lsquo;Done&rsquo; is whatever the agent <em>thinks</em> done means. Let&rsquo;s see what it thought.&rdquo;</p>
+											</div>
+										</section>
+
+										<!-- 05 · Activity: watch the run -->
+										<section class="tz-sec" id="tz-s5" aria-labelledby="tz-h5">
+											<div class="tz-band">
+												<div class="tz-sec-head"><span class="tz-num">05</span><span class="tz-tag-activity">Activity 2 of 4</span><span class="tz-quiet">About 3 minutes</span></div>
+												<h2 class="tz-h" id="tz-h5">Watch the run</h2>
+												<p class="tz-narr">Help Marina find out what went wrong before she decides what to do with that email. For each step: <b>does it look fine, or is something off?</b> If something&rsquo;s off, pick the cause. Stuck? Ask Lucas for a hint.</p>
+												<div class="tz-remember">
+													<span class="tz-eyebrow">Remember</span>
+													<p>Marina asked for three venues on 12 March, under R$5,000, and an invitation to her team of eight.</p>
+												</div>
+												<div class="tz-visual tz-app">
+													<div class="tz-app-bar">
+														<span class="tz-logo"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#f2849e" d="M4 20c0-7 4-14 11-14 3 0 5 2 5 4l-3 1 2 2-3 1 1 2c-3 1-6 0-7-2l-2 6z"/><circle cx="15.5" cy="9" r="1.2" fill="#333333"/></svg>Taskzilla <span class="tz-pill">Agent</span></span>
+														<span class="tz-app-meta">Activity log &middot; Offsite task</span>
+													</div>
+													<div class="tz-app-body">
+														<ol class="tz-log" id="tz-log" aria-label="Activity log"></ol>
+													</div>
+												</div>
+												<p class="tz-fb is-good tz-summary" id="tz-run-sum" aria-live="polite"></p>
+											</div>
+										</section>
+
+										<!-- 06 · What went wrong -->
+										<section class="tz-sec" id="tz-s6" aria-labelledby="tz-h6">
+											<div class="tz-sec-head"><span class="tz-num">06</span><span class="tz-eyebrow">Monday, 10:30</span></div>
+											<h2 class="tz-h" id="tz-h6">The agent did exactly what she asked</h2>
+											<div class="tz-visual tz-msg is-guide">
+												<span class="tz-avatar is-teal" aria-hidden="true">L</span>
+												<span class="tz-who">Lucas</span>
+												<p>&ldquo;Nothing&rsquo;s broken. It followed your request to the letter, and it could reach everything.&rdquo;</p>
+											</div>
+											<p class="tz-narr tz-gap">That&rsquo;s the uncomfortable part. Marina writes it down.</p>
+											<div class="tz-visual tz-notes">
+												<span class="tz-eyebrow is-pink">Marina&rsquo;s notes</span>
+												<h3>Why my agent went off track</h3>
+												<ol>
+													<li><span><b>A vague goal.</b> I never said what &ldquo;done&rdquo; looks like, or that the date was a must.</span><span class="tz-fix">Fixed on Wednesday<b>Give it a proper brief</b></span></li>
+													<li><span><b>Missing context.</b> It didn&rsquo;t know that &ldquo;the team&rdquo; means my 8 people.</span><span class="tz-fix">Fixed on Wednesday<b>Give it a proper brief</b></span></li>
+													<li><span><b>Too much access.</b> It could see, and email, the whole company.</span><span class="tz-fix">Fixed on Thursday<b>Set the boundaries</b></span></li>
+												</ol>
+											</div>
+											<p class="tz-narr tz-gap">When she tells the team, the chat splits in two.</p>
+											<div class="tz-thread">
+												<div class="tz-msg">
+													<span class="tz-avatar is-teal" aria-hidden="true">J</span>
+													<span class="tz-who">Jo&atilde;o <small>10:41</small></span>
+													<p>Told you. Now imagine that email going to a client.</p>
+												</div>
+												<div class="tz-msg">
+													<span class="tz-avatar is-dark" aria-hidden="true">A</span>
+													<span class="tz-who">Ana <small>10:42</small></span>
+													<p>But it did 90% of the work in ten minutes! It just needed better instructions.</p>
+												</div>
+											</div>
+											<div class="tz-remember">
+												<span class="tz-eyebrow">Remember</span>
+												<p>Both are right. An agent is only as good as its instructions and its limits, and both are things you can set.</p>
+											</div>
+										</section>
+
+										<!-- 07 · Activity: create Ops Agent -->
+										<section class="tz-sec" id="tz-s7" aria-labelledby="tz-h7">
+											<div class="tz-sec-head"><span class="tz-num">07</span><span class="tz-eyebrow">Monday, 11:30</span></div>
+											<h2 class="tz-h" id="tz-h7">Make it work</h2>
+											<p class="tz-narr">Before lunch, Rafael messages Marina. He&rsquo;s heard about the email.</p>
+											<div class="tz-visual tz-msg">
+												<span class="tz-avatar" aria-hidden="true">R</span>
+												<span class="tz-who">Rafael <small>CEO &middot; 11:30</small></span>
+												<p>I heard about the offsite email. Don&rsquo;t drop the agent, make it work. Can you set one up properly for your team?</p>
+											</div>
+											<p class="tz-narr tz-gap">Marina walks over to Lucas&rsquo;s desk. He opens the Taskzilla builder and shows her what she missed this morning: instead of sending one-off requests to the general agent, she can create her own team agent, with its own job, rules and limits.</p>
+											<div class="tz-visual tz-msg is-guide">
+												<span class="tz-avatar is-teal" aria-hidden="true">L</span>
+												<span class="tz-who">Lucas</span>
+												<p>&ldquo;Create it now. This morning&rsquo;s run becomes its first test report: your to-do list for the week.&rdquo;</p>
+											</div>
+											<div class="tz-band tz-gap">
+												<div class="tz-sec-head"><span class="tz-tag-activity">Activity 3 of 4</span><span class="tz-quiet">Under a minute</span></div>
+												<h3 class="tz-h2">Create Ops Agent</h3>
+												<div class="tz-visual tz-app">
+													<div class="tz-app-bar">
+														<span class="tz-logo"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#f2849e" d="M4 20c0-7 4-14 11-14 3 0 5 2 5 4l-3 1 2 2-3 1 1 2c-3 1-6 0-7-2l-2 6z"/><circle cx="15.5" cy="9" r="1.2" fill="#333333"/></svg>Taskzilla <span class="tz-pill">Builder</span></span>
+														<span class="tz-app-meta">New agent</span>
+													</div>
+													<div class="tz-app-body tz-builder is-empty" id="tz-builder">
+														<div class="tz-builder-top">
+															<svg class="tz-ring" viewBox="0 0 96 96" role="img" aria-label="Agent progress">
+																<circle class="tz-ring-bg" cx="48" cy="48" r="38"/>
+																<circle class="tz-ring-arc" id="tz-ring-arc" cx="48" cy="48" r="38" stroke-dasharray="238.76" stroke-dashoffset="238.76" transform="rotate(-90 48 48)"/>
+																<text x="48" y="55" id="tz-ring-text">0/5</text>
+															</svg>
+															<span><span class="tz-agent-name" id="tz-agent-name">Not created yet</span><span class="tz-agent-owner">Owner: Marina &middot; Operations</span></span>
+															<div class="tz-actions"><button type="button" class="tz-btn" id="tz-create">Create Ops Agent</button></div>
+														</div>
+														<span class="tz-eyebrow tz-build-label">This week&rsquo;s build</span>
+														<ol class="tz-parts">
+															<li id="tz-part1"><span class="tz-part-num">1</span><span class="tz-part-name">Create &amp; test</span><span class="tz-part-day">Monday</span></li>
+															<li><span class="tz-part-num">2</span><span class="tz-part-name">Job</span><span class="tz-part-day">Tuesday</span></li>
+															<li><span class="tz-part-num">3</span><span class="tz-part-name">Instructions</span><span class="tz-part-day">Wednesday</span></li>
+															<li><span class="tz-part-num">4</span><span class="tz-part-name">Tools &amp; access</span><span class="tz-part-day">Thursday</span></li>
+															<li><span class="tz-part-num">5</span><span class="tz-part-name">Test &amp; launch</span><span class="tz-part-day">Friday</span></li>
+														</ol>
+														<div class="tz-report">
+															<span class="tz-eyebrow">Test report #1 &middot; offsite task</span>
+															<p class="tz-empty" id="tz-report-empty">No tests yet. Create the agent to save this morning&rsquo;s run as its first test.</p>
+															<div id="tz-report-full" hidden>
+																<h3>2 issues to fix this week</h3>
+																<ul>
+																	<li><span>Shortlisted venues without checking 12 March</span><span class="tz-fixin">Fix in: Instructions</span></li>
+																	<li><span>Addressed &ldquo;the team&rdquo; via the all-staff list (124 people)</span><span class="tz-fixin">Fix in: Tools &amp; access</span></li>
+																</ul>
+															</div>
+														</div>
+													</div>
+												</div>
+												<p class="tz-toast" id="tz-toast" role="status"></p>
+											</div>
+										</section>
+
+										<!-- 08 · Activity: quick check -->
+										<section class="tz-sec" id="tz-s8" aria-labelledby="tz-h8">
+											<div class="tz-band">
+												<div class="tz-sec-head"><span class="tz-num">08</span><span class="tz-tag-activity">Activity 4 of 4</span><span class="tz-quiet">About 2 minutes</span></div>
+												<h2 class="tz-h" id="tz-h8">Rafael has questions</h2>
+												<p class="tz-narr">Late afternoon. Before he tells the other teams to start, Rafael wants to understand what happened. Help Marina answer.</p>
+												<div class="tz-qs">
+													<div class="tz-q" id="tz-q1">
+														<span class="tz-eyebrow">Question 1 of 3</span>
+														<p class="tz-q-text">&ldquo;So how does it actually work?&rdquo; Put the stages of the loop in order.</p>
+														<div class="tz-pool" role="group" aria-label="Stages to place">
+															<button type="button" class="tz-token" data-stage="Act">Act</button>
+															<button type="button" class="tz-token" data-stage="Stop">Stop</button>
+															<button type="button" class="tz-token" data-stage="Plan">Plan</button>
+															<button type="button" class="tz-token" data-stage="Observe">Observe</button>
+															<button type="button" class="tz-token" data-stage="Repeat">Repeat</button>
+														</div>
+														<ol class="tz-order" id="tz-order" aria-label="Your order"></ol>
+														<div class="tz-actions" style="margin-top:0">
+															<button type="button" class="tz-btn" id="tz-q1-check" disabled>Check</button>
+															<button type="button" class="tz-btn is-ghost" id="tz-q1-reset">Reset</button>
+														</div>
+														<p class="tz-fb" id="tz-q1-fb" aria-live="polite"></p>
+													</div>
+													<div class="tz-q" id="tz-q2">
+														<span class="tz-eyebrow">Question 2 of 3</span>
+														<p class="tz-q-text">&ldquo;Other teams will ask what to use it for.&rdquo; For each request: agent or chat?</p>
+														<ul class="tz-rows" id="tz-q2-rows">
+															<li data-answer="chat"><span>Explain what an invoice is</span><span class="tz-seg" role="group" aria-label="Explain what an invoice is"><button type="button" data-v="chat" aria-pressed="false">Chat</button><button type="button" data-v="agent" aria-pressed="false">Agent</button></span></li>
+															<li data-answer="agent"><span>Find our 5 oldest unpaid invoices and draft reminders</span><span class="tz-seg" role="group" aria-label="Find our 5 oldest unpaid invoices and draft reminders"><button type="button" data-v="chat" aria-pressed="false">Chat</button><button type="button" data-v="agent" aria-pressed="false">Agent</button></span></li>
+															<li data-answer="agent"><span>Book a room for Thursday&rsquo;s job interviews</span><span class="tz-seg" role="group" aria-label="Book a room for Thursday&rsquo;s job interviews"><button type="button" data-v="chat" aria-pressed="false">Chat</button><button type="button" data-v="agent" aria-pressed="false">Agent</button></span></li>
+															<li data-answer="chat"><span>Suggest a name for our newsletter</span><span class="tz-seg" role="group" aria-label="Suggest a name for our newsletter"><button type="button" data-v="chat" aria-pressed="false">Chat</button><button type="button" data-v="agent" aria-pressed="false">Agent</button></span></li>
+														</ul>
+														<div class="tz-actions">
+															<button type="button" class="tz-btn" id="tz-q2-check" disabled>Check</button>
+														</div>
+														<p class="tz-fb" id="tz-q2-fb" aria-live="polite"></p>
+													</div>
+													<div class="tz-q" id="tz-q3">
+														<span class="tz-eyebrow">Question 3 of 3</span>
+														<p class="tz-q-text">&ldquo;Where should someone approve before the agent carries on?&rdquo;</p>
+														<div class="tz-causes" id="tz-q3-opts" role="group" aria-label="Answer options">
+															<button type="button" class="tz-opt" data-ok="0">Before every single step, to be safe</button>
+															<button type="button" class="tz-opt" data-ok="1">Before anything that can&rsquo;t be undone, like sending an email</button>
+															<button type="button" class="tz-opt" data-ok="0">Only once, when the whole task is finished</button>
+															<button type="button" class="tz-opt" data-ok="0">Never: not having to approve is the point of an agent</button>
+														</div>
+														<p class="tz-fb" id="tz-q3-fb" aria-live="polite"></p>
+													</div>
+												</div>
+											</div>
+										</section>
+
+										<!-- 09 · Wrap-up -->
+										<section class="tz-sec" id="tz-s9" aria-labelledby="tz-h9">
+											<div class="tz-sec-head"><span class="tz-num">09</span><span class="tz-eyebrow">Monday, 17:45</span></div>
+											<h2 class="tz-h" id="tz-h9">Module complete</h2>
+											<div class="tz-results" id="tz-results">
+												<svg class="tz-ring" viewBox="0 0 96 96" role="img" aria-label="Ops Agent progress">
+													<circle class="tz-ring-bg" cx="48" cy="48" r="38"/>
+													<circle class="tz-ring-arc" id="tz-ring2-arc" cx="48" cy="48" r="38" stroke-dasharray="238.76" stroke-dashoffset="238.76" transform="rotate(-90 48 48)"/>
+													<text x="48" y="55" id="tz-ring2-text">0/5</text>
+												</svg>
+												<div>
+													<span class="tz-eyebrow">Your results</span>
+													<h3 id="tz-results-title">Finish the four activities to complete Monday</h3>
+													<ul class="tz-score" id="tz-score" aria-live="polite"></ul>
+												</div>
+											</div>
+											<div class="tz-remember" id="tz-guess-back" hidden>
+												<span class="tz-eyebrow">Your gut feeling this morning</span>
+												<p id="tz-guess-back-text"></p>
+											</div>
+											<div class="tz-visual tz-msg">
+												<span class="tz-avatar" aria-hidden="true">R</span>
+												<span class="tz-who">Rafael <small>CEO &middot; 17:45</small></span>
+												<p>Thanks, that helps. Big ask for tomorrow: by Friday I want the agent doing half of your team&rsquo;s backlog.</p>
+											</div>
+											<p class="tz-narr">Marina looks at her 30-item to-do list. Ana will want to hand over everything; Jo&atilde;o, nothing. Which tasks should an agent touch at all?</p>
+											<div class="tz-real">
+												<span class="tz-eyebrow">In the real world</span>
+												<p>Many AI assistants now have an agent mode that works through a task step by step and shows those steps as it goes. Look for it in ChatGPT, Microsoft Copilot, Gemini or Claude. Checking those steps is the skill you practised today.</p>
+											</div>
+											<div class="tz-end" role="separator" aria-label="End of Module 1"><span>&#10003; End of Module 1 &middot; Monday</span></div>
+											<div class="tz-later">
+												<span class="tz-eyebrow">Up next &middot; Tuesday</span>
+												<b>Module 2 &middot; What to hand off</b>
+												<span>Coming soon: help Marina decide what to give Ops Agent, and write its job description.</span>
+											</div>
+											<div class="tz-actions tz-gap">
+												<a class="tz-btn" href="agents-course.html">Back to the course</a>
+												<button type="button" class="tz-btn is-ghost" id="tz-restart">Restart module</button>
+											</div>
+										</section>
+
+										<noscript><p class="tz-narr">The activities in this module need JavaScript. In short: a chat answers, an agent acts. Marina&rsquo;s agent never checked the date and addressed the whole company instead of her 8-person team, because her request was vague and the agent had too much access. Agents run a loop (plan, act, observe, repeat, stop), and a human should approve anything that can&rsquo;t be undone.</p></noscript>
+									</div>
+								</div>
+							</div>
+
+							<script>
+								(function () {
+									'use strict';
+									var root = document.getElementById('tz');
+									if (!root) return;
+
+									var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+									var STORE = 'tz-agents-course';
+									var RING = 238.76;
+									function $(id) { return document.getElementById(id); }
+									function all(sel, r) { return Array.prototype.slice.call((r || root).querySelectorAll(sel)); }
+									function el(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text !== undefined) n.textContent = text; return n; }
+									function btn(cls, text) { var b = el('button', cls, text); b.type = 'button'; return b; }
+									function setRing(arc, label, n) { $(arc).setAttribute('stroke-dashoffset', String(RING * (1 - n / 5))); $(label).textContent = n + '/5'; }
+									function fbSet(id, cls, text) { var f = $(id); f.className = 'tz-fb ' + cls; f.textContent = text; }
+
+									/* ---------- Progress: each activity reports here ---------- */
+									var progress, guess;
+									function save() {
+										try {
+											var s = JSON.parse(window.localStorage.getItem(STORE) || '{}') || {};
+											var m = s.m1 || {};
+											if (progress.pick) m.pick = progress.pick.score;
+											if (progress.run) m.run = progress.run;
+											if (progress.build) m.created = true;
+											if (progress.quiz) m.quiz = progress.quiz.score;
+											if (progress.pick && progress.run && progress.build && progress.quiz) { m.done = true; m.at = new Date().toISOString(); }
+											s.m1 = m;
+											window.localStorage.setItem(STORE, JSON.stringify(s));
+										} catch (e) { /* storage blocked: the page works without it */ }
+									}
+									var GUESS = {
+										smart: 'You expected a smarter chat. What you saw: the same kind of model, but allowed to act, searching, deciding and drafting on its own. That’s why its setup matters so much.',
+										act: 'You expected it to take actions on its own, in other tools. Your gut feeling was right, and today showed why that needs watching.',
+										know: 'You expected it to know everything about the company. What you saw: it only knows what you tell it and what it can reach. “The team” meant nothing to it.'
+									};
+									function update() {
+										var marks = { pick: !!progress.pick, run: !!progress.run, build: progress.build, quiz: !!progress.quiz };
+										var done = marks.pick && marks.run && marks.build && marks.quiz;
+										marks.done = done;
+										all('#tz-toc li[data-act]').forEach(function (li) {
+											var k = li.getAttribute('data-act'), small = li.querySelector('small');
+											li.classList.toggle('is-done', marks[k]);
+											if (small) small.textContent = marks[k] ? '✓ Done' : (k === 'done' ? '' : 'Activity');
+										});
+										var ul = $('tz-score'); ul.innerHTML = '';
+										var p = progress.pick, r = progress.run, q = progress.quiz;
+										[
+											[p ? (p.score >= 4 ? 'ok' : 'miss') : '', p ? 'Chat or agent: ' + p.score + ' of 5 matched' : 'Chat or agent: not finished yet'],
+											[r ? (r.flagged === 2 && r.causes === 2 ? 'ok' : 'miss') : '', r ? 'Watch the run: ' + r.flagged + ' of 2 faulty steps flagged, ' + r.causes + ' of 2 causes found, ' + (r.review ? 'reviewed before sending' : 'sent without reviewing') : 'Watch the run: not finished yet'],
+											[progress.build ? 'ok' : '', progress.build ? 'Ops Agent created, with Test report #1' : 'Create Ops Agent: not done yet'],
+											[q ? (q.score === 3 ? 'ok' : 'miss') : '', q ? 'Quick check: ' + q.score + ' of 3' : 'Quick check: not finished yet']
+										].forEach(function (row) { ul.appendChild(el('li', row[0] ? 'is-' + row[0] : '', row[1])); });
+										$('tz-results').classList.toggle('is-done', done);
+										$('tz-results-title').textContent = done ? 'Ops Agent exists, and you know what to fix' : 'Finish the four activities to complete Monday';
+										setRing('tz-ring2-arc', 'tz-ring2-text', progress.build ? 1 : 0);
+										$('tz-guess-back').hidden = !(done && guess);
+										if (guess) $('tz-guess-back-text').textContent = GUESS[guess];
+										save();
+									}
+
+									/* ---------- Contents: active section, reading progress, collapse on small screens ---------- */
+									var toc = $('tz-toc');
+									var wide = window.matchMedia('(min-width: 981px)');
+									function tocMode() { if (wide.matches) toc.open = true; }
+									tocMode();
+									if (!wide.matches) toc.open = false;
+									if (wide.addEventListener) wide.addEventListener('change', tocMode);
+									toc.querySelector('summary').addEventListener('click', function (e) { if (wide.matches) e.preventDefault(); });
+									var links = all('#tz-toc a');
+									var secs = links.map(function (a) { return $(a.getAttribute('href').slice(1)); });
+									function onScroll() {
+										var y = window.innerHeight * 0.3, cur = 0;
+										secs.forEach(function (s, i) { if (s.getBoundingClientRect().top <= y) cur = i; });
+										links.forEach(function (a, i) { a.classList.toggle('is-active', i === cur); });
+										var c = root.querySelector('.tz-content').getBoundingClientRect();
+										var pr = Math.min(1, Math.max(0, (window.innerHeight * 0.5 - c.top) / c.height));
+										$('tz-bar').style.width = (pr * 100) + '%';
+									}
+									window.addEventListener('scroll', onScroll, { passive: true });
+									window.addEventListener('resize', onScroll);
+									onScroll();
+
+									/* ---------- Gut feeling (not scored; revisited at the end) ---------- */
+									var guessOpts = all('#tz-guess .tz-opt');
+									guessOpts.forEach(function (o) {
+										o.addEventListener('click', function () {
+											guess = o.getAttribute('data-k');
+											guessOpts.forEach(function (x) { x.disabled = true; x.classList.toggle('is-chosen', x === o); });
+											fbSet('tz-guess-fb', '', 'Noted. Let’s see what Monday shows.');
+											update();
+										});
+									});
+									function resetGuess() {
+										guess = null;
+										guessOpts.forEach(function (x) { x.disabled = false; x.classList.remove('is-chosen'); });
+										$('tz-guess-fb').textContent = ''; $('tz-guess-fb').className = 'tz-fb';
+									}
+
+									/* ---------- Activity 1: Marina's Monday list ---------- */
+									var pickRows = all('#tz-pick-rows li'), picked1;
+									pickRows.forEach(function (r) {
+										var bs = all('button', r);
+										bs.forEach(function (b) {
+											b.addEventListener('click', function () {
+												if (r.classList.contains('is-answered')) return;
+												r.classList.add('is-answered');
+												var right = b.getAttribute('data-v') === r.getAttribute('data-answer');
+												if (right) picked1.score++;
+												picked1.n++;
+												b.setAttribute('aria-pressed', 'true');
+												b.classList.add(right ? 'is-right' : 'is-wrong');
+												bs.forEach(function (x) { x.disabled = true; });
+												var f = el('p', 'tz-fb ' + (right ? 'is-good' : 'is-bad'), (right ? '' : 'Lucas would pick the other one. ') + r.getAttribute('data-fb'));
+												f.setAttribute('aria-live', 'polite');
+												r.appendChild(f);
+												if (picked1.n === pickRows.length) {
+													$('tz-pick-sum').textContent = picked1.score + ' of 5 matched Lucas’s answers. His rule of thumb: “Use chat to think, an agent to do. And the more an agent can do, the more carefully you set it up.”';
+													progress.pick = { score: picked1.score };
+													update();
+												}
+											});
+										});
+									});
+									function resetPick() {
+										picked1 = { n: 0, score: 0 };
+										pickRows.forEach(function (r) {
+											r.classList.remove('is-answered');
+											all('button', r).forEach(function (b) { b.disabled = false; b.setAttribute('aria-pressed', 'false'); b.classList.remove('is-right', 'is-wrong'); });
+											var f = r.querySelector('.tz-fb'); if (f) r.removeChild(f);
+										});
+										$('tz-pick-sum').textContent = '';
+									}
+
+									/* ---------- The loop: highlight a stage ---------- */
+									var stages = all('#tz-s4 .tz-stage');
+									function light(k) {
+										all('#tz-s4 svg [data-stage]').forEach(function (g) { g.classList.toggle('is-on', g.getAttribute('data-stage') === k); });
+										stages.forEach(function (b) { var on = b.getAttribute('data-stage') === k; b.classList.toggle('is-on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+									}
+									stages.forEach(function (b) {
+										b.setAttribute('aria-pressed', 'false');
+										b.addEventListener('click', function () { light(b.getAttribute('data-stage')); });
+										b.addEventListener('mouseenter', function () { light(b.getAttribute('data-stage')); });
+									});
+
+									/* ---------- Activity 2: watch the run ---------- */
+									/* Steps 1–5: stage, tool, what it did, what it saw, a hint from Lucas; bad steps carry 3 causes (ok = index of the right one). Step 6: the approval. */
+									var STEPS = [
+										{ stage: 'Plan', tool: 'No tool', did: 'Planned the task: search venues, keep those under R$5,000, pick three, find “the team”, draft the invitation.', saw: 'Marina’s request.',
+											hint: 'Compare the plan with Marina’s request. Is anything missing, or anything extra?',
+											fine: 'Right: a sensible plan for exactly what Marina asked. The trouble starts later.' },
+										{ stage: 'Act', tool: 'Web search', did: 'Searched for “event venues São Paulo, team day”.', saw: '14 venues, with prices and photos.',
+											hint: 'Is searching the web a sensible first move for finding venues?',
+											fine: 'Right: searching is the obvious first move.' },
+										{ stage: 'Observe', tool: 'Web search', did: 'Kept three venues under R$5,000: Espaço Jardim (R$4,200), Galpão Vila Madalena (R$4,800), Casa Pinheiros (R$3,900).', saw: 'Prices only. Availability on 12 March: not checked.',
+											hint: 'Marina named a date. Look at what the agent actually checked.',
+											bad: true, miss: 'Look again: it never checked whether the venues are free on 12 March. Its top pick, Espaço Jardim, is fully booked that day.',
+											causes: ['The web search tool is broken.', 'The request never made the date a must-check, so the agent didn’t check it.', 'The agent ignored the budget.'], ok: 1,
+											right: 'Exactly. Espaço Jardim, its top pick, is fully booked on 12 March. The agent did what it was asked, and the request never said the date had to be checked. You’ll fix this on Wednesday with a proper brief.',
+											wrong: 'Not quite. The search worked and the budget was respected. The real cause: the request never made the date a must-check, so the agent didn’t check it.' },
+										{ stage: 'Act', tool: 'No tool', did: 'Ranked the three venues by price, cheapest first.', saw: 'Its own shortlist.',
+											hint: 'Nobody asked for an order. Does ranking by price hurt anyone here?',
+											fine: 'Right: ranking by price is a reasonable choice when nothing else was asked for.' },
+										{ stage: 'Act', tool: 'Contacts', did: 'Looked up “the team” in contacts and chose the all-staff list.', saw: 'all-staff: 124 people.',
+											hint: 'How many people are in Marina’s team, and how many are on that list?',
+											bad: true, miss: 'Look again: “the team” became the all-staff list. Marina meant her 8-person ops team.',
+											causes: ['The agent picked the biggest list on purpose, to save time.', 'The contacts tool showed it the wrong list.', 'The request didn’t say who “the team” is, and the agent could see the all-staff list.'], ok: 2,
+											right: 'Right. Marina meant her 8-person ops team. The agent saw “team”, found a list called all-staff and took it. Two fixes: say who “the team” is (Wednesday), and limit who it can email (Thursday).',
+											wrong: 'Not quite. Agents don’t cut corners on purpose, and the tool showed the lists correctly. The real cause: the request didn’t say who “the team” is, and the agent could see the all-staff list.' }
+									];
+									var run;
+
+									function stepHead(li, i, stage, tool) {
+										var head = el('div', 'tz-step-head');
+										var num = el('span', 'tz-step-num', String(i + 1));
+										num.setAttribute('aria-label', 'Step ' + (i + 1));
+										head.appendChild(num);
+										head.appendChild(el('span', 'tz-tag is-' + stage.toLowerCase(), stage));
+										if (tool) head.appendChild(el('span', 'tz-tag is-tool', tool));
+										li.appendChild(head);
+									}
+									function hintBox(text) {
+										var d = el('details', 'tz-hint');
+										d.appendChild(el('summary', '', 'Hint from Lucas'));
+										d.appendChild(el('p', '', text));
+										return d;
+									}
+									function stepDone(li) {
+										li.classList.add('is-judged');
+										run.answered++;
+										if (run.answered === STEPS.length + 1) finishRun();
+									}
+
+									function buildStep(s, i) {
+										var li = el('li', 'tz-step');
+										stepHead(li, i, s.stage, s.tool);
+										li.appendChild(el('p', 'tz-did', s.did));
+										var saw = el('p', 'tz-saw'); saw.appendChild(el('b', '', 'Saw: ')); saw.appendChild(document.createTextNode(s.saw)); li.appendChild(saw);
+										li.appendChild(hintBox(s.hint));
+										var judge = el('div', 'tz-judge');
+										var ok = btn('tz-btn is-ghost', 'Looks fine'), off = btn('tz-btn is-ghost', 'Something’s off');
+										judge.appendChild(ok); judge.appendChild(off); li.appendChild(judge);
+										var fb = el('p', 'tz-fb'); fb.setAttribute('aria-live', 'polite'); li.appendChild(fb);
+										function lock(chosen) { ok.disabled = true; off.disabled = true; chosen.setAttribute('aria-pressed', 'true'); }
+										ok.addEventListener('click', function () {
+											lock(ok);
+											fb.className = 'tz-fb ' + (s.bad ? 'is-bad' : 'is-good');
+											fb.textContent = s.bad ? s.miss : s.fine;
+											stepDone(li);
+										});
+										off.addEventListener('click', function () {
+											lock(off);
+											if (!s.bad) {
+												run.falseAlarms++;
+												fb.className = 'tz-fb'; fb.textContent = 'This step is actually fine. ' + s.fine.replace(/^Right: /, '');
+												stepDone(li);
+												return;
+											}
+											run.flagged++;
+											var box = el('div', 'tz-causes'); box.setAttribute('role', 'group');
+											box.appendChild(el('p', '', 'Good catch. What caused it?'));
+											var opts = s.causes.map(function (c, ci) {
+												var o = btn('tz-opt', c);
+												o.addEventListener('click', function () {
+													opts.forEach(function (x) { x.disabled = true; });
+													if (ci === s.ok) { run.causes++; o.classList.add('is-right'); fb.className = 'tz-fb is-good'; fb.textContent = s.right; }
+													else { o.classList.add('is-wrong'); opts[s.ok].classList.add('is-right'); fb.className = 'tz-fb is-bad'; fb.textContent = s.wrong; }
+													stepDone(li);
+												});
+												box.appendChild(o);
+												return o;
+											});
+											li.insertBefore(box, fb);
+											opts[0].focus({ preventScroll: true });
+										});
+										return li;
+									}
+
+									function buildApproval() {
+										var li = el('li', 'tz-step');
+										stepHead(li, STEPS.length, 'Act', 'Email');
+										li.appendChild(el('p', 'tz-did', 'Drafted the invitation and asked for approval to send it. Now it’s Marina’s call.'));
+										var card = el('div', 'tz-approve');
+										card.setAttribute('role', 'group'); card.setAttribute('aria-label', 'Approval request');
+										card.appendChild(el('span', 'tz-eyebrow is-pink', 'Taskzilla Agent wants to send an email'));
+										var dl = el('dl');
+										[['To', 'all-staff (124 recipients)'], ['Subject', 'You’re invited: BestSolutions offsite, 12 March'], ['Venue', 'Espaço Jardim']].forEach(function (r) { dl.appendChild(el('dt', '', r[0])); dl.appendChild(el('dd', '', r[1])); });
+										card.appendChild(dl);
+										var acts = el('div', 'tz-actions'), send = btn('tz-btn', 'Send'), review = btn('tz-btn is-ghost', 'Review first');
+										acts.appendChild(send); acts.appendChild(review); card.appendChild(acts); li.appendChild(card);
+										li.appendChild(hintBox('Once this email is sent, can anyone take it back?'));
+										var fb = el('p', 'tz-fb'); fb.setAttribute('aria-live', 'polite'); li.appendChild(fb);
+										function choose(isReview) {
+											send.disabled = true; review.disabled = true;
+											(isReview ? review : send).setAttribute('aria-pressed', 'true');
+											run.review = isReview;
+											fb.className = 'tz-fb ' + (isReview ? 'is-good' : 'is-bad');
+											fb.textContent = isReview
+												? 'Good call. Marina opens the draft and catches both problems before anyone sees them: a booked venue, and 124 recipients instead of 8.'
+												: 'Sent. Within minutes Rafael replies “12 March? I’m in Rio that day.”, João asks “Is this mandatory?”, and 121 more replies follow, for a venue that’s booked. In real life you can’t unsend this: anything that can’t be undone deserves a review first.';
+											stepDone(li);
+										}
+										send.addEventListener('click', function () { choose(false); });
+										review.addEventListener('click', function () { choose(true); });
+										return li;
+									}
+
+									function finishRun() {
+										var good = run.flagged === 2 && run.causes === 2 && run.review;
+										$('tz-run-sum').textContent = 'You flagged ' + run.flagged + ' of 2 faulty steps, found ' + run.causes + ' of 2 causes, and ' + (run.review ? 'reviewed before sending. ' : 'sent without reviewing. ') +
+											(good ? 'Lucas nods: “That’s exactly how to check an agent’s work.”' : 'Both faulty steps had the same root: a vague request, and more access than the task needed.');
+										progress.run = { flagged: run.flagged, causes: run.causes, review: run.review, falseAlarms: run.falseAlarms };
+										update();
+									}
+
+									function resetRun() {
+										run = { answered: 0, flagged: 0, causes: 0, falseAlarms: 0, review: null };
+										var log = $('tz-log'); log.innerHTML = '';
+										STEPS.forEach(function (s, i) { log.appendChild(buildStep(s, i)); });
+										log.appendChild(buildApproval());
+										$('tz-run-sum').textContent = '';
+									}
+
+									/* ---------- Activity 3: create Ops Agent ---------- */
+									function setBuilder(created) {
+										$('tz-builder').classList.toggle('is-empty', !created);
+										$('tz-agent-name').textContent = created ? 'Ops Agent' : 'Not created yet';
+										$('tz-part1').classList.toggle('is-done', created);
+										$('tz-part1').querySelector('.tz-part-num').textContent = created ? '✓' : '1';
+										$('tz-report-empty').hidden = created;
+										$('tz-report-full').hidden = !created;
+										setRing('tz-ring-arc', 'tz-ring-text', created ? 1 : 0);
+										$('tz-create').disabled = created;
+										$('tz-create').textContent = created ? 'Ops Agent created' : 'Create Ops Agent';
+										$('tz-toast').textContent = created ? '✓ Saved: Ops Agent created. Test report #1: 2 issues to fix this week.' : '';
+									}
+									$('tz-create').addEventListener('click', function () { setBuilder(true); progress.build = true; update(); });
+
+									/* ---------- Activity 4: quick check ---------- */
+									var quiz;
+									function quizDone() {
+										if (quiz.q1 === null || quiz.q2 === null || quiz.q3 === null) return;
+										progress.quiz = { score: (quiz.q1 ? 1 : 0) + (quiz.q2 >= 3 ? 1 : 0) + (quiz.q3 ? 1 : 0) };
+										update();
+									}
+									var ORDER = ['Plan', 'Act', 'Observe', 'Repeat', 'Stop'];
+									var tokens = all('#tz-q1 .tz-token');
+									var order;
+									function drawOrder() {
+										var o = $('tz-order'); o.innerHTML = '';
+										order.forEach(function (p, i) { var li = el('li', 'tz-placed'); li.appendChild(el('i', '', String(i + 1))); li.appendChild(document.createTextNode(p)); o.appendChild(li); });
+										$('tz-q1-check').disabled = order.length !== ORDER.length || quiz.q1 !== null;
+									}
+									tokens.forEach(function (t) {
+										t.addEventListener('click', function () { if (quiz.q1 !== null) return; order.push(t.getAttribute('data-stage')); t.disabled = true; drawOrder(); });
+									});
+									$('tz-q1-reset').addEventListener('click', function () { if (quiz.q1 !== null) return; order = []; tokens.forEach(function (t) { t.disabled = false; }); drawOrder(); tokens[0].focus(); });
+									$('tz-q1-check').addEventListener('click', function () {
+										quiz.q1 = order.join() === ORDER.join();
+										fbSet('tz-q1-fb', quiz.q1 ? 'is-good' : 'is-bad', quiz.q1 ? 'Right: plan, act, observe, and repeat until done, then stop.' : 'Not quite. The order is plan, act, observe, then repeat until the agent thinks it’s done, and stop.');
+										$('tz-q1-check').disabled = true; $('tz-q1-reset').disabled = true;
+										quizDone();
+									});
+
+									var rows = all('#tz-q2-rows li');
+									function q2Ready() { $('tz-q2-check').disabled = quiz.q2 !== null || rows.some(function (r) { return !r.querySelector('[aria-pressed="true"]'); }); }
+									rows.forEach(function (r) {
+										var bs = all('button', r);
+										bs.forEach(function (b) {
+											b.addEventListener('click', function () { if (quiz.q2 !== null) return; bs.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); }); q2Ready(); });
+										});
+									});
+									$('tz-q2-check').addEventListener('click', function () {
+										var n = 0;
+										rows.forEach(function (r) {
+											var b = r.querySelector('[aria-pressed="true"]');
+											var right = b.getAttribute('data-v') === r.getAttribute('data-answer');
+											if (right) n++;
+											b.classList.add(right ? 'is-right' : 'is-wrong');
+											all('button', r).forEach(function (x) { x.disabled = true; });
+										});
+										quiz.q2 = n;
+										fbSet('tz-q2-fb', n >= 3 ? 'is-good' : 'is-bad', n + ' of 4 right. Explaining and suggesting are answers, so chat is enough. Finding invoices, drafting reminders and booking a room are actions with tools: that’s agent work.');
+										$('tz-q2-check').disabled = true;
+										quizDone();
+									});
+
+									var q3 = all('#tz-q3-opts .tz-opt');
+									q3.forEach(function (o) {
+										o.addEventListener('click', function () {
+											quiz.q3 = o.getAttribute('data-ok') === '1';
+											q3.forEach(function (x) { x.disabled = true; if (x.getAttribute('data-ok') === '1') x.classList.add('is-right'); });
+											if (!quiz.q3) o.classList.add('is-wrong');
+											fbSet('tz-q3-fb', quiz.q3 ? 'is-good' : 'is-bad', quiz.q3 ? 'Right. Approvals belong where a mistake can’t be taken back: sending, paying, deleting.' : 'Not quite. Approving every step means people stop reading; approving only at the end is too late. Approvals belong before anything that can’t be undone, like sending an email.');
+											quizDone();
+										});
+									});
+
+									function resetQuiz() {
+										quiz = { q1: null, q2: null, q3: null };
+										order = []; tokens.forEach(function (t) { t.disabled = false; }); drawOrder();
+										$('tz-q1-reset').disabled = false;
+										rows.forEach(function (r) { all('button', r).forEach(function (b) { b.disabled = false; b.setAttribute('aria-pressed', 'false'); b.classList.remove('is-right', 'is-wrong'); }); });
+										q2Ready();
+										q3.forEach(function (o) { o.disabled = false; o.classList.remove('is-right', 'is-wrong'); });
+										['tz-q1-fb', 'tz-q2-fb', 'tz-q3-fb'].forEach(function (id) { $(id).textContent = ''; $(id).className = 'tz-fb'; });
+									}
+
+									/* ---------- Start and restart ---------- */
+									function resetAll() {
+										progress = { pick: null, run: null, build: false, quiz: null };
+										resetGuess(); resetPick(); resetRun(); setBuilder(false); resetQuiz(); update();
+									}
+									$('tz-restart').addEventListener('click', function () {
+										resetAll();
+										$('tz-s0').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+										$('tz-h0').setAttribute('tabindex', '-1'); $('tz-h0').focus({ preventScroll: true });
+									});
+									resetAll();
+								})();
+							</script>
+							<!-- ============ AGENTS COURSE · MODULE 1 END ============ -->
+
+							<nav class="cs-pager" aria-label="Course">
+								<a href="agents-course.html">&larr; Course overview</a>
+								<span>Next: Module 2 &middot; coming soon</span>
+							</nav>
+						</div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<!-- Hidden for now: contact form and social links (contact icons are in the top bar)
+							<section>
+								<h2>Get in touch</h2>
+								<form method="post" action="#">
+									<div class="fields">
+										<div class="field half">
+											<input type="text" name="name" id="name" placeholder="Name" />
+										</div>
+										<div class="field half">
+											<input type="email" name="email" id="email" placeholder="Email" />
+										</div>
+										<div class="field">
+											<textarea name="message" id="message" placeholder="Message"></textarea>
+										</div>
+									</div>
+									<ul class="actions">
+										<li><input type="submit" value="Send" class="primary" /></li>
+									</ul>
+								</form>
+							</section>
+							<section>
+								<h2>Follow</h2>
+								<ul class="icons">
+									<li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-500px"><span class="label">500px</span></a></li>
+									<li><a href="#" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
+									<li><a href="#" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
+								</ul>
+							</section>
+							-->
+							<ul class="copyright">
+								<li>&copy; Brigitta Buzinszki. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

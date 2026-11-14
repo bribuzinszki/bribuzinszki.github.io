@@ -150,6 +150,12 @@
 				}
 			}
 
+			&.style8 {
+				> .image:before {
+					background-color: _palette(accent8);
+				}
+			}
+
 			body:not(.is-touch) & {
 				&:hover {
 					> .image {
