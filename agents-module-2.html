@@ -1,0 +1,771 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="en">
+	<head>
+		<title>Working with AI Agents: Module 2 · Brigitta Buzinszki</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Module 2 of a story-based course on AI agents: decide which tasks to hand to an agent, which to do together, and which to keep." />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Brigitta Buzinszki" />
+		<meta property="og:title" content="Working with AI Agents: Module 2 · Brigitta Buzinszki" />
+		<meta property="og:description" content="Module 2 of a story-based course on AI agents: decide which tasks to hand to an agent, which to do together, and which to keep." />
+		<meta property="og:url" content="https://bribuzinszki.github.io/agents-module-2.html" />
+		<meta property="og:image" content="https://bribuzinszki.github.io/images/og-image.png?v=2" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<link rel="icon" href="images/favicon-32.png?v=2" type="image/png" sizes="32x32" />
+		<link rel="icon" href="images/logo.svg?v=2" type="image/svg+xml" />
+		<link rel="apple-touch-icon" href="images/apple-touch-icon.png?v=2" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/agents-course.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="index.html" class="logo">
+									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Brigitta Buzinszki</span>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+							<!-- Contact (scrolls with the page, unlike the fixed Menu button) -->
+								<ul class="contact-icons">
+									<li><a href="mailto:b.buzinszki@gmail.com" class="icon solid fa-envelope" aria-label="Email"><span class="label">Email</span></a></li>
+									<li><a href="https://www.linkedin.com/in/brigitta-buzinszki-946b92165/" class="icon brands fa-linkedin-in" aria-label="LinkedIn"><span class="label">LinkedIn</span></a></li>
+								</ul>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li>
+								<a href="index.html#try-it">Try It Yourself</a>
+								<ul>
+									<li><a href="rag-exercise.html">Grounding AI with RAG</a></li>
+									<li><a href="eu-ai-act-high-risk.html">EU AI Act: High Risk Applications</a></li>
+									<li><a href="inference-exercise.html">Inference</a></li>
+									<li><a href="agents-course.html">Working with AI Agents</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="index.html#case-studies">Case Studies</a>
+								<ul>
+									<li><a href="case-intro-to-llms.html">Intro to LLMs</a></li>
+									<li><a href="case-eu-ai-act.html">EU AI Act Essentials</a></li>
+									<li><a href="case-technical-onboarding.html">Technical Onboarding for Engineers</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="index.html#frameworks">Field-Tested Frameworks</a>
+								<ul>
+									<li><a href="framework-sme-feedback.html">SME Feedback Framework</a></li>
+									<li><a href="framework-sme-replies.html">How I Get SMEs to Reply</a></li>
+								</ul>
+							</li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main" role="main">
+						<div class="inner">
+
+							<!-- ============ AGENTS COURSE · MODULE 2 START (styles: assets/css/agents-course.css; markup and script below, namespaced under #tz) ============ -->
+							<div id="tz">
+
+								<!-- Course bar + day stepper -->
+								<nav class="tz-coursebar" aria-label="Course">
+									<a href="agents-course.html">Working with AI Agents</a>
+									<span>Module 2 of 5</span>
+								</nav>
+								<ol class="tz-steps" aria-label="Course modules">
+									<li class="is-done"><b>Mon</b><span>Meet the agent</span></li>
+									<li class="is-now" aria-current="step"><b>Tue</b><span>What to hand off</span></li>
+									<li><b>Wed</b><span>Give it a proper brief</span></li>
+									<li><b>Thu</b><span>Set the boundaries</span></li>
+									<li><b>Fri</b><span>Check before it ships</span></li>
+								</ol>
+
+								<!-- Module header -->
+								<header class="tz-mhead">
+									<span class="tz-kicker">Module 2 &middot; Tuesday</span>
+									<h1>What to hand off</h1>
+									<p class="tz-lead">Rafael wants the agent doing half of Marina&rsquo;s backlog by Friday. Ana wants to hand over everything, Jo&atilde;o nothing. Find a rule both can live with, and write Ops Agent&rsquo;s job.</p>
+									<p class="tz-meta">About 10 minutes &middot; 4 activities &middot; Builds part 2 of 5 of your agent</p>
+									<div class="tz-outcomes">
+										<span class="tz-eyebrow">By the end of this module you can</span>
+										<ul>
+											<li>sort tasks into hand off, do together or keep, using three questions</li>
+											<li>split a big task into parts that can and can&rsquo;t be delegated</li>
+											<li>write an agent&rsquo;s job description, and spot tasks that don&rsquo;t belong in it</li>
+										</ul>
+									</div>
+								</header>
+
+								<div class="tz-progress" aria-hidden="true"><span id="tz-bar"></span></div>
+
+								<div class="tz-layout">
+									<details class="tz-toc" id="tz-toc" open>
+										<summary>In this module</summary>
+										<ol>
+											<li><a href="#tz-s0">Previously on Monday</a></li>
+											<li><a href="#tz-s1">The stand-up</a></li>
+											<li><a href="#tz-s2">Three questions</a></li>
+											<li data-act="sort"><a href="#tz-s3">Sort the backlog <small>Activity</small></a></li>
+											<li data-act="split"><a href="#tz-s4">Split it <small>Activity</small></a></li>
+											<li data-act="job"><a href="#tz-s5">Write Ops Agent&rsquo;s job <small>Activity</small></a></li>
+											<li><a href="#tz-s6">Tasks, not responsibility</a></li>
+											<li data-act="quiz"><a href="#tz-s7">Other teams ask <small>Activity</small></a></li>
+											<li data-act="done"><a href="#tz-s8">Module complete <small></small></a></li>
+										</ol>
+									</details>
+
+									<div class="tz-content">
+
+										<!-- 00 · Recap + gut feeling -->
+										<section class="tz-sec" id="tz-s0" aria-labelledby="tz-h0">
+											<div class="tz-sec-head"><span class="tz-num">00</span><span class="tz-eyebrow">Before you start</span></div>
+											<h2 class="tz-h" id="tz-h0">Previously on Monday</h2>
+											<div class="tz-assign">
+												<span class="tz-eyebrow is-pink">Your role: Marina, Head of Operations</span>
+												<ul class="tz-points">
+													<li>Taskzilla Agent nearly invited all 124 people at BestSolutions to her team&rsquo;s offsite.</li>
+													<li>Marina created Ops Agent, her team&rsquo;s own agent. Its first test report lists two issues to fix this week.</li>
+													<li>Rafael&rsquo;s request for the week: by Friday, the agent does half of the team&rsquo;s backlog.</li>
+												</ul>
+											</div>
+											<div class="tz-predict" id="tz-guess">
+												<span class="tz-eyebrow">Your gut feeling</span>
+												<p class="tz-q-text">How much of Marina&rsquo;s list should the agent take on?</p>
+												<div class="tz-causes" role="group" aria-label="Your gut feeling">
+													<button type="button" class="tz-opt" data-k="all">Almost all of it</button>
+													<button type="button" class="tz-opt" data-k="half">About half, some of it only with Marina&rsquo;s approval</button>
+													<button type="button" class="tz-opt" data-k="little">Hardly any of it</button>
+												</div>
+												<p class="tz-mini">There&rsquo;s no right or wrong yet. We&rsquo;ll come back to this at the end of Tuesday.</p>
+												<p class="tz-fb" id="tz-guess-fb" aria-live="polite"></p>
+											</div>
+										</section>
+
+										<!-- 01 · The stand-up -->
+										<section class="tz-sec" id="tz-s1" aria-labelledby="tz-h1">
+											<div class="tz-sec-head"><span class="tz-num">01</span><span class="tz-eyebrow">Tuesday, 9:00</span></div>
+											<h2 class="tz-h" id="tz-h1">The stand-up</h2>
+											<p class="tz-narr">The team gathers around the screen for the morning stand-up. Rafael&rsquo;s message from last night is still pinned at the top.</p>
+											<div class="tz-visual tz-msg">
+												<span class="tz-avatar" aria-hidden="true">R</span>
+												<span class="tz-who">Rafael <small>CEO &middot; Monday, 17:45</small></span>
+												<p>By Friday I want the agent doing half of your team&rsquo;s backlog.</p>
+											</div>
+											<p class="tz-narr tz-gap">Marina&rsquo;s backlog has 30 items. Before she can say a word, the team splits in two.</p>
+											<div class="tz-thread">
+												<div class="tz-msg">
+													<span class="tz-avatar is-teal" aria-hidden="true">J</span>
+													<span class="tz-who">Jo&atilde;o <small>Senior ops specialist</small></span>
+													<p>After yesterday&rsquo;s email? My clients stay with me.</p>
+												</div>
+												<div class="tz-msg">
+													<span class="tz-avatar is-dark" aria-hidden="true">A</span>
+													<span class="tz-who">Ana <small>Junior analyst</small></span>
+													<p>Give it everything! We&rsquo;ll be done by Wednesday.</p>
+												</div>
+											</div>
+											<p class="tz-narr tz-gap">Marina gets both of them, and whichever side she takes, she loses the other. If this works, though, her team might finally have time for their clients again. She needs a rule they can both live with, and she needs it before Friday.</p>
+										</section>
+
+										<!-- 02 · Three questions -->
+										<section class="tz-sec" id="tz-s2" aria-labelledby="tz-h2">
+											<div class="tz-sec-head"><span class="tz-num">02</span><span class="tz-eyebrow">Tuesday, 9:30</span></div>
+											<h2 class="tz-h" id="tz-h2">Three questions</h2>
+											<p class="tz-narr">After the stand-up, Marina grabs Lucas for ten minutes at the whiteboard.</p>
+											<div class="tz-visual tz-msg is-guide">
+												<span class="tz-avatar is-teal" aria-hidden="true">L</span>
+												<span class="tz-who">Lucas <small>IT &middot; set up Taskzilla</small></span>
+												<p>&ldquo;Yesterday you worked out chat or agent. Today&rsquo;s question is different: for agent work, how much do you let go? Ask three things about every task.&rdquo;</p>
+											</div>
+											<div class="tz-visual tz-board">
+												<span class="tz-eyebrow is-pink">Marina&rsquo;s whiteboard</span>
+												<ol>
+													<li><b>Can I describe &ldquo;done&rdquo;?</b>A clear finish line, like &ldquo;a table with three venues&rdquo;, not &ldquo;something nice&rdquo;.</li>
+													<li><b>What does a mistake cost?</b>Can it be undone, and who would see it?</li>
+													<li><b>Does it need my judgement or my relationships?</b>Decisions about people, and trust with clients, stay with a person.</li>
+												</ol>
+											</div>
+											<p class="tz-narr tz-gap">The first two questions place a task on a grid. The third overrides it: if a task needs a person&rsquo;s judgement or relationships, it stays with a person, wherever it lands.</p>
+											<div class="tz-visual">
+												<svg class="tz-grid-svg" viewBox="0 0 600 400" role="img" aria-labelledby="tz-grid-title">
+													<title id="tz-grid-title">Delegation grid: clear and cheap tasks are handed off, clear but costly or unclear but cheap ones are done together, unclear and costly ones are kept. Monday's offsite sat in Keep; a clear brief moves it to Do together.</title>
+													<defs><marker id="tz-garrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#c2335b"/></marker></defs>
+													<g font-family="Source Sans Pro, Helvetica, sans-serif">
+														<rect x="90" y="20" width="240" height="150" rx="8" fill="rgba(39,113,102,0.1)" stroke="#277166" stroke-width="2"/>
+														<rect x="345" y="20" width="240" height="150" rx="8" fill="#ffffff" stroke="#c9c9c9" stroke-width="1.5"/>
+														<rect x="90" y="185" width="240" height="150" rx="8" fill="#ffffff" stroke="#c9c9c9" stroke-width="1.5"/>
+														<rect x="345" y="185" width="240" height="150" rx="8" fill="#f6f6f6" stroke="#c9c9c9" stroke-width="1.5"/>
+														<text x="110" y="52" font-size="18" font-weight="700" fill="#3c3b3b">Hand off</text>
+														<text x="110" y="76" font-size="14" fill="#585858">The agent does it,</text>
+														<text x="110" y="94" font-size="14" fill="#585858">you spot-check</text>
+														<text x="365" y="52" font-size="18" font-weight="700" fill="#3c3b3b">Do together</text>
+														<text x="365" y="76" font-size="14" fill="#585858">The agent prepares,</text>
+														<text x="365" y="94" font-size="14" fill="#585858">you approve</text>
+														<text x="110" y="217" font-size="18" font-weight="700" fill="#3c3b3b">Do together</text>
+														<text x="110" y="241" font-size="14" fill="#585858">The agent drafts,</text>
+														<text x="110" y="259" font-size="14" fill="#585858">you shape it</text>
+														<text x="365" y="217" font-size="18" font-weight="700" fill="#3c3b3b">Keep</text>
+														<text x="365" y="241" font-size="14" fill="#585858">You do it yourself</text>
+														<circle cx="500" cy="295" r="9" fill="#c2335b"/>
+														<text x="488" y="300" font-size="13" font-weight="700" fill="#c2335b" text-anchor="end">Monday&#8217;s offsite</text>
+														<path d="M500 284V140" fill="none" stroke="#c2335b" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#tz-garrow)"/>
+														<text x="490" y="150" font-size="13" fill="#c2335b" text-anchor="end">with a clear brief</text>
+														<line x1="90" y1="355" x2="585" y2="355" stroke="#6e6e6e" stroke-width="1.5" marker-end="url(#tz-garrow)"/>
+														<text x="90" y="378" font-size="13" fill="#6e6e6e">low</text>
+														<text x="337" y="378" font-size="14" font-weight="700" fill="#3c3b3b" text-anchor="middle">Cost of a mistake</text>
+														<text x="585" y="378" font-size="13" fill="#6e6e6e" text-anchor="end">high</text>
+														<line x1="70" y1="335" x2="70" y2="20" stroke="#6e6e6e" stroke-width="1.5" marker-end="url(#tz-garrow)"/>
+														<text x="40" y="178" font-size="14" font-weight="700" fill="#3c3b3b" text-anchor="middle" transform="rotate(-90 40 178)">Clarity of &#8220;done&#8221;</text>
+													</g>
+												</svg>
+											</div>
+											<div class="tz-visual tz-msg is-guide">
+												<span class="tz-avatar is-teal" aria-hidden="true">L</span>
+												<span class="tz-who">Lucas</span>
+												<p>&ldquo;Take Monday&rsquo;s offsite. As you briefed it, &lsquo;done&rsquo; was unclear and a mistake was costly: that&rsquo;s <b>Keep</b>. A clear brief moves it up to <b>Do together</b>: the agent drafts, you approve. That&rsquo;s exactly what the pop-up saved you from.&rdquo;</p>
+											</div>
+										</section>
+
+										<!-- 03 · Activity 1: sort -->
+										<section class="tz-sec" id="tz-s3" aria-labelledby="tz-h3">
+											<div class="tz-band">
+												<div class="tz-sec-head"><span class="tz-num">03</span><span class="tz-tag-activity">Activity 1 of 4</span><span class="tz-quiet">About 3 minutes</span></div>
+												<h2 class="tz-h" id="tz-h3">Sort Marina&rsquo;s backlog</h2>
+												<p class="tz-narr">Marina picks eight tasks from her list to test the rule. Rafael&rsquo;s half, without risking a client: for each task, choose <b>hand off</b>, <b>do together</b> or <b>keep</b>.</p>
+												<div class="tz-remember">
+													<span class="tz-eyebrow">Remember</span>
+													<p>A mistake that reaches a client costs more than one that stays inside the team.</p>
+												</div>
+												<ul class="tz-rows tz-visual" id="tz-sort-rows"></ul>
+												<p class="tz-fb is-good tz-summary" id="tz-sort-sum" aria-live="polite"></p>
+											</div>
+										</section>
+
+										<!-- 04 · Activity 2: split -->
+										<section class="tz-sec" id="tz-s4" aria-labelledby="tz-h4">
+											<div class="tz-band">
+												<div class="tz-sec-head"><span class="tz-num">04</span><span class="tz-tag-activity">Activity 2 of 4</span><span class="tz-quiet">About 1 minute</span></div>
+												<h2 class="tz-h" id="tz-h4">Split it</h2>
+												<p class="tz-narr">One item on Marina&rsquo;s list is too big for one answer: <b>the quarterly business review</b> for Rafael, due Friday. Ana wants to hand it off, Jo&atilde;o wants to keep it. Split it into parts and choose for each.</p>
+												<ul class="tz-rows tz-visual" id="tz-split-rows"></ul>
+												<p class="tz-fb is-good tz-summary" id="tz-split-sum" aria-live="polite"></p>
+											</div>
+										</section>
+
+										<!-- 05 · Activity 3: job -->
+										<section class="tz-sec" id="tz-s5" aria-labelledby="tz-h5">
+											<div class="tz-sec-head"><span class="tz-num">05</span><span class="tz-eyebrow">Tuesday, 13:00</span></div>
+											<h2 class="tz-h" id="tz-h5">Write Ops Agent&rsquo;s job</h2>
+											<p class="tz-narr">After lunch, Marina opens the builder to turn her sort into Ops Agent&rsquo;s job.</p>
+											<div class="tz-visual tz-msg is-guide">
+												<span class="tz-avatar is-teal" aria-hidden="true">L</span>
+												<span class="tz-who">Lucas</span>
+												<p>&ldquo;This is the agent&rsquo;s job description: what it does, what it does only with your approval, and what it never does. The &lsquo;never does&rsquo; list becomes rules tomorrow.&rdquo;</p>
+											</div>
+											<p class="tz-narr tz-gap">The lists are filled in from her sort. But two tasks under <b>Does</b> weren&rsquo;t on it. Ana edited the draft over lunch. Marina can&rsquo;t really blame her. But it&rsquo;s Marina&rsquo;s name on this job, not Ana&rsquo;s.</p>
+											<div class="tz-band tz-gap">
+												<div class="tz-sec-head"><span class="tz-tag-activity">Activity 3 of 4</span><span class="tz-quiet">About 1 minute</span></div>
+												<h3 class="tz-h2">Fix the job, then save it</h3>
+												<p class="tz-narr">Move each of Ana&rsquo;s additions to the list where it belongs.</p>
+												<div class="tz-visual tz-app">
+													<div class="tz-app-bar">
+														<span class="tz-logo"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#f2849e" d="M4 20c0-7 4-14 11-14 3 0 5 2 5 4l-3 1 2 2-3 1 1 2c-3 1-6 0-7-2l-2 6z"/><circle cx="15.5" cy="9" r="1.2" fill="#333333"/></svg>Taskzilla <span class="tz-pill">Builder</span></span>
+														<span class="tz-app-meta">Ops Agent &middot; Job</span>
+													</div>
+													<div class="tz-app-body">
+														<div class="tz-builder-top">
+															<svg class="tz-ring" viewBox="0 0 96 96" role="img" aria-label="Agent progress">
+																<circle class="tz-ring-bg" cx="48" cy="48" r="38"/>
+																<circle class="tz-ring-arc" id="tz-ring-arc" cx="48" cy="48" r="38" stroke-dasharray="238.76" stroke-dashoffset="191" transform="rotate(-90 48 48)"/>
+																<text x="48" y="55" id="tz-ring-text">1/5</text>
+															</svg>
+															<span><span class="tz-agent-name">Ops Agent</span><span class="tz-agent-owner">Part 2 of 5: Job</span></span>
+															<div class="tz-actions"><button type="button" class="tz-btn" id="tz-save" disabled>Save job</button></div>
+														</div>
+														<div class="tz-jobs">
+															<div class="tz-job"><span class="tz-eyebrow">Does</span><ul id="tz-job-does">
+																<li>Summarise support tickets</li><li>Update spreadsheets</li><li>Find meeting slots</li><li>Pull numbers from tools</li>
+															</ul></div>
+															<div class="tz-job"><span class="tz-eyebrow">Does with approval</span><ul id="tz-job-approval">
+																<li>Draft newsletters</li><li>Prepare supplier payments</li><li>Draft slides</li>
+															</ul></div>
+															<div class="tz-job"><span class="tz-eyebrow">Never does</span><ul id="tz-job-never">
+																<li>Reply to unhappy clients</li><li>Negotiate with carriers</li><li>Conversations about people</li><li>Write recommendations</li>
+															</ul></div>
+														</div>
+													</div>
+												</div>
+												<p class="tz-fb" id="tz-job-fb" aria-live="polite"></p>
+												<p class="tz-fb" id="tz-job-ana" aria-live="polite"></p>
+												<p class="tz-toast" id="tz-toast" role="status"></p>
+											</div>
+										</section>
+
+										<!-- 06 · Delegate tasks, not responsibility -->
+										<section class="tz-sec" id="tz-s6" aria-labelledby="tz-h6">
+											<div class="tz-sec-head"><span class="tz-num">06</span><span class="tz-eyebrow">Tuesday, 15:00</span></div>
+											<h2 class="tz-h" id="tz-h6">Delegate tasks, not responsibility</h2>
+											<p class="tz-narr">Marina counts her board: four tasks handed off, three done together, four kept. The agent is involved in seven of eleven. Rafael gets his half, and no client is put at risk. For the first time since Monday, Marina thinks this might actually work.</p>
+											<div class="tz-thread">
+												<div class="tz-msg">
+													<span class="tz-avatar is-teal" aria-hidden="true">J</span>
+													<span class="tz-who">Jo&atilde;o <small>15:04</small></span>
+													<p>Fine. I&rsquo;ll try the ticket summary. But I&rsquo;m reading it before anyone else does.</p>
+												</div>
+												<div class="tz-msg">
+													<span class="tz-avatar is-dark" aria-hidden="true">A</span>
+													<span class="tz-who">Ana <small>15:05</small></span>
+													<p>Seven of eleven! Told you it was useful.</p>
+												</div>
+											</div>
+											<div class="tz-remember">
+												<span class="tz-eyebrow">Remember</span>
+												<p>You can hand off a task, but not the responsibility for it. Whatever the agent does, it&rsquo;s still Marina&rsquo;s name on it.</p>
+											</div>
+										</section>
+
+										<!-- 07 · Activity 4: quick check -->
+										<section class="tz-sec" id="tz-s7" aria-labelledby="tz-h7">
+											<div class="tz-band">
+												<div class="tz-sec-head"><span class="tz-num">07</span><span class="tz-tag-activity">Activity 4 of 4</span><span class="tz-quiet">About 2 minutes</span></div>
+												<h2 class="tz-h" id="tz-h7">Other teams have questions</h2>
+												<p class="tz-narr">Tuesday, 16:30. Before rolling the agent out further, Rafael forwards Marina a few questions from Finance and Sales. Help her answer.</p>
+												<div class="tz-qs">
+													<div class="tz-q" id="tz-q1">
+														<span class="tz-eyebrow">Question 1 of 3 &middot; from Sales</span>
+														<p class="tz-q-text">&ldquo;Can the agent translate our FAQ into Spanish?&rdquo; Hand off, do together or keep?</p>
+														<span class="tz-seg" role="group" aria-label="Translate the FAQ"><button type="button" data-v="handoff" aria-pressed="false">Hand off</button><button type="button" data-v="together" aria-pressed="false">Together</button><button type="button" data-v="keep" aria-pressed="false">Keep</button></span>
+														<p class="tz-fb" id="tz-q1-fb" aria-live="polite"></p>
+													</div>
+													<div class="tz-q" id="tz-q2">
+														<span class="tz-eyebrow">Question 2 of 3 &middot; from Finance</span>
+														<p class="tz-q-text">&ldquo;Can the agent approve refund requests?&rdquo; Hand off, do together or keep?</p>
+														<span class="tz-seg" role="group" aria-label="Approve refund requests"><button type="button" data-v="handoff" aria-pressed="false">Hand off</button><button type="button" data-v="together" aria-pressed="false">Together</button><button type="button" data-v="keep" aria-pressed="false">Keep</button></span>
+														<p class="tz-fb" id="tz-q2-fb" aria-live="polite"></p>
+													</div>
+													<div class="tz-q" id="tz-q3">
+														<span class="tz-eyebrow">Question 3 of 3 &middot; from Rafael</span>
+														<p class="tz-q-text">&ldquo;Why can&rsquo;t I just tell it to &lsquo;make our onboarding better&rsquo;?&rdquo;</p>
+														<div class="tz-causes" id="tz-q3-opts" role="group" aria-label="Answer options">
+															<button type="button" class="tz-opt" data-ok="0">It&rsquo;s too long a task for an agent</button>
+															<button type="button" class="tz-opt" data-ok="1">There&rsquo;s no way to tell when it&rsquo;s done</button>
+															<button type="button" class="tz-opt" data-ok="0">Agents can&rsquo;t write about onboarding</button>
+															<button type="button" class="tz-opt" data-ok="0">It involves customers</button>
+														</div>
+														<p class="tz-fb" id="tz-q3-fb" aria-live="polite"></p>
+													</div>
+												</div>
+											</div>
+										</section>
+
+										<!-- 08 · Wrap-up -->
+										<section class="tz-sec" id="tz-s8" aria-labelledby="tz-h8">
+											<div class="tz-sec-head"><span class="tz-num">08</span><span class="tz-eyebrow">Tuesday, 17:30</span></div>
+											<h2 class="tz-h" id="tz-h8">Module complete</h2>
+											<div class="tz-results" id="tz-results">
+												<svg class="tz-ring" viewBox="0 0 96 96" role="img" aria-label="Ops Agent progress">
+													<circle class="tz-ring-bg" cx="48" cy="48" r="38"/>
+													<circle class="tz-ring-arc" id="tz-ring2-arc" cx="48" cy="48" r="38" stroke-dasharray="238.76" stroke-dashoffset="191" transform="rotate(-90 48 48)"/>
+													<text x="48" y="55" id="tz-ring2-text">1/5</text>
+												</svg>
+												<div>
+													<span class="tz-eyebrow">Your results</span>
+													<h3 id="tz-results-title">Finish the four activities to complete Tuesday</h3>
+													<ul class="tz-score" id="tz-score" aria-live="polite"></ul>
+												</div>
+											</div>
+											<div class="tz-remember" id="tz-guess-back" hidden>
+												<span class="tz-eyebrow">Your gut feeling this morning</span>
+												<p id="tz-guess-back-text"></p>
+											</div>
+											<div class="tz-visual tz-msg is-guide">
+												<span class="tz-avatar is-teal" aria-hidden="true">L</span>
+												<span class="tz-who">Lucas <small>17:30</small></span>
+												<p>&ldquo;Good job today. Tomorrow we fix Monday&rsquo;s first issue: the brief. Ops Agent knows its job now, but not yet what you actually mean.&rdquo;</p>
+											</div>
+											<p class="tz-narr tz-gap">Marina leaves at six, for the first time in weeks.</p>
+											<div class="tz-real">
+												<span class="tz-eyebrow">In the real world</span>
+												<p>Companies already give agents jobs like these: answering routine support questions (for example Intercom Fin or Zendesk&rsquo;s AI agents), updating CRM records (Salesforce Agentforce), or moving data between tools (Zapier Agents). In real agent builders, the job usually goes into a short Description field, and the &ldquo;never does&rdquo; list goes into the instructions.</p>
+											</div>
+											<div class="tz-end" role="separator" aria-label="End of Module 2"><span>&#10003; End of Module 2 &middot; Tuesday</span></div>
+											<div class="tz-later">
+												<span class="tz-eyebrow">Up next &middot; Wednesday</span>
+												<b>Module 3 &middot; Give it a proper brief</b>
+												<span>Coming soon: help Marina rewrite Monday&rsquo;s request so the agent knows what she actually means.</span>
+											</div>
+											<div class="tz-actions tz-gap">
+												<a class="tz-btn" href="agents-course.html">Back to the course</a>
+												<button type="button" class="tz-btn is-ghost" id="tz-restart">Restart module</button>
+											</div>
+										</section>
+
+										<noscript><p class="tz-narr">The activities in this module need JavaScript. In short: before handing a task to an agent, ask whether you can describe &ldquo;done&rdquo;, what a mistake costs, and whether it needs your judgement or relationships. Clear, cheap tasks are handed off; costly or unclear ones are done together; anything that needs judgement or trust stays with a person.</p></noscript>
+									</div>
+								</div>
+							</div>
+
+							<script>
+								(function () {
+									'use strict';
+									var root = document.getElementById('tz');
+									if (!root) return;
+
+									var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+									var STORE = 'tz-agents-course';
+									var RING = 238.76;
+									function $(id) { return document.getElementById(id); }
+									function all(sel, r) { return Array.prototype.slice.call((r || root).querySelectorAll(sel)); }
+									function el(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text !== undefined) n.textContent = text; return n; }
+									function btn(cls, text) { var b = el('button', cls, text); b.type = 'button'; return b; }
+									function setRing(arc, label, n) { $(arc).setAttribute('stroke-dashoffset', String(RING * (1 - n / 5))); $(label).textContent = n + '/5'; }
+									function fbSet(id, cls, text) { var f = $(id); f.className = 'tz-fb ' + cls; f.textContent = text; }
+									var LABEL = { handoff: 'Hand off', together: 'Together', keep: 'Keep' };
+
+									/* ---------- Progress: each activity reports here ---------- */
+									var progress, guess;
+									function save() {
+										try {
+											var s = JSON.parse(window.localStorage.getItem(STORE) || '{}') || {};
+											var m = s.m2 || {};
+											if (progress.sort) m.sort = progress.sort.score;
+											if (progress.split) m.split = progress.split.score;
+											if (progress.job) m.job = progress.job.score;
+											if (progress.quiz) m.quiz = progress.quiz.score;
+											if (progress.sort && progress.split && progress.job && progress.quiz) { m.done = true; m.at = new Date().toISOString(); }
+											s.m2 = m;
+											window.localStorage.setItem(STORE, JSON.stringify(s));
+										} catch (e) { /* storage blocked: the page works without it */ }
+									}
+									var GUESS = {
+										all: 'You expected the agent to take almost all of it. What Marina found: 7 of 11 tasks involve the agent, but only 4 fully. The rest need her approval or her judgement.',
+										half: 'You expected about half, some only with approval. That’s exactly where Marina landed: 7 of 11 tasks involve the agent, but only 4 fully.',
+										little: 'You expected hardly any. What Marina found: 7 of 11 tasks involve the agent, 4 of them fully. Clear, cheap tasks are safe to hand off.'
+									};
+									function update() {
+										var marks = { sort: !!progress.sort, split: !!progress.split, job: !!progress.job, quiz: !!progress.quiz };
+										var done = marks.sort && marks.split && marks.job && marks.quiz;
+										marks.done = done;
+										all('#tz-toc li[data-act]').forEach(function (li) {
+											var k = li.getAttribute('data-act'), small = li.querySelector('small');
+											li.classList.toggle('is-done', marks[k]);
+											if (small) small.textContent = marks[k] ? '✓ Done' : (k === 'done' ? '' : 'Activity');
+										});
+										var ul = $('tz-score'); ul.innerHTML = '';
+										var so = progress.sort, sp = progress.split, j = progress.job, q = progress.quiz;
+										[
+											[so ? (so.score >= 6 ? 'ok' : 'miss') : '', so ? 'Sort the backlog: ' + so.score + ' of 8 matched' : 'Sort the backlog: not finished yet'],
+											[sp ? (sp.score === 3 ? 'ok' : 'miss') : '', sp ? 'Split it: ' + sp.score + ' of 3 parts' : 'Split it: not finished yet'],
+											[j ? (j.score === 2 ? 'ok' : 'miss') : '', j ? 'Ops Agent’s job: ' + j.score + ' of 2 of Ana’s additions placed right, job saved' : 'Write Ops Agent’s job: not done yet'],
+											[q ? (q.score >= 2 ? 'ok' : 'miss') : '', q ? 'Quick check: ' + q.score + ' of 3' : 'Quick check: not finished yet']
+										].forEach(function (row) { ul.appendChild(el('li', row[0] ? 'is-' + row[0] : '', row[1])); });
+										$('tz-results').classList.toggle('is-done', done);
+										$('tz-results-title').textContent = done ? 'Ops Agent has a job, and you know what to keep' : 'Finish the four activities to complete Tuesday';
+										setRing('tz-ring2-arc', 'tz-ring2-text', progress.job ? 2 : 1);
+										$('tz-guess-back').hidden = !(done && guess);
+										if (guess) $('tz-guess-back-text').textContent = GUESS[guess];
+										save();
+									}
+
+									/* ---------- Contents: active section, reading progress, collapse on small screens ---------- */
+									var toc = $('tz-toc');
+									var wide = window.matchMedia('(min-width: 981px)');
+									function tocMode() { if (wide.matches) toc.open = true; }
+									tocMode();
+									if (!wide.matches) toc.open = false;
+									if (wide.addEventListener) wide.addEventListener('change', tocMode);
+									toc.querySelector('summary').addEventListener('click', function (e) { if (wide.matches) e.preventDefault(); });
+									var links = all('#tz-toc a');
+									var secs = links.map(function (a) { return $(a.getAttribute('href').slice(1)); });
+									function onScroll() {
+										var y = window.innerHeight * 0.3, cur = 0;
+										secs.forEach(function (s, i) { if (s.getBoundingClientRect().top <= y) cur = i; });
+										links.forEach(function (a, i) { a.classList.toggle('is-active', i === cur); });
+										var c = root.querySelector('.tz-content').getBoundingClientRect();
+										var pr = Math.min(1, Math.max(0, (window.innerHeight * 0.5 - c.top) / c.height));
+										$('tz-bar').style.width = (pr * 100) + '%';
+									}
+									window.addEventListener('scroll', onScroll, { passive: true });
+									window.addEventListener('resize', onScroll);
+									onScroll();
+
+									/* ---------- Gut feeling (not scored; revisited at the end) ---------- */
+									var guessOpts = all('#tz-guess .tz-opt');
+									guessOpts.forEach(function (o) {
+										o.addEventListener('click', function () {
+											guess = o.getAttribute('data-k');
+											guessOpts.forEach(function (x) { x.disabled = true; x.classList.toggle('is-chosen', x === o); });
+											fbSet('tz-guess-fb', '', 'Noted. Let’s see where Marina lands by the end of Tuesday.');
+											update();
+										});
+									});
+									function resetGuess() {
+										guess = null;
+										guessOpts.forEach(function (x) { x.disabled = false; x.classList.remove('is-chosen'); });
+										$('tz-guess-fb').textContent = ''; $('tz-guess-fb').className = 'tz-fb';
+									}
+
+									/* ---------- Choice rows (activities 1 and 2): hand off / together / keep ---------- */
+									/* Each item: [task, accepted answers, feedback, reaction ("Name: line") or ''] */
+									var SORT = [
+										['Summarise last week’s 40 support tickets into the top 5 themes', ['handoff'], 'Hand off. Clear “done” (five themes), it only reads data, and you can check it in a minute.', 'Ana: “See? Easy win.”'],
+										['Move the supplier list into the new spreadsheet template', ['handoff'], 'Hand off. Repetitive, and easy to undo if something lands in the wrong column.', 'João: “Fine. Nobody likes that job anyway.”'],
+										['Find a free slot for the team’s Q2 planning meeting', ['handoff'], 'Hand off. Easy to undo, and the calendar shows any conflict.', 'Ana: “One less email thread.”'],
+										['Draft the monthly ops newsletter', ['together'], 'Do together. The agent drafts; Marina fixes the tone and checks the facts before it goes out.', 'João: “As long as someone reads it before 120 people do.”'],
+										['Prepare payments for three supplier invoices', ['together'], 'Do together. The agent prepares the payments; Marina approves them, because money is hard to get back.', 'João: “Approve every single one.”'],
+										['Reply to an angry key client about a late delivery', ['keep', 'together'], 'Keep. A relationship is at stake. At most, the agent drafts and Marina rewrites it in her own words.', 'João: “Thank you.”'],
+										['Negotiate new rates with the biggest carrier', ['keep'], 'Keep. Judgement, and a relationship built over years. The agent can prepare the numbers, not the conversation.', 'Ana: “Okay, that one’s fair.”'],
+										['Tell João his project is being paused', ['keep'], 'Keep. A conversation between people, not a task.', 'João: “…Wait, what project?”']
+									];
+									var SPLIT = [
+										['Pull this quarter’s numbers from three tools', ['handoff'], 'Hand off: clear, checkable, and it only reads data.', ''],
+										['Draft the slides', ['together'], 'Do together: the agent drafts, Marina shapes the story.', ''],
+										['Write the story and the recommendations', ['keep'], 'Keep: that’s Marina’s judgement, and her name on it in front of the board.', '']
+									];
+									function buildRows(listId, items, state, onDone) {
+										var list = $(listId); list.innerHTML = '';
+										items.forEach(function (it) {
+											var li = el('li');
+											li.appendChild(el('span', '', it[0]));
+											var seg = el('span', 'tz-seg'); seg.setAttribute('role', 'group'); seg.setAttribute('aria-label', it[0]);
+											var bs = ['handoff', 'together', 'keep'].map(function (v) {
+												var b = btn('', LABEL[v]); b.setAttribute('data-v', v); b.setAttribute('aria-pressed', 'false'); seg.appendChild(b); return b;
+											});
+											li.appendChild(seg);
+											bs.forEach(function (b) {
+												b.addEventListener('click', function () {
+													var right = it[1].indexOf(b.getAttribute('data-v')) > -1;
+													if (right) state.score++;
+													state.n++;
+													b.setAttribute('aria-pressed', 'true');
+													b.classList.add(right ? 'is-right' : 'is-wrong');
+													bs.forEach(function (x) { x.disabled = true; });
+													var f = el('p', 'tz-fb ' + (right ? 'is-good' : 'is-bad'), (right ? '' : 'Lucas would choose differently. ') + it[2]);
+													if (it[3]) f.appendChild(el('span', 'tz-react', it[3]));
+													f.setAttribute('aria-live', 'polite');
+													li.appendChild(f);
+													if (state.n === items.length) onDone();
+												});
+											});
+											list.appendChild(li);
+										});
+									}
+									var sortState, splitState;
+									function resetSort() {
+										sortState = { n: 0, score: 0 };
+										$('tz-sort-sum').textContent = '';
+										buildRows('tz-sort-rows', SORT, sortState, function () {
+											$('tz-sort-sum').textContent = sortState.score + ' of 8 matched Lucas’s answers. Three tasks can go to the agent fully, two need Marina’s approval, and three stay with her.';
+											progress.sort = { score: sortState.score };
+											update();
+										});
+									}
+									function resetSplit() {
+										splitState = { n: 0, score: 0 };
+										$('tz-split-sum').textContent = '';
+										buildRows('tz-split-rows', SPLIT, splitState, function () {
+											$('tz-split-sum').textContent = splitState.score + ' of 3 parts placed right. Delegating isn’t all or nothing. Even Ana and João agree on this split, and the review returns on Friday as Ops Agent’s final test.';
+											progress.split = { score: splitState.score };
+											update();
+										});
+									}
+
+									/* ---------- Activity 3: fix Ana's additions, then save the job ---------- */
+									var ANA = [
+										{ text: 'Reply to customer complaints', ok: 'never',
+											right: 'Right. Complaints are about trust, like the angry client: they stay with a person.',
+											wrong: 'Close, but complaints are about trust, like the angry client. This one goes to Never does.' },
+										{ text: 'Pay invoices under R$1,000', ok: 'approval',
+											right: 'Right. Preparing payments saves time, but money is hard to get back, whatever the amount.',
+											wrong: 'Too strict: preparing payments saves Marina time. But money is hard to get back, so it goes to Does with approval.' }
+									];
+									var LISTS = { approval: 'tz-job-approval', never: 'tz-job-never' };
+									var job;
+									function resetJob() {
+										job = { moved: 0, score: 0, saved: false };
+										all('#tz-s5 li.is-ana, #tz-s5 li.is-fixed').forEach(function (n) { n.parentNode.removeChild(n); });
+										ANA.forEach(function (a) {
+											var li = el('li', 'is-ana', a.text);
+											li.appendChild(el('small', '', 'Added by Ana'));
+											var mv = el('span', 'tz-move');
+											var toA = btn('', '→ With approval'), toN = btn('', '→ Never does');
+											toA.setAttribute('aria-label', 'Move to Does with approval'); toN.setAttribute('aria-label', 'Move to Never does');
+											mv.appendChild(toA); mv.appendChild(toN); li.appendChild(mv);
+											function move(where) {
+												var right = where === a.ok;
+												if (right) job.score++;
+												job.moved++;
+												li.removeChild(mv);
+												li.className = 'is-fixed';
+												li.querySelector('small').textContent = right ? 'Moved: right list' : 'Moved by Lucas: this list';
+												$(LISTS[a.ok]).appendChild(li);
+												fbSet('tz-job-fb', right ? 'is-good' : 'is-bad', right ? a.right : a.wrong);
+												if (job.moved === ANA.length) { $('tz-save').disabled = false; $('tz-save').focus({ preventScroll: true }); }
+											}
+											toA.addEventListener('click', function () { move('approval'); });
+											toN.addEventListener('click', function () { move('never'); });
+											$('tz-job-does').appendChild(li);
+										});
+										$('tz-save').disabled = true;
+										$('tz-save').textContent = 'Save job';
+										$('tz-job-fb').textContent = ''; $('tz-job-fb').className = 'tz-fb';
+										$('tz-job-ana').textContent = ''; $('tz-job-ana').className = 'tz-fb';
+										$('tz-toast').textContent = '';
+										setRing('tz-ring-arc', 'tz-ring-text', 1);
+									}
+									$('tz-save').addEventListener('click', function () {
+										$('tz-save').disabled = true;
+										$('tz-save').textContent = 'Job saved';
+										setRing('tz-ring-arc', 'tz-ring-text', 2);
+										$('tz-toast').textContent = '✓ Saved: Ops Agent’s job. Progress 2/5.';
+										var f = $('tz-job-ana'); f.className = 'tz-fb'; f.textContent = 'Marina asks Ana about the two extra tasks. ';
+										f.appendChild(el('span', 'tz-react', 'Ana: “Okay, okay. I just wanted to save time.”'));
+										progress.job = { score: job.score };
+										update();
+									});
+
+									/* ---------- Activity 4: quick check ---------- */
+									var quiz;
+									function quizDone() {
+										if (quiz.q1 === null || quiz.q2 === null || quiz.q3 === null) return;
+										progress.quiz = { score: (quiz.q1 ? 1 : 0) + (quiz.q2 ? 1 : 0) + (quiz.q3 ? 1 : 0) };
+										update();
+									}
+									var Q = {
+										q1: { ok: ['handoff', 'together'], right: 'Right. Hand off, or do together if customers will read it: then a native speaker checks it before it goes live.', wrong: 'Not quite. Translating is clear and checkable: hand it off, or do it together if customers will read it, with a native speaker checking.' },
+										q2: { ok: ['together', 'keep'], right: 'Right. Money and policy are involved: the agent can prepare the case, a person decides.', wrong: 'Not quite. Refunds involve money and policy. At most the agent prepares the case; a person approves it.' }
+									};
+									['q1', 'q2'].forEach(function (k) {
+										var bs = all('#tz-' + k + ' .tz-seg button');
+										bs.forEach(function (b) {
+											b.addEventListener('click', function () {
+												var right = Q[k].ok.indexOf(b.getAttribute('data-v')) > -1;
+												quiz[k] = right;
+												b.setAttribute('aria-pressed', 'true');
+												b.classList.add(right ? 'is-right' : 'is-wrong');
+												bs.forEach(function (x) { x.disabled = true; });
+												fbSet('tz-' + k + '-fb', right ? 'is-good' : 'is-bad', right ? Q[k].right : Q[k].wrong);
+												quizDone();
+											});
+										});
+									});
+									var q3 = all('#tz-q3-opts .tz-opt');
+									q3.forEach(function (o) {
+										o.addEventListener('click', function () {
+											quiz.q3 = o.getAttribute('data-ok') === '1';
+											q3.forEach(function (x) { x.disabled = true; if (x.getAttribute('data-ok') === '1') x.classList.add('is-right'); });
+											if (!quiz.q3) o.classList.add('is-wrong');
+											fbSet('tz-q3-fb', quiz.q3 ? 'is-good' : 'is-bad', quiz.q3 ? 'Right. Without a finish line, the agent decides what “better” means, and when it’s done.' : 'Not quite. The problem is the first question on the whiteboard: there’s no way to tell when it’s done, so the agent decides.');
+											quizDone();
+										});
+									});
+									function resetQuiz() {
+										quiz = { q1: null, q2: null, q3: null };
+										all('#tz-s7 .tz-seg button').forEach(function (b) { b.disabled = false; b.setAttribute('aria-pressed', 'false'); b.classList.remove('is-right', 'is-wrong'); });
+										q3.forEach(function (o) { o.disabled = false; o.classList.remove('is-right', 'is-wrong'); });
+										['tz-q1-fb', 'tz-q2-fb', 'tz-q3-fb'].forEach(function (id) { $(id).textContent = ''; $(id).className = 'tz-fb'; });
+									}
+
+									/* ---------- Start and restart ---------- */
+									function resetAll() {
+										progress = { sort: null, split: null, job: null, quiz: null };
+										resetGuess(); resetSort(); resetSplit(); resetJob(); resetQuiz(); update();
+									}
+									$('tz-restart').addEventListener('click', function () {
+										resetAll();
+										$('tz-s0').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+										$('tz-h0').setAttribute('tabindex', '-1'); $('tz-h0').focus({ preventScroll: true });
+									});
+									resetAll();
+								})();
+							</script>
+							<!-- ============ AGENTS COURSE · MODULE 2 END ============ -->
+
+							<nav class="cs-pager" aria-label="Course">
+								<a href="agents-module-1.html">&larr; Module 1 &middot; Meet the agent</a>
+								<span>Next: Module 3 &middot; coming soon</span>
+							</nav>
+						</div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<!-- Hidden for now: contact form and social links (contact icons are in the top bar)
+							<section>
+								<h2>Get in touch</h2>
+								<form method="post" action="#">
+									<div class="fields">
+										<div class="field half">
+											<input type="text" name="name" id="name" placeholder="Name" />
+										</div>
+										<div class="field half">
+											<input type="email" name="email" id="email" placeholder="Email" />
+										</div>
+										<div class="field">
+											<textarea name="message" id="message" placeholder="Message"></textarea>
+										</div>
+									</div>
+									<ul class="actions">
+										<li><input type="submit" value="Send" class="primary" /></li>
+									</ul>
+								</form>
+							</section>
+							<section>
+								<h2>Follow</h2>
+								<ul class="icons">
+									<li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-500px"><span class="label">500px</span></a></li>
+									<li><a href="#" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
+									<li><a href="#" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
+								</ul>
+							</section>
+							-->
+							<ul class="copyright">
+								<li>&copy; Brigitta Buzinszki. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

@@ -163,6 +163,30 @@
 #tz .tz-approve.is-preview .tz-btn { cursor: default; }
 #tz .tz-rows li .tz-fb { flex-basis: 100%; margin-top: 0.25em; }
 
+/* ---------- Module 2: whiteboard, delegation grid, job lists, team reactions ---------- */
+#tz .tz-board { padding: 1.75em 2em; border: 1px solid var(--tz-border); border-radius: var(--tz-radius); background: var(--tz-bg); }
+#tz .tz-board ol { counter-reset: q; margin-top: 0.75em; }
+#tz .tz-board li { counter-increment: q; position: relative; padding: 0.8em 0 0.8em 2.6em; border-top: 1px solid var(--tz-line); }
+#tz .tz-board li:first-child { border-top: 0; }
+#tz .tz-board li::before { content: counter(q); position: absolute; top: 0.8em; left: 0; display: inline-flex; align-items: center; justify-content: center; width: 1.8em; height: 1.8em; border-radius: 50%; background: var(--tz-pink); color: #ffffff; font-size: 0.9em; font-weight: 900; }
+#tz .tz-board li b { display: block; }
+#tz .tz-grid-svg { display: block; width: 100%; max-width: 600px; height: auto; }
+#tz .tz-react { display: block; margin-top: 0.45em; color: var(--tz-fg); }
+#tz .tz-react b { color: var(--tz-fg-bold); }
+#tz .tz-jobs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.9em; margin-top: 1.75em; }
+#tz .tz-job { padding: 1em; border-radius: var(--tz-radius); background: var(--tz-bg-alt); }
+#tz .tz-job > .tz-eyebrow { margin-bottom: 0.4em; color: var(--tz-fg-bold); }
+#tz .tz-job li { margin-top: 0.5em; padding: 0.55em 0.75em; border-radius: var(--tz-radius); background: var(--tz-bg); font-size: 0.92em; line-height: 1.4; color: var(--tz-fg-bold); }
+#tz .tz-job li.is-ana { box-shadow: inset 0 0 0 2px var(--tz-pink); }
+#tz .tz-job li.is-fixed { box-shadow: inset 0 0 0 2px var(--tz-teal); }
+#tz .tz-job li small { display: block; margin-top: 0.2em; font-size: 0.8em; font-weight: 700; color: var(--tz-pink); }
+#tz .tz-job li.is-fixed small { color: var(--tz-teal); }
+#tz .tz-move { display: flex; flex-wrap: wrap; gap: 0.4em; margin-top: 0.5em; }
+#tz .tz-move button { min-height: 36px; padding: 0.3em 0.7em; border-radius: var(--tz-radius); font-size: 0.72em; font-weight: 900; letter-spacing: 0.12em; text-transform: uppercase; color: var(--tz-fg) !important; box-shadow: inset 0 0 0 1.5px var(--tz-fg); }
+#tz .tz-move button:hover { color: var(--tz-pink) !important; box-shadow: inset 0 0 0 1.5px var(--tz-pink); }
+#tz .tz-steps li.is-done b { color: var(--tz-teal); }
+#tz .tz-later a { border-bottom: 0; }
+
 /* ---------- Taskzilla: the simulated product ---------- */
 #tz .tz-app { border: 1px solid var(--tz-dark); border-radius: var(--tz-radius); overflow: hidden; background: var(--tz-bg); }
 #tz .tz-app-bar { display: flex; align-items: center; justify-content: space-between; gap: 1em; padding: 0.7em 1.25em; background: var(--tz-dark); color: #ffffff; }
@@ -392,6 +416,7 @@
 	#tz .tz-notes { padding: 1.25em 1.25em; }
 	#tz .tz-notes li { grid-template-columns: minmax(0, 1fr); gap: 0.3em; }
 	#tz .tz-parts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	#tz .tz-jobs { grid-template-columns: minmax(0, 1fr); }
 	#tz .tz-builder-top .tz-actions { margin: 0; width: 100%; }
 	#tz .tz-results { flex-direction: column; align-items: flex-start; padding: 1.5em; }
 	#tz .tz-cast { grid-template-columns: minmax(0, 1fr); }

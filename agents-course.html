@@ -9,19 +9,19 @@
 		<title>Working with AI Agents · Brigitta Buzinszki</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="description" content="A story-based course on working with AI agents: five 10-minute modules, one agent you build along the way. Module 1 is live." />
+		<meta name="description" content="A story-based course on working with AI agents: five 10-minute modules, one agent you build along the way. Modules 1 and 2 are live." />
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="Brigitta Buzinszki" />
 		<meta property="og:title" content="Working with AI Agents · Brigitta Buzinszki" />
-		<meta property="og:description" content="A story-based course on working with AI agents: five 10-minute modules, one agent you build along the way. Module 1 is live." />
+		<meta property="og:description" content="A story-based course on working with AI agents: five 10-minute modules, one agent you build along the way. Modules 1 and 2 are live." />
 		<meta property="og:url" content="https://bribuzinszki.github.io/agents-course.html" />
-		<meta property="og:image" content="https://bribuzinszki.github.io/images/og-image.png" />
+		<meta property="og:image" content="https://bribuzinszki.github.io/images/og-image.png?v=2" />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
 		<meta name="twitter:card" content="summary_large_image" />
-		<link rel="icon" href="images/favicon-32.png" type="image/png" sizes="32x32" />
-		<link rel="icon" href="images/logo.svg" type="image/svg+xml" />
-		<link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+		<link rel="icon" href="images/favicon-32.png?v=2" type="image/png" sizes="32x32" />
+		<link rel="icon" href="images/logo.svg?v=2" type="image/svg+xml" />
+		<link rel="apple-touch-icon" href="images/apple-touch-icon.png?v=2" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" href="assets/css/agents-course.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
@@ -128,11 +128,12 @@
 												<div class="tz-tl-foot"><span class="tz-tl-go" id="tz-m1-go">Start &rarr;</span><span id="tz-m1-meta">10 min &middot; 4 activities</span><span>Builds part 1: create your agent</span></div>
 											</div>
 										</li>
-										<li>
-											<div class="tz-tl-item">
-												<span class="tz-eyebrow">Tuesday &middot; Module 2 &middot; Coming soon</span>
-												<span class="tz-tl-title">What to hand off</span>
-												<p class="tz-tl-desc">Decide which tasks an agent should take. Builds part 2: its job.</p>
+										<li class="is-open" id="tz-m2">
+											<div class="tz-tl-card">
+												<span class="tz-eyebrow">Tuesday &middot; Module 2</span>
+												<a class="tz-tl-title" href="agents-module-2.html">What to hand off</a>
+												<p class="tz-tl-desc">Decide which tasks an agent should take, which to do together, and which to keep.</p>
+												<div class="tz-tl-foot"><span class="tz-tl-go" id="tz-m2-go">Start &rarr;</span><span id="tz-m2-meta">10 min &middot; 4 activities</span><span>Builds part 2: its job</span></div>
 											</div>
 										</li>
 										<li>
@@ -189,26 +190,41 @@
 										<li>For a SaaS company: how many customers&rsquo; first agent task succeeds, and fewer support tickets about the feature.</li>
 									</ul>
 									<h3>Status</h3>
-									<p>Module 1 is built as a proof of concept; Modules 2&ndash;5 are scripted and in review. Taskzilla, BestSolutions and all characters are fictional.</p>
+									<p>Modules 1 and 2 are built; Modules 3&ndash;5 are scripted and in review. Taskzilla, BestSolutions and all characters are fictional.</p>
 								</section>
 							</div>
 
 							<script>
 								(function () {
 									'use strict';
-									var m = {};
-									try { m = (JSON.parse(window.localStorage.getItem('tz-agents-course') || '{}') || {}).m1 || {}; } catch (e) { m = {}; }
+									var s = {};
+									try { s = JSON.parse(window.localStorage.getItem('tz-agents-course') || '{}') || {}; } catch (e) { s = {}; }
 									function $(id) { return document.getElementById(id); }
-									var started = !!(m.run || m.created || m.quiz !== undefined);
-									if (m.done) {
-										$('tz-start').textContent = 'Review Module 1';
-										$('tz-m1').classList.add('is-complete');
-										$('tz-m1-go').textContent = '✓ Completed';
-										$('tz-m1-go').classList.add('is-done');
-										if (typeof m.quiz === 'number') $('tz-m1-meta').textContent = 'Quick check: ' + m.quiz + ' of 3';
-									} else if (started) {
-										$('tz-start').textContent = 'Continue Module 1';
-										$('tz-m1-go').textContent = 'Continue →';
+									var MODS = [
+										{ k: 'm1', n: 1, url: 'agents-module-1.html', meta: function (m) { return 'Quick check: ' + m.quiz + ' of 3'; } },
+										{ k: 'm2', n: 2, url: 'agents-module-2.html', meta: function (m) { return 'Quick check: ' + m.quiz + ' of 3'; } }
+									];
+									var next = null, parts = 0;
+									MODS.forEach(function (mod) {
+										var m = s[mod.k] || {};
+										var started = Object.keys(m).length > 0;
+										if (m.done) {
+											$('tz-' + mod.k).classList.add('is-complete');
+											$('tz-' + mod.k + '-go').textContent = '✓ Completed';
+											$('tz-' + mod.k + '-go').classList.add('is-done');
+											if (typeof m.quiz === 'number') $('tz-' + mod.k + '-meta').textContent = mod.meta(m);
+										} else if (started) {
+											$('tz-' + mod.k + '-go').textContent = 'Continue →';
+										}
+										if (!next && !m.done) next = { mod: mod, started: started };
+									});
+									var b = $('tz-start');
+									if (next) {
+										b.href = next.mod.url;
+										b.textContent = (next.started ? 'Continue' : 'Start') + ' Module ' + next.mod.n;
+									} else {
+										b.href = 'agents-module-2.html';
+										b.textContent = 'Review Module 2';
 									}
 								})();
 							</script>
