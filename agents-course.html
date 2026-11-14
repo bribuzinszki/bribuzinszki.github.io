@@ -159,6 +159,7 @@
 										</li>
 									</ol>
 									<p class="tz-narr tz-gap">By Friday you&rsquo;ve built Ops Agent in a builder modelled on real agent tools, and you download its setup card.</p>
+									<p class="tz-meta tz-storage">Your progress is saved only in this browser and never sent anywhere. <a href="privacy.html#saved-progress">Privacy</a><span id="tz-reset-wrap" hidden> &middot; <button type="button" id="tz-reset">Delete saved progress</button></span></p>
 								</section>
 
 								<section class="tz-block" aria-label="After the course">
@@ -226,6 +227,15 @@
 										b.href = 'agents-module-2.html';
 										b.textContent = 'Review Module 2';
 									}
+									/* Delete saved progress: only offered when something is saved */
+									if (Object.keys(s).length) {
+										$('tz-reset-wrap').hidden = false;
+										$('tz-reset').addEventListener('click', function () {
+											if (!window.confirm('Delete your saved progress for this course? This can’t be undone.')) return;
+											try { window.localStorage.removeItem('tz-agents-course'); } catch (e) { /* storage blocked: nothing to delete */ }
+											window.location.reload();
+										});
+									}
 								})();
 							</script>
 
@@ -274,7 +284,7 @@
 							</section>
 							-->
 							<ul class="copyright">
-								<li>&copy; Brigitta Buzinszki. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+								<li>&copy; Brigitta Buzinszki. All rights reserved</li><li><a href="privacy.html">Privacy</a></li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 							</ul>
 						</div>
 					</footer>

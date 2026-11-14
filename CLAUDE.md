@@ -18,9 +18,16 @@ Page types:
 - `framework-*.html`: framework write-ups.
 - `*-exercise.html` and `eu-ai-act-high-risk.html`: self-contained interactive modules. Each has its own scoped `<style>` block and inline `<script>` inside `#main`; their CSS is namespaced under a module id (e.g. `#aia-module` with `--aia-*` custom properties) so it doesn't leak into the template styles.
 - `agents-course.html` + `agents-module-*.html`: the story-based course "Working with AI Agents" (fictional product Taskzilla, company BestSolutions). The landing tile and menu point to the course page, which links to each module. Unlike the other interactive pages, these share one stylesheet, `assets/css/agents-course.css` (everything scoped under `#tz`); each page keeps its own inline script. Modules are single scrolling pages (no click-to-reveal), with a sticky contents list and independent activities. Progress is saved in `localStorage` under `tz-agents-course` (try/catch) and read by the course page. Modules 1 and 2 exist so far; the course script lives in a separate review doc, not in this repo.
+- `privacy.html`: privacy notice in English and Brazilian Portuguese (LGPD), linked from the footer `.copyright` list on every page, not from the menu. It has a "Delete my saved progress" button that clears every `localStorage` key the site uses.
 - `elements.html` / `generic.html`: original template reference pages.
 
 When adding a page, also add it to the `#menu` list in every file and, if relevant, a tile on `index.html` (tile images live in `images/tile-*.jpg`, heroes in `images/hero-*.jpg`).
+
+## Privacy
+
+The site sets no cookies, runs no analytics and loads nothing from other servers; the font (Source Sans Pro) is self-hosted in `assets/webfonts/` with `@font-face` rules at the top of `main.css` / `main.scss`. Keep it that way, or update `privacy.html` in the same change:
+- a new `localStorage` key goes into both tables on `privacy.html` (EN and PT) and into its `KEYS` list;
+- any third-party request (fonts, scripts, embeds, analytics, iframes) needs a section in both languages, and cookies or analytics would need consent under the LGPD.
 
 ## EU AI Act module
 

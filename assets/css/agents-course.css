@@ -370,6 +370,9 @@
 #tz .tz-tl-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4em 1.25em; margin-top: 0.75em; font-size: 0.85em; color: var(--tz-fg-light); }
 #tz .tz-tl-go { font-weight: 700; color: var(--tz-pink); }
 #tz .tz-tl-go.is-done { color: var(--tz-teal); }
+#tz .tz-storage { max-width: 36em; }
+#tz .tz-storage a, #tz .tz-storage button { color: inherit !important; border-bottom: dotted 1px; }
+#tz .tz-storage a:hover, #tz .tz-storage button:hover { color: var(--tz-pink) !important; border-bottom-color: transparent; }
 #tz .tz-cast { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25em 2em; margin-top: 2em; }
 #tz .tz-cast li { display: flex; align-items: center; gap: 0.9em; line-height: 1.4; }
 #tz .tz-cast .tz-avatar { flex: none; }
