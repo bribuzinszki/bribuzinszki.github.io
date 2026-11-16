@@ -9,11 +9,11 @@
 		<title>Working with AI Agents · Brigitta Buzinszki</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="description" content="A story-based course on working with AI agents: five 10-minute modules, one agent you build along the way. Modules 1 and 2 are live." />
+		<meta name="description" content="A story-based course on working with AI agents: five 10-minute modules, one agent you build along the way. Modules 1 to 3 are live." />
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="Brigitta Buzinszki" />
 		<meta property="og:title" content="Working with AI Agents · Brigitta Buzinszki" />
-		<meta property="og:description" content="A story-based course on working with AI agents: five 10-minute modules, one agent you build along the way. Modules 1 and 2 are live." />
+		<meta property="og:description" content="A story-based course on working with AI agents: five 10-minute modules, one agent you build along the way. Modules 1 to 3 are live." />
 		<meta property="og:url" content="https://bribuzinszki.github.io/agents-course.html" />
 		<meta property="og:image" content="https://bribuzinszki.github.io/images/og-image.png?v=2" />
 		<meta property="og:image:width" content="1200" />
@@ -200,11 +200,12 @@
 												<div class="tz-tl-foot"><span class="tz-tl-go" id="tz-m2-go">Start &rarr;</span><span id="tz-m2-meta">10 min &middot; 4 activities</span><span>Builds part 2: its job</span></div>
 											</div>
 										</li>
-										<li>
-											<div class="tz-tl-item">
-												<span class="tz-eyebrow">Wednesday &middot; Module 3 &middot; Coming soon</span>
-												<span class="tz-tl-title">Give it a proper brief</span>
-												<p class="tz-tl-desc">Write instructions an agent can act on. Builds part 3: instructions and knowledge.</p>
+										<li class="is-open" id="tz-m3">
+											<div class="tz-tl-card">
+												<span class="tz-eyebrow">Wednesday &middot; Module 3</span>
+												<a class="tz-tl-title" href="agents-module-3.html">Give it a proper brief</a>
+												<p class="tz-tl-desc">Write instructions an agent can act on, and give it the right files.</p>
+												<div class="tz-tl-foot"><span class="tz-tl-go" id="tz-m3-go">Start &rarr;</span><span id="tz-m3-meta">10 min &middot; 3 activities</span><span>Builds part 3: instructions and knowledge</span></div>
 											</div>
 										</li>
 										<li>
@@ -255,7 +256,7 @@
 										<li>For a SaaS company: how many customers&rsquo; first agent task succeeds, and fewer support tickets about the feature.</li>
 									</ul>
 									<h3>Status</h3>
-									<p>Modules 1 and 2 are built; Modules 3&ndash;5 are scripted and in review. Taskzilla, BestSolutions and all characters are fictional.</p>
+									<p>Modules 1 to 3 are built; Modules 4 and 5 are scripted and in review. Taskzilla, BestSolutions and all characters are fictional.</p>
 								</section>
 							</div>
 
@@ -267,7 +268,8 @@
 									function $(id) { return document.getElementById(id); }
 									var MODS = [
 										{ k: 'm1', n: 1, url: 'agents-module-1.html', meta: function (m) { return 'Quick check: ' + m.quiz + ' of 3'; } },
-										{ k: 'm2', n: 2, url: 'agents-module-2.html', meta: function (m) { return 'Quick check: ' + m.quiz + ' of 3'; } }
+										{ k: 'm2', n: 2, url: 'agents-module-2.html', meta: function (m) { return 'Quick check: ' + m.quiz + ' of 3'; } },
+										{ k: 'm3', n: 3, url: 'agents-module-3.html', meta: function (m) { return 'Quick check: ' + m.quiz + ' of 3'; } }
 									];
 									var next = null, parts = 0;
 									MODS.forEach(function (mod) {
@@ -288,8 +290,8 @@
 										b.href = next.mod.url;
 										b.textContent = (next.started ? 'Continue' : 'Start') + ' Module ' + next.mod.n;
 									} else {
-										b.href = 'agents-module-2.html';
-										b.textContent = 'Review Module 2';
+										b.href = 'agents-module-3.html';
+										b.textContent = 'Review Module 3';
 									}
 									/* Delete saved progress: only offered when something is saved */
 									if (Object.keys(s).length) {

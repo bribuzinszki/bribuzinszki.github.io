@@ -388,6 +388,41 @@
 
 @keyframes tz-dot { 0%, 80%, 100% { opacity: 0.25; } 40% { opacity: 1; } }
 
+/* ---------- Module 3: brief table, instruction builder, knowledge, re-run ---------- */
+#tz .tz-brief { border: 1px solid var(--tz-border); border-radius: var(--tz-radius); background: var(--tz-bg); }
+#tz .tz-brief-row { display: grid; grid-template-columns: 6.5em 10em 8em minmax(0, 1fr); gap: 1em; padding: 0.85em 1.25em; border-top: 1px solid var(--tz-line); line-height: 1.5; }
+#tz .tz-brief-row:first-child { border-top: 0; }
+#tz .tz-brief-row.is-head span { font-size: 0.7em; font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase; color: var(--tz-fg-light); }
+#tz .tz-brief-row b { color: var(--tz-fg-bold); }
+#tz .tz-where { display: inline-block; padding: 0.1em 0.55em; border-radius: var(--tz-radius); font-size: 0.85em; color: var(--tz-pink); box-shadow: inset 0 0 0 1px currentColor; }
+#tz .tz-where.is-standing { color: var(--tz-teal); }
+#tz .tz-instr-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2em; }
+#tz .tz-lines { flex-direction: column; align-items: stretch; margin-top: 0.75em; }
+#tz .tz-lines .tz-token { justify-content: flex-start; padding: 0.6em 1em; text-align: left; font-weight: 300; line-height: 1.45; }
+#tz .tz-lines .tz-token.is-used { opacity: 0.35; text-decoration: line-through; }
+#tz .tz-rewrite { margin-top: 1.25em; padding: 1.1em 1.25em; border-radius: var(--tz-radius); background: var(--tz-bg-alt); }
+#tz .tz-rewrite .tz-q-text { font-weight: 700; color: var(--tz-fg-bold); }
+#tz .tz-rewrite .tz-causes { margin-top: 0.75em; }
+#tz .tz-instr { counter-reset: line; margin-top: 0.75em; min-height: 6em; padding: 0.5em 1em; border: 1px dashed var(--tz-border); border-radius: var(--tz-radius); }
+#tz .tz-instr li { counter-increment: line; padding: 0.55em 0 0.55em 1.8em; position: relative; border-top: 1px solid var(--tz-line); line-height: 1.45; color: var(--tz-fg-bold); }
+#tz .tz-instr li:first-child { border-top: 0; }
+#tz .tz-instr li::before { content: counter(line); position: absolute; left: 0; top: 0.55em; font-size: 0.85em; font-weight: 900; color: var(--tz-fg-light); }
+#tz .tz-instr li.tz-instr-empty { padding-left: 0; color: var(--tz-fg-light); }
+#tz .tz-instr li.tz-instr-empty::before { content: none; }
+#tz .tz-part-tag { display: inline-block; margin-left: 0.5em; padding: 0 0.5em; border-radius: var(--tz-radius); background: rgba(39, 113, 102, 0.1); font-size: 0.75em; font-weight: 700; color: var(--tz-teal); }
+#tz .tz-checker { display: flex; flex-wrap: wrap; gap: 0.5em; margin-top: 0.6em; }
+#tz .tz-checker li { display: inline-flex; align-items: center; gap: 0.4em; padding: 0.3em 0.75em; border-radius: var(--tz-radius); font-size: 0.85em; color: var(--tz-fg-light); box-shadow: inset 0 0 0 1px var(--tz-border); }
+#tz .tz-checker li::before { content: '\25CB'; }
+#tz .tz-checker li.is-done { background: var(--tz-teal); box-shadow: none; color: #ffffff; font-weight: 700; }
+#tz .tz-checker li.is-done::before { content: '\2713'; }
+#tz .tz-compare { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1em; }
+#tz .tz-card.is-good { border-color: var(--tz-teal); }
+#tz .tz-cmp { margin-top: 0.75em; }
+#tz .tz-cmp li { display: flex; gap: 0.6em; margin: 0.5em 0; line-height: 1.45; }
+#tz .tz-cmp li.is-bad::before { content: '\2715'; font-weight: 900; color: var(--tz-pink); }
+#tz .tz-cmp li.is-good::before { content: '\2713'; font-weight: 900; color: var(--tz-teal); }
+#tz .tz-report li.is-fixed > span:first-child { color: var(--tz-teal); font-weight: 700; }
+
 @media screen and (max-width: 1280px) {
 	#tz .tz-layout { grid-template-columns: 12em minmax(0, 1fr); gap: 3em; }
 	#tz .tz-band { padding: 2.5em 2em 2.75em; }
@@ -404,6 +439,9 @@
 	#tz .tz-parts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 @media screen and (max-width: 736px) {
+	#tz .tz-brief-row { grid-template-columns: minmax(0, 1fr); gap: 0.2em; }
+	#tz .tz-brief-row.is-head { display: none; }
+	#tz .tz-instr-grid, #tz .tz-compare { grid-template-columns: minmax(0, 1fr); }
 	#tz h1 { font-size: 2.1em; }
 	#tz .tz-lead { font-size: 1.15em; }
 	#tz .tz-h { font-size: 1.6em; }
