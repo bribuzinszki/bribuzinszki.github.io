@@ -1,0 +1,2081 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="en">
+	<head>
+		<title>AI in Recruiting: Same Tool, Two Countries · Brigitta Buzinszki</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Branching scenario: take an AI recruiting tool from São Paulo to Stuttgart. Does it make sense? Is it legal?" />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Brigitta Buzinszki" />
+		<meta property="og:title" content="AI in Recruiting: Same Tool, Two Countries · Brigitta Buzinszki" />
+		<meta property="og:description" content="Branching scenario: take an AI recruiting tool from São Paulo to Stuttgart. Does it make sense? Is it legal?" />
+		<meta property="og:url" content="https://bribuzinszki.github.io/ai-recruiting-scenario.html" />
+		<meta property="og:image" content="https://bribuzinszki.github.io/images/og-image.png?v=2" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<link rel="icon" href="images/favicon-32.png?v=2" type="image/png" sizes="32x32" />
+		<link rel="icon" href="images/logo.svg?v=2" type="image/svg+xml" />
+		<link rel="apple-touch-icon" href="images/apple-touch-icon.png?v=2" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="index.html" class="logo">
+									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Brigitta Buzinszki</span>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+							<!-- Contact (scrolls with the page, unlike the fixed Menu button) -->
+								<ul class="contact-icons">
+									<li><a href="mailto:b.buzinszki@gmail.com" class="icon solid fa-envelope" aria-label="Email"><span class="label">Email</span></a></li>
+									<li><a href="https://www.linkedin.com/in/brigitta-buzinszki-946b92165/" class="icon brands fa-linkedin-in" aria-label="LinkedIn"><span class="label">LinkedIn</span></a></li>
+								</ul>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li>
+								<a href="index.html#try-it">Try It Yourself</a>
+								<ul>
+									<li><a href="rag-exercise.html">Grounding AI with RAG</a></li>
+									<li><a href="eu-ai-act-high-risk.html">EU AI Act: High Risk Applications</a></li>
+									<li><a href="inference-exercise.html">Inference</a></li>
+									<li><a href="ai-recruiting-scenario.html">AI in Recruiting: Two Countries</a></li>
+									<li><a href="agents-course.html">Working with AI Agents</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="index.html#case-studies">Case Studies</a>
+								<ul>
+									<li><a href="case-intro-to-llms.html">Intro to LLMs</a></li>
+									<li><a href="case-eu-ai-act.html">EU AI Act Essentials</a></li>
+									<li><a href="case-technical-onboarding.html">Technical Onboarding for Engineers</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="index.html#frameworks">Field-Tested Frameworks</a>
+								<ul>
+									<li><a href="framework-sme-feedback.html">SME Feedback Framework</a></li>
+									<li><a href="framework-sme-replies.html">How I Get SMEs to Reply</a></li>
+								</ul>
+							</li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main" role="main">
+						<div class="inner">
+							<h1>AI in Recruiting: Same Tool, Two Countries</h1>
+							<p>A branching scenario about bringing AI into hiring. You play Luana, Head of Talent at a Brazilian fintech that takes its AI recruiting tool to Stuttgart, from a lightly regulated market into a highly regulated one. Every feature of the tool has to clear two levels: <b>does it make sense?</b> and <b>is it legal?</b> It takes about 20 minutes. Short on time? Jump to the <a href="#design-notes">designer’s notes</a>.</p>
+							<p><b>After this scenario you can:</b></p>
+							<ul>
+								<li>judge whether an AI recruiting feature pays off before asking whether it’s legal,</li>
+								<li>tell which features are prohibited, conditional or allowed in the EU, what Brazil already requires, and why the rules exist,</li>
+								<li>recognise face and voice as biometric data in both countries,</li>
+								<li>set up human oversight that counts, and answer a candidate who asks whether an AI rejected them,</li>
+								<li>argue for one standard across both countries.</li>
+							</ul>
+
+							<!-- ============ RECRUITING SCENARIO START (self-contained: styles, markup, content and script down to RECRUITING SCENARIO END) ============ -->
+							<!-- All learner-facing text lives in the JSON block id="stc-content". Story, companies, the tool and all numbers are fictional. Legal status: 16 November 2026. -->
+							<style>
+								#stc-module {
+									/* Palette from the Phantom template, with darker text shades for contrast */
+									--stc-fg: #585858;
+									--stc-fg-bold: #3c3b3b;
+									--stc-fg-light: #7a7a7a;
+									--stc-bg: #ffffff;
+									--stc-bg-alt: #f6f6f6;
+									--stc-dark: #333333;
+									--stc-border: #c9c9c9;
+									--stc-pink: #f2849e;
+									--stc-pink-text: #c2416a;
+									--stc-blue: #7ecaf6;
+									--stc-blue-text: #1f6f9c;
+									--stc-teal: #7bd0c1;
+									--stc-teal-text: #187563;
+									--stc-purple: #ae85ca;
+									--stc-purple-text: #7d4fa0;
+									--stc-radius: 4px;
+									font-family: 'Source Sans Pro', Helvetica, sans-serif;
+									font-size: clamp(15px, 0.85em, 18px);
+									font-weight: 300;
+									line-height: 1.65;
+									letter-spacing: normal;
+									color: var(--stc-fg);
+									margin: 0 0 2.5em 0;
+									text-align: left;
+								}
+
+								/* ---------- Neutralise the template's global element styles ---------- */
+								#stc-module *, #stc-module *::before, #stc-module *::after { box-sizing: border-box; }
+								#stc-module p, #stc-module h3, #stc-module h4, #stc-module ol, #stc-module ul, #stc-module li,
+								#stc-module section, #stc-module header, #stc-module table, #stc-module tr, #stc-module th, #stc-module td,
+								#stc-module thead, #stc-module tbody, #stc-module details, #stc-module summary {
+									margin: 0; padding: 0; font: inherit; color: inherit; border: 0; background: none;
+									letter-spacing: normal; text-transform: none; list-style: none;
+								}
+								#stc-module b, #stc-module strong { font-weight: 700; color: var(--stc-fg-bold); }
+								#stc-module button { all: unset; box-sizing: border-box; font-family: inherit; }
+								#stc-module [hidden] { display: none !important; }
+								#stc-module :focus-visible { outline: 2px solid var(--stc-pink-text); outline-offset: 3px; }
+								#stc-module .stc-title:focus { outline: none; }
+								#stc-module .stc-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+								#stc-module a { color: var(--stc-fg-bold); border-bottom: 1px dotted currentColor; }
+								#stc-module a:hover { color: var(--stc-pink-text) !important; border-bottom-color: transparent; }
+
+								/* ---------- Player frame ---------- */
+								#stc-module .stc-player { background: var(--stc-bg); border: 1px solid var(--stc-border); border-radius: var(--stc-radius); }
+								#stc-module .stc-top {
+									display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.6em 1.2em;
+									padding: 0.85em 1.25em; background: var(--stc-bg-alt);
+									border-bottom: 1px solid var(--stc-border); border-radius: var(--stc-radius) var(--stc-radius) 0 0;
+								}
+								#stc-module .stc-brand { font-size: 0.7em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.25em; color: var(--stc-fg-bold); }
+								#stc-module .stc-stepper { display: flex; flex-wrap: wrap; gap: 0.35em; }
+								#stc-module .stc-stepper li {
+									display: inline-flex; align-items: center; gap: 0.5em; padding: 0.35em 0.75em 0.35em 0.4em;
+									border-radius: 2em; box-shadow: inset 0 0 0 1px var(--stc-border);
+									font-size: 0.62em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.14em; color: var(--stc-fg-light);
+								}
+								#stc-module .stc-step-nr {
+									display: grid; place-items: center; width: 1.8em; height: 1.8em; border-radius: 50%;
+									background: var(--stc-bg); box-shadow: inset 0 0 0 1px var(--stc-border); letter-spacing: 0;
+								}
+								#stc-module .stc-stepper li.is-current { background: var(--stc-dark); color: #ffffff; box-shadow: none; }
+								#stc-module .stc-stepper li.is-current .stc-step-nr { background: var(--stc-pink); color: #ffffff; box-shadow: none; }
+								#stc-module .stc-stepper li.is-done { color: var(--stc-teal-text); box-shadow: inset 0 0 0 1px var(--stc-teal); }
+								#stc-module .stc-stepper li.is-done .stc-step-nr { background: var(--stc-teal); color: #ffffff; box-shadow: none; }
+
+								#stc-module .stc-body { display: grid; grid-template-columns: minmax(0, 1fr) 17em; grid-template-areas: "stage side"; }
+								#stc-module .stc-stage { grid-area: stage; min-width: 0; min-height: 32em; padding: 1.6em 1.75em 1.75em; }
+								#stc-module .stc-side { grid-area: side; padding: 1.25em; border-left: 1px solid var(--stc-border); font-size: 0.9em; }
+								#stc-module .stc-side-toggle { display: none; }
+								#stc-module .stc-side-content { display: grid; gap: 1.3em; align-content: start; }
+
+								/* ---------- Side panel ---------- */
+								#stc-module .stc-panel { display: grid; gap: 0.6em; }
+								#stc-module .stc-panel + .stc-panel { padding-top: 1.2em; border-top: 1px solid var(--stc-bg-alt); }
+								#stc-module .stc-panel-title { font-size: 0.68em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.22em; color: var(--stc-fg-bold); }
+
+								#stc-module .stc-meters { display: grid; gap: 0.55em; }
+								#stc-module .stc-meter {
+									display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: 0 0.6em;
+									padding: 0.55em 0.75em; border-radius: var(--stc-radius); background: var(--stc-bg-alt); transition: box-shadow 0.4s;
+								}
+								#stc-module .stc-meter-label { font-size: 0.82em; font-weight: 700; color: var(--stc-fg-bold); }
+								#stc-module .stc-meter-val { font-size: 1.25em; font-weight: 900; color: var(--stc-fg-bold); font-variant-numeric: tabular-nums; }
+								#stc-module .stc-meter-sub { grid-column: 1 / -1; font-size: 0.74em; color: var(--stc-fg-light); }
+								#stc-module .stc-meter.is-changed { box-shadow: inset 0 0 0 2px var(--stc-pink); }
+								#stc-module .stc-meter.is-hidden .stc-meter-val { color: var(--stc-fg-light); }
+
+								#stc-module .stc-board { display: grid; gap: 0.55em; }
+								#stc-module .stc-brow { display: grid; gap: 0.25em; }
+								#stc-module .stc-brow-name { font-size: 0.82em; font-weight: 700; color: var(--stc-fg-bold); line-height: 1.3; }
+								#stc-module .stc-brow-chips { display: flex; flex-wrap: wrap; gap: 0.3em; }
+								#stc-module .stc-chip {
+									display: inline-block; padding: 0.1em 0.55em; border-radius: 2em; font-size: 0.76em; font-weight: 700; line-height: 1.6;
+									color: var(--stc-fg); background: var(--stc-bg-alt);
+								}
+								#stc-module .stc-chip.is-met { color: var(--stc-teal-text); background: rgba(123, 208, 193, 0.22); }
+								#stc-module .stc-chip.is-partly { color: var(--stc-blue-text); background: rgba(126, 202, 246, 0.22); }
+								#stc-module .stc-chip.is-missed { color: var(--stc-pink-text); background: rgba(242, 132, 158, 0.18); }
+								#stc-module .stc-chip.is-empty { color: var(--stc-fg-light); }
+								#stc-module .stc-chip.is-tone-bad { color: #ffffff; background: var(--stc-pink-text); }
+								#stc-module .stc-chip.is-tone-cond { color: #ffffff; background: var(--stc-blue-text); }
+								#stc-module .stc-chip.is-tone-risky { color: #ffffff; background: var(--stc-purple-text); }
+
+								#stc-module .stc-log { display: grid; gap: 0.4em; }
+								#stc-module .stc-log-item { display: grid; grid-template-columns: 1.3em minmax(0, 1fr); gap: 0.35em; font-size: 0.86em; line-height: 1.4; }
+								#stc-module .stc-log-icon { font-weight: 900; }
+								#stc-module .stc-log-item.is-met .stc-log-icon { color: var(--stc-teal-text); }
+								#stc-module .stc-log-item.is-partly .stc-log-icon { color: var(--stc-blue-text); }
+								#stc-module .stc-log-item.is-missed .stc-log-icon { color: var(--stc-pink-text); }
+								#stc-module .stc-log-tag {
+									display: inline-block; margin-left: 0.25em; padding: 0 0.45em; border-radius: 2em;
+									font-size: 0.78em; font-weight: 700; color: var(--stc-purple-text); background: rgba(174, 133, 202, 0.16);
+								}
+								#stc-module .stc-log-empty { font-size: 0.86em; color: var(--stc-fg-light); }
+
+								/* ---------- Scene ---------- */
+								#stc-module .stc-scene { display: grid; gap: 1.15em; animation: stc-in 0.35s ease-out both; }
+								#stc-module .stc-head { display: grid; gap: 0.2em; }
+								#stc-module .stc-eyebrow { font-size: 0.7em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.22em; color: var(--stc-pink-text); }
+								#stc-module .stc-title { font-size: 1.45em; font-weight: 700; line-height: 1.25; color: var(--stc-fg-bold); }
+								/* Narrative: every line of story and explanation uses this one style (speech goes in bubbles) */
+								#stc-module .stc-text { font-size: 1em; color: var(--stc-fg); }
+								/* Meta only: disclaimers, resume notes, small labels */
+								#stc-module .stc-small { font-size: 0.85em; color: var(--stc-fg-light); }
+								#stc-module .stc-subtitle { font-size: 0.72em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; color: var(--stc-fg-bold); }
+
+								#stc-module .stc-say { display: grid; gap: 0.45em; }
+								#stc-module .stc-speaker { display: flex; align-items: center; gap: 0.6em; flex-wrap: wrap; }
+								#stc-module .stc-avatar { width: 2.4em; height: 2.4em; flex: none; display: block; }
+								#stc-module .stc-speaker-name { font-weight: 700; color: var(--stc-fg-bold); }
+								#stc-module .stc-speaker-role { font-size: 0.8em; color: var(--stc-fg-light); }
+								#stc-module .stc-bubble {
+									display: grid; gap: 0.6em; margin-left: 1.2em; padding: 0.9em 1.15em;
+									background: var(--stc-bg-alt); border-radius: 0 var(--stc-radius) var(--stc-radius) var(--stc-radius);
+								}
+								#stc-module .stc-bubble.is-mail { background: var(--stc-bg); box-shadow: inset 0 0 0 1px var(--stc-border); }
+
+								#stc-module .stc-data {
+									display: grid; gap: 0.5em; padding: 0.9em 1.1em;
+									border: 1px dashed var(--stc-border); border-radius: var(--stc-radius);
+								}
+								#stc-module .stc-data-label { font-size: 0.68em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; color: var(--stc-purple-text); }
+								#stc-module .stc-points { display: grid; gap: 0.35em; }
+								#stc-module .stc-points li { position: relative; padding-left: 1.1em; }
+								#stc-module .stc-points li::before {
+									content: ""; position: absolute; left: 0.1em; top: 0.7em; width: 0.4em; height: 0.4em; border-radius: 50%; background: var(--stc-border);
+								}
+								#stc-module .stc-task { display: grid; gap: 0.15em; }
+								#stc-module .stc-task-label { font-size: 0.7em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.22em; color: var(--stc-pink-text); }
+								#stc-module .stc-task-text { font-weight: 700; color: var(--stc-fg-bold); }
+
+								/* Choices */
+								#stc-module .stc-choices { display: grid; gap: 0.6em; }
+								#stc-module .stc-choice {
+									position: relative; display: grid; grid-template-columns: 2em minmax(0, 1fr); align-items: start; gap: 0.85em;
+									padding: 0.85em 1em; border-radius: var(--stc-radius); cursor: pointer; text-align: left;
+									color: var(--stc-fg) !important; background: var(--stc-bg); box-shadow: inset 0 0 0 1px var(--stc-border);
+									transition: box-shadow 0.2s, background 0.2s;
+								}
+								#stc-module .stc-choice:hover:not(:disabled) { box-shadow: inset 0 0 0 2px var(--stc-pink); color: var(--stc-fg-bold) !important; }
+								#stc-module .stc-choice[aria-pressed="true"] { box-shadow: inset 0 0 0 2px var(--stc-fg); background: var(--stc-bg-alt); color: var(--stc-fg-bold) !important; }
+								#stc-module .stc-choice:disabled { cursor: default; }
+								#stc-module .stc-choice.is-tried { opacity: 0.6; }
+								#stc-module .stc-key {
+									display: grid; place-items: center; width: 2em; height: 2em; border-radius: var(--stc-radius);
+									background: var(--stc-bg-alt); font-size: 0.82em; font-weight: 900; color: var(--stc-fg-bold);
+								}
+								#stc-module .stc-choice-text { line-height: 1.55; }
+								#stc-module .stc-tag {
+									grid-column: 2; justify-self: start; padding: 0.1em 0.6em; border-radius: 2em;
+									font-size: 0.72em; font-weight: 700; color: var(--stc-pink-text); background: rgba(242, 132, 158, 0.14);
+								}
+								#stc-module .stc-choice.is-picked.is-met { box-shadow: inset 0 0 0 2px var(--stc-teal); background: rgba(123, 208, 193, 0.14); }
+								#stc-module .stc-choice.is-picked.is-partly { box-shadow: inset 0 0 0 2px var(--stc-blue); background: rgba(126, 202, 246, 0.14); }
+								#stc-module .stc-choice.is-picked.is-missed { box-shadow: inset 0 0 0 2px var(--stc-pink); background: rgba(242, 132, 158, 0.12); }
+
+								/* Confidence bar */
+								#stc-module .stc-conf {
+									display: flex; flex-wrap: wrap; align-items: center; gap: 0.6em 1em;
+									padding: 0.8em 1em; border-radius: var(--stc-radius); background: var(--stc-dark); color: #ffffff;
+									animation: stc-in 0.3s ease-out both;
+								}
+								#stc-module .stc-conf-label { font-size: 0.7em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.22em; color: var(--stc-pink); }
+								#stc-module .stc-conf-chips { display: flex; flex-wrap: wrap; gap: 0.5em; }
+								#stc-module .stc-cchip {
+									padding: 0.45em 1em; border-radius: 2em; cursor: pointer; font-size: 0.88em; font-weight: 700;
+									color: #ffffff !important; box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.55); transition: background 0.2s, box-shadow 0.2s;
+								}
+								#stc-module .stc-cchip:hover { color: #ffffff !important; background: var(--stc-pink-text); box-shadow: none; }
+
+								/* Feedback */
+								#stc-module .stc-out { display: grid; gap: 0.9em; }
+								#stc-module .stc-verdict {
+									display: grid; gap: 0.45em; padding: 0.9em 1.1em; border-radius: 0 var(--stc-radius) var(--stc-radius) 0;
+									border-left: 4px solid; animation: stc-in 0.35s ease-out both;
+								}
+								#stc-module .stc-verdict.is-met { border-color: var(--stc-teal); background: rgba(123, 208, 193, 0.13); }
+								#stc-module .stc-verdict.is-partly { border-color: var(--stc-blue); background: rgba(126, 202, 246, 0.13); }
+								#stc-module .stc-verdict.is-missed { border-color: var(--stc-pink); background: rgba(242, 132, 158, 0.1); }
+								#stc-module .stc-verdict-label { font-size: 0.7em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.18em; }
+								#stc-module .is-met > .stc-verdict-label { color: var(--stc-teal-text); }
+								#stc-module .is-partly > .stc-verdict-label { color: var(--stc-blue-text); }
+								#stc-module .is-missed > .stc-verdict-label { color: var(--stc-pink-text); }
+								#stc-module .stc-verdict-text { color: var(--stc-fg-bold); }
+								#stc-module .stc-calib { font-size: 0.9em; padding-left: 0.9em; border-left: 2px solid rgba(0, 0, 0, 0.12); }
+								#stc-module .stc-why {
+									display: grid; gap: 0.5em; padding: 0.9em 1.1em; background: var(--stc-bg-alt); border-radius: var(--stc-radius);
+									animation: stc-in 0.35s ease-out both;
+								}
+								#stc-module .stc-why-label { font-size: 0.68em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; color: var(--stc-purple-text); }
+								#stc-module .stc-why .stc-points li { font-size: 0.95em; }
+
+								/* Footer and buttons */
+								#stc-module .stc-footer {
+									display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 0.7em 1em;
+									padding-top: 1.1em; border-top: 1px solid var(--stc-bg-alt);
+								}
+								#stc-module .stc-btn {
+									display: inline-flex; align-items: center; justify-content: center; gap: 0.5em;
+									min-height: 3.1em; padding: 0.4em 1.5em; border-radius: var(--stc-radius); cursor: pointer; text-align: center;
+									font-size: 0.72em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; line-height: 1.3;
+									color: var(--stc-fg) !important; box-shadow: inset 0 0 0 2px var(--stc-fg); transition: color 0.2s, box-shadow 0.2s, background 0.2s;
+								}
+								#stc-module .stc-btn:hover:not(:disabled) { color: var(--stc-pink-text) !important; box-shadow: inset 0 0 0 2px var(--stc-pink); }
+								#stc-module .stc-btn--primary { color: #ffffff !important; background: var(--stc-fg); box-shadow: none; }
+								#stc-module .stc-btn--primary:hover:not(:disabled) { color: #ffffff !important; background: var(--stc-pink-text); box-shadow: none; }
+								#stc-module .stc-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+								#stc-module .stc-btn--back { margin-right: auto; padding-left: 0; padding-right: 0.6em; box-shadow: none; color: var(--stc-fg) !important; }
+								#stc-module .stc-btn--back:hover { box-shadow: none; color: var(--stc-pink-text) !important; }
+								#stc-module .stc-foot-note { flex: 1 1 100%; font-size: 0.85em; color: var(--stc-fg-light); }
+								#stc-module .stc-step-btn {
+									display: inline-flex; align-items: center; gap: 0.5em; cursor: pointer; color: inherit !important;
+								}
+								#stc-module .stc-step-btn:hover { color: var(--stc-pink-text) !important; }
+								#stc-module .stc-stepper li:has(.stc-step-btn):hover { box-shadow: inset 0 0 0 1px var(--stc-pink); }
+
+								/* Intro: levels and tool card */
+								#stc-module .stc-levels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6em; }
+								#stc-module .stc-level {
+									display: grid; gap: 0.15em; padding: 0.85em 1em; border-radius: var(--stc-radius);
+									background: var(--stc-bg); box-shadow: inset 0 0 0 1px var(--stc-border); border-top: 4px solid var(--stc-teal);
+								}
+								#stc-module .stc-level + .stc-level { border-top-color: var(--stc-purple); }
+								#stc-module .stc-level-name { font-size: 0.68em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; color: var(--stc-fg-light); }
+								#stc-module .stc-level-q { font-size: 1.1em; font-weight: 700; color: var(--stc-fg-bold); }
+								#stc-module .stc-tool { border: 1px solid var(--stc-border); border-radius: var(--stc-radius); overflow: hidden; }
+								#stc-module .stc-tool-head {
+									display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.4em 1em;
+									padding: 0.6em 1em; background: var(--stc-dark); color: #ffffff;
+								}
+								#stc-module .stc-tool-title { display: inline-flex; align-items: center; gap: 0.7em; }
+								#stc-module .stc-tool-name { font-weight: 900; letter-spacing: 0.04em; }
+								#stc-module .stc-tool-tag {
+									padding: 0.15em 0.65em; border-radius: 2em; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.55);
+									font-size: 0.66em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; color: #ffffff;
+								}
+								#stc-module .stc-tool-kpi { font-size: 0.8em; font-weight: 700; color: var(--stc-pink); }
+								#stc-module .stc-tool-list { display: grid; }
+								#stc-module .stc-tool-list li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.2em 1em; padding: 0.6em 1em; border-top: 1px solid var(--stc-bg-alt); }
+								#stc-module .stc-tool-list li:first-child { border-top: 0; }
+								#stc-module .stc-tool-feat { font-weight: 700; color: var(--stc-fg-bold); }
+								#stc-module .stc-tool-promise { font-size: 0.88em; color: var(--stc-fg-light); text-align: right; }
+
+								/* Level cards */
+								#stc-module .stc-levelcard {
+									display: grid; justify-items: center; gap: 0.75em; padding: 2.6em 1.6em 2.2em; text-align: center;
+									border-radius: var(--stc-radius); background: var(--stc-bg-alt); border-top: 6px solid var(--stc-teal);
+									animation: stc-pop 0.45s ease-out both;
+								}
+								#stc-module .stc-levelcard.is-l2card { border-top-color: var(--stc-purple); }
+								#stc-module .stc-lc-when { font-size: 0.72em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.22em; color: var(--stc-pink-text); }
+								#stc-module .stc-lc-level { font-size: 3.2em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.12em; line-height: 1.05; color: var(--stc-fg-bold); }
+								#stc-module .stc-lc-q { font-size: 1.6em; font-weight: 700; line-height: 1.25; color: var(--stc-teal-text); }
+								#stc-module .is-l2card .stc-lc-q { color: var(--stc-purple-text); }
+								#stc-module .stc-levelcard .stc-text { max-width: 34em; }
+								#stc-module .stc-levelcard .stc-subtitle { margin-top: 0.6em; }
+								#stc-module .stc-lc-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5em; }
+								#stc-module .stc-lc-list li {
+									padding: 0.4em 0.95em; border-radius: 2em; background: var(--stc-bg); box-shadow: inset 0 0 0 1px var(--stc-border);
+									font-size: 0.92em; font-weight: 700; color: var(--stc-fg-bold);
+								}
+								#stc-module .stc-lc-tag { font-weight: 300; color: var(--stc-fg); }
+								#stc-module .stc-lc-list li.is-dropped { box-shadow: inset 0 0 0 1px var(--stc-border); background: transparent; color: var(--stc-fg-light); }
+								#stc-module .stc-lc-list li.is-dropped .stc-lc-name { text-decoration: line-through; }
+								@keyframes stc-pop { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: none; } }
+
+								/* Quiz, vendor questions, oversight */
+								#stc-module .stc-rows { display: grid; gap: 0.7em; }
+								#stc-module .stc-row { display: grid; gap: 0.6em; padding: 0.9em 1.05em; border: 1px solid var(--stc-border); border-radius: var(--stc-radius); }
+								#stc-module .stc-row.is-done { background: var(--stc-bg-alt); }
+								#stc-module .stc-row-q { color: var(--stc-fg-bold); }
+								#stc-module .stc-row-meta { font-size: 0.82em; color: var(--stc-fg-light); }
+								#stc-module .stc-row-btns { display: flex; flex-wrap: wrap; gap: 0.5em; }
+								#stc-module .stc-toggle {
+									display: inline-flex; align-items: center; gap: 0.45em; padding: 0.45em 1em; border-radius: 2em; cursor: pointer;
+									font-size: 0.88em; font-weight: 700; color: var(--stc-fg) !important; background: var(--stc-bg);
+									box-shadow: inset 0 0 0 1px var(--stc-border); transition: box-shadow 0.2s, background 0.2s;
+								}
+								#stc-module .stc-toggle:hover:not(:disabled) { box-shadow: inset 0 0 0 2px var(--stc-pink); }
+								#stc-module .stc-toggle:disabled { cursor: default; }
+								#stc-module .stc-toggle.is-correct { color: var(--stc-teal-text) !important; background: rgba(123, 208, 193, 0.18); box-shadow: inset 0 0 0 2px var(--stc-teal); }
+								#stc-module .stc-toggle.is-wrong { color: var(--stc-pink-text) !important; background: rgba(242, 132, 158, 0.12); box-shadow: inset 0 0 0 2px var(--stc-pink); }
+								#stc-module .stc-fb { padding: 0.55em 0.85em; font-size: 1em; border-left: 3px solid; border-radius: 0 var(--stc-radius) var(--stc-radius) 0; animation: stc-in 0.3s ease-out both; }
+								#stc-module .stc-fb.is-met { border-color: var(--stc-teal); background: rgba(123, 208, 193, 0.12); }
+								#stc-module .stc-fb.is-missed { border-color: var(--stc-pink); background: rgba(242, 132, 158, 0.09); }
+
+								#stc-module .stc-qs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6em; }
+								#stc-module .stc-q {
+									display: block; padding: 0.8em 1em; border-radius: var(--stc-radius); cursor: pointer; text-align: left; line-height: 1.45;
+									color: var(--stc-fg) !important; background: var(--stc-bg); box-shadow: inset 0 0 0 1px var(--stc-border); transition: box-shadow 0.2s, background 0.2s;
+								}
+								#stc-module .stc-q:hover:not(:disabled) { box-shadow: inset 0 0 0 2px var(--stc-pink); color: var(--stc-fg-bold) !important; }
+								#stc-module .stc-q:disabled { cursor: default; opacity: 0.55; }
+								#stc-module .stc-q.is-asked { opacity: 1; background: var(--stc-bg-alt); box-shadow: inset 0 0 0 2px var(--stc-fg); color: var(--stc-fg-bold) !important; }
+								#stc-module .stc-counter { font-size: 0.85em; font-weight: 700; color: var(--stc-fg-bold); }
+								#stc-module .stc-chat { display: grid; gap: 0.8em; }
+								#stc-module .stc-chat:empty { display: none; }
+								#stc-module .stc-msg { display: grid; gap: 0.35em; animation: stc-in 0.35s ease-out both; }
+								#stc-module .stc-msg.is-me { justify-items: end; }
+								#stc-module .stc-msg-who { font-size: 0.8em; color: var(--stc-fg-light); }
+								#stc-module .stc-msg-bubble {
+									max-width: 80%; padding: 0.75em 1.05em; color: #ffffff; background: var(--stc-dark);
+									border-radius: var(--stc-radius) 0 var(--stc-radius) var(--stc-radius);
+								}
+								#stc-module .stc-msg .stc-fb { margin-left: 1.2em; }
+								#stc-module .stc-ask { display: grid; gap: 0.6em; padding: 1em 1.1em; border-radius: var(--stc-radius); background: var(--stc-bg-alt); }
+
+								/* Cards for dropped features */
+								#stc-module .stc-cards { display: grid; gap: 0.7em; }
+								#stc-module .stc-card {
+									display: grid; gap: 0.45em; padding: 0.9em 1.1em; border-radius: 0 var(--stc-radius) var(--stc-radius) 0;
+									border-left: 4px solid var(--stc-teal); background: rgba(123, 208, 193, 0.1);
+								}
+								#stc-module .stc-card-label { font-size: 0.68em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; color: var(--stc-teal-text); }
+								#stc-module .stc-card-title { color: var(--stc-fg-bold); }
+								#stc-module .stc-card-why { font-size: 1em; }
+
+								/* Tables */
+								#stc-module .stc-table-wrap { overflow-x: auto; }
+								#stc-module table { width: 100%; border-collapse: collapse; font-size: 0.92em; line-height: 1.45; }
+								#stc-module th {
+									padding: 0.55em 0.7em; text-align: left; vertical-align: bottom; border-bottom: 2px solid var(--stc-border);
+									font-size: 0.72em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.14em; color: var(--stc-fg-bold);
+								}
+								#stc-module td { padding: 0.6em 0.7em; vertical-align: top; border-bottom: 1px solid var(--stc-bg-alt); }
+								#stc-module tbody tr { background: none !important; }
+								#stc-module td.is-num { font-weight: 900; color: var(--stc-fg-bold); font-variant-numeric: tabular-nums; white-space: nowrap; }
+								#stc-module tr.is-you td { background: rgba(242, 132, 158, 0.08); }
+								#stc-module td .stc-chip { margin-top: 0.2em; }
+
+								/* Ending and debrief */
+								#stc-module .stc-ending {
+									display: flex; align-items: center; gap: 0.9em; padding: 1em 1.2em;
+									border-radius: 0 var(--stc-radius) var(--stc-radius) 0; border-left: 6px solid;
+								}
+								#stc-module .stc-ending.is-success { border-color: var(--stc-teal); background: rgba(123, 208, 193, 0.16); }
+								#stc-module .stc-ending.is-partly { border-color: var(--stc-blue); background: rgba(126, 202, 246, 0.16); }
+								#stc-module .stc-ending.is-severe { border-color: var(--stc-pink); background: rgba(242, 132, 158, 0.13); }
+								#stc-module .stc-ending-icon {
+									display: grid; place-items: center; flex: none; width: 2.3em; height: 2.3em; border-radius: 50%;
+									font-weight: 900; color: #ffffff; background: var(--stc-fg);
+								}
+								#stc-module .stc-ending.is-success .stc-ending-icon { background: var(--stc-teal-text); }
+								#stc-module .stc-ending.is-partly .stc-ending-icon { background: var(--stc-blue-text); }
+								#stc-module .stc-ending.is-severe .stc-ending-icon { background: var(--stc-pink-text); }
+								#stc-module .stc-ending-text { display: grid; }
+								#stc-module .stc-ending-name { font-size: 1.15em; font-weight: 700; color: var(--stc-fg-bold); }
+								#stc-module .stc-ending-meta { font-size: 0.7em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.18em; }
+								#stc-module .stc-change { padding: 0.7em 1em; border: 1px dashed var(--stc-border); border-radius: var(--stc-radius); }
+								#stc-module .stc-section { display: grid; gap: 0.65em; padding-top: 1.1em; border-top: 1px solid var(--stc-bg-alt); }
+								#stc-module .stc-section-title { font-size: 0.72em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.22em; color: var(--stc-fg-bold); }
+								#stc-module .stc-results { display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5em, 1fr)); gap: 0.6em; }
+								#stc-module .stc-result { display: grid; gap: 0.1em; padding: 0.7em 0.9em; border-radius: var(--stc-radius); background: var(--stc-bg-alt); }
+								#stc-module .stc-result-label { font-size: 0.68em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.15em; color: var(--stc-fg-light); }
+								#stc-module .stc-result-val { font-size: 1.15em; font-weight: 900; color: var(--stc-fg-bold); }
+								#stc-module .stc-takeaways { display: grid; gap: 0.55em; counter-reset: stctk; }
+								#stc-module .stc-takeaways li { position: relative; padding-left: 2.2em; counter-increment: stctk; }
+								#stc-module .stc-takeaways li::before {
+									content: counter(stctk); position: absolute; left: 0; top: 0.05em; display: grid; place-items: center;
+									width: 1.6em; height: 1.6em; border-radius: var(--stc-radius); font-size: 0.9em; font-weight: 900; color: #ffffff; background: var(--stc-fg);
+								}
+								#stc-module .stc-checklist { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.8em; }
+								#stc-module .stc-checkcol { display: grid; align-content: start; gap: 0.5em; padding: 0.9em 1.05em; border: 1px solid var(--stc-border); border-radius: var(--stc-radius); }
+								#stc-module .stc-checkcol li { position: relative; padding-left: 1.5em; font-size: 0.95em; }
+								#stc-module .stc-checkcol li::before { content: "\2610"; position: absolute; left: 0; top: -0.05em; color: var(--stc-fg-light); }
+								#stc-module .stc-endings { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.6em; }
+								#stc-module .stc-endcard { display: grid; align-content: start; gap: 0.2em; padding: 0.7em 0.85em; border-radius: var(--stc-radius); font-size: 0.86em; line-height: 1.4; }
+								#stc-module .stc-endcard.is-locked { border: 1px dashed var(--stc-border); color: var(--stc-fg-light); }
+								#stc-module .stc-endcard.is-found { border: 1px solid transparent; }
+								#stc-module .stc-endcard.is-found.is-success { background: rgba(123, 208, 193, 0.16); border-color: var(--stc-teal); }
+								#stc-module .stc-endcard.is-found.is-partly { background: rgba(126, 202, 246, 0.16); border-color: var(--stc-blue); }
+								#stc-module .stc-endcard.is-found.is-severe { background: rgba(242, 132, 158, 0.12); border-color: var(--stc-pink); }
+								#stc-module .stc-endcard.is-current { box-shadow: 0 0 0 2px var(--stc-fg); }
+								#stc-module .stc-endcard-name { font-weight: 700; color: var(--stc-fg-bold); }
+								#stc-module .stc-endcard.is-locked .stc-endcard-name { color: var(--stc-fg-light); }
+								#stc-module .stc-sources summary { cursor: pointer; font-weight: 700; color: var(--stc-fg-bold); }
+								#stc-module .stc-sources ul { display: grid; gap: 0.35em; margin-top: 0.6em; font-size: 0.9em; }
+								#stc-module .stc-legal { font-size: 0.85em; color: var(--stc-fg-light); }
+
+								/* ---------- Motion ---------- */
+								@keyframes stc-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+								/* ---------- Responsive ---------- */
+								@media (max-width: 980px) {
+									#stc-module .stc-body { grid-template-columns: minmax(0, 1fr); grid-template-areas: "side" "stage"; }
+									#stc-module .stc-side { border-left: 0; border-bottom: 1px solid var(--stc-border); padding: 0.4em 1.1em; }
+									#stc-module .stc-side-toggle {
+										display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.55em 0; cursor: pointer;
+										font-size: 0.68em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.22em; color: var(--stc-fg-bold) !important;
+									}
+									#stc-module .stc-side-toggle::after { content: "\25BE"; font-size: 1.3em; letter-spacing: 0; transition: transform 0.2s; }
+									#stc-module .stc-side.is-open .stc-side-toggle::after { transform: rotate(180deg); }
+									#stc-module .stc-side-content { display: none; padding: 0.6em 0 1em; }
+									#stc-module .stc-side.is-open .stc-side-content { display: grid; }
+									#stc-module .stc-stage { min-height: 0; }
+								}
+								@media (max-width: 640px) {
+									#stc-module .stc-top { padding: 0.75em 1em; }
+									#stc-module .stc-stepper li:not(.is-current) .stc-step-label { display: none; }
+									#stc-module .stc-stepper li:not(.is-current) { padding: 0.25em; }
+									#stc-module .stc-stage { padding: 1.2em 1em 1.3em; }
+									#stc-module .stc-title { font-size: 1.25em; }
+									#stc-module .stc-lc-level { font-size: 2.3em; }
+									#stc-module .stc-lc-q { font-size: 1.3em; }
+									#stc-module .stc-levelcard { padding: 2em 1.1em 1.7em; }
+									#stc-module .stc-bubble { margin-left: 0; }
+									#stc-module .stc-msg .stc-fb { margin-left: 0; }
+								#stc-module .stc-msg-bubble { max-width: 92%; }
+									#stc-module .stc-levels, #stc-module .stc-qs, #stc-module .stc-checklist { grid-template-columns: minmax(0, 1fr); }
+									#stc-module .stc-endings { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+									#stc-module .stc-footer .stc-btn { flex: 1 1 auto; }
+									#stc-module .stc-tool-list li { grid-template-columns: minmax(0, 1fr); }
+									#stc-module .stc-tool-promise { text-align: left; }
+									#stc-module table.stc-stack thead { display: none; }
+									#stc-module table.stc-stack, #stc-module table.stc-stack tbody, #stc-module table.stc-stack tr, #stc-module table.stc-stack td { display: block; width: 100%; }
+									#stc-module table.stc-stack tr { padding: 0.6em 0; border-bottom: 1px solid var(--stc-border); }
+									#stc-module table.stc-stack td { padding: 0.2em 0; border: 0; }
+									#stc-module table.stc-stack td[data-label]::before {
+										content: attr(data-label); display: block; font-size: 0.72em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.14em; color: var(--stc-fg-light);
+									}
+								}
+								@media (prefers-reduced-motion: reduce) {
+									#stc-module *, #stc-module *::before, #stc-module *::after { animation: none !important; transition: none !important; }
+								}
+							</style>
+
+							<div id="stc-module">
+								<div class="stc-player">
+									<div class="stc-top">
+										<p class="stc-brand" id="stc-brand"></p>
+										<ol class="stc-stepper" id="stc-stepper"></ol>
+									</div>
+									<div class="stc-body">
+										<aside class="stc-side" id="stc-side">
+											<button type="button" class="stc-side-toggle" id="stc-side-toggle" aria-expanded="false" aria-controls="stc-side-content"><span></span></button>
+											<div class="stc-side-content" id="stc-side-content">
+												<section class="stc-panel">
+													<h4 class="stc-panel-title" id="stc-meters-title"></h4>
+													<div class="stc-meters" id="stc-meters"></div>
+												</section>
+												<section class="stc-panel">
+													<h4 class="stc-panel-title" id="stc-board-title"></h4>
+													<ol class="stc-board" id="stc-board"></ol>
+												</section>
+												<section class="stc-panel">
+													<h4 class="stc-panel-title" id="stc-log-title"></h4>
+													<ol class="stc-log" id="stc-log"></ol>
+												</section>
+											</div>
+										</aside>
+										<div class="stc-stage" id="stc-stage"></div>
+									</div>
+								</div>
+								<p class="stc-sr" id="stc-announce" aria-live="polite"></p>
+								<noscript><p>This interactive scenario requires JavaScript.</p></noscript>
+
+								<script type="application/json" id="stc-content">
+{
+  "meta": {
+    "version": 1,
+    "status": "16 November 2026",
+    "_note": "All learner-facing text. The script and the review notes live in the Claude Doc 'Same Tool, Two Countries: Script for Review'. Story, companies, the tool and all numbers are fictional.",
+    "_bookBeat": "Placeholder for one or two sentences from Making AI Work for People (Asmaa Ibrahim), once wording and permission are confirmed. Shown in Level 1 only when scenes.l1intro.bookBeat is not empty."
+  },
+
+  "ui": {
+    "brand": "Same tool, two countries",
+    "phases": ["Prologue", "Level 1", "Vendor call", "Level 2", "Contract"],
+    "progress": "Progress",
+    "overview": "Meters and board",
+    "showPanel": "Show meters and board",
+    "hidePanel": "Hide meters and board",
+    "meters": "Meters",
+    "dto": "Days to offer",
+    "dgh": "Days to a good hire",
+    "golive": "Go-live",
+    "today": "Stuttgart today, without AI: {n}",
+    "hidden": "Revealed after Level 1",
+    "goliveNot": "From Level 2",
+    "goliveSub": "Weeks until ZapTalento can run in Stuttgart",
+    "goliveNow": "Monday",
+    "goliveIn": "{n} weeks",
+    "board": "Two-level board",
+    "l1": "L1",
+    "de": "DE",
+    "path": "Your path",
+    "nothingYet": "No decisions yet.",
+    "start": "Start",
+    "resume": "Continue where you left off",
+    "restart": "Start again",
+    "continue": "Continue",
+    "tryAgain": "Try again",
+    "tried": "already tried",
+    "yourCall": "Your call",
+    "confQ": "How confident are you?",
+    "conf": { "guess": "Guessed", "fair": "Fairly confident", "very": "Very confident" },
+    "verdict": { "met": "Met", "partly": "Partly met", "missed": "Missed" },
+    "calib": {
+      "met-very": "Very confident, and right.",
+      "met-fair": "Fairly confident, and right.",
+      "met-guess": "Guessed, and right. Read the reasoning, so luck turns into knowledge.",
+      "partly-very": "Very confident, but only partly right. Worth a second look.",
+      "partly-fair": "Fairly confident, and partly right.",
+      "partly-guess": "Guessed, and partly right.",
+      "missed-very": "Very confident, but missed. That's the one to remember.",
+      "missed-fair": "Fairly confident, but missed.",
+      "missed-guess": "Guessed, and missed. Good thing you weren't sure."
+    },
+    "why": "Why this rule exists",
+    "trueBtn": "True",
+    "falseBtn": "False",
+    "right": "Right.",
+    "notQuite": "Not quite.",
+    "agree": "Agree with the rejection",
+    "overrule": "Overrule and invite",
+    "score": "ZapTalento score",
+    "questionsLeft": "Questions left: {n} of 3",
+    "strong": "Strong question",
+    "weak": "Weak question",
+    "replayL1": "Replay from Level 1",
+    "restartAll": "Restart the scenario",
+    "plusWeek": "+1 week",
+    "back": "Back",
+    "leftOff": "Back to where you left off",
+    "reviewNote": "You're re-reading an earlier page. Your answers stay as they were.",
+    "jumpTo": "Go back to {name}",
+    "best": "Best:",
+    "showSources": "Show the sources"
+  },
+
+  "people": {
+    "luana": { "name": "Luana", "role": "Head of Talent · Sabiá, São Paulo", "init": "L", "color": "#f2849e" },
+    "thiago": { "name": "Thiago", "role": "CEO · Sabiá", "init": "T", "color": "#ae85ca" },
+    "jonas": { "name": "Jonas", "role": "HR manager · Neckar Payments, Stuttgart", "init": "J", "color": "#7ecaf6" },
+    "katrin": { "name": "Katrin", "role": "Data protection officer · Neckar", "init": "K", "color": "#7bd0c1" },
+    "petra": { "name": "Petra", "role": "Works council chair · Neckar", "init": "P", "color": "#c75b9b" },
+    "rodrigo": { "name": "Rodrigo", "role": "Account manager · ZapTalento", "init": "R", "color": "#8499e7" },
+    "malik": { "name": "Malik", "role": "Applicant, backend developer · Stuttgart", "init": "M", "color": "#585858" },
+    "debora": { "name": "Débora", "role": "Applicant, customer support · Recife", "init": "D", "color": "#e8a87c" }
+  },
+
+  "features": [
+    { "id": "video", "name": "Video interview scoring", "promise": "“See your top candidates at a glance”" },
+    { "id": "voice", "name": "WhatsApp voice interview", "promise": "“Screens 1,000 candidates a night”" },
+    { "id": "rank", "name": "CV ranking", "promise": "“Recruiters read only the top 10%”" },
+    { "id": "profile", "name": "Profile and culture fit", "promise": "“Hire people like your best performers”" }
+  ],
+
+  "board": {
+    "video": { "l1": "No: predicts nothing, costs candidates", "deShort": "Prohibited", "deTone": "bad", "de": "Prohibited: AI that infers emotions at work (AI Act Art. 5(1)(f))", "brNow": "Not banned, but biometric data is sensitive (LGPD Art. 5 II)", "brNext": "High-risk" },
+    "voice": { "l1": "Partly: the voice answers yes, the automatic scoring no", "deShort": "Conditions", "deTone": "cond", "de": "With conditions: candidates told it's AI, a person decides, no voice score, an alternative format, an impact assessment; high-risk duties from Dec 2027", "brNow": "Review of automated decisions on request, possibly by software; biometric data is sensitive", "brNext": "High-risk" },
+    "rank": { "l1": "For high-volume roles only", "deShort": "Conditions", "deTone": "cond", "de": "With conditions: a person decides, the works council agrees; high-risk duties from Dec 2027", "brNow": "Review on request, clear information on the criteria (LGPD Art. 20)", "brNext": "High-risk" },
+    "profile": { "l1": "No", "deShort": "Risky", "deTone": "risky", "de": "Risky: discrimination claims (AGG), data minimisation (GDPR)", "brNow": "Discriminatory hiring criteria banned (Constitution Art. 7 XXX, Lei 9.029)", "brNext": "High-risk" }
+  },
+
+  "scenes": {
+    "intro": {
+      "eyebrow": "Branching scenario · about 20 minutes",
+      "title": "Same tool, two countries",
+      "lead": "Sabiá, a fintech from São Paulo, has bought Neckar Payments in Stuttgart and wants to hire there with the AI recruiting tool it uses at home. You are <b>Luana, Head of Talent</b>. Before the tool crosses the ocean, every feature has to answer two questions:",
+      "levels": [
+        { "name": "Level 1", "q": "Does it make sense?" },
+        { "name": "Level 2", "q": "Is it legal?" }
+      ],
+      "note": "Fictional story and numbers · legal status 16 November 2026 · not legal advice",
+      "resumeNote": "You have a saved session in this browser."
+    },
+    "monday": {
+      "eyebrow": "Prologue · Monday, 9:10, São Paulo",
+      "title": "9 days to offer",
+      "story": [
+        { "who": "story", "t": "Thiago messages you, with a screenshot of ZapTalento's dashboard." },
+        { "who": "thiago", "t": "ZapTalento got us 200 hires last year. Neckar needs 30 by March. Switch it on in Stuttgart from Monday, and the contract extension is due Friday: sign it for all features." }
+      ],
+      "toolKpi": "9 days to offer",
+      "toolTag": "Features",
+      "about": "ZapTalento is the AI recruiting tool Sabiá has used in São Paulo for two years. It interviews, scores and rejects candidates largely on its own, with the four features below. Each one has to clear both levels before Friday's contract."
+    },
+    "prologue": {
+      "eyebrow": "Prologue · Monday, São Paulo",
+      "title": "Before ZapTalento crosses the ocean",
+      "story": [
+        { "who": "story", "t": "You remember that Thiago already had ZapTalento run on one Stuttgart engineering ad two weeks ago, “as a test”. Nobody in Stuttgart was asked." }
+      ],
+      "levelsIntro": "So before anything is switched on in Stuttgart, each feature has to clear two levels:",
+      "startTitle": "First, where you start from: Brazil today",
+      "debora": [
+        { "who": "story", "t": "Meanwhile, a message lands in the São Paulo recruiting inbox. ZapTalento's voice interview rejected its sender overnight." },
+        { "who": "debora", "via": "email", "mail": true, "t": "I'm Débora, from Recife. Last night I applied for the customer support job and sent five voice answers. At 2:13 a.m. I got a rejection. Did anyone even listen? Can I ask for a review?" }
+      ],
+      "quizTitle": "What does Brazilian law give Débora today? True or false?",
+      "quiz": [
+        { "t": "Débora can ask for the automated rejection to be reviewed.", "a": true, "fb": "LGPD Art. 20 gives this right, plus clear information on the criteria." },
+        { "t": "That review must be done by a person.", "a": false, "fb": "Congress dropped “by a natural person” in 2019 and upheld the veto. Software can do the review." },
+        { "t": "Débora's voice, analysed by software, is sensitive personal data.", "a": true, "fb": "The LGPD lists biometric data as sensitive (Art. 5 II)." }
+      ],
+      "closing": "Brazil is lightly regulated, not rule-free, and PL 2338 would bring EU-style rules for recruiting AI. Now: Stuttgart."
+    },
+    "l1card": {
+      "when": "Tuesday · video call with Stuttgart",
+      "level": "Level 1",
+      "q": "Does it make sense?",
+      "text": "Four features, one question each: does it make hiring better, or only faster on the dashboard? Watch the meters as you decide.",
+      "listTitle": "Features to check",
+      "start": "Start Level 1"
+    },
+    "l1intro": {
+      "eyebrow": "Level 1 · Does it make sense? · Tuesday, video call",
+      "title": "What does it actually get us?",
+      "story": [
+        { "who": "jonas", "t": "We take 35 days, without AI, and our people stay. What does ZapTalento actually get us?" }
+      ],
+      "bookBeat": "",
+      "question": "For each feature: does it make hiring better, or only faster on the dashboard?",
+      "note": "Watch the meters. Days to offer is what the dashboard shows. Days to a good hire stays hidden until the end of Level 1."
+    },
+    "l1result": {
+      "eyebrow": "Level 1 · Result",
+      "title": "Days to offer is not days to a good hire",
+      "text": "The second meter is now visible. It counts good candidates knocked out, people who give up, second screenings, reopened roles and early leavers.",
+      "rows": [
+        { "t": "Stuttgart today, no AI", "dto": 35, "dgh": 40 },
+        { "t": "ZapTalento as it is (all four features)", "dto": 9, "dgh": 58 }
+      ],
+      "youRow": "Your setup",
+      "story": [
+        { "who": "jonas", "t": "Fewer days to an offer isn't fewer days to someone good who stays." }
+      ],
+      "note": "Only the features you kept go on to full Level 2 decisions. The ones you dropped still get a short card there."
+    },
+    "vendor": {
+      "eyebrow": "Vendor call · Tuesday, 16:00",
+      "title": "Three questions for ZapTalento",
+      "story": [
+        { "who": "story", "t": "Rodrigo, ZapTalento's account manager, joins the call. The contract extension is due on Friday." },
+        { "who": "rodrigo", "t": "Ask me anything. Your Stuttgart setup can go live on Monday." }
+      ],
+      "task": "You have time for three of six questions. Pick the ones a buyer should ask.",
+      "me": "You",
+      "questions": [
+        { "id": "measure", "q": "What exactly do the “enthusiasm” and “confidence” scores measure?", "strong": true, "a": "Our model reads excitement, nervousness and embarrassment from face and voice.", "fb": "Under the label sits emotion recognition (AI Act Art. 3(39); Recital 18 names excitement and embarrassment). Level 2 will need this." },
+        { "id": "gdpr", "q": "Is ZapTalento GDPR-compliant?", "strong": false, "a": "Yes, fully!", "fb": "A yes without documents tells you nothing. Ask what the scores measure and what you get for oversight." },
+        { "id": "users", "q": "How many companies use it?", "strong": false, "a": "Over 400.", "fb": "Popularity isn't evidence." },
+        { "id": "disclose", "q": "Who tells candidates they're talking to an AI, and is that switched on?", "strong": true, "a": "The bot can say so, but your São Paulo setup has it switched off.", "fb": "Building this in is the provider's duty (AI Act Art. 50(1)); checking the setting is yours." },
+        { "id": "study", "q": "Is there a study showing the scores predict job performance?", "strong": true, "a": "The scores are indicative.", "fb": "No evidence. It confirms what São Paulo's data showed in Level 1." },
+        { "id": "monday", "q": "Can it go live on Monday?", "strong": false, "a": "Of course.", "fb": "That's Thiago's question, not a buyer's." }
+      ],
+      "result": {
+        "met": "Three strong questions. You know what the scores really measure, that nothing shows they work, and whose job the AI notice is.",
+        "partly": "Two strong questions out of three. The ones you skipped matter: what the scores measure, whether they predict anything, and who tells candidates it's AI.",
+        "missed": "Mostly sales answers. A buyer asks what the scores measure, whether they predict anything, and who tells candidates it's AI."
+      },
+      "log": "Vendor call: {n} of 3 strong questions"
+    },
+    "l2card": {
+      "when": "Wednesday and Thursday · Stuttgart",
+      "level": "Level 2",
+      "q": "Is it legal?",
+      "text": "The features you kept now meet EU and German law, Neckar's works council and data protection officer, and an applicant with questions. Brazil's rules sit alongside.",
+      "listTitle": "Going into Level 2",
+      "dropped": "dropped in Level 1",
+      "start": "Start Level 2"
+    },
+    "l2intro": {
+      "eyebrow": "Level 2 · Is it legal? · Wednesday, Stuttgart",
+      "title": "Nobody told us about a test run",
+      "story": [
+        { "who": "petra", "t": "Nobody told us about a test run." },
+        { "who": "katrin", "t": "It ran the voice interview and the CV ranking on 40 applicants. Voice is biometric data. Where's the impact assessment?" }
+      ],
+      "note": "The go-live meter starts at Thiago's “Monday”. Each detour adds weeks.",
+      "droppedTitle": "Good call, and it would have been illegal too",
+      "cards": {
+        "video": { "t": "Using AI to infer emotions at work has been prohibited in the EU since February 2025 (AI Act Art. 5(1)(f)), and the Commission's guidelines count recruitment as work. Fines reach EUR 35 million or 7% of worldwide turnover.", "why": "One actress, one text: glasses, a headscarf or a bookshelf changed her scores (Bayerischer Rundfunk, 2021). The science of reading emotions is weak (Recital 44)." },
+        "voice": { "t": "Had you kept it: candidates told it's an AI system (Art. 50(1)), no voice score, no automatic knockout (GDPR Art. 22), another format, an impact assessment first, and high-risk duties from December 2027 (Annex III 4(a)).", "why": "Speech-to-text makes more errors with accents, dialects and stutters." },
+        "rank": { "t": "Had you kept it: a trained person decides on every rejection (GDPR Art. 22), with high-risk duties from December 2027.", "why": "Amazon's CV tool learned to downgrade women." },
+        "profile": { "t": "Photo, age and marital status invite discrimination claims (AGG) and break data minimisation (GDPR). In Brazil, the Constitution and Lei 9.029 already ban such hiring criteria.", "why": "Fields that say nothing about the job invite bias." }
+      },
+      "allKept": "You kept every feature in some form, so each one gets a full Level 2 decision.",
+      "next": "Next: the features you kept."
+    },
+    "oversight": {
+      "eyebrow": "Level 2 · Oversight moment · Thursday, 9:00",
+      "title": "What “a person decides” looks like",
+      "story": [
+        { "who": "petra", "t": "Show us what “a person decides” looks like." }
+      ],
+      "task": "Three support applicants ZapTalento ranked below the line. For each one: agree with the rejection, or overrule and invite?",
+      "items": [
+        { "id": "ines", "name": "Inês", "desc": "4 years in customer service in Porto, German at C1, CV in a two-column layout", "score": 41, "right": "overrule", "fb": "The parser couldn't read the layout. It scored the format, not the person." },
+        { "id": "daniel", "name": "Daniel", "desc": "No customer contact, no German", "score": 22, "right": "agree", "fb": "A fair rejection: the role needs German. Oversight means checking, not overruling by reflex." },
+        { "id": "sabine", "name": "Sabine", "desc": "5 years of support, then a 2-year gap caring for a parent", "score": 38, "right": "overrule", "fb": "The ranking penalised the gap. A gap says nothing about the job." }
+      ],
+      "closing": "With 300 of these a night, which would you have clicked through? That's automation bias, and it's why oversight needs time, not just a button.",
+      "result": {
+        "met": "All three right: you checked each case instead of trusting the score, or overruling it by reflex.",
+        "partly": "Two of three right. Look again at the one you missed: what did the ranking actually score?",
+        "missed": "The ranking's view won here. Real oversight means reading each case."
+      },
+      "log": "Oversight: {n} of 3 calls right"
+    },
+    "recheck": {
+      "eyebrow": "Level 2 · Thursday evening",
+      "title": "Does it still pay off?",
+      "story": [
+        { "who": "katrin", "t": "The impact assessment and the works agreement will be done by go-live. Running effort: about one recruiter day a week to listen to voice answers and review the ranking." }
+      ],
+      "sums": "Right now: <b>{dto} days to offer</b>, <b>{dgh} days to a good hire</b>, go-live <b>{golive}</b>.",
+      "noRank": "The CV ranking is off, so there's nothing to recheck there.",
+      "closing": "A legal duty is a cost too. Check the sums again after Level 2."
+    },
+    "ending": {
+      "eyebrow": "Friday · The result",
+      "title": "How it ends",
+      "metersTitle": "Your numbers",
+      "metersRows": [
+        { "t": "Stuttgart today, no AI", "dto": 35, "dgh": 40 },
+        { "t": "ZapTalento as it is", "dto": 9, "dgh": 58 }
+      ],
+      "boardTitle": "The two-level board",
+      "boardCols": ["Feature", "Your Level 1", "Level 2: Germany", "Brazil today", "Brazil tomorrow (PL 2338)"],
+      "resultsTitle": "Your results",
+      "results": { "l1": "Level 1", "vendor": "Vendor call", "l2": "Level 2", "oversight": "Oversight", "final": "Contract" },
+      "conf": {
+        "title": "How sure were you?",
+        "veryMissed": "Very confident but missed: {n}",
+        "guessMet": "Guessed but right: {n}",
+        "allGood": "No very-confident misses. Nicely calibrated."
+      },
+      "takeawaysTitle": "Five things to take with you",
+      "takeaways": [
+        "<b>Ask “Does it make sense?” before “Is it legal?”, and again after.</b> A legal duty is a cost too.",
+        "<b>Days to offer is not days to a good hire.</b> ZapTalento as it is: 9 and 58. Your setup: {dto} and {dgh}.",
+        "<b>Why the rules exist:</b> emotion scores move with glasses and bookshelves; transcription fails accents and stutters, so a person must decide; rankings repeat yesterday's hiring at scale; fields that say nothing about the job invite bias.",
+        "<b>Your face and voice are biometric data, in both countries.</b> In the EU, inferring emotions from them at work is banned, and recruiting counts as work. In Brazil, they are sensitive data.",
+        "<b>Where Brazil is heading:</b> PL 2338 would make recruiting AI high-risk. What Stuttgart requires today is a preview."
+      ],
+      "checklistTitle": "Checklist: before you take an AI recruiting tool to Germany",
+      "checklist": [
+        { "t": "Part 1 · Does it make sense?", "items": [
+          "What does each feature save, and for which roles? Volume decides.",
+          "Ask the vendor what each score really measures, and for evidence that it predicts performance in the job.",
+          "How many good candidates does it lose? Check a sample of rejections by hand.",
+          "Measure days to a good hire, not days to offer.",
+          "License only the features that pay off."
+        ] },
+        { "t": "Part 2 · Is it legal?", "items": [
+          "No emotion recognition from face or voice, whatever the vendor calls the score (AI Act Art. 5(1)(f)).",
+          "A person decides on every rejection and can overrule the tool (GDPR Art. 22), with the time and authority to do it (Art. 26(2)).",
+          "Candidates know they are dealing with AI (the tool's duty under Art. 50(1): check it does), and get another format if it disadvantages them (AGG).",
+          "The impact assessment comes before go-live (GDPR Art. 35).",
+          "The works council is involved from the start (BetrVG § 87(1) no. 6, § 95(2a)).",
+          "An answer is ready for “Did an AI reject me?” (GDPR Art. 15, 22(3)).",
+          "Then the sums again: does it still pay off?"
+        ] }
+      ],
+      "endingsTitle": "Endings found",
+      "sourcesTitle": "Sources and legal status",
+      "sources": [
+        "<a href='https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng'>AI Act, Regulation (EU) 2024/1689</a> and the <a href='https://eur-lex.europa.eu/eli/reg/2026/1744/oj/eng'>Digital Omnibus, Regulation (EU) 2026/1744</a> (EUR-Lex); article texts via <a href='https://artificialintelligenceact.eu/'>artificialintelligenceact.eu</a>",
+        "<a href='https://gdpr-info.eu/art-22-gdpr/'>GDPR Art. 22</a>, <a href='https://gdpr-info.eu/art-35-gdpr/'>Art. 35</a>, <a href='https://gdpr-info.eu/art-15-gdpr/'>Art. 15</a>",
+        "<a href='https://www.gesetze-im-internet.de/betrvg/__87.html'>BetrVG § 87</a>, <a href='https://www.gesetze-im-internet.de/betrvg/__95.html'>§ 95</a>; <a href='https://www.gesetze-im-internet.de/agg/__22.html'>AGG § 22</a>",
+        "<a href='https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm'>LGPD (Lei 13.709/2018)</a>, <a href='https://www.planalto.gov.br/ccivil_03/leis/l9029.htm'>Lei 9.029/1995</a>; the 2019 veto on human review: <a href='https://teletime.com.br/02/10/2019/congresso-mantem-veto-e-lgpd-fica-sem-revisao-humana-de-decisoes-automatizadas/'>Teletime</a>",
+        "PL 2338/2023: <a href='https://www.congressonacional.leg.br/web/atividade/materias/-/materia/157233'>Congresso Nacional</a>, status per <a href='https://www.barbieriadvogados.com/brazil-ai-act/'>Barbieri Advogados</a>",
+        "Video-interview AI test by Bayerischer Rundfunk (2021), reported by <a href='https://netzpolitik.org/2021/algorithmen-fuer-bewerbungen-das-buecherregal-im-hintergrund-hat-einfluss-darauf-ob-du-den-job-bekommst/'>netzpolitik.org</a>",
+        "<a href='https://pmc.ncbi.nlm.nih.gov/articles/PMC7149386'>Koenecke et al., PNAS 2020</a> on speech recognition errors; <a href='https://arxiv.org/pdf/2106.11759'>stuttered speech study (arXiv)</a>",
+        "<a href='https://www.reuters.com/article/us-amazon-com-jobs-automation-insight-idUSKCN1MK08G'>Reuters 2018</a> on Amazon's CV tool; <a href='https://journals.sagepub.com/doi/10.1177/1529100619832930'>Barrett et al. 2019</a> on reading emotions from faces"
+      ],
+      "legal": "Not legal advice. The story, the companies, the tool and its numbers are fictional. Legal status: 16 November 2026."
+    }
+  },
+
+  "dec": {
+    "l1video": {
+      "stage": "l1", "feature": "video",
+      "eyebrow": "Level 1 · Feature 1 of 4",
+      "title": "Video interview scoring",
+      "what": "Candidates record answers on video. ZapTalento scores “enthusiasm” and “confidence” and ranks candidates by them.",
+      "data": { "label": "Data card · São Paulo, last year · fictional", "items": ["2,400 video interviews.", "1 in 4 candidates gave up at the recording step.", "Recruiters rewatched 70% of the top-scored videos anyway.", "“Enthusiasm” score vs. 6-month performance rating: no link."] },
+      "task": "Does the scoring make sense for Stuttgart?",
+      "log": "Video scoring",
+      "options": [
+        { "id": "keep", "text": "Keep it: the scores rank candidates for us", "board": "Kept", "verdict": "missed", "fb": "The score doesn't predict performance, a quarter of candidates leave at this step, and recruiters rewatch anyway. Fast to an offer, not to a good hire.", "delta": [-6, 5] },
+        { "id": "tie", "text": "Keep it only as a tie-breaker between two finalists", "board": "Tie-breaker", "verdict": "partly", "fb": "Less damage, but a tie-breaker that predicts nothing is a coin toss with extra steps, and candidates still drop out at the recording.", "delta": [-1, 3] },
+        { "id": "drop", "text": "Drop the scoring", "board": "Dropped", "verdict": "met", "fb": "Nothing lost: it didn't predict anything. Level 2 will show it would also have been illegal.", "delta": [0, 0] }
+      ]
+    },
+    "l1voice": {
+      "stage": "l1", "feature": "voice",
+      "eyebrow": "Level 1 · Feature 2 of 4",
+      "title": "WhatsApp voice interview",
+      "what": "Five questions on WhatsApp, answered by voice message. Speech-to-text, then a keyword score plus a voice “confidence” score. Below the threshold, an automatic rejection.",
+      "data": { "label": "Data card · fictional", "items": ["São Paulo: candidates answer on their own time, and recruiters schedule about 15 fewer phone screens a day.", "Stuttgart test run: the bot knocked out 12 of 40 engineering applicants.", "A recruiter listened to 10 of them: 3 were strong.", "6 candidates never finished the questions."] },
+      "storyAfter": [
+        { "who": "jonas", "t": "One of those three is Malik, a backend developer. He stutters, and in the bot's transcript of his answers, half the words were missing." }
+      ],
+      "task": "Does the voice interview make sense for Stuttgart?",
+      "log": "Voice interview",
+      "options": [
+        { "id": "asis", "text": "Keep it as it is: voice answers, keyword and “confidence” scores, automatic knockout", "board": "As it is", "verdict": "missed", "fb": "The knockout threw out 3 strong engineers in a pool of 40. With so few applicants, every false “no” reopens the search.", "delta": [-12, 6] },
+        { "id": "answers", "text": "Keep the voice answers, drop the automatic scoring: a recruiter listens, and the transcript only helps", "board": "Answers only", "verdict": "met", "fb": "You keep the real gain (no phone-screen scheduling) and lose the false knockouts.", "delta": [-8, -8] },
+        { "id": "drop", "text": "Drop the voice interview", "board": "Dropped", "verdict": "partly", "fb": "Safe, but you give up the one real time saving: answers on the candidate's own time.", "delta": [0, 0] }
+      ]
+    },
+    "l1rank": {
+      "stage": "l1", "feature": "rank",
+      "eyebrow": "Level 1 · Feature 3 of 4",
+      "title": "CV ranking",
+      "what": "ZapTalento parses CVs and ranks them against the job ad. Below a score of 50, an automatic rejection.",
+      "data": { "label": "Data card · fictional", "items": ["São Paulo support roles: 3,000 CVs a month; recruiters read the top 10%.", "Stuttgart: about 400 support applicants for the hiring wave, about 40 per engineering role.", "Reading 40 CVs takes a recruiter about a day."] },
+      "task": "Does the CV ranking make sense for Stuttgart?",
+      "log": "CV ranking",
+      "options": [
+        { "id": "all", "text": "Keep it for all roles, with automatic rejection below 50", "board": "All roles", "verdict": "missed", "fb": "For 40 engineers a recruiter reads every CV in a day; an automatic “no” saves hours and risks the best candidate.", "delta": [-8, 4] },
+        { "id": "support", "text": "Keep it as a sorting aid for the high-volume support roles only; no automatic rejection", "board": "Support only", "verdict": "met", "fb": "AI where volume makes it pay off, people where the pool is small.", "delta": [-5, -4] },
+        { "id": "drop", "text": "Drop the CV ranking", "board": "Dropped", "verdict": "partly", "fb": "Safe, but 400 support applicants are a real reading load.", "delta": [0, 0] }
+      ]
+    },
+    "l1profile": {
+      "stage": "l1", "feature": "profile",
+      "eyebrow": "Level 1 · Feature 4 of 4",
+      "title": "Profile fields and culture fit score",
+      "what": "The application form asks for a photo, date of birth and marital status. ZapTalento scans public social media for a “culture fit” score.",
+      "data": { "label": "Data card · fictional", "items": ["No study links the culture fit score to performance; the vendor calls it “indicative”.", "18% of candidates stop at the photo and date-of-birth step."] },
+      "task": "Do the profile fields and the score make sense for Stuttgart?",
+      "log": "Profile and culture fit",
+      "options": [
+        { "id": "both", "text": "Keep both", "board": "Kept", "verdict": "missed", "fb": "Neither tells you who can do the job, and both cost you candidates.", "delta": [0, 3] },
+        { "id": "fields", "text": "Keep the fields, drop the score", "board": "Fields kept", "verdict": "partly", "fb": "The score is gone, but photo, age and marital status still say nothing about the job.", "delta": [0, 1] },
+        { "id": "drop", "text": "Drop both", "board": "Dropped", "verdict": "met", "fb": "Job-relevant questions only. Level 2 will show both were risky anyway.", "delta": [0, 0] }
+      ]
+    },
+    "f1": {
+      "stage": "l2", "feature": "video", "goliveAdd": 1,
+      "eyebrow": "Level 2 · Video scoring",
+      "title": "Not risky: prohibited",
+      "story": [
+        { "who": "katrin", "t": "Emotion scoring in recruiting is prohibited in the EU. Not risky: prohibited." }
+      ],
+      "note": "You kept this feature in Level 1, so it comes back as a forced decision. It adds a week to go-live: the detour you could have saved.",
+      "task": "What happens to the video scoring?",
+      "log": "Video scoring (forced)",
+      "options": [
+        { "id": "tiekeep", "text": "Keep the score as a tie-breaker; a person makes the final call", "verdict": "missed", "fb": "“Advisory” use is still use. The prohibition covers using the system, whoever decides.", "delta": [-1, 3], "flag": "emotion" },
+        { "id": "recordings", "text": "Switch off the scoring; keep the recordings for recruiters to watch", "verdict": "partly", "fb": "Legal, but recordings still cost a quarter of the candidates and hours of recruiter time.", "delta": [2, 4] },
+        { "id": "drop", "text": "Drop video interviews", "verdict": "met", "fb": "Two levels, two reasons to drop it.", "delta": [0, 0] }
+      ],
+      "why": [
+        "In a 2021 test by Bayerischer Rundfunk, glasses, a headscarf or a bookshelf changed one actress's personality scores (<a href='https://netzpolitik.org/2021/algorithmen-fuer-bewerbungen-das-buecherregal-im-hintergrund-hat-einfluss-darauf-ob-du-den-job-bekommst/'>netzpolitik.org</a>).",
+        "Facial movements don't reliably show emotions (<a href='https://journals.sagepub.com/doi/10.1177/1529100619832930'>Barrett et al. 2019</a>); the AI Act names this concern (<a href='https://artificialintelligenceact.eu/recital/44/'>Recital 44</a>).",
+        "Under the label: ZapTalento's scores read excitement, nervousness and embarrassment. That is emotion recognition (<a href='https://artificialintelligenceact.eu/article/3/'>Art. 3(39)</a>, <a href='https://artificialintelligenceact.eu/recital/18/'>Recital 18</a>), prohibited at work (<a href='https://artificialintelligenceact.eu/article/5/'>Art. 5(1)(f)</a>)."
+      ]
+    },
+    "f2": {
+      "stage": "l2", "feature": "profile", "goliveAdd": 1,
+      "eyebrow": "Level 2 · Profile fields",
+      "title": "Why a photo for a support job?",
+      "story": [
+        { "who": "katrin", "t": "Why do we need a photo and marital status for a support job?" }
+      ],
+      "note": "You kept this feature in Level 1, so it comes back as a forced decision. It adds a week to go-live.",
+      "task": "What happens to the profile fields and the score?",
+      "log": "Profile fields (forced)",
+      "options": [
+        { "id": "both", "text": "Keep both", "verdict": "missed", "fb": "A rejected candidate who was asked for their age only needs to show indications of discrimination; then the employer must prove there was none (AGG § 22). It also breaks data minimisation.", "delta": [0, 3] },
+        { "id": "fields", "text": "Keep the fields, drop the score", "verdict": "partly", "fb": "The fields remain the problem.", "delta": [0, 1] },
+        { "id": "drop", "text": "Drop both", "verdict": "met", "fb": "Job-relevant questions only.", "delta": [0, 0] }
+      ],
+      "why": [
+        "Fields that say nothing about the job invite bias, and private social media is not job evidence.",
+        "In Brazil, the Constitution (<a href='https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm'>Art. 7 XXX</a>) and <a href='https://www.planalto.gov.br/ccivil_03/leis/l9029.htm'>Lei 9.029</a> already ban hiring criteria such as age or marital status."
+      ]
+    },
+    "l2voice": {
+      "stage": "l2", "feature": "voice",
+      "eyebrow": "Level 2 · WhatsApp voice interview",
+      "title": "Where the speed is",
+      "story": [
+        { "who": "thiago", "via": "by message", "t": "Keep the automatic knockout. That's where the speed is." },
+        { "who": "katrin", "t": "And Malik's stutter? A Swabian dialect? German as a second language?" }
+      ],
+      "task": "How does the voice interview run in Stuttgart?",
+      "log": "Voice interview setup",
+      "options": [
+        { "id": "asis", "text": "Keep ZapTalento's setup as it is", "verdict": "missed", "fb": "Look under the label: ZapTalento's documentation says the “confidence” score reads excitement, nervousness and embarrassment. That is emotion recognition (Art. 3(39), Recital 18), prohibited at work (Art. 5(1)(f)). The knockout is a solely automated decision (GDPR Art. 22).", "delta": [-12, 6], "flag": "emotion" },
+        { "id": "knockout", "text": "Drop the “confidence” score, keep the keyword knockout, and add “answers are processed automatically” to the privacy notice", "verdict": "partly", "fb": "The prohibition is gone, the problem isn't. The knockout still decides alone (GDPR Art. 22), and transcription errors fall on stutters and accents: disability and ethnic origin under the AGG. A line in a notice is not a review.", "delta": [-12, 6], "flag": "knockout" },
+        { "id": "full", "text": "Make sure candidates are told it's an AI system. The transcript only helps a recruiter who listens to every answer. No voice score. A written or live alternative for anyone. The impact assessment first", "verdict": "met", "fb": "Candidates know it's AI: the tool's provider must build this in (Art. 50(1)), and Neckar checks it does. A person decides (GDPR Art. 22). No emotion recognition. The alternative avoids indirect discrimination (AGG § 3(2)). Voice is biometric data, so the impact assessment comes first (GDPR Art. 35). From December 2027 the voice interview is a high-risk system too (Annex III 4(a)), and this setup is ready for it.", "delta": [-8, -8] },
+        { "id": "drop", "text": "Drop the voice interview after all", "verdict": "partly", "fb": "Legal, but the time saving is gone.", "delta": [0, 0] }
+      ],
+      "why": [
+        "Speech-to-text gets more words wrong for some speakers: a 0.35 vs 0.19 error rate in one study of five commercial systems (<a href='https://pmc.ncbi.nlm.nih.gov/articles/PMC7149386'>Koenecke et al. 2020</a>), 19% vs 6% for stuttered vs fluent speech in another (<a href='https://arxiv.org/pdf/2106.11759'>arXiv</a>).",
+        "Keyword matching then rewards the “magic words”, not the answer.",
+        "An accent can stand in for origin: Swabian here, Nordestino in Brazil."
+      ]
+    },
+    "l2rank": {
+      "stage": "l2", "feature": "rank",
+      "eyebrow": "Level 2 · CV ranking",
+      "title": "Who decides about a rejection?",
+      "story": [
+        { "who": "petra", "t": "Who decides about a rejection: ZapTalento or a person? And the ranking criteria are selection guidelines. They need our agreement, also when AI sets them. And our recruiters say: 300 rejections a night, and they'll just click approve." }
+      ],
+      "task": "How do rejections from the ranking work?",
+      "log": "CV ranking setup",
+      "options": [
+        { "id": "rubber", "text": "Recruiters click “approve” on ZapTalento's rejection list every evening", "verdict": "missed", "retry": true, "goliveAdd": 1, "fb": "A click on a list of 300 is not a decision; it is automation bias with a signature. What counts is whether the person can and does change the outcome (GDPR Art. 22). The rework costs a week." },
+        { "id": "human", "text": "A trained recruiter reads every CV below the line before any rejection, can overrule the ranking and notes why. Candidates are told AI helps sort. The criteria go into the selection guidelines with the works council, and the review time is planned into the recruiters' week", "verdict": "met", "keepRank": true, "fb": "Real oversight now (GDPR Art. 22). Ready for the high-risk duties from December 2027: oversight by people with “the necessary competence, training and authority, as well as the necessary support” (Art. 26(2)): time, not just a button; candidates informed (Art. 26(11)). In line with BetrVG § 95(2a)." },
+        { "id": "off", "text": "Switch the ranking off for Stuttgart", "verdict": "partly", "fb": "Legal, but 400 support applications are back on the recruiters' desks.", "delta": [0, 0] }
+      ],
+      "why": [
+        "A ranking learns yesterday's hiring and repeats it at scale.",
+        "Amazon dropped a CV tool that had learned to downgrade CVs mentioning “women's” (<a href='https://www.reuters.com/article/us-amazon-com-jobs-automation-insight-idUSKCN1MK08G'>Reuters 2018</a>).",
+        "A postal code or a university can stand in for class and race."
+      ]
+    },
+    "l2launch": {
+      "stage": "l2",
+      "eyebrow": "Level 2 · Launch",
+      "title": "Now you want to start on Monday?",
+      "story": [
+        { "who": "petra", "t": "First a test run nobody told us about. Now you want to start on Monday?" }
+      ],
+      "task": "How do you launch in Stuttgart?",
+      "log": "Launch",
+      "options": [
+        { "id": "now", "text": "Launch on Monday as Thiago wants; inform the works council afterwards", "verdict": "missed", "golive": 0, "flag": "wc", "fb": "A system that records how recruiters work and shapes selection criteria needs the works council's agreement first (BetrVG § 87(1) no. 6, § 95). Without it, the works council can have its use stopped." },
+        { "id": "present", "text": "Finish the setup, then present it to Petra and Katrin for sign-off", "verdict": "partly", "golive": 10, "fb": "They will review it, but after the test run trust is low. Every point gets renegotiated, and the impact assessment starts late." },
+        { "id": "early", "text": "Stop the test run today. Involve Petra and Katrin now and build the plan with them: the impact assessment, a works agreement", "verdict": "met", "golive": 6, "fb": "Co-determination from the start (BetrVG § 87(1) no. 6, § 95(2a)), the impact assessment before go-live (GDPR Art. 35), and staff informed as AI Act Art. 26(7) will require. Petra proposes a pilot on the support roles and asks for the recruiters' review time to go into the works agreement. Slower now, faster overall." }
+      ],
+      "why": [
+        "Recruiters' own work is recorded in the tool, and staff have a say in how their future colleagues are selected."
+      ]
+    },
+    "l2malik": {
+      "stage": "l2",
+      "eyebrow": "Level 2 · Thursday, 16:40",
+      "title": "Did a bot reject me?",
+      "story": [
+        { "who": "story", "t": "Malik, the backend developer the voice bot knocked out in the test run, writes to Neckar's HR inbox." },
+        { "who": "malik", "via": "email", "mail": true, "t": "I applied for the backend role. Two minutes after my voice answers, I was rejected. I stutter. Did a bot reject me because of that? I'd like to know why, and what you stored about me." }
+      ],
+      "task": "How do you answer Malik?",
+      "log": "Reply to Malik",
+      "options": [
+        { "id": "generic", "text": "“Thank you for your interest. We received many strong applications…”", "verdict": "missed", "retry": true, "fb": "He asked a direct question with rights behind it: access to his data (GDPR Art. 15) and a human review of an automated decision (Art. 22(3)). AGG claims must be raised within 2 months, so a non-answer invites one." },
+        { "id": "policy", "text": "Point him to the privacy policy", "verdict": "partly", "retry": true, "fb": "It describes the processing in general. It answers neither his question nor his request for a review." },
+        { "id": "explain", "text": "Confirm the voice bot rejected him, apologise, invite him to a live interview with an engineer, and send his data and the main reasons", "verdict": "met", "fb": "Access (GDPR Art. 15), a human review (Art. 22(3)) and a fair second chance. The AI Act adds a right to “clear and meaningful explanations” of the AI's role in decisions based on high-risk recruiting AI (Art. 86), from December 2027 at the latest." }
+      ],
+      "afterTitle": "The same question from Débora in São Paulo",
+      "afterCols": ["", "Malik, Stuttgart", "Débora, São Paulo"],
+      "after": [
+        ["What was stored about me?", "Access (GDPR Art. 15)", "Access (LGPD Art. 18)"],
+        ["Review of the automated decision", "By a person (GDPR Art. 22(3))", "On request, possibly by software (LGPD Art. 20)"],
+        ["How was it decided?", "Meaningful information about the logic (GDPR Art. 15(1)(h))", "Clear information on criteria and procedures, trade secrets respected (LGPD Art. 20 §1)"],
+        ["Discrimination", "AGG: disability, ethnic origin; claims within 2 months", "Lei 9.029: origin, among others. A bot that fails a Nordestino accent is the same problem"],
+        ["Tomorrow", "Right to an explanation (AI Act Art. 86, from December 2027 at the latest)", "Right to an explanation for high-risk AI (PL 2338, if passed)"]
+      ],
+      "why": [
+        "Malik couldn't see his score or his transcript. Rights to access and review exist because candidates can't challenge what they can't see."
+      ]
+    },
+    "recheck": {
+      "stage": "l2", "feature": "rank",
+      "eyebrow": "Level 2 · Thursday evening",
+      "title": "Does it still pay off?",
+      "task": "With a person reviewing every rejection, where does the ranking still pay off?",
+      "log": "ROI recheck",
+      "options": [
+        { "id": "all", "text": "All roles", "verdict": "missed", "fb": "For 40 engineering CVs, the review takes as long as reading them: all the cost, none of the gain.", "delta": [-6, 2] },
+        { "id": "support", "text": "Support roles only", "verdict": "met", "fb": "400 applicants: the sorting still saves days after oversight.", "delta": [-5, -4] },
+        { "id": "none", "text": "Nowhere", "verdict": "partly", "fb": "Safe, but the support wave loses its time saving.", "delta": [0, 0] }
+      ]
+    },
+    "final": {
+      "stage": "final",
+      "eyebrow": "Friday, São Paulo · The contract",
+      "title": "Two setups?",
+      "story": [
+        { "who": "thiago", "t": "So Stuttgart gets {dto} days, not 9. Fine, Germany is Germany. The extension is due today: sign the Stuttgart features, and here we keep ZapTalento as it is. Two setups." },
+        { "who": "story", "t": "You think of Débora's rejection at 2:13 a.m." }
+      ],
+      "task": "What do you sign?",
+      "log": "Contract",
+      "options": [
+        { "id": "two", "text": "Two setups: license the Stuttgart setup there, keep all features in São Paulo", "verdict": "partly", "fb": "Mostly legal in Brazil today. But the features that failed Level 1 don't pay off in São Paulo either (38 days to a good hire). Voice and video are already sensitive data under the LGPD. A bot that fails Nordestino accents discriminates by origin (Lei 9.029). And PL 2338 would make all of it high-risk." },
+        { "id": "one", "text": "One standard: license only the features that cleared both levels, for both countries, with the same human review and the same information for candidates", "verdict": "met", "fb": "One process to run and train, a smaller licence bill, ready for PL 2338, and candidates in Recife get what candidates in Stuttgart get." },
+        { "id": "half", "text": "One standard, but keep the automatic knockouts in São Paulo until PL 2338 passes", "verdict": "partly", "fb": "Half a standard is two setups, and the knockouts hit São Paulo's candidates with the same transcription errors." }
+      ]
+    }
+  },
+
+  "endings": {
+    "order": ["cleared", "exposed", "pointless", "fined", "stopped", "lost"],
+    "types": { "success": "Success", "partly": "Partly", "severe": "Severe" },
+    "list": {
+      "cleared": { "name": "Cleared both levels", "type": "success", "text": ["ZapTalento keeps what pays off: voice answers a recruiter listens to, and a sorting aid where volume is high.", "It drops what doesn't: emotion scoring, knockouts, profiling.", "Stuttgart: {dto} days to an offer, {dgh} to a good hire, against 40 before. São Paulo gets the same standard, ready for PL 2338.", "Jonas: “Faster, and they stay.”"], "change": "" },
+      "exposed": { "name": "Legal in Stuttgart, exposed in São Paulo", "type": "partly", "text": ["Stuttgart hires well.", "In São Paulo, Débora and thousands more meet a bot that scores their voices at night and rejects them at 2 a.m.", "It is mostly legal in Brazil today. But the features don't pay off there either, voice is sensitive data under the LGPD, and PL 2338 would make the setup high-risk."], "change": "One standard, built on both levels." },
+      "pointless": { "name": "Compliant but pointless", "type": "partly", "text": ["Everything is legal: the reviews, the information, the agreement.", "But a good hire still takes about as long as without AI ({dgh} days, against 40), and Neckar pays for ZapTalento on top.", "Jonas: “So we bought a tool to do what we did before.”"], "noAI": ["You dropped every feature, so nothing can go wrong, and nothing gets better.", "Neckar pays for ZapTalento and uses none of it. A good hire still takes 40 days.", "Jonas: “So we bought a tool to do what we did before.”"], "change": "Asking Level 1 honestly, and again after Level 2: keep AI where it pays off." },
+      "fined": { "name": "Fined before the first hire", "type": "severe", "text": ["A candidate complains to the market surveillance authority: the interview scored her “enthusiasm” from her face and voice.", "Inferring emotions at work, recruiting included, is prohibited in the EU, with fines up to EUR 35 million or 7% of worldwide turnover.", "Neckar switches ZapTalento off before a single Stuttgart hire."], "change": "Dropping the scoring in Level 1. It didn't predict anything anyway." },
+      "stopped": { "name": "Stopped by the works council", "type": "severe", "text": ["Petra's works council goes to the labour court. Until there is an agreement, ZapTalento may not be used in Stuttgart.", "The March target slips, and the test run is now evidence."], "change": "Stopping the test run and involving Petra and Katrin from the start. It costs 6 weeks, not the whole plan." },
+      "lost": { "name": "Lost in transcription", "type": "severe", "text": ["Malik files a claim under the AGG: the bot rejected him because of his stutter, and no person ever listened.", "Two more claims follow from applicants with accents.", "The keyword knockout saved minutes and cost three strong engineers."], "change": "A recruiter who listens to every answer, with the transcript only as help, and another format for anyone." }
+    },
+    "changeLabel": "What would have changed it",
+    "found": "found",
+    "locked": "not found yet"
+  }
+}
+								</script>
+							</div>
+
+							<script>
+								(function () {
+									'use strict';
+									var root = document.getElementById('stc-module');
+									var dataEl = document.getElementById('stc-content');
+									if (!root || !dataEl) return;
+									var C;
+									try { C = JSON.parse(dataEl.textContent); } catch (e) { return; }
+									var U = C.ui;
+
+									/* ---------- Settings and model ---------- */
+									var KEY = 'stc-module-v1';
+									var reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+									var FEATURES = ['video', 'voice', 'rank', 'profile'];
+									/* Deltas on Stuttgart's 35 days to offer / 40 days to a good hire. The start values are ZapTalento as it is: 9 / 58. */
+									var START = { video: [-6, 5], voice: [-12, 6], rank: [-8, 4], profile: [0, 3] };
+									var BASE_DTO = 35, BASE_DGH = 40, POINTLESS = 36;
+									var L1 = ['l1video', 'l1voice', 'l1rank', 'l1profile'];
+									var L2 = ['f1', 'f2', 'l2voice', 'l2rank', 'l2launch', 'l2malik', 'recheck'];
+
+									var FLOW = [
+										{ id: 'monday', phase: 0 },
+										{ id: 'prologue', phase: 0 },
+										{ id: 'l1card', phase: 1 },
+										{ id: 'l1intro', phase: 1 },
+										{ id: 'l1video', phase: 1 },
+										{ id: 'l1voice', phase: 1 },
+										{ id: 'l1rank', phase: 1 },
+										{ id: 'l1profile', phase: 1 },
+										{ id: 'l1result', phase: 1 },
+										{ id: 'vendor', phase: 2 },
+										{ id: 'l2card', phase: 3 },
+										{ id: 'l2intro', phase: 3 },
+										{ id: 'f1', phase: 3, when: function () { return S.l1.video === 'keep' || S.l1.video === 'tie'; } },
+										{ id: 'f2', phase: 3, when: function () { return S.l1.profile === 'both' || S.l1.profile === 'fields'; } },
+										{ id: 'l2voice', phase: 3, when: function () { return S.l1.voice === 'asis' || S.l1.voice === 'answers'; } },
+										{ id: 'l2rank', phase: 3, when: function () { return S.l1.rank === 'all' || S.l1.rank === 'support'; } },
+										{ id: 'oversight', phase: 3, when: function () { return S.choices.l2rank === 'human'; } },
+										{ id: 'l2launch', phase: 3 },
+										{ id: 'l2malik', phase: 3 },
+										{ id: 'recheck', phase: 3 },
+										{ id: 'final', phase: 4 },
+										{ id: 'ending', phase: 4 }
+									];
+
+									function fresh(prev, keepPrologue) {
+										var s = {
+											v: 2, step: 'intro', quiz: {}, l1: {}, choices: {}, conf: {}, verdicts: {}, tried: {}, attempts: [],
+											vendor: [], oversight: {}, delta: {}, flags: {}, goliveBase: null, goliveAdd: 0,
+											reveal: false, golive: false, log: [], board: {}, final: null, ending: null, furthest: 0, snap: {},
+											endings: prev && Array.isArray(prev.endings) ? prev.endings.slice() : []
+										};
+										FEATURES.forEach(function (f) { s.delta[f] = START[f].slice(); });
+										if (keepPrologue && prev && prev.quiz) s.quiz = prev.quiz;
+										return s;
+									}
+
+									/* ---------- Storage (this browser only, no tracking) ---------- */
+									var memStore = null;
+									function load() {
+										var s = null;
+										try { s = JSON.parse(window.localStorage.getItem(KEY)); } catch (e) { s = null; }
+										if (!s || typeof s !== 'object' || s.v !== 2) s = memStore;
+										var base = fresh(s);
+										if (s && typeof s === 'object' && s.v === 2) {
+											Object.keys(base).forEach(function (k) { if (s[k] !== undefined) base[k] = s[k]; });
+										}
+										return base;
+									}
+									function save() {
+										memStore = S;
+										try { window.localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { /* storage blocked: keep in memory */ }
+									}
+									var S = load();
+									var resumeStep = S.step;
+
+									/* ---------- Helpers ---------- */
+									function $(id) { return document.getElementById(id); }
+									function el(tag, cls, html) {
+										var n = document.createElement(tag);
+										if (cls) n.className = cls;
+										if (html != null) n.innerHTML = html;
+										return n;
+									}
+									function fmt(s, v) {
+										return String(s).replace(/\{(\w+)\}/g, function (m, k) { return v && v[k] != null ? v[k] : m; });
+									}
+									function dto() { var n = BASE_DTO; FEATURES.forEach(function (f) { n += S.delta[f][0]; }); return n; }
+									function dgh() { var n = BASE_DGH; FEATURES.forEach(function (f) { n += S.delta[f][1]; }); return n; }
+									function goliveWeeks() { return (S.goliveBase == null ? 0 : S.goliveBase) + S.goliveAdd; }
+									function goliveText() { var n = goliveWeeks(); return n === 0 ? U.goliveNow : fmt(U.goliveIn, { n: n }); }
+									function dyn(s) { return fmt(s, { dto: dto(), dgh: dgh(), golive: goliveText() }); }
+									function icon(v) { return v === 'met' ? '✓' : (v === 'partly' ? '◐' : '✗'); }
+									function flowOf(id) { for (var i = 0; i < FLOW.length; i++) if (FLOW[i].id === id) return i; return -1; }
+									function optOf(d, id) { for (var i = 0; i < d.options.length; i++) if (d.options[i].id === id) return d.options[i]; return null; }
+									function announce(text) {
+										var a = $('stc-announce');
+										a.textContent = '';
+										setTimeout(function () { a.textContent = text; }, 60);
+									}
+									function rankOn() { return (S.l1.rank === 'all' || S.l1.rank === 'support') && S.choices.l2rank !== 'off'; }
+
+									/* ---------- Going back: re-read earlier pages, answers stay as they were ---------- */
+									var PHASE_START = ['monday', 'l1card', 'vendor', 'l2card', 'final'];
+									function visible(j) { return !FLOW[j].when || FLOW[j].when(); }
+									function prevStep(cur) {
+										var i = flowOf(cur);
+										for (var j = i - 1; j >= 0; j--) if (visible(j)) return FLOW[j].id;
+										return null;
+									}
+									function goTo(id) { S.step = id; save(); render(true); }
+									/* Numbers as they were when a page was first shown, so going back shows the same sums */
+									function snapVals(key) {
+										if (!S.snap[key]) { S.snap[key] = { dto: dto(), dgh: dgh(), golive: goliveText() }; save(); }
+										return S.snap[key];
+									}
+
+									function avatar(who) {
+										var p = C.people[who];
+										var ink = who === 'malik' ? '#ffffff' : '#3c3b3b';
+										return '<svg class="stc-avatar" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle cx="20" cy="20" r="20" fill="' + p.color + '"/>' +
+											'<text x="20" y="25.6" text-anchor="middle" font-size="16" font-weight="700" font-family="Source Sans Pro, Helvetica, sans-serif" fill="' + ink + '">' + p.init + '</text></svg>';
+									}
+									function story(parent, items) {
+										(items || []).forEach(function (it) {
+											if (it.who === 'story') { parent.appendChild(el('p', 'stc-text', dyn(it.t))); return; }
+											var p = C.people[it.who];
+											parent.appendChild(el('div', 'stc-say',
+												'<div class="stc-speaker">' + avatar(it.who) + '<span class="stc-speaker-name">' + p.name + '</span>' +
+												'<span class="stc-speaker-role">' + (it.via ? it.via + ' · ' : '') + p.role + '</span></div>' +
+												'<div class="stc-bubble' + (it.mail ? ' is-mail' : '') + '"><p>' + dyn(it.t) + '</p></div>'));
+										});
+									}
+									function points(list) {
+										return '<ul class="stc-points">' + list.map(function (t) { return '<li>' + dyn(t) + '</li>'; }).join('') + '</ul>';
+									}
+									function whyBox(list) {
+										return el('div', 'stc-why', '<p class="stc-why-label">' + U.why + '</p>' + points(list));
+									}
+									function verdictBox(v, text, conf) {
+										return el('div', 'stc-verdict is-' + v,
+											'<p class="stc-verdict-label">' + U.verdict[v] + '</p><p class="stc-verdict-text">' + dyn(text) + '</p>' +
+											(conf ? '<p class="stc-calib">' + U.calib[v + '-' + conf] + '</p>' : ''));
+									}
+									function button(label, cls, fn) {
+										var b = el('button', 'stc-btn' + (cls ? ' ' + cls : ''), label);
+										b.type = 'button';
+										b.addEventListener('click', fn);
+										return b;
+									}
+									function addLog(t, v, tag) { S.log.push({ t: t, v: v, x: tag || '' }); }
+									function setBoard(f, key, val) { S.board[f] = S.board[f] || {}; S.board[f][key] = val; }
+
+									/* ---------- Chrome: stepper, meters, board, log ---------- */
+									var stage = $('stc-stage'), side = $('stc-side'), sideToggle = $('stc-side-toggle');
+									var lastMeters = {};
+
+									function buildChrome() {
+										$('stc-brand').textContent = U.brand;
+										$('stc-stepper').setAttribute('aria-label', U.progress);
+										side.setAttribute('aria-label', U.overview);
+										$('stc-meters-title').textContent = U.meters;
+										$('stc-board-title').textContent = U.board;
+										$('stc-log-title').textContent = U.path;
+										var st = $('stc-stepper');
+										st.innerHTML = '';
+										U.phases.forEach(function (name, i) {
+											st.appendChild(el('li', null, '<span class="stc-step-nr" aria-hidden="true">' + (i === 0 ? '0' : i) + '</span><span class="stc-step-label">' + name + '</span>'));
+										});
+										setToggleLabel();
+									}
+									function setToggleLabel() {
+										sideToggle.firstChild.textContent = side.classList.contains('is-open') ? U.hidePanel : U.showPanel;
+									}
+									sideToggle.addEventListener('click', function () {
+										var open = side.classList.toggle('is-open');
+										sideToggle.setAttribute('aria-expanded', String(open));
+										setToggleLabel();
+									});
+
+									function updateChrome() {
+										var i = flowOf(S.step);
+										var phase = i < 0 ? -1 : FLOW[i].phase;
+										Array.prototype.forEach.call($('stc-stepper').children, function (li, n) {
+											var reached = flowOf(PHASE_START[n]) <= S.furthest && S.step !== 'intro';
+											li.className = n === phase ? 'is-current' : (reached ? 'is-done' : '');
+											if (n === phase) li.setAttribute('aria-current', 'step'); else li.removeAttribute('aria-current');
+											var inner = '<span class="stc-step-nr" aria-hidden="true">' + n + '</span><span class="stc-step-label">' + U.phases[n] + '</span>';
+											if (reached && n !== phase) {
+												li.innerHTML = '';
+												var b = el('button', 'stc-step-btn', inner);
+												b.type = 'button';
+												b.setAttribute('aria-label', fmt(U.jumpTo, { name: U.phases[n] }));
+												b.addEventListener('click', function () { goTo(PHASE_START[n]); });
+												li.appendChild(b);
+											} else {
+												li.innerHTML = inner;
+											}
+										});
+										renderMeters(); renderBoard(); renderLog();
+									}
+									function renderMeters() {
+										var m = $('stc-meters');
+										var rows = [
+											{ k: 'dto', label: U.dto, val: String(dto()), sub: fmt(U.today, { n: BASE_DTO }), hidden: false },
+											{ k: 'dgh', label: U.dgh, val: S.reveal ? String(dgh()) : '?', sub: S.reveal ? fmt(U.today, { n: BASE_DGH }) : U.hidden, hidden: !S.reveal },
+											{ k: 'golive', label: U.golive, val: S.golive ? goliveText() : '–', sub: S.golive ? U.goliveSub : U.goliveNot, hidden: !S.golive }
+										];
+										m.innerHTML = '';
+										rows.forEach(function (r) {
+											var d = el('div', 'stc-meter' + (r.hidden ? ' is-hidden' : ''),
+												'<span class="stc-meter-label">' + r.label + '</span><span class="stc-meter-val">' + r.val + '</span><span class="stc-meter-sub">' + r.sub + '</span>');
+											if (lastMeters[r.k] != null && lastMeters[r.k] !== r.val && !reduceMotion) {
+												d.classList.add('is-changed');
+												setTimeout(function () { d.classList.remove('is-changed'); }, 1400);
+											}
+											lastMeters[r.k] = r.val;
+											m.appendChild(d);
+										});
+									}
+									function renderBoard() {
+										var b = $('stc-board');
+										b.innerHTML = '';
+										C.features.forEach(function (f) {
+											var x = S.board[f.id] || {};
+											var ref = C.board[f.id];
+											var l1 = x.l1 ? '<span class="stc-chip is-' + x.l1.v + '">' + U.l1 + ' · ' + x.l1.t + '</span>' : '<span class="stc-chip is-empty">' + U.l1 + ' · …</span>';
+											var de = x.l2 ? '<span class="stc-chip is-tone-' + ref.deTone + '">' + U.de + ' · ' + ref.deShort + '</span>' : '<span class="stc-chip is-empty">' + U.de + ' · …</span>';
+											b.appendChild(el('li', 'stc-brow', '<span class="stc-brow-name">' + f.name + '</span><span class="stc-brow-chips">' + l1 + de + '</span>'));
+										});
+									}
+									function renderLog() {
+										var l = $('stc-log');
+										l.innerHTML = '';
+										if (!S.log.length) { l.appendChild(el('li', 'stc-log-empty', U.nothingYet)); return; }
+										S.log.forEach(function (it) {
+											l.appendChild(el('li', 'stc-log-item is-' + it.v,
+												'<span class="stc-log-icon" aria-hidden="true">' + icon(it.v) + '</span><span>' + it.t +
+												(it.x ? ' <span class="stc-log-tag">' + it.x + '</span>' : '') + '<span class="stc-sr"> (' + U.verdict[it.v] + ')</span></span>'));
+										});
+									}
+
+									/* ---------- Scene frame ---------- */
+									function shell(eyebrow, title) {
+										stage.innerHTML = '';
+										var sc = el('section', 'stc-scene');
+										var head = el('header', 'stc-head');
+										head.appendChild(el('p', 'stc-eyebrow', eyebrow));
+										var h = el('h3', 'stc-title', dyn(title));
+										h.tabIndex = -1;
+										head.appendChild(h);
+										sc.appendChild(head);
+										stage.appendChild(sc);
+										return sc;
+									}
+									function footer(sc) {
+										var f = el('div', 'stc-footer');
+										var prev = S.step === 'intro' ? null : prevStep(S.step);
+										var i = flowOf(S.step);
+										if (i >= 0 && i < S.furthest) {
+											var note = el('p', 'stc-foot-note', U.reviewNote);
+											note.setAttribute('data-keep', '');
+											f.appendChild(note);
+										}
+										if (prev) {
+											var back = button('← ' + U.back, 'stc-btn--back', function () { goTo(prev); });
+											back.setAttribute('data-keep', '');
+											f.appendChild(back);
+										}
+										if (i >= 0 && i < S.furthest) {
+											var left = button(U.leftOff, '', function () { goTo(FLOW[S.furthest].id); });
+											left.setAttribute('data-keep', '');
+											f.appendChild(left);
+										}
+										sc.appendChild(f);
+										return f;
+									}
+									/* Empty the footer but keep the navigation buttons */
+									function clearFoot(foot) {
+										Array.prototype.slice.call(foot.children).forEach(function (c) { if (!c.hasAttribute('data-keep')) foot.removeChild(c); });
+									}
+									function nextButton(foot) { foot.appendChild(button(U.continue, 'stc-btn--primary', goNext)); }
+									function goNext() {
+										var i = flowOf(S.step);
+										var next = 'ending';
+										for (var j = i + 1; j < FLOW.length; j++) {
+											if (visible(j)) { next = FLOW[j].id; break; }
+										}
+										S.step = next;
+										S.furthest = Math.max(S.furthest, flowOf(next));
+										save();
+										render(true);
+									}
+									var firstRender = true;
+									function settle(moved) {
+										updateChrome();
+										var h = stage.querySelector('.stc-title');
+										if (!h) return;
+										if (moved) {
+											try { h.focus({ preventScroll: true }); } catch (e) { h.focus(); }
+											var top = root.getBoundingClientRect().top;
+											if (top < 0 || top > window.innerHeight * 0.6) root.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+										}
+										if (!firstRender) announce(h.textContent);
+										firstRender = false;
+									}
+									function render(moved) {
+										var id = S.step;
+										if (flowOf(id) > S.furthest) S.furthest = flowOf(id);
+										if (id === 'intro') renderIntro();
+										else if (id === 'monday') renderMonday();
+										else if (id === 'prologue') renderPrologue();
+										else if (id === 'l1card' || id === 'l2card') renderLevelCard(id);
+										else if (id === 'l1intro') renderL1Intro();
+										else if (id === 'l1result') renderL1Result();
+										else if (id === 'vendor') renderVendor();
+										else if (id === 'l2intro') renderL2Intro();
+										else if (id === 'oversight') renderOversight();
+										else if (id === 'recheck') { if (rankOn()) renderDecision('recheck'); else renderRecheckInfo(); }
+										else if (id === 'ending') renderEnding();
+										else if (C.dec[id]) renderDecision(id);
+										else { S.step = 'intro'; renderIntro(); }
+										settle(moved);
+									}
+
+									/* ---------- Intro ---------- */
+									function renderIntro() {
+										var d = C.scenes.intro;
+										S.step = 'intro';
+										var sc = shell(d.eyebrow, d.title);
+										sc.appendChild(el('p', 'stc-text', d.lead));
+										sc.appendChild(levelsBox());
+										sc.appendChild(el('p', 'stc-small', d.note));
+										var foot = footer(sc);
+										if (resumeStep && resumeStep !== 'intro') {
+											foot.insertBefore(el('p', 'stc-small', d.resumeNote), foot.firstChild);
+											foot.appendChild(button(U.restart, '', function () { S = fresh(S); S.step = 'monday'; resumeStep = null; save(); render(true); }));
+											foot.appendChild(button(U.resume, 'stc-btn--primary', function () { S.step = resumeStep; resumeStep = null; save(); render(true); }));
+										} else {
+											foot.appendChild(button(U.start, 'stc-btn--primary', function () { S = fresh(S); S.step = 'monday'; save(); render(true); }));
+										}
+									}
+
+									/* ---------- Monday: Thiago's message and the dashboard ---------- */
+									function renderMonday() {
+										var d = C.scenes.monday;
+										var sc = shell(d.eyebrow, d.title);
+										story(sc, d.story);
+										var tool = el('div', 'stc-tool');
+										tool.innerHTML = '<div class="stc-tool-head"><span class="stc-tool-title"><span class="stc-tool-name">ZapTalento</span><span class="stc-tool-tag">' + d.toolTag + '</span></span><span class="stc-tool-kpi">' + d.toolKpi + '</span></div>' +
+											'<ul class="stc-tool-list">' + C.features.map(function (f) {
+												return '<li><span class="stc-tool-feat">' + f.name + '</span><span class="stc-tool-promise">' + f.promise + '</span></li>';
+											}).join('') + '</ul>';
+										sc.appendChild(tool);
+										sc.appendChild(el('p', 'stc-text', d.about));
+										nextButton(footer(sc));
+									}
+									function levelsBox() {
+										return el('div', 'stc-levels', C.scenes.intro.levels.map(function (l) {
+											return '<div class="stc-level"><span class="stc-level-name">' + l.name + '</span><span class="stc-level-q">' + l.q + '</span></div>';
+										}).join(''));
+									}
+
+									/* ---------- Prologue with quick check ---------- */
+									function renderPrologue() {
+										var d = C.scenes.prologue;
+										var sc = shell(d.eyebrow, d.title);
+										story(sc, d.story);
+										sc.appendChild(el('p', 'stc-text', d.levelsIntro));
+										sc.appendChild(levelsBox());
+										sc.appendChild(el('p', 'stc-subtitle', d.startTitle));
+										story(sc, d.debora);
+										sc.appendChild(el('div', 'stc-task', '<span class="stc-task-label">' + U.yourCall + '</span><p class="stc-task-text">' + d.quizTitle + '</p>'));
+										var rows = el('div', 'stc-rows');
+										sc.appendChild(rows);
+										var closing = el('p', 'stc-text', d.closing);
+										var foot = footer(sc);
+										function check() {
+											var all = d.quiz.every(function (q, i) { return S.quiz[i] != null; });
+											if (all && !closing.parentNode) { sc.insertBefore(closing, foot); nextButton(foot); }
+										}
+										d.quiz.forEach(function (q, i) {
+											var row = el('div', 'stc-row');
+											row.appendChild(el('p', 'stc-row-q', (i + 1) + '. ' + q.t));
+											var btns = el('div', 'stc-row-btns');
+											var fb = el('div');
+											[true, false].forEach(function (val) {
+												var b = el('button', 'stc-toggle', val ? U.trueBtn : U.falseBtn);
+												b.type = 'button';
+												b.setAttribute('data-v', String(val));
+												b.addEventListener('click', function () {
+													S.quiz[i] = val; save();
+													show();
+													check();
+												});
+												btns.appendChild(b);
+											});
+											function show() {
+												var ans = S.quiz[i];
+												if (ans == null) return;
+												var ok = ans === q.a;
+												Array.prototype.forEach.call(btns.children, function (b) {
+													b.disabled = true;
+													if (b.getAttribute('data-v') === String(ans)) b.classList.add(ok ? 'is-correct' : 'is-wrong');
+												});
+												row.classList.add('is-done');
+												fb.className = 'stc-fb ' + (ok ? 'is-met' : 'is-missed');
+												fb.innerHTML = '<b>' + (ok ? U.right : U.notQuite) + '</b> ' + q.fb;
+											}
+											row.appendChild(btns);
+											row.appendChild(fb);
+											rows.appendChild(row);
+											show();
+										});
+										check();
+									}
+
+									/* ---------- Level cards: a full card when a level starts ---------- */
+									function renderLevelCard(id) {
+										var d = C.scenes[id];
+										stage.innerHTML = '';
+										var sc = el('section', 'stc-scene');
+										var card = el('div', 'stc-levelcard is-' + id);
+										card.appendChild(el('p', 'stc-lc-when', d.when));
+										var h = el('h3', 'stc-title stc-lc-level', d.level);
+										h.tabIndex = -1;
+										card.appendChild(h);
+										card.appendChild(el('p', 'stc-lc-q', d.q));
+										card.appendChild(el('p', 'stc-text', d.text));
+										card.appendChild(el('p', 'stc-subtitle', d.listTitle));
+										card.appendChild(el('ul', 'stc-lc-list', C.features.map(function (f) {
+											if (id !== 'l2card') return '<li>' + f.name + '</li>';
+											var x = S.board[f.id] && S.board[f.id].l1;
+											if (S.l1[f.id] === 'drop') return '<li class="is-dropped"><span class="stc-lc-name">' + f.name + '</span> <span class="stc-lc-tag">' + d.dropped + '</span></li>';
+											return '<li><span class="stc-lc-name">' + f.name + '</span>' + (x ? ' <span class="stc-lc-tag">' + x.t + '</span>' : '') + '</li>';
+										}).join('')));
+										sc.appendChild(card);
+										stage.appendChild(sc);
+										var foot = footer(sc);
+										foot.appendChild(button(d.start, 'stc-btn--primary', goNext));
+									}
+
+									/* ---------- Level 1 intro and result ---------- */
+									function renderL1Intro() {
+										var d = C.scenes.l1intro;
+										var sc = shell(d.eyebrow, d.title);
+										story(sc, d.story);
+										if (d.bookBeat) sc.appendChild(el('p', 'stc-text', d.bookBeat));
+										sc.appendChild(el('div', 'stc-task', '<span class="stc-task-label">Level 1</span><p class="stc-task-text">' + d.question + '</p>'));
+										sc.appendChild(el('p', 'stc-text', d.note));
+										nextButton(footer(sc));
+									}
+									function renderL1Result() {
+										var d = C.scenes.l1result;
+										S.reveal = true;
+										var snap = snapVals('l1result');
+										save();
+										var sc = shell(d.eyebrow, d.title);
+										sc.appendChild(el('p', 'stc-text', d.text));
+										var rows = d.rows.map(function (r) {
+											return '<tr><td>' + r.t + '</td><td class="is-num">' + r.dto + '</td><td class="is-num">' + r.dgh + '</td></tr>';
+										}).join('') + '<tr class="is-you"><td><b>' + d.youRow + '</b></td><td class="is-num">' + snap.dto + '</td><td class="is-num">' + snap.dgh + '</td></tr>';
+										sc.appendChild(el('div', 'stc-table-wrap', '<table><thead><tr><th></th><th>' + U.dto + '</th><th>' + U.dgh + '</th></tr></thead><tbody>' + rows + '</tbody></table>'));
+										story(sc, d.story);
+										sc.appendChild(el('p', 'stc-text', d.note));
+										nextButton(footer(sc));
+									}
+
+									/* ---------- Generic decision ---------- */
+									function applyEffects(d, o) {
+										if (d.stage === 'l1') {
+											S.l1[d.feature] = o.id;
+											setBoard(d.feature, 'l1', { t: o.board, v: o.verdict });
+										}
+										if (o.delta && d.feature) S.delta[d.feature] = o.delta.slice();
+										if (o.keepRank) S.delta.rank = S.l1.rank === 'all' ? [-6, 2] : [-5, -4];
+										if (o.flag) S.flags[o.flag] = true;
+										if (typeof o.golive === 'number') S.goliveBase = o.golive;
+										if (d.goliveAdd) S.goliveAdd += d.goliveAdd;
+										if (d.stage === 'l2' && d.feature && !(S.board[d.feature] && S.board[d.feature].l2)) setBoard(d.feature, 'l2', { v: o.verdict });
+										if (d.stage === 'final') S.final = o.id;
+									}
+									function renderDecision(id) {
+										var d = C.dec[id];
+										var sc = shell(d.eyebrow, d.title);
+										if (id === 'recheck') {
+											story(sc, C.scenes.recheck.story);
+											sc.appendChild(el('p', 'stc-text', fmt(C.scenes.recheck.sums, snapVals('recheck'))));
+										}
+										story(sc, d.story);
+										if (d.what) sc.appendChild(el('p', 'stc-text', d.what));
+										if (d.data) sc.appendChild(el('div', 'stc-data', '<p class="stc-data-label">' + d.data.label + '</p>' + points(d.data.items)));
+										story(sc, d.storyAfter);
+										if (d.note) sc.appendChild(el('p', 'stc-text', d.note));
+										sc.appendChild(el('div', 'stc-task', '<span class="stc-task-label">' + U.yourCall + '</span><p class="stc-task-text">' + d.task + '</p>'));
+										var list = el('div', 'stc-choices');
+										list.setAttribute('role', 'group');
+										list.setAttribute('aria-label', d.task);
+										sc.appendChild(list);
+										var out = el('div', 'stc-out');
+										sc.appendChild(out);
+										var foot = footer(sc);
+										var tried = S.tried[id] || [];
+										var done = S.choices[id] != null;
+										var picked = null;
+										var btns = d.options.map(function (o, i) {
+											var b = el('button', 'stc-choice', '<span class="stc-key" aria-hidden="true">' + 'ABCD'.charAt(i) + '</span><span class="stc-choice-text">' + o.text + '</span>');
+											b.type = 'button';
+											b.setAttribute('aria-pressed', 'false');
+											if (tried.indexOf(o.id) > -1) {
+												b.disabled = true;
+												b.classList.add('is-tried');
+												b.appendChild(el('span', 'stc-tag', U.tried));
+											}
+											if (done) b.disabled = true;
+											b.addEventListener('click', function () {
+												picked = o;
+												btns.forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
+												b.setAttribute('aria-pressed', 'true');
+												askConfidence();
+											});
+											list.appendChild(b);
+											return b;
+										});
+										function mark(o) {
+											var b = btns[d.options.indexOf(o)];
+											b.classList.add('is-picked', 'is-' + o.verdict);
+											b.setAttribute('aria-pressed', 'true');
+										}
+										function askConfidence() {
+											out.innerHTML = '';
+											var bar = el('div', 'stc-conf', '<span class="stc-conf-label">' + U.confQ + '</span>');
+											var chips = el('div', 'stc-conf-chips');
+											['guess', 'fair', 'very'].forEach(function (c) {
+												var ch = el('button', 'stc-cchip', U.conf[c]);
+												ch.type = 'button';
+												ch.addEventListener('click', function () { finish(picked, c); });
+												chips.appendChild(ch);
+											});
+											bar.appendChild(chips);
+											out.appendChild(bar);
+											chips.firstChild.focus();
+										}
+										function showOutcome(o, c) {
+											out.innerHTML = '';
+											out.appendChild(verdictBox(o.verdict, o.fb, c));
+											if (d.why) out.appendChild(whyBox(d.why));
+											if (d.after) {
+												out.appendChild(el('p', 'stc-subtitle', d.afterTitle));
+												var head = '<thead><tr>' + d.afterCols.map(function (t) { return '<th>' + t + '</th>'; }).join('') + '</tr></thead>';
+												var body = d.after.map(function (r) {
+													return '<tr><td data-label=""><b>' + r[0] + '</b></td><td data-label="' + d.afterCols[1] + '">' + r[1] + '</td><td data-label="' + d.afterCols[2] + '">' + r[2] + '</td></tr>';
+												}).join('');
+												out.appendChild(el('div', 'stc-table-wrap', '<table class="stc-stack">' + head + '<tbody>' + body + '</tbody></table>'));
+											}
+										}
+										function finish(o, c) {
+											btns.forEach(function (b) { b.disabled = true; });
+											mark(o);
+											S.attempts.push({ d: id, v: o.verdict, c: c });
+											if (o.retry) {
+												S.tried[id] = (S.tried[id] || []).concat(o.id);
+												if (o.goliveAdd) S.goliveAdd += o.goliveAdd;
+												addLog(d.log, o.verdict, o.goliveAdd ? U.plusWeek : U.tried);
+												save();
+												out.innerHTML = '';
+												out.appendChild(verdictBox(o.verdict, o.fb, c));
+												clearFoot(foot);
+												foot.appendChild(button(U.tryAgain, 'stc-btn--primary', function () { render(true); }));
+												updateChrome();
+												announce(U.verdict[o.verdict]);
+												return;
+											}
+											S.choices[id] = o.id;
+											S.conf[id] = c;
+											S.verdicts[id] = o.verdict;
+											applyEffects(d, o);
+											addLog(d.log, o.verdict, d.goliveAdd ? U.plusWeek : '');
+											save();
+											showOutcome(o, c);
+											clearFoot(foot);
+											nextButton(foot);
+											updateChrome();
+											announce(U.verdict[o.verdict] + '. ' + out.querySelector('.stc-verdict-text').textContent);
+										}
+										if (done) {
+											var o = optOf(d, S.choices[id]);
+											mark(o);
+											showOutcome(o, S.conf[id]);
+											nextButton(foot);
+										}
+									}
+
+									/* ---------- Vendor call: a chat, the open questions stay at the bottom ---------- */
+									function renderVendor() {
+										var d = C.scenes.vendor;
+										var sc = shell(d.eyebrow, d.title);
+										story(sc, d.story);
+										var chat = el('div', 'stc-chat');
+										chat.setAttribute('aria-label', d.title);
+										sc.appendChild(chat);
+										var result = el('div', 'stc-out');
+										sc.appendChild(result);
+										var ask = el('div', 'stc-ask');
+										ask.appendChild(el('div', 'stc-task', '<span class="stc-task-label">' + U.yourCall + '</span><p class="stc-task-text">' + d.task + '</p>'));
+										var counter = el('p', 'stc-counter');
+										ask.appendChild(counter);
+										var qs = el('div', 'stc-qs');
+										qs.setAttribute('role', 'group');
+										qs.setAttribute('aria-label', d.task);
+										ask.appendChild(qs);
+										sc.appendChild(ask);
+										var foot = footer(sc);
+										function qOf(id) { for (var i = 0; i < d.questions.length; i++) if (d.questions[i].id === id) return d.questions[i]; return null; }
+										function strongCount() { return S.vendor.filter(function (id) { return qOf(id).strong; }).length; }
+										function addExchange(q) {
+											chat.appendChild(el('div', 'stc-msg is-me', '<span class="stc-msg-who">' + d.me + ' · ' + C.people.luana.name + '</span><p class="stc-msg-bubble">' + q.q + '</p>'));
+											var reply = el('div', 'stc-msg');
+											story(reply, [{ who: 'rodrigo', t: q.a }]);
+											reply.appendChild(el('p', 'stc-fb ' + (q.strong ? 'is-met' : 'is-missed'), '<b>' + (q.strong ? U.strong : U.weak) + '.</b> ' + q.fb));
+											chat.appendChild(reply);
+										}
+										function buildChoices() {
+											qs.innerHTML = '';
+											var left = 3 - S.vendor.length;
+											counter.textContent = fmt(U.questionsLeft, { n: left });
+											d.questions.forEach(function (q) {
+												if (S.vendor.indexOf(q.id) > -1) return;
+												var b = el('button', 'stc-q', q.q);
+												b.type = 'button';
+												b.addEventListener('click', function () { askQ(q); });
+												qs.appendChild(b);
+											});
+										}
+										function finish() {
+											ask.hidden = true;
+											var n = strongCount();
+											var v = n === 3 ? 'met' : (n === 2 ? 'partly' : 'missed');
+											if (S.verdicts.vendor == null) {
+												S.verdicts.vendor = v;
+												addLog(fmt(d.log, { n: n }), v);
+												save();
+												updateChrome();
+											}
+											result.appendChild(verdictBox(v, d.result[v]));
+											nextButton(foot);
+										}
+										function askQ(q) {
+											if (S.vendor.length >= 3 || S.vendor.indexOf(q.id) > -1) return;
+											S.vendor.push(q.id);
+											save();
+											addExchange(q);
+											announce(q.a);
+											if (S.vendor.length >= 3) {
+												finish();
+												foot.querySelector('button').focus({ preventScroll: true });
+												result.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'nearest' });
+												return;
+											}
+											buildChoices();
+											qs.firstChild.focus({ preventScroll: true });
+											ask.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'nearest' });
+										}
+										S.vendor.forEach(function (id) { addExchange(qOf(id)); });
+										if (S.vendor.length >= 3) finish(); else buildChoices();
+									}
+
+									/* ---------- Level 2 intro: cards for dropped features ---------- */
+									function renderL2Intro() {
+										var d = C.scenes.l2intro;
+										S.golive = true;
+										var dropped = FEATURES.filter(function (f) { return S.l1[f] === 'drop'; });
+										dropped.forEach(function (f) { if (!(S.board[f] && S.board[f].l2)) setBoard(f, 'l2', { v: 'met' }); });
+										save();
+										var sc = shell(d.eyebrow, d.title);
+										story(sc, d.story);
+										sc.appendChild(el('p', 'stc-text', d.note));
+										if (dropped.length) {
+											sc.appendChild(el('p', 'stc-subtitle', d.droppedTitle));
+											var cards = el('div', 'stc-cards');
+											dropped.forEach(function (f) {
+												var name = C.features.filter(function (x) { return x.id === f; })[0].name;
+												cards.appendChild(el('div', 'stc-card',
+													'<p class="stc-card-label">' + name + '</p><p class="stc-card-title">' + d.cards[f].t + '</p><p class="stc-card-why"><b>' + U.why + ':</b> ' + d.cards[f].why + '</p>'));
+											});
+											sc.appendChild(cards);
+										}
+										sc.appendChild(el('p', 'stc-text', dropped.length ? d.next : d.allKept));
+										nextButton(footer(sc));
+									}
+
+									/* ---------- Oversight moment ---------- */
+									function renderOversight() {
+										var d = C.scenes.oversight;
+										var sc = shell(d.eyebrow, d.title);
+										story(sc, d.story);
+										sc.appendChild(el('div', 'stc-task', '<span class="stc-task-label">' + U.yourCall + '</span><p class="stc-task-text">' + d.task + '</p>'));
+										var rows = el('div', 'stc-rows');
+										sc.appendChild(rows);
+										var result = el('div', 'stc-out');
+										sc.appendChild(result);
+										var foot = footer(sc);
+										function rightCount() { return d.items.filter(function (it) { return S.oversight[it.id] === it.right; }).length; }
+										function check() {
+											var all = d.items.every(function (it) { return S.oversight[it.id] != null; });
+											if (!all || result.firstChild) return;
+											var n = rightCount();
+											var v = n === 3 ? 'met' : (n === 2 ? 'partly' : 'missed');
+											if (S.verdicts.oversight == null) {
+												S.verdicts.oversight = v;
+												addLog(fmt(d.log, { n: n }), v);
+												save();
+												updateChrome();
+											}
+											result.appendChild(verdictBox(v, d.result[v]));
+											result.appendChild(el('p', 'stc-text', d.closing));
+											nextButton(foot);
+										}
+										d.items.forEach(function (it) {
+											var row = el('div', 'stc-row');
+											row.appendChild(el('p', 'stc-row-q', '<b>' + it.name + ':</b> ' + it.desc));
+											row.appendChild(el('p', 'stc-row-meta', U.score + ': <b>' + it.score + '</b> / 100'));
+											var btns = el('div', 'stc-row-btns');
+											var fb = el('div');
+											['agree', 'overrule'].forEach(function (k) {
+												var b = el('button', 'stc-toggle', U[k]);
+												b.type = 'button';
+												b.setAttribute('data-k', k);
+												b.addEventListener('click', function () { S.oversight[it.id] = k; save(); show(); check(); });
+												btns.appendChild(b);
+											});
+											function show() {
+												var ans = S.oversight[it.id];
+												if (ans == null) return;
+												var ok = ans === it.right;
+												Array.prototype.forEach.call(btns.children, function (b) {
+													b.disabled = true;
+													if (b.getAttribute('data-k') === ans) b.classList.add(ok ? 'is-correct' : 'is-wrong');
+												});
+												row.classList.add('is-done');
+												fb.className = 'stc-fb ' + (ok ? 'is-met' : 'is-missed');
+												fb.innerHTML = '<b>' + (ok ? U.right : U.notQuite) + '</b> ' + it.fb;
+											}
+											row.appendChild(btns);
+											row.appendChild(fb);
+											rows.appendChild(row);
+											show();
+										});
+										check();
+									}
+
+									/* ---------- Recheck without a ranking ---------- */
+									function renderRecheckInfo() {
+										var d = C.scenes.recheck;
+										var sc = shell(d.eyebrow, d.title);
+										story(sc, d.story);
+										sc.appendChild(el('p', 'stc-text', d.noRank));
+										sc.appendChild(el('p', 'stc-text', fmt(d.sums, snapVals('recheck'))));
+										sc.appendChild(el('p', 'stc-text', d.closing));
+										nextButton(footer(sc));
+									}
+
+									/* ---------- Ending and debrief ---------- */
+									function endingId() {
+										if (S.flags.emotion) return 'fined';
+										if (S.flags.wc) return 'stopped';
+										if (S.flags.knockout) return 'lost';
+										if (dgh() >= POINTLESS) return 'pointless';
+										if (S.final === 'two' || S.final === 'half') return 'exposed';
+										return 'cleared';
+									}
+									function renderEnding() {
+										var d = C.scenes.ending;
+										var E = C.endings;
+										if (!S.ending) {
+											S.ending = endingId();
+											if (S.endings.indexOf(S.ending) < 0) S.endings.push(S.ending);
+											save();
+										}
+										var e = E.list[S.ending];
+										var noAI = S.ending === 'pointless' && FEATURES.every(function (f) { return S.delta[f][0] === 0 && S.delta[f][1] === 0; });
+										var sc = shell(d.eyebrow, d.title);
+										sc.appendChild(el('div', 'stc-ending is-' + e.type,
+											'<span class="stc-ending-icon" aria-hidden="true">' + (e.type === 'success' ? '✓' : (e.type === 'partly' ? '◐' : '!')) + '</span>' +
+											'<span class="stc-ending-text"><span class="stc-ending-meta">' + E.types[e.type] + '</span><span class="stc-ending-name">' + e.name + '</span></span>'));
+										sc.appendChild(el('div', null, points(noAI ? e.noAI : e.text)));
+										if (e.change) sc.appendChild(el('p', 'stc-change', '<b>' + E.changeLabel + ':</b> ' + e.change));
+
+										/* Numbers */
+										var sec = section(sc, d.metersTitle);
+										var rows = d.metersRows.map(function (r) {
+											return '<tr><td>' + r.t + '</td><td class="is-num">' + r.dto + '</td><td class="is-num">' + r.dgh + '</td><td class="is-num">–</td></tr>';
+										}).join('') + '<tr class="is-you"><td><b>' + C.scenes.l1result.youRow + '</b></td><td class="is-num">' + dto() + '</td><td class="is-num">' + dgh() + '</td><td class="is-num">' + goliveText() + '</td></tr>';
+										sec.appendChild(el('div', 'stc-table-wrap', '<table><thead><tr><th></th><th>' + U.dto + '</th><th>' + U.dgh + '</th><th>' + U.golive + '</th></tr></thead><tbody>' + rows + '</tbody></table>'));
+
+										/* Board */
+										sec = section(sc, d.boardTitle);
+										var head = '<thead><tr>' + d.boardCols.map(function (t) { return '<th>' + t + '</th>'; }).join('') + '</tr></thead>';
+										var body = C.features.map(function (f) {
+											var x = S.board[f.id] || {};
+											var ref = C.board[f.id];
+											var mine = x.l1 ? '<span class="stc-chip is-' + x.l1.v + '">' + icon(x.l1.v) + ' ' + x.l1.t + '</span>' : '–';
+											return '<tr><td data-label=""><b>' + f.name + '</b></td>' +
+												'<td data-label="' + d.boardCols[1] + '">' + mine + '<br><span class="stc-small">' + U.best + ' ' + ref.l1 + '</span></td>' +
+												'<td data-label="' + d.boardCols[2] + '">' + ref.de + '</td>' +
+												'<td data-label="' + d.boardCols[3] + '">' + ref.brNow + '</td>' +
+												'<td data-label="' + d.boardCols[4] + '">' + ref.brNext + '</td></tr>';
+										}).join('');
+										sec.appendChild(el('div', 'stc-table-wrap', '<table class="stc-stack">' + head + '<tbody>' + body + '</tbody></table>'));
+
+										/* Results */
+										sec = section(sc, d.resultsTitle);
+										var l1met = L1.filter(function (k) { return S.verdicts[k] === 'met'; }).length;
+										var l2played = L2.filter(function (k) { return S.verdicts[k] != null; });
+										var l2met = l2played.filter(function (k) { return S.verdicts[k] === 'met'; }).length;
+										var vstrong = S.vendor.filter(function (id) { return C.scenes.vendor.questions.some(function (q) { return q.id === id && q.strong; }); }).length;
+										var res = [
+											[d.results.l1, l1met + ' / 4'],
+											[d.results.vendor, vstrong + ' / 3'],
+											[d.results.l2, l2met + ' / ' + l2played.length]
+										];
+										if (S.verdicts.oversight) res.push([d.results.oversight, overRight() + ' / 3']);
+										var fo = S.final ? optOf(C.dec.final, S.final) : null;
+										if (fo) res.push([d.results.final, fo.id === 'one' ? '✓' : '◐']);
+										var grid = el('div', 'stc-results');
+										res.forEach(function (r) { grid.appendChild(el('div', 'stc-result', '<span class="stc-result-label">' + r[0] + '</span><span class="stc-result-val">' + r[1] + '</span>')); });
+										sec.appendChild(grid);
+										var vm = S.attempts.filter(function (a) { return a.c === 'very' && a.v === 'missed'; }).length;
+										var gm = S.attempts.filter(function (a) { return a.c === 'guess' && a.v === 'met'; }).length;
+										sec.appendChild(el('p', 'stc-text', '<b>' + d.conf.title + '</b> ' + (vm ? fmt(d.conf.veryMissed, { n: vm }) : d.conf.allGood) + ' · ' + fmt(d.conf.guessMet, { n: gm })));
+
+										/* Take-aways */
+										sec = section(sc, d.takeawaysTitle);
+										sec.appendChild(el('ol', 'stc-takeaways', d.takeaways.map(function (t) { return '<li>' + dyn(t) + '</li>'; }).join('')));
+
+										/* Checklist */
+										sec = section(sc, d.checklistTitle);
+										sec.appendChild(el('div', 'stc-checklist', d.checklist.map(function (c) {
+											return '<div class="stc-checkcol"><p class="stc-subtitle">' + c.t + '</p><ul>' + c.items.map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ul></div>';
+										}).join('')));
+
+										/* Endings found */
+										sec = section(sc, d.endingsTitle + ' (' + S.endings.length + ' / ' + E.order.length + ')');
+										sec.appendChild(el('div', 'stc-endings', E.order.map(function (k) {
+											var x = E.list[k];
+											var found = S.endings.indexOf(k) > -1;
+											return '<div class="stc-endcard ' + (found ? 'is-found is-' + x.type : 'is-locked') + (k === S.ending ? ' is-current' : '') + '">' +
+												'<span class="stc-endcard-name">' + (found ? x.name : '? ? ?') + '</span><span>' + (found ? E.types[x.type] : E.locked) + '</span></div>';
+										}).join('')));
+
+										/* Sources */
+										sec = section(sc, d.sourcesTitle);
+										var det = el('details', 'stc-sources', '<summary>' + U.showSources + '</summary><ul class="stc-points">' + d.sources.map(function (s) { return '<li>' + s + '</li>'; }).join('') + '</ul>');
+										sec.appendChild(det);
+										sec.appendChild(el('p', 'stc-legal', d.legal));
+
+										var foot = footer(sc);
+										foot.appendChild(button(U.restartAll, '', function () { S = fresh(S); S.step = 'monday'; save(); render(true); }));
+										foot.appendChild(button(U.replayL1, 'stc-btn--primary', function () { S = fresh(S, true); S.step = 'l1intro'; save(); render(true); }));
+									}
+									function overRight() {
+										return C.scenes.oversight.items.filter(function (it) { return S.oversight[it.id] === it.right; }).length;
+									}
+									function section(sc, title) {
+										var s = el('section', 'stc-section');
+										s.appendChild(el('h4', 'stc-section-title', title));
+										sc.appendChild(s);
+										return s;
+									}
+
+									/* ---------- Start ---------- */
+									buildChrome();
+									S.step = 'intro';
+									render(false);
+								})();
+							</script>
+							<!-- ============ RECRUITING SCENARIO END ============ -->
+
+							<!-- Designer's notes: portfolio context, not part of the scenario block -->
+							<hr class="major" />
+							<section id="design-notes">
+								<h2>Designer’s notes</h2>
+								<h3>Who it’s for</h3>
+								<p>Recruiting and HR teams at companies that are expanding into new countries. The scenario raises awareness that AI in hiring is regulated very differently across borders: a tool that is common and legal at home can be prohibited abroad, or need the works council’s agreement before it’s switched on. It doesn’t turn recruiters into lawyers. It shows them where to stop and ask before a tool travels with the company. It works from both sides of the border: Brazilian teams get a look at rules that may be coming their way, and teams in the EU see their own rules through an outsider’s eyes.</p>
+								<h3>The problem</h3>
+								<p>In Brazil, many recruiting teams use AI that would be a problem in Germany: video interviews scored for “enthusiasm”, WhatsApp voice interviews that knock candidates out by keyword, automatic rejections, profiling. The usual training lists the rules country by country. It skips two questions that come first: does the tool actually make hiring better, and why do the rules exist at all?</p>
+								<h3>Why this format</h3>
+								<ul>
+									<li><b>Two levels.</b> Every feature has to pass “Does it make sense?” before “Is it legal?”, and the sums are checked again after Level 2, because a legal duty is a cost too.</li>
+									<li><b>A meter that tells the truth.</b> “Days to offer” is what the dashboard shows; “Days to a good hire” only appears after Level 1. The gap between them answers the “AI means faster hiring” myth through play rather than a lecture.</li>
+									<li><b>Look under the label.</b> In the vendor call, learners choose three of six questions. The right ones reveal that a “confidence” score is emotion recognition.</li>
+									<li><b>Oversight as a task.</b> Learners review three rejected applicants themselves, and one of the rejections is fair. Oversight means checking, not overruling by reflex.</li>
+									<li><b>Why, not only what.</b> Every legal decision comes with the harm the rule prevents and a real case, from a broadcaster’s test of a video-interview AI to research on speech recognition and stuttering.</li>
+									<li><b>Consequences and confidence.</b> Decisions carry forward to one of six endings, and learners rate how sure they were after each decision, as in my <a href="eu-ai-act-high-risk.html">EU AI Act module</a>.</li>
+								</ul>
+								<h3>Where it fits: the learning program</h3>
+								<p>The scenario is the first step of a short program for a company that is taking its recruiting into a new country. It builds awareness. The decisions are made in the workshop that follows.</p>
+								<ol>
+									<li><b>The scenario: awareness</b> (self-paced, about 20 minutes). For everyone in recruiting and HR who chooses, runs or reviews AI tools. Learners leave with the two questions to ask about any feature, “Does it make sense?” and “Is it legal?”, and a sense of where the new country’s rules differ from home. In a real rollout, their confidence ratings show the workshop team where the group was most sure and most wrong.</li>
+									<li><b>Tool inventory: pre-work.</b> Each tool owner lists the AI tools and features the team uses today: what each one decides, what data it reads (CVs, video, voice), which countries it runs in and when its contract is up.</li>
+									<li><b>Deep-dive workshop: decisions.</b> Recruiting and HR sit down with legal, compliance and the Head or VP of People &amp; Talent. Together they take every feature from the inventory through the scenario’s two questions: does it make sense, and is it legal in every country it will run in? Each feature leaves the room with one decision: <b>keep</b>, <b>expand</b> (to more roles or countries), <b>ditch</b>, or <b>switch</b> (to another tool, or back to a person). Because the people who own the risk and the person who owns the budget are in the same room, decisions don’t wait for a second round. The output is a decision list per tool and country, with a reason at each level, an owner and a date.</li>
+								</ol>
+								<h3>Who I’d build it with</h3>
+								<p>In a real project, I wouldn’t build this alone.</p>
+								<ul>
+									<li><b>The scenario, with legal and compliance.</b> They decide what counts as the right answer on every legal question, sign off the verdicts and flag when the law changes.</li>
+									<li><b>The workshop, with legal, compliance and the Head or VP of People &amp; Talent.</b> Legal and compliance bring the risk view. The Head or VP of People &amp; Talent owns the hiring targets and the tool budget, and makes sure the decisions are carried out.</li>
+								</ul>
+								<p>This portfolio version was built without those partners. I checked the legal points against the law texts myself (see Status below).</p>
+								<h3>Status</h3>
+								<p>The legal points were checked against the text of the AI Act, the GDPR, German law (BetrVG, AGG) and Brazilian law (LGPD, Lei 9.029) as of November 2026. The story, the companies, the tool and its numbers are fictional. This interaction was not reviewed by legal experts and is meant to be a simple portfolio piece. It is not meant to be legal advice in any form.</p>
+								<h3>What I’d measure in a real rollout</h3>
+								<ul>
+									<li>Level 1 judgement: how many learners keep features that don’t pay off, and whether that changes on replay.</li>
+									<li>Calibration: the share of very confident but wrong answers, especially on emotion recognition and automated decisions.</li>
+									<li>Transfer: whether every feature in the workshop inventory leaves with a decision (keep, expand, ditch or switch) and a reason at both levels.</li>
+									<li>Behaviour: time to a good hire and early leavers in the months after a rollout, not only time to offer.</li>
+								</ul>
+							</section>
+						</div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<ul class="copyright">
+								<li>&copy; Brigitta Buzinszki. All rights reserved</li><li><a href="privacy.html">Privacy</a></li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
