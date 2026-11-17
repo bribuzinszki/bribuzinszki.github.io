@@ -1,0 +1,1289 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="en">
+	<head>
+		<title>Sell this Banana · Brigitta Buzinszki</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="A pixel-art sales game for junior salespeople. Sell a banana on a beach in Brazil, then use the same skill back at the office." />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Brigitta Buzinszki" />
+		<meta property="og:title" content="Sell this Banana · Brigitta Buzinszki" />
+		<meta property="og:description" content="A pixel-art sales game for junior salespeople. Sell a banana on a beach in Brazil, then use the same skill back at the office." />
+		<meta property="og:url" content="https://bribuzinszki.github.io/sell-this-banana.html" />
+		<meta property="og:image" content="https://bribuzinszki.github.io/images/og-image.png?v=2" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<link rel="icon" href="images/favicon-32.png?v=2" type="image/png" sizes="32x32" />
+		<link rel="icon" href="images/logo.svg?v=2" type="image/svg+xml" />
+		<link rel="apple-touch-icon" href="images/apple-touch-icon.png?v=2" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/sell-this-banana.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="index.html" class="logo">
+									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Brigitta Buzinszki</span>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+							<!-- Contact (scrolls with the page, unlike the fixed Menu button) -->
+								<ul class="contact-icons">
+									<li><a href="mailto:b.buzinszki@gmail.com" class="icon solid fa-envelope" aria-label="Email"><span class="label">Email</span></a></li>
+									<li><a href="https://www.linkedin.com/in/brigitta-buzinszki-946b92165/" class="icon brands fa-linkedin-in" aria-label="LinkedIn"><span class="label">LinkedIn</span></a></li>
+								</ul>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li>
+								<a href="index.html#try-it">Try It Yourself</a>
+								<ul>
+									<li><a href="rag-exercise.html">Grounding AI with RAG</a></li>
+									<li><a href="eu-ai-act-high-risk.html">EU AI Act: High Risk Applications</a></li>
+									<li><a href="inference-exercise.html">Inference</a></li>
+									<li><a href="ai-recruiting-scenario.html">AI in Recruiting: Two Countries</a></li>
+									<li><a href="sell-this-banana.html">Sell this Banana</a></li>
+									<li><a href="agents-course.html">Working with AI Agents</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="index.html#case-studies">Case Studies</a>
+								<ul>
+									<li><a href="case-intro-to-llms.html">Intro to LLMs</a></li>
+									<li><a href="case-eu-ai-act.html">EU AI Act Essentials</a></li>
+									<li><a href="case-technical-onboarding.html">Technical Onboarding for Engineers</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="index.html#frameworks">Field-Tested Frameworks</a>
+								<ul>
+									<li><a href="framework-sme-feedback.html">SME Feedback Framework</a></li>
+									<li><a href="framework-sme-replies.html">How I Get SMEs to Reply</a></li>
+								</ul>
+							</li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main" role="main">
+						<div class="inner">
+							<h1>Sell this Banana</h1>
+							<p>A short pixel-art game for junior salespeople. The scenes are silly and the skills are real: you sell a banana, then use the same skill back at the office, where you sell Karl-Klein 2.0, a fictional German language model. This prototype has Levels 1 and 2 of 6, about five minutes each. Short on time? Jump to the <a href="#design-notes">designer’s notes</a>.</p>
+							<p><b>After Levels 1 and 2 you can:</b></p>
+							<ul>
+								<li>name the four steps of a simple sale: need, offer, price, ask,</li>
+								<li>recognise a buying signal and ask for the sale instead of talking on,</li>
+								<li>answer a “maybe later” by leaving the door open, not by pushing,</li>
+								<li>use open questions and follow-ups to find the real need behind “just looking”,</li>
+								<li>turn a feature into a benefit and a value for one specific buyer.</li>
+							</ul>
+
+							<!-- ============ SELL THIS BANANA START (styles in assets/css/sell-this-banana.css, art and engine in assets/js/sell-this-banana*.js) ============ -->
+							<!-- All player-facing text lives in the JSON block id="stb-content". The product, its maker, the customers and all prices are fictional. Nothing is stored in the browser. -->
+							<div id="stb">
+								<div class="stb-frame">
+									<div class="stb-hud" id="stb-hud"></div>
+									<div class="stb-screen">
+										<canvas id="stb-canvas" width="320" height="180" role="img" aria-label="Sell this Banana"></canvas>
+										<button type="button" class="stb-sound" id="stb-sound" aria-pressed="false"><span aria-hidden="true" class="stb-note">&#9835;</span> <span class="stb-sound-label">Sound off</span></button>
+									</div>
+									<div class="stb-box" id="stb-box" tabindex="-1">
+										<noscript><p>This game needs JavaScript.</p></noscript>
+									</div>
+								</div>
+								<p class="stb-sr" id="stb-announce" aria-live="polite"></p>
+
+								<script type="application/json" id="stb-content">
+{
+  "meta": {
+    "version": 2,
+    "_note": "All player-facing text for the game. Prototype: Levels 1 and 2 of 6. Karl-Klein 2.0, its maker, the customers and all prices are fictional."
+  },
+  "intro": "Six short levels, one sales skill each. Start at the beach, or jump straight to the gym.",
+  "ui": {
+    "continue": "Continue",
+    "retry": "Try again",
+    "skip": "Skip to the office",
+    "toOffice": "Back at the office",
+    "again": "Play Level {n} again",
+    "you": "You",
+    "ripeness": "Ripeness",
+    "trust": "Trust",
+    "customer": "Customer {n} of {total}",
+    "bonus": "Bonus customer",
+    "stepsLabel": "Sale steps",
+    "steps": {
+      "need": "Need",
+      "offer": "Offer",
+      "price": "Price",
+      "ask": "Ask"
+    },
+    "done": "done",
+    "yes": "Yes",
+    "no": "Not this time",
+    "yourReply": "Your reply",
+    "meters": "Ripeness {r} of {rmax}. Trust {t} of {tmax}.",
+    "newFail": "New fail found",
+    "oldFail": "A fail you’ve found before",
+    "whatHappened": "What happened",
+    "why": "Why it fails in real sales",
+    "tryThis": "Try this",
+    "locked": "???",
+    "levelCleared": "Level {n} cleared",
+    "ratingLabel": "{n} of 3 bananas",
+    "from": "From:",
+    "subject": "Subject:",
+    "goodReply": "Good reply.",
+    "notQuite": "Not quite.",
+    "canvasWin": "SOLD!",
+    "soundOn": "Sound on",
+    "soundOff": "Sound off",
+    "canvas": {
+      "title": "Title screen: Sell this Banana. A banana kiosk on a sunny beach, next to a coconut stand.",
+      "beach": "A banana kiosk on a beach in Brazil. At the counter: {who}. The bananas are {state}.",
+      "nobody": "nobody yet",
+      "ripe": [
+        "fresh and yellow",
+        "getting a few spots",
+        "very spotty",
+        "brown"
+      ],
+      "office": "An office with a window, a desk, a screen showing a new email, and a banana.",
+      "end": "Level {n} clear: happy customers with bananas.",
+      "gym": "A pop-up banana stand in a gym lobby in Stuttgart, next to a vending machine. The bananas are {state}."
+    },
+    "chooseLevel": "Choose a level",
+    "levelBest": "best: {n} of 3 bananas",
+    "comingSoon": "Levels 3 to 6 are coming soon: a cold call on a train, the MegaBanana stall, a hospital kitchen and a ministry.",
+    "playLevel": "Play Level {n}",
+    "failsLevel": "Fails found in this level: {n} of {total}",
+    "failsTotal": "All levels so far: {n} of {total}. The full game has 18.",
+    "questions": "Questions",
+    "needs": "Needs found",
+    "noneYet": "none yet",
+    "realCard": "the real need",
+    "followup": "Follow-up",
+    "askPrompt": "Ask a question, or make your pitch.",
+    "pitch": "Make your pitch",
+    "pitchNeed": "Which need will you answer?",
+    "pitchFeature": "Which feature answers “{need}”?",
+    "pitchLine": "How do you say it?",
+    "backToQuestions": "Ask another question",
+    "otherNeed": "Pick another need",
+    "newCard": "New need card: {card}.",
+    "stepOf": "step {n} of {total}",
+    "multiRetry": "{n} of {pick} were discovery questions. Swap the others and ask again."
+  },
+  "levels": [
+    {
+      "id": "beach",
+      "number": 1,
+      "type": "kiosk",
+      "scene": "beach",
+      "name": "Beach kiosk, Brazil",
+      "tagline": "the willing buyer",
+      "kicker": "Level 1 · Beach kiosk, Brazil",
+      "intro": "You run a banana kiosk on a beach in Brazil. It’s noon, it’s hot, and people are hungry. This should be easy.",
+      "openLabel": "Open the kiosk",
+      "howtoTitle": "How to play",
+      "howto": [
+        "Every line you say costs **ripeness**. Long speeches cost more. If the bunch turns brown, the level is over.",
+        "Each customer starts with **trust** 3 of 5. Pushing costs trust, and at zero they walk away.",
+        "The **sale steps** light up as you go: need, offer, price, ask.",
+        "**Your goal:** make two sales before the bunch turns brown. Not everyone is ready to buy, and that’s fine.",
+        "Choose a reply with the number keys, or tap it."
+      ],
+      "arriving": "Someone is walking up to the kiosk…",
+      "ripeness": 10,
+      "trustStart": 3,
+      "trustMax": 5,
+      "order": [
+        "surfer",
+        "jogger",
+        "parent"
+      ],
+      "returner": "joggerBack",
+      "customers": [
+        {
+          "id": "surfer",
+          "name": "Surfer",
+          "art": "surfer",
+          "start": "start",
+          "nodes": {
+            "start": {
+              "say": "Oi! I’m starving. What have you got?",
+              "emote": "!",
+              "lights": [
+                "need"
+              ],
+              "choices": [
+                {
+                  "text": "Bananas, picked this morning.",
+                  "lights": [
+                    "offer"
+                  ],
+                  "next": "howmuch"
+                },
+                {
+                  "text": "Did you know bananas came to Brazil from Asia centuries ago? Traders carried them across oceans, and…",
+                  "cost": 3,
+                  "trust": -1,
+                  "flag": "lecture",
+                  "next": "story"
+                },
+                {
+                  "text": "Are you very hungry, or just a little hungry?",
+                  "trust": -1,
+                  "next": "already"
+                },
+                {
+                  "text": "Best deal on the beach: a bunch of twelve for R$ 30!",
+                  "trust": -2,
+                  "lights": [
+                    "offer",
+                    "price"
+                  ],
+                  "next": "twelve"
+                }
+              ]
+            },
+            "story": {
+              "say": "Uh… cool story. Do you have food or not?",
+              "emote": "dots",
+              "choices": [
+                {
+                  "text": "Yes! Bananas, picked this morning.",
+                  "lights": [
+                    "offer"
+                  ],
+                  "next": "howmuch"
+                },
+                {
+                  "text": "Of course! But first, the plantain, a close cousin of the banana…",
+                  "cost": 3,
+                  "flag": "lecture",
+                  "fail": "historian",
+                  "reply": "Forget it. I’ll grab a coconut.",
+                  "note": "The surfer asked for food twice and got a history lesson twice."
+                }
+              ]
+            },
+            "already": {
+              "say": "Starving. I just said that.",
+              "emote": "vein",
+              "choices": [
+                {
+                  "text": "Sorry! Bananas, picked this morning.",
+                  "lights": [
+                    "offer"
+                  ],
+                  "next": "howmuch"
+                },
+                {
+                  "text": "Got it. Then how about a bunch of twelve for R$ 30?",
+                  "trust": -2,
+                  "lights": [
+                    "offer",
+                    "price"
+                  ],
+                  "reply": "Twelve?! No thanks.",
+                  "note": "The surfer said “starving”, you asked again anyway, then pushed a bunch of twelve.",
+                  "next": "twelve"
+                }
+              ]
+            },
+            "howmuch": {
+              "say": "Nice. How much?",
+              "emote": "?",
+              "choices": [
+                {
+                  "text": "R$ 3. Want one?",
+                  "lights": [
+                    "price",
+                    "ask"
+                  ],
+                  "outcome": "sale",
+                  "reply": "Sim! Valeu!"
+                },
+                {
+                  "text": "R$ 3. And they’re full of potassium, great after surfing. Did you know a banana is technically a berry?",
+                  "cost": 3,
+                  "flag": "lecture",
+                  "lights": [
+                    "price"
+                  ],
+                  "fail": "historian",
+                  "reply": "Huh. Maybe I’ll grab a coconut.",
+                  "note": "The surfer asked “How much?” and you kept talking."
+                },
+                {
+                  "text": "R$ 3.",
+                  "lights": [
+                    "price"
+                  ],
+                  "next": "waiting"
+                }
+              ]
+            },
+            "waiting": {
+              "say": "(The surfer waits, coins in hand.)",
+              "emote": "dots",
+              "choices": [
+                {
+                  "text": "Want one?",
+                  "lights": [
+                    "ask"
+                  ],
+                  "outcome": "sale",
+                  "reply": "Yes, please!"
+                },
+                {
+                  "text": "They’re also great against cramps. The potassium helps your muscles, and…",
+                  "cost": 3,
+                  "flag": "lecture",
+                  "fail": "historian",
+                  "reply": "OK… I’ll get a coconut.",
+                  "note": "The surfer had the coins out. You gave the price, then kept talking instead of asking."
+                }
+              ]
+            },
+            "twelve": {
+              "say": "Twelve? I want one.",
+              "emote": "?",
+              "choices": [
+                {
+                  "text": "One it is. R$ 3?",
+                  "lights": [
+                    "price",
+                    "ask"
+                  ],
+                  "outcome": "sale",
+                  "reply": "Perfect. Valeu!"
+                },
+                {
+                  "text": "Twelve is much better value, trust me.",
+                  "trust": -2,
+                  "reply": "Forget it.",
+                  "note": "The surfer wanted one banana. You pushed twelve, twice.",
+                  "next": "twelve"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "jogger",
+          "name": "Jogger",
+          "art": "jogger",
+          "jog": true,
+          "start": "start",
+          "nodes": {
+            "start": {
+              "say": "Hmm, bananas… Maybe later.",
+              "emote": "dots",
+              "choices": [
+                {
+                  "text": "Sure! I’m here till five. Grab one on the way back?",
+                  "lights": [
+                    "ask"
+                  ],
+                  "outcome": "door",
+                  "reply": "Maybe I will!"
+                },
+                {
+                  "text": "Just one! Only R$ 3! Runners need potassium! Buy now!",
+                  "trust": -2,
+                  "lights": [
+                    "offer",
+                    "price",
+                    "ask"
+                  ],
+                  "next": "pushed"
+                },
+                {
+                  "text": "Wait! Let me tell you why bananas are the perfect running snack. It all starts with potassium…",
+                  "cost": 3,
+                  "flag": "lecture",
+                  "next": "lectured"
+                },
+                {
+                  "text": "OK.",
+                  "outcome": "leave",
+                  "reply": "Tchau!"
+                }
+              ]
+            },
+            "pushed": {
+              "say": "I said later.",
+              "emote": "vein",
+              "choices": [
+                {
+                  "text": "Come on, one banana. Best price on the beach!",
+                  "trust": -2,
+                  "reply": "Now it’s a no.",
+                  "note": "The jogger said “maybe later”. You pushed twice.",
+                  "next": "pushed"
+                },
+                {
+                  "text": "No problem. Have a good run!",
+                  "outcome": "leave",
+                  "reply": "Thanks."
+                },
+                {
+                  "text": "Sorry! I’m here till five, if you want one on the way back.",
+                  "lights": [
+                    "ask"
+                  ],
+                  "outcome": "door",
+                  "reply": "OK, maybe."
+                }
+              ]
+            },
+            "lectured": {
+              "say": "(The jogger jogs on the spot and checks their watch.)",
+              "emote": "dots",
+              "choices": [
+                {
+                  "text": "Sorry, you’re busy. I’m here till five. One on the way back?",
+                  "lights": [
+                    "ask"
+                  ],
+                  "outcome": "door",
+                  "reply": "Maybe!"
+                },
+                {
+                  "text": "…and that’s why the potassium—",
+                  "cost": 3,
+                  "flag": "lecture",
+                  "outcome": "leave",
+                  "reply": "Gotta go!"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "parent",
+          "name": "Parent",
+          "art": "parent",
+          "kids": true,
+          "start": "start",
+          "nodes": {
+            "start": {
+              "say": "Are these good for kids?",
+              "emote": "?",
+              "lights": [
+                "need"
+              ],
+              "choices": [
+                {
+                  "text": "Yes: soft, sweet and easy to peel. Two for the little ones?",
+                  "lights": [
+                    "offer",
+                    "ask"
+                  ],
+                  "next": "howmuch"
+                },
+                {
+                  "text": "Very! Bananas have potassium, vitamin B6, vitamin C, fibre, and the natural sugars are released…",
+                  "cost": 3,
+                  "flag": "lecture",
+                  "next": "nutrition"
+                },
+                {
+                  "text": "Yes, they’re very good for kids.",
+                  "next": "ripe"
+                },
+                {
+                  "text": "Kids love them! Take a bunch of twelve for the week: R$ 30.",
+                  "trust": -2,
+                  "lights": [
+                    "offer",
+                    "price",
+                    "ask"
+                  ],
+                  "next": "twelve"
+                }
+              ]
+            },
+            "howmuch": {
+              "say": "How much for two?",
+              "emote": "?",
+              "choices": [
+                {
+                  "text": "R$ 5 for two.",
+                  "lights": [
+                    "price"
+                  ],
+                  "outcome": "sale",
+                  "reply": "Deal. Say thank you, kids!"
+                },
+                {
+                  "text": "R$ 5 for two. And the vitamin B6 is great for growing brains, plus the fibre…",
+                  "cost": 3,
+                  "flag": "lecture",
+                  "lights": [
+                    "price"
+                  ],
+                  "fail": "historian",
+                  "reply": "Hm. Kids, let’s get a coconut instead.",
+                  "note": "The parent asked “How much for two?” and you kept talking."
+                }
+              ]
+            },
+            "nutrition": {
+              "say": "Mm-hm. OK.",
+              "emote": "dots",
+              "choices": [
+                {
+                  "text": "In short: yes. Two for the little ones?",
+                  "lights": [
+                    "offer",
+                    "ask"
+                  ],
+                  "next": "howmuch"
+                },
+                {
+                  "text": "Also, fun fact: bananas are berries, but strawberries aren’t!",
+                  "cost": 3,
+                  "flag": "lecture",
+                  "fail": "historian",
+                  "reply": "Kids, come on. Coconuts.",
+                  "note": "A parent with two hungry kids got a nutrition lecture, then a botany lesson."
+                }
+              ]
+            },
+            "ripe": {
+              "say": "Good to know. Are they ripe?",
+              "emote": "?",
+              "choices": [
+                {
+                  "text": "Ripe today. Two for the little ones? R$ 5.",
+                  "lights": [
+                    "offer",
+                    "price",
+                    "ask"
+                  ],
+                  "outcome": "sale",
+                  "reply": "Perfect. Two, please!"
+                },
+                {
+                  "text": "Yes, picked this morning and ripe today.",
+                  "lights": [
+                    "offer"
+                  ],
+                  "next": "thanks"
+                }
+              ]
+            },
+            "thanks": {
+              "say": "Lovely, thanks!",
+              "emote": "dots",
+              "choices": [
+                {
+                  "text": "Shall I give you two? R$ 5.",
+                  "lights": [
+                    "price",
+                    "ask"
+                  ],
+                  "outcome": "sale",
+                  "reply": "Oh, go on then. Two, please."
+                },
+                {
+                  "text": "You’re welcome. Have a nice day!",
+                  "fail": "forgot",
+                  "reply": "You too!",
+                  "note": "You answered every question well, and the parent left with a smile, but without bananas."
+                },
+                {
+                  "text": "By the way, they’re from a small farm near the coast.",
+                  "fail": "forgot",
+                  "reply": "Nice. Bye!",
+                  "note": "You kept giving good answers and never asked. The parent said “thanks” and walked on."
+                }
+              ]
+            },
+            "twelve": {
+              "say": "Twelve? We only need two.",
+              "emote": "?",
+              "choices": [
+                {
+                  "text": "Two it is. R$ 5?",
+                  "lights": [
+                    "price",
+                    "ask"
+                  ],
+                  "outcome": "sale",
+                  "reply": "Deal."
+                },
+                {
+                  "text": "Twelve is better value. They keep all week!",
+                  "trust": -2,
+                  "reply": "No, thank you.",
+                  "note": "The parent wanted two. You pushed twelve, twice.",
+                  "next": "twelve"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "joggerBack",
+          "name": "Jogger",
+          "art": "jogger",
+          "jog": true,
+          "start": "start",
+          "nodes": {
+            "start": {
+              "say": "I’m back! Still got one?",
+              "emote": "!",
+              "lights": [
+                "need"
+              ],
+              "choices": [
+                {
+                  "text": "Sure! R$ 3. One for the way home?",
+                  "lights": [
+                    "offer",
+                    "price",
+                    "ask"
+                  ],
+                  "outcome": "sale",
+                  "reply": "Valeu!"
+                },
+                {
+                  "text": "Welcome back! Let me tell you the story of this bunch…",
+                  "cost": 3,
+                  "flag": "lecture",
+                  "lights": [
+                    "offer"
+                  ],
+                  "outcome": "sale",
+                  "reply": "…Just the banana, please. R$ 3, right? Here."
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "fails": {
+        "historian": {
+          "title": "The banana historian",
+          "what": "The bunch went brown while you talked.",
+          "brown": "The bunch went brown while you talked.",
+          "brownReply": "(The customer looks at the brown bunch and walks over to the coconut stand.)",
+          "why": "Every sentence costs the customer time. Long speeches, especially after a buying signal like “How much?”, give them time to change their mind.",
+          "try": "When someone asks the price, give it and ask for the sale: “R$ 3. Want one?”",
+          "exit": "coconut"
+        },
+        "forgot": {
+          "title": "Forgot to ask",
+          "what": "You answered every question, but never asked for the sale.",
+          "why": "Customers rarely close the sale for you. A good answer without a question ends in “thanks” and a walk away.",
+          "try": "After you answer, ask: “Two for the little ones?”",
+          "exit": "leave"
+        },
+        "hardsell": {
+          "title": "The hard sell",
+          "what": "You kept pushing after they told you what they wanted.",
+          "reply": "No, thanks.",
+          "why": "Pushing past a clear “one” or “maybe later” burns trust, and trust is what brings people back.",
+          "try": "Sell what they asked for. When someone says “maybe later”, leave the door open.",
+          "exit": "leave"
+        }
+      },
+      "win": {
+        "title": "Two sales, and the sun is still shining.",
+        "checks": {
+          "sales": "Made two sales before the bunch turned brown",
+          "nolecture": "No lectures: every line moved the sale forward",
+          "jogger": "The jogger came back, because you left the door open"
+        },
+        "text": "Most of selling is noticing when someone is ready, and then asking."
+      },
+      "office": {
+        "kicker": "Back at the office",
+        "intro": "Monday. In real life you sell **Karl-Klein 2.0**, a small language model made in Germany. An email is waiting.",
+        "steps": [
+          {
+            "type": "single",
+            "mail": {
+              "from": "Head of IT, a city utility",
+              "subject": "Trial?",
+              "body": [
+                "Hello,",
+                "we saw your webinar last week. We need a German-language model that we can run on our own servers.",
+                "What does a trial cost?",
+                "Best regards"
+              ]
+            },
+            "question": "How do you reply?",
+            "options": [
+              {
+                "text": "“Thank you for your interest! First, some background: AI research in Germany goes back decades… [five more paragraphs] …I’ve attached our 40-page whitepaper.”",
+                "feedback": "They asked for a price and got homework. That’s the banana historian again: “What does a trial cost?” was the buying signal."
+              },
+              {
+                "text": "“Thanks for asking! A four-week pilot on your own servers costs €4,900, including setup and onboarding for up to 20 people. Shall I set up a 30-minute kickoff call for Tuesday?”",
+                "right": true,
+                "feedback": "A clear answer to the question they asked, then a small next step. When they’re ready to buy, stop selling and ask."
+              },
+              {
+                "text": "“A four-week pilot costs €4,900. Best regards.”",
+                "feedback": "Right answer, no next step. That’s Forgot to ask: now they have to come back to you, and many won’t."
+              },
+              {
+                "text": "“Great news: our enterprise licence starts at three years and 500 seats. I’ll send the contract today!”",
+                "feedback": "They asked about a trial and got a three-year contract. That’s the hard sell: a bunch of twelve for someone who wanted one."
+              }
+            ]
+          }
+        ]
+      },
+      "fact": {
+        "kicker": "Fact card 1",
+        "title": "Karl-Klein 2.0",
+        "rows": [
+          [
+            "What it is",
+            "A small language model, trained in Germany on German text."
+          ],
+          [
+            "Where it runs",
+            "On the customer’s own servers, or in a German data centre."
+          ],
+          [
+            "Who it’s for",
+            "Public authorities, regulated industries, and teams whose work happens in German."
+          ],
+          [
+            "What it isn’t",
+            "As broad as Claude or Gemini. It isn’t meant to be: its strength is control over where the data goes."
+          ]
+        ],
+        "note": "Karl-Klein 2.0, its maker and its prices are made up for this game."
+      },
+      "rule": {
+        "kicker": "Sales notebook · Rule 1",
+        "text": "When they’re ready to buy, stop selling and ask."
+      },
+      "end": {
+        "title": "Level 1 complete",
+        "titleSkipped": "Level 1 skipped",
+        "text": "You sold bananas on the beach, then answered a real buying signal at the office.",
+        "fullGame": "Trying the wrong reply on purpose is allowed."
+      }
+    },
+    {
+      "id": "gym",
+      "number": 2,
+      "type": "discovery",
+      "scene": "gym",
+      "name": "Gym in Stuttgart",
+      "tagline": "the undecided buyer",
+      "kicker": "Level 2 · Gym in Stuttgart",
+      "intro": "You’ve set up a pop-up banana stand in a gym lobby in Stuttgart. A member is staring at the vending machine. They might want something. They don’t know what yet, and neither do you.",
+      "openLabel": "Open the stand",
+      "howtoTitle": "How to play",
+      "howto": [
+        "**Ask first.** Every question costs **ripeness**, so pick the ones that open people up.",
+        "Good answers reveal **need cards**. Follow-up questions appear after an answer: dig deeper, and the real need lights up.",
+        "**Leading questions** cost trust and tell you nothing.",
+        "When you’re ready, **make your pitch**: pick the need, the one feature that answers it, and how you say it.",
+        "Choose with the number keys, or tap."
+      ],
+      "arriving": "Someone in gym clothes walks over to the vending machine…",
+      "opening": "(The member stares at the vending machine.)",
+      "comesOver": "(The member turns around and walks over to your stand.)",
+      "ripeness": 10,
+      "trustStart": 3,
+      "trustMax": 5,
+      "quickLimit": 5,
+      "member": {
+        "name": "Member",
+        "art": "member"
+      },
+      "cards": {
+        "hungry": {
+          "text": "A bit hungry"
+        },
+        "energy": {
+          "text": "Running on empty"
+        },
+        "light": {
+          "text": "Bars sit heavy before training"
+        },
+        "cramps": {
+          "text": "Cramps in the last set",
+          "real": true
+        },
+        "legday": {
+          "text": "Leg day on Thursdays",
+          "kind": "context"
+        }
+      },
+      "questions": [
+        {
+          "id": "training",
+          "kind": "open",
+          "text": "What are you training today?",
+          "answer": "Legs. It’s Thursday, so: leg day.",
+          "card": "legday",
+          "unlocks": [
+            "legdays"
+          ]
+        },
+        {
+          "id": "hungry",
+          "kind": "closed",
+          "text": "Hungry?",
+          "answer": "A bit.",
+          "card": "hungry"
+        },
+        {
+          "id": "want",
+          "kind": "leading",
+          "trust": -1,
+          "text": "You’d want a banana, right?",
+          "answer": "…Not sure. Why?"
+        },
+        {
+          "id": "usual",
+          "kind": "open",
+          "text": "What do you usually grab from the machine?",
+          "answer": "A protein bar. They sit like a brick before training.",
+          "card": "light"
+        },
+        {
+          "id": "match",
+          "kind": "offtopic",
+          "text": "Did you see the match last night?",
+          "answer": "Uh… no."
+        },
+        {
+          "id": "machine",
+          "kind": "open",
+          "text": "What brings you to the machine right now?",
+          "answer": "I need energy. I’m running on empty.",
+          "card": "energy",
+          "unlocks": [
+            "runlow"
+          ]
+        },
+        {
+          "id": "like",
+          "kind": "closed",
+          "text": "Do you like bananas?",
+          "answer": "They’re fine."
+        },
+        {
+          "id": "best",
+          "kind": "leading",
+          "trust": -1,
+          "text": "Bananas are the best pre-workout snack, don’t you think?",
+          "answer": "If you say so."
+        },
+        {
+          "id": "legdays",
+          "kind": "open",
+          "followup": true,
+          "text": "How do your leg days usually go?",
+          "answer": "Fine, until the last set. Then my calves cramp and I have to stop.",
+          "card": "cramps"
+        },
+        {
+          "id": "runlow",
+          "kind": "open",
+          "followup": true,
+          "text": "What happens when you run low?",
+          "answer": "My legs give out. Last week my calves cramped in the final set and I lost it.",
+          "card": "cramps"
+        }
+      ],
+      "features": [
+        {
+          "id": "potassium",
+          "label": "Full of potassium",
+          "say": "Bananas are full of potassium!",
+          "miss": "Potassium. OK… and?"
+        },
+        {
+          "id": "sugar",
+          "label": "Natural sugar",
+          "say": "Bananas have natural sugar!",
+          "miss": "Sugar isn’t really my problem."
+        },
+        {
+          "id": "wrapper",
+          "label": "Comes in its own wrapper",
+          "say": "It comes in its own wrapper!",
+          "miss": "A wrapper. Great."
+        },
+        {
+          "id": "price",
+          "label": "Only 60 cents",
+          "say": "Only 60 cents!",
+          "miss": "Cheap. But I’m not here for cheap."
+        },
+        {
+          "id": "bag",
+          "label": "Fits in a gym bag",
+          "say": "It fits in your gym bag!",
+          "miss": "My bag is full already."
+        },
+        {
+          "id": "light",
+          "label": "Light on the stomach",
+          "say": "Bananas are light on the stomach!",
+          "miss": "Light is nice, but that’s not what I’m after."
+        }
+      ],
+      "dump": {
+        "label": "All of them, fast!",
+        "text": "Potassium, natural sugar, its own wrapper, only 60 cents, fits in your bag, light on the stomach!",
+        "reply": "…That’s a lot. I’ll just get a bar."
+      },
+      "pitchNoNeed": "Bananas! Fresh, cheap and full of potassium!",
+      "pitches": {
+        "cramps": {
+          "feature": "potassium",
+          "reply": "Worth a try. One, please.",
+          "lines": [
+            {
+              "text": "Bananas have about 400 mg of potassium each.",
+              "trust": -1,
+              "reply": "…OK. And what does that do for me?"
+            },
+            {
+              "text": "Potassium helps your muscles work. Have one before leg day, and there’s something left for the last set.",
+              "right": true
+            },
+            {
+              "text": "Eat one and you’ll never cramp again. Guaranteed!",
+              "trust": -2,
+              "reply": "Never? Come on."
+            }
+          ]
+        },
+        "energy": {
+          "feature": "sugar",
+          "reply": "Fine, I’ll take one.",
+          "lines": [
+            {
+              "text": "The natural sugar gives you quick energy, so you start your workout fresh instead of running on empty.",
+              "right": true
+            },
+            {
+              "text": "It’s better than any energy drink on the market!",
+              "trust": -2,
+              "reply": "Every snack says that."
+            },
+            {
+              "text": "Bananas contain glucose, fructose and sucrose.",
+              "trust": -1,
+              "reply": "Cool. Chemistry class."
+            }
+          ]
+        },
+        "hungry": {
+          "feature": "wrapper",
+          "reply": "Fair enough. One, please.",
+          "lines": [
+            {
+              "text": "It has its own wrapper, made by nature.",
+              "trust": -1,
+              "reply": "…Sure."
+            },
+            {
+              "text": "Best snack in Stuttgart, no contest!",
+              "trust": -2,
+              "reply": "Says the banana seller."
+            },
+            {
+              "text": "Peel it and eat it in ten seconds, so you can quiet your stomach and start training right away.",
+              "right": true
+            }
+          ]
+        },
+        "light": {
+          "feature": "light",
+          "reply": "Better than a brick. One, please.",
+          "lines": [
+            {
+              "text": "A banana has almost no fat and very little protein.",
+              "trust": -1,
+              "reply": "So… less of everything?"
+            },
+            {
+              "text": "It’s light on the stomach, so you can eat it right before training and still feel light on the leg press.",
+              "right": true
+            },
+            {
+              "text": "It digests in two minutes flat!",
+              "trust": -2,
+              "reply": "That can’t be true."
+            }
+          ]
+        }
+      },
+      "thursday": "Sold. Can you bring these every Thursday? That’s my leg day.",
+      "fails": {
+        "just": {
+          "title": "Just looking",
+          "what": "You pitched before you knew what they needed.",
+          "reply": "I’m just looking, thanks.",
+          "trustNote": "Leading questions, misses and big claims made the member feel pushed. They went back to the machine.",
+          "trustReply": "I’ll stick with the bar, thanks.",
+          "why": "Without a need, every feature sounds like noise, and “just looking” is how people protect themselves from noise.",
+          "try": "Start with a question about them: “What are you training today?”",
+          "exit": "machine"
+        },
+        "interrogation": {
+          "title": "The interrogation",
+          "brown": "You asked {n} questions, and the bunch went brown before you pitched.",
+          "brownReply": "(The member checks the clock and heads off to the leg press.)",
+          "why": "Discovery has a budget too. Every question costs the buyer time, so ask the ones that open up, and follow the answers that matter.",
+          "try": "Ask an open question, then follow up on the answer instead of starting a new topic.",
+          "exit": "legpress"
+        },
+        "dump": {
+          "title": "The feature dump",
+          "what": "You listed every feature at once. None of them landed.",
+          "missNote": "You tried feature after feature until something stuck. Nothing did.",
+          "why": "A feature only matters when it answers this buyer’s need. A list of features is your homework, not their reason to buy.",
+          "try": "Pick the need first, then the one feature that answers it.",
+          "exit": "machine"
+        }
+      },
+      "win": {
+        "title": "Sold to someone who was “just looking”.",
+        "checks": {
+          "need": "Sold by answering a need you found",
+          "real": "Answered the real need: the cramps in the last set",
+          "quick": "Found it in five questions or fewer, with no leading questions"
+        },
+        "text": "The first answer is rarely the real need. Ask, then ask about the answer."
+      },
+      "office": {
+        "kicker": "Back at the office",
+        "intro": "Tuesday. A law firm in Stuttgart booked a call because they’re “looking at AI”. Your colleague’s note says: “No idea what they want yet.”",
+        "steps": [
+          {
+            "type": "multi",
+            "pick": 3,
+            "note": {
+              "title": "Discovery call · Law firm, 12 lawyers · 30 minutes",
+              "lines": [
+                "Contact: the office manager.",
+                "They found you through a webinar on AI and data protection."
+              ]
+            },
+            "question": "Pick the three questions you open with.",
+            "checkLabel": "Ask these questions ({n} of {pick})",
+            "options": [
+              {
+                "text": "Which tasks take up most of your time right now?",
+                "right": true,
+                "feedback": "Open, and about their work. This is where the real need shows up."
+              },
+              {
+                "text": "Did you know Karl-Klein 2.0 has 7 billion parameters?",
+                "feedback": "That’s a feature pitch dressed up as a question. They haven’t told you anything yet."
+              },
+              {
+                "text": "What kind of documents and data would it work with?",
+                "right": true,
+                "feedback": "Data decides a lot for a sovereign model: what’s confidential, and what may leave the building."
+              },
+              {
+                "text": "Is the budget for this approved yet?",
+                "feedback": "Too early. Budget matters once you both know there’s a problem worth solving."
+              },
+              {
+                "text": "Who would use it day to day?",
+                "right": true,
+                "feedback": "The users decide whether it gets used: lawyers, assistants, or both?"
+              },
+              {
+                "text": "Is it raining in Stuttgart too?",
+                "feedback": "A minute of small talk is fine, but it isn’t discovery."
+              }
+            ],
+            "answer": "The office manager: “Our assistants spend hours fixing AI drafts of German contracts that read like translations. And nothing confidential may leave our servers.”"
+          },
+          {
+            "type": "single",
+            "lead": "Now build the chain for this buyer. **Feature:** Karl-Klein 2.0 is trained on German text.",
+            "question": "What’s the benefit for the law firm?",
+            "options": [
+              {
+                "text": "It has 7 billion parameters.",
+                "feedback": "That’s another feature. Ask yourself: so what, for them?"
+              },
+              {
+                "text": "It handles German legal language.",
+                "right": true,
+                "feedback": "A benefit: what the feature does for this buyer."
+              },
+              {
+                "text": "It’s made in Germany.",
+                "feedback": "True, and also a feature. It doesn’t say what changes for the law firm."
+              }
+            ]
+          },
+          {
+            "type": "single",
+            "lead": "**Feature:** trained on German text. **Benefit:** handles German legal language.",
+            "question": "And what is that worth to them?",
+            "options": [
+              {
+                "text": "Cutting-edge, state-of-the-art AI.",
+                "feedback": "Buzzwords. Nobody can measure “cutting-edge”."
+              },
+              {
+                "text": "The best model on the market.",
+                "feedback": "An overclaim, and not true for broad tasks. Buyers can check, and trust drops when they do."
+              },
+              {
+                "text": "Fewer corrections and faster drafts for the assistants.",
+                "right": true,
+                "feedback": "That’s the value: time and effort saved, in their words."
+              }
+            ]
+          }
+        ],
+        "chain": [
+          {
+            "label": "Feature",
+            "text": "Trained on German text"
+          },
+          {
+            "label": "Benefit",
+            "text": "Handles German legal language"
+          },
+          {
+            "label": "Value",
+            "text": "Fewer corrections, faster drafts"
+          }
+        ]
+      },
+      "fact": {
+        "kicker": "Fact card 2",
+        "title": "Karl-Klein 2.0: core features",
+        "rows": [
+          [
+            "Trained on German text",
+            "Handles German legal, administrative and technical language, so there’s less to correct."
+          ],
+          [
+            "Runs on your own servers",
+            "Or in a German data centre. Confidential data stays where the customer controls it."
+          ],
+          [
+            "Small and specialised",
+            "Runs on ordinary hardware, so it’s cheaper to run and quick to answer."
+          ],
+          [
+            "Built and owned in Germany",
+            "No dependence on US or Chinese providers. More on that in fact card 6."
+          ]
+        ],
+        "note": "Karl-Klein 2.0, its maker and its features are made up for this game."
+      },
+      "rule": {
+        "kicker": "Sales notebook · Rule 2",
+        "text": "Ask before you pitch. Sell what it does for this buyer, not what it is."
+      },
+      "end": {
+        "title": "Level 2 complete",
+        "titleSkipped": "Level 2 skipped",
+        "text": "You found the real need behind “just looking”, then built a feature-benefit-value chain for a real buyer.",
+        "fullGame": "Trying the wrong thing on purpose is allowed.",
+        "next": "**Next:** Level 3 · Cold call on a high-speed train (coming soon)."
+      }
+    }
+  ]
+}
+								</script>
+							</div>
+							<!-- ============ SELL THIS BANANA END ============ -->
+
+							<!-- Designer's notes: portfolio context, not part of the game -->
+							<hr class="major" />
+							<section id="design-notes">
+								<h2>Designer’s notes</h2>
+								<h3>Who it’s for</h3>
+								<p>Junior salespeople in their first months, who need solid basics and don’t know the product yet. The product here is Karl-Klein 2.0, a fictional small language model trained and run in Germany. It isn’t as strong as Claude or Gemini, and it doesn’t try to be: its selling point is sovereignty, independence from US and Chinese providers, for buyers who work with sensitive data.</p>
+								<h3>Why a game</h3>
+								<p>Sales basics are easy to agree with and hard to do under pressure. A silly scene takes the pressure off, so learners try the wrong thing on purpose and see what happens. Then each level ends back at the office, where the same skill meets the real product in one decision.</p>
+								<h3>How Level 1 teaches</h3>
+								<ul>
+									<li><b>Ripeness is the turn budget.</b> Every line costs, and long speeches cost three times as much. Talking past a buying signal shows up on the bunch instead of in a lecture.</li>
+									<li><b>Trust drops when you push.</b> Pushing a bunch of twelve on someone who wants one, or pressing after “maybe later”, costs trust. At zero, the customer walks.</li>
+									<li><b>A delayed consequence.</b> The jogger who hears “I’m here till five” comes back and buys. In sales, results often show up later, and the game makes that visible.</li>
+									<li><b>Fails are collectable.</b> Each fail card says what happened, why it fails in real sales and what to try. Finding them on purpose is part of the game.</li>
+									<li><b>Transfer in one decision.</b> At the office, each wrong reply to the email mirrors one of the fails on the beach.</li>
+								</ul>
+								<h3>How Level 2 teaches</h3>
+								<ul>
+									<li><b>Questions have a budget.</b> Each one costs ripeness. Open questions reveal need cards, closed ones get short answers, and leading ones cost trust and reveal nothing.</li>
+									<li><b>The first answer isn’t the real need.</b> “I’m running on empty” is the surface. Follow-up questions only appear after an answer, and digging leads to the real need: cramps in the last set. The rating rewards the dig: one banana for answering any need, two for the real one, three for finding it in five questions without leading.</li>
+									<li><b>The pitch is a chain, built in three picks.</b> First the need, then the one feature that answers it, then the words. Some features are true but don’t matter to this buyer (the price, the gym bag). Pure facts and big claims don’t land either.</li>
+									<li><b>Transfer to a real call.</b> At the office, learners pick three discovery questions for a law firm, then build feature → benefit → value for Karl-Klein 2.0.</li>
+								</ul>
+								<h3>What comes next</h3>
+								<p>Four more levels, each with one skill: a cold call on a high-speed train, objections next to the MegaBanana stall, a buying committee in a hospital kitchen, and a boss level at a ministry, where proof counts more than persuasion. Each level adds one rule to a sales notebook, and the six rules become a cheat sheet at the end. In a real project, a product owner would confirm the product facts and a sales expert would review the sales practice.</p>
+								<h3>Status</h3>
+								<p>Prototype, Levels 1 and 2 of 6. Everything is fictional: the product, its maker, the customers and the prices. The pixel art is drawn in code, the music is original and synthesized in the browser (off until you turn it on), and the game saves nothing in your browser.</p>
+							</section>
+						</div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<ul class="copyright">
+								<li>&copy; Brigitta Buzinszki. All rights reserved</li><li><a href="privacy.html">Privacy</a></li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/sell-this-banana-art.js"></script>
+			<script src="assets/js/sell-this-banana-sound.js"></script>
+			<script src="assets/js/sell-this-banana.js"></script>
+
+	</body>
+</html>
