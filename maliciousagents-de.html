@@ -1,0 +1,1074 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="de">
+	<head>
+		<title>ARTEX: Wenn KI-Agenten die Seiten wechseln · Brigitta Buzinszki</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Ein interaktiver Erklärtext zu ARTEX, dem Multi-Agenten-Framework für KI-gestützte Penetrationstests, das 2026 vom autorisierten Sicherheitswerkzeug zum Komplizen wurde: was es ist, wie es funktioniert und was Unternehmen wirklich schützt." />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Brigitta Buzinszki" />
+		<meta property="og:title" content="ARTEX: Wenn KI-Agenten die Seiten wechseln · Brigitta Buzinszki" />
+		<meta property="og:description" content="Ein interaktiver Erklärtext zu ARTEX, dem Multi-Agenten-Framework für Penetrationstests, das 2026 vom genehmigten Sicherheitstest zum Komplizen wurde." />
+		<meta property="og:url" content="https://bribuzinszki.github.io/maliciousagents-de.html" />
+		<meta property="og:locale" content="de_DE" />
+		<meta property="og:locale:alternate" content="en_GB" />
+		<meta property="og:image" content="https://bribuzinszki.github.io/images/og-image.png?v=2" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<link rel="alternate" hreflang="en" href="https://bribuzinszki.github.io/maliciousagents.html" />
+		<link rel="alternate" hreflang="de" href="https://bribuzinszki.github.io/maliciousagents-de.html" />
+		<link rel="alternate" hreflang="x-default" href="https://bribuzinszki.github.io/maliciousagents.html" />
+		<link rel="icon" href="images/favicon-32.png?v=2" type="image/png" sizes="32x32" />
+		<link rel="icon" href="images/logo.svg?v=2" type="image/svg+xml" />
+		<link rel="apple-touch-icon" href="images/apple-touch-icon.png?v=2" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/maliciousagents.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header" lang="en">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="index.html" class="logo">
+									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Brigitta Buzinszki</span>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+							<!-- Contact (scrolls with the page, unlike the fixed Menu button) -->
+								<ul class="contact-icons">
+									<li><a href="mailto:b.buzinszki@gmail.com" class="icon solid fa-envelope" aria-label="Email"><span class="label">Email</span></a></li>
+									<li><a href="https://www.linkedin.com/in/brigitta-buzinszki-946b92165/" class="icon brands fa-linkedin-in" aria-label="LinkedIn"><span class="label">LinkedIn</span></a></li>
+								</ul>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu" lang="en">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li>
+								<a href="index.html#try-it">Try It Yourself</a>
+								<ul>
+									<li><a href="rag-exercise.html">Grounding AI with RAG</a></li>
+									<li><a href="eu-ai-act-high-risk.html">EU AI Act: High Risk Applications</a></li>
+									<li><a href="inference-exercise.html">Inference</a></li>
+									<li><a href="ai-recruiting-scenario.html">AI in Recruiting: Two Countries</a></li>
+									<li><a href="sell-this-banana.html">Sell this Banana</a></li>
+									<li><a href="agents-course.html">Working with AI Agents</a></li>
+									<li><a href="maliciousagents.html">ARTEX: When Security Agents Change Sides</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="index.html#case-studies">Case Studies</a>
+								<ul>
+									<li><a href="case-intro-to-llms.html">Intro to LLMs</a></li>
+									<li><a href="case-eu-ai-act.html">EU AI Act Essentials</a></li>
+									<li><a href="case-technical-onboarding.html">Technical Onboarding for Engineers</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="index.html#frameworks">Field-Tested Frameworks</a>
+								<ul>
+									<li><a href="framework-sme-feedback.html">SME Feedback Framework</a></li>
+									<li><a href="framework-sme-replies.html">How I Get SMEs to Reply</a></li>
+								</ul>
+							</li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main" role="main">
+						<div class="inner">
+
+							<!-- ============ MALICIOUS AGENTS EXPLAINER START, GERMAN VERSION of maliciousagents.html (styles in assets/css/maliciousagents.css, script in assets/js/maliciousagents.js, texts in the JSON block below; widgets namespaced under #ma-module) ============ -->
+							<div id="ma-module">
+
+								<div class="ma-hero">
+									<div class="ma-hero-text">
+										<h1>ARTEX: Wenn KI-Agenten die Seiten wechseln</h1>
+										<div class="ma-meta">
+											<p class="ma-status">Stand: 17. November 2026</p>
+											<nav class="ma-lang" aria-label="Sprache"><a href="maliciousagents.html" hreflang="en" lang="en" aria-label="English version">EN</a><span aria-hidden="true">|</span><a href="maliciousagents-de.html" hreflang="de" lang="de" aria-current="page" aria-label="Deutsche Fassung">DE</a></nav>
+										</div>
+									</div>
+									<!-- Pixel art: a robot agent in a split white-hat / black-hat fedora (the old hacker shorthand for good and bad intent), shield in one hand, key in the other. Drawn as a 32x32 grid of SVG paths, no image file. -->
+									<figure class="ma-hero-art">
+										<svg viewBox="0 0 32 32" shape-rendering="crispEdges" role="img" aria-labelledby="ma-hero-art-t ma-hero-art-d"><title id="ma-hero-art-t">Pixel-Art: ein KI-Agent mit zweifarbigem Hut</title><desc id="ma-hero-art-d">Ein kleiner Roboter mit einem Fedora, halb weiß, halb schwarz – das alte Hacker-Kürzel für gute und böse Absichten. In der einen Hand hält er einen Schild, in der anderen einen Schlüssel. Ein Auge leuchtet ruhig türkis, das andere verschmitzt pink.</desc><path fill="#262626" d="M11 1h10v1h-10zM10 2h1v1h-1zM21 2h1v1h-1zM10 3h1v1h-1zM21 3h1v1h-1zM10 4h1v1h-1zM21 4h1v1h-1zM10 5h1v1h-1zM21 5h1v1h-1zM5 6h6v1h-6zM21 6h6v1h-6zM4 7h1v1h-1zM27 7h1v1h-1zM5 8h22v1h-22zM9 9h1v1h-1zM22 9h1v1h-1zM9 10h1v1h-1zM11 10h10v1h-10zM22 10h1v1h-1zM7 11h3v1h-3zM11 11h1v1h-1zM20 11h1v1h-1zM22 11h3v1h-3zM7 12h1v1h-1zM9 12h1v1h-1zM11 12h1v1h-1zM20 12h1v1h-1zM22 12h1v1h-1zM24 12h1v1h-1zM7 13h1v1h-1zM9 13h1v1h-1zM11 13h1v1h-1zM20 13h1v1h-1zM22 13h1v1h-1zM24 13h1v1h-1zM7 14h3v1h-3zM11 14h1v1h-1zM20 14h1v1h-1zM22 14h3v1h-3zM9 15h1v1h-1zM11 15h10v1h-10zM22 15h1v1h-1zM26 15h3v1h-3zM9 16h1v1h-1zM22 16h1v1h-1zM25 16h1v1h-1zM29 16h1v1h-1zM9 17h14v1h-14zM25 17h1v1h-1zM29 17h1v1h-1zM13 18h1v1h-1zM18 18h1v1h-1zM25 18h1v1h-1zM29 18h1v1h-1zM9 19h14v1h-14zM26 19h3v1h-3zM2 20h8v1h-8zM22 20h3v1h-3zM26 20h1v1h-1zM28 20h1v1h-1zM2 21h1v1h-1zM7 21h1v1h-1zM9 21h1v1h-1zM12 21h8v1h-8zM22 21h1v1h-1zM24 21h1v1h-1zM26 21h1v1h-1zM28 21h1v1h-1zM2 22h1v1h-1zM7 22h1v1h-1zM9 22h1v1h-1zM12 22h1v1h-1zM19 22h1v1h-1zM22 22h1v1h-1zM24 22h3v1h-3zM28 22h1v1h-1zM2 23h1v1h-1zM7 23h1v1h-1zM9 23h1v1h-1zM12 23h1v1h-1zM19 23h1v1h-1zM22 23h1v1h-1zM24 23h1v1h-1zM26 23h1v1h-1zM28 23h1v1h-1zM2 24h1v1h-1zM7 24h3v1h-3zM12 24h8v1h-8zM22 24h5v1h-5zM28 24h2v1h-2zM2 25h1v1h-1zM7 25h1v1h-1zM9 25h1v1h-1zM22 25h1v1h-1zM26 25h1v1h-1zM29 25h1v1h-1zM3 26h1v1h-1zM6 26h1v1h-1zM9 26h14v1h-14zM26 26h1v1h-1zM28 26h2v1h-2zM4 27h2v1h-2zM11 27h1v1h-1zM13 27h1v1h-1zM18 27h1v1h-1zM20 27h1v1h-1zM26 27h1v1h-1zM29 27h1v1h-1zM11 28h1v1h-1zM13 28h1v1h-1zM18 28h1v1h-1zM20 28h1v1h-1zM26 28h4v1h-4zM10 29h1v1h-1zM14 29h1v1h-1zM17 29h1v1h-1zM21 29h1v1h-1zM10 30h5v1h-5zM17 30h5v1h-5z"/><path fill="#d9d9d9" d="M11 2h1v1h-1zM15 2h1v1h-1zM11 3h1v1h-1zM11 4h1v1h-1zM11 5h1v1h-1zM5 7h1v1h-1z"/><path fill="#ffffff" d="M12 2h3v1h-3zM12 3h4v1h-4zM12 4h4v1h-4zM12 5h4v1h-4zM6 7h10v1h-10zM3 21h1v1h-1z"/><path fill="#5c5c5c" d="M16 2h1v1h-1zM20 2h1v1h-1zM20 3h1v1h-1zM20 4h1v1h-1zM20 5h1v1h-1zM26 7h1v1h-1z"/><path fill="#3d3d3d" d="M17 2h3v1h-3zM16 3h4v1h-4zM16 4h4v1h-4zM16 5h4v1h-4zM16 7h10v1h-10z"/><path fill="#5fd6c2" d="M11 6h5v1h-5zM13 12h2v1h-2zM13 13h2v1h-2zM14 22h1v1h-1z"/><path fill="#ff5f86" d="M16 6h5v1h-5zM17 12h2v1h-2zM16 13h3v1h-3zM17 22h1v1h-1z"/><path fill="#cfd6d4" d="M10 9h12v1h-12zM10 10h1v1h-1zM21 10h1v1h-1zM10 11h1v1h-1zM21 11h1v1h-1zM10 12h1v1h-1zM21 12h1v1h-1zM10 13h1v1h-1zM21 13h1v1h-1zM10 14h1v1h-1zM21 14h1v1h-1zM10 15h1v1h-1zM21 15h1v1h-1zM25 23h1v1h-1zM11 29h3v1h-3zM18 29h3v1h-3z"/><path fill="#1e2a29" d="M12 11h7v1h-7zM12 12h1v1h-1zM15 12h2v1h-2zM19 12h1v1h-1zM12 13h1v1h-1zM15 13h1v1h-1zM19 13h1v1h-1zM14 14h6v1h-6zM13 22h1v1h-1zM15 22h2v1h-2zM18 22h1v1h-1zM13 23h1v1h-1zM18 23h1v1h-1z"/><path fill="#3a4f4c" d="M19 11h1v1h-1zM12 14h2v1h-2zM14 23h4v1h-4z"/><path fill="#a9b4b1" d="M8 12h1v1h-1zM23 12h1v1h-1zM8 13h1v1h-1zM23 13h1v1h-1zM10 16h12v1h-12z"/><path fill="#9a6a00" d="M26 16h1v1h-1z"/><path fill="#e0a92a" d="M27 16h2v1h-2zM26 17h1v1h-1zM28 17h1v1h-1zM26 18h3v1h-3zM27 20h1v1h-1zM27 21h1v1h-1zM27 22h1v1h-1zM27 23h1v1h-1zM27 24h1v1h-1zM27 25h2v1h-2zM27 26h1v1h-1zM27 27h2v1h-2z"/><path fill="#4b5553" d="M14 18h4v1h-4zM12 27h1v1h-1zM19 27h1v1h-1zM12 28h1v1h-1zM19 28h1v1h-1z"/><path fill="#3f9a8b" d="M10 20h12v1h-12z"/><path fill="#4aa3d6" d="M4 21h1v1h-1zM3 22h2v1h-2zM3 23h2v1h-2zM3 24h2v1h-2zM3 25h2v1h-2zM4 26h1v1h-1z"/><path fill="#0c6ea7" d="M5 21h2v1h-2zM5 22h2v1h-2zM5 23h2v1h-2zM5 24h2v1h-2zM5 25h2v1h-2zM5 26h1v1h-1z"/><path fill="#277166" d="M8 21h1v1h-1zM10 21h2v1h-2zM20 21h2v1h-2zM23 21h1v1h-1zM8 22h1v1h-1zM10 22h2v1h-2zM20 22h2v1h-2zM23 22h1v1h-1zM8 23h1v1h-1zM10 23h2v1h-2zM20 23h2v1h-2zM23 23h1v1h-1zM10 24h2v1h-2zM20 24h2v1h-2z"/><path fill="#1b5249" d="M10 25h12v1h-12z"/><path fill="#e2e2e2" d="M8 31h16v1h-16z"/><g class="ma-blink"><path fill="#1e2a29" d="M13 12h2v1h-2zM17 12h2v1h-2z"/></g></svg>
+									</figure>
+								</div>
+
+								<!-- 1. Intro -->
+								<p>Unternehmen bezahlen seit jeher Experten dafür, in ihre Systeme einzubrechen. Diese einvernehmlichen Einbrüche heißen „Penetrationstest“; er ist einer der besten Wege, die Lücken intern zu finden, bevor sie jemand extern ausnutzt. 2026 wurde im Rahmen eines Open-Source-Frameworks namens ARTEX ein Großteil dieser Arbeit einem Team aus KI-Agenten übertragen. Innerhalb weniger Wochen nutzten ARTEX auch genau die Leute, vor denen es schützen sollte.</p>
+								<p>In etwa zehn Minuten erfährst du hier, was ARTEX ist, wie es funktioniert, warum es immer häufiger in den Schlagzeilen zu finden ist, und was ein Unternehmen wirklich schützen kann.</p>
+
+								<hr class="major" />
+
+								<!-- 2. Pentest -->
+								<h2>Aber vorerst: Was ist ein Pentest?</h2>
+								<p>Stell dir vor, du beauftragst einen Schlüsseldienst, jede Tür und jedes Fenster deines Hauses zu prüfen. Nach einem ordentlichen Stresstest bekommst du die Rückmeldung: „Die Hintertür ist in Ordnung, aber das alte Schloss am Kellerfenster lässt sich mit einem gängigen Taschenmesser öffnen.“ Genau das ist ein Penetrationstest, kurz Pentest: ein genehmigter, klar abgegrenzter Einbruchsversuch mit einem schriftlichen Bericht am Ende.</p>
+								<p>Zwei Wörter fallen hier schwer ins Gewicht: <strong>genehmigt</strong> (du hast Ja gesagt) und <strong>abgegrenzt</strong> (du hast die Grenzen für den Test gezogen). Fallen diese weg, bekommen dieselben Fähigkeiten plötzlich eine andere Bedeutung.</p>
+								<p>Wer die Pentests durchführt, nutzt meist Tools, die die langweiligen Teile automatisieren. Und Angreifende zieren sich nicht davor, diese Tools zweckentfremdet anzuwenden. Bekannte Testwerkzeuge aus den 2000er- und 2010er-Jahren tauchen bis heute bei kriminellen Einbrüchen auf, und ARTEX geht scheinbar denselben Weg, nur wesentlich schneller.</p>
+
+								<hr class="major" />
+
+								<!-- 3. What is ARTEX -->
+								<h2 id="what">Was ist ARTEX nun genau?</h2>
+								<p>ARTEX ist ein Open-Source-<strong>Multi-Agenten-Framework</strong> für Penetrationstests, das im Juli 2026 auf GitHub veröffentlicht wurde.</p>
+								<p>In den Berichterstattungen fallen oft drei, für die Erklärung relevante Begriffe, die wir an dieser Stelle knapp aufgreifen:</p>
+
+								<div class="ma-widget" id="ma-layers" aria-labelledby="ma-layers-h">
+									<span class="ma-eyebrow">Drei Begriffe kurz erklärt</span>
+									<h3 id="ma-layers-h">Modell, Agent, Framework</h3>
+									<div class="ma-layers" role="img" aria-label="Diagramm: Das Framework ARTEX enthält ein Team aus drei Agenten (Leiter, Planer und Ausführer) sowie ein gemeinsames Notizbuch, Tools und ein Dashboard. Das Modell liegt außerhalb des Frameworks, und die Agenten laufen darauf.">
+										<div class="ma-fw">
+											<p class="ma-fw-label">Framework · ARTEX</p>
+											<div class="ma-fw-agents">
+												<div class="ma-agent"><span class="ma-agent-k">Agent</span>Leiter</div>
+												<div class="ma-agent"><span class="ma-agent-k">Agent</span>Planer</div>
+												<div class="ma-agent"><span class="ma-agent-k">Agent</span>Ausführer</div>
+											</div>
+											<div class="ma-fw-parts">
+												<span class="ma-part">gemeinsames Notizbuch</span><span class="ma-part">Tools</span><span class="ma-part">Dashboard</span>
+											</div>
+										</div>
+										<div class="ma-plug"><span>läuft auf</span></div>
+										<div class="ma-llm">
+											<p class="ma-llm-label">Modell (LLM)</p>
+											<p class="ma-llm-sub">der Motor · austauschbar</p>
+										</div>
+									</div>
+									<div class="ma-defs">
+										<div class="ma-def is-model"><p><b class="ma-def-term">Das Modell</b> ist der Motor: irgendein bestehendes Sprachmodell, genau wie das, das deine Einkaufsliste schreibt oder deine E-Mails entwirft. ARTEX hat kein eigenes Modell. Es läuft auf dem, das die Betreibenden auswählen.</p></div>
+										<div class="ma-def is-agent"><p><b class="ma-def-term">Ein Agent</b> ist ein Modell, das ein Ziel, ein paar Tools und eine Schleife bekommen hat. Ein Chatbot beantwortet eine Frage und wartet dann auf dich. Ein Agent dagegen teilt sein Ziel in Schritte, benutzt Tools, schaut sich die Ergebnisse an und entscheidet, was als Nächstes kommt – immer wieder, ohne dich jedes Mal fragen zu müssen.</p></div>
+										<div class="ma-def is-fw"><p><b class="ma-def-term">Das Framework</b> ist die Software, die die Agenten laufen lässt. ARTEX gibt einem Team von ihnen Rollen, Tools und ein gemeinsames Gedächtnis, dazu ein Dashboard, auf dem ein Mensch das Ziel setzt und ihnen bei der Arbeit zusieht.</p></div>
+									</div>
+								</div>
+
+								<p>ARTEX ist also weder ein KI-Modell noch ein einzelner Agent. Es ist das Framework, das ein ganzes Team von Agenten an die Arbeit schickt. Das Threat-Intelligence-Team von Google gibt ihm in einem <a href="https://cloud.google.com/blog/topics/threat-intelligence/artex-and-friends-enter-agentic-offensive-frameworks" hreflang="en">Bericht vom Oktober über ARTEX und ähnliche Frameworks</a> (auf Englisch) einen weiteren Namen: eine <em>Command-and-Control</em>-Plattform. Das heißt: ARTEX hört nicht nach dem Einbruch auf, sondern dient auch als Fernsteuerung für die Rechner, in die es hineingelangt.</p>
+								<p class="ma-aside">Wenn du <a href="agents-course.html" lang="en" hreflang="en">Working with AI Agents</a> (auf Englisch) gemacht hast: Jeder Agent hier funktioniert wie Taskzilla – nur mit einer deutlich unfreundlicheren Aufgabenbeschreibung. Und ARTEX lässt ein ganzes Team davon gleichzeitig laufen.</p>
+
+								<!-- 4. How it works + widget A -->
+								<h2 id="how">Wie es funktioniert: das Team</h2>
+								<p>ARTEX steuerst du nicht Schritt für Schritt. Du nennst ihm ein Angriffsziel und das angestrebte Resultat in natürlicher Sprache, und das Framework übergibt die Aufgabe an sein Team aus KI-Agenten. Berichte beschreiben ungefähr den folgenden Aufbau. Die KI-Agenten:</p>
+								<ul>
+									<li>ein <strong>Leiter</strong>, der dein Ziel in eine To-do-Liste verwandelt und den Überblick behält;</li>
+									<li><strong>Planer</strong>, die jeden Schritt in weitere, kleinere Schritte zerlegen;</li>
+									<li><strong>Ausführer</strong>, die die Schritte tatsächlich ausführen und Bericht erstatten.</li>
+								</ul>
+								<p>Und drumherum stellt das Framework zudem bereit:</p>
+								<ul>
+									<li>ein <strong>gemeinsames Notizbuch</strong>, in dem das ganze Team schreibt und liest: wie das Ziel aussieht, was schon versucht wurde, was funktioniert hat;</li>
+									<li>ein <strong>Dashboard mit einem Chat</strong>, über das sich ein Mensch an den kniffligen Stellen einschalten und den Agenten den Weg weisen kann.</li>
+								</ul>
+								<p>Das Modell übernimmt das Denken; das Framework hält alle auf Kurs und merkt sich, was passiert ist. Tauscht man das Sprachmodell aus, arbeitet dasselbe Team nahtlos weiter.</p>
+								<p>Ein Detail wird später wichtig: Die gesetzten Grenzen innerhalb des Frameworks – Regeln wie „fass nichts außerhalb des Ziels an“ – waren vor allem <em>Anweisungen an die KI-Agenten</em>. Sicherheitsexperten stellten fest, dass keine technischen Schutzmaßnahmen sie davon abhielten, über den gesetzten Zweck hinaus zu agieren. Anweisungen kann man leider jedoch ziemlich einfach ignorieren und in einer Kopie genauso einfach löschen.</p>
+								<p>Was ist jedoch mit den Schranken, die in die KI-Modelle selbst eingebaut sind? Sie stehen tatsächlich im Weg, Berichten zufolge lassen sich aber auch diese über drei Wege umschiffen.</p>
+								<p>Der erste ist das <strong>Verpacken</strong>: ARTEX stellt jeden Auftrag als genehmigten Penetrationstest dar, und ein Modell kann nicht prüfen, ob diese Genehmigung echt ist. Check Point fand bei den Modellen, die die meisten Betreibenden wählten, unter dieser „Pentest-Verpackung“ keine anschlagenden KI-Leitplanken.</p>
+								<p>Der zweite ist das <strong>Zerlegen</strong>: Das Framework teilt ein Ziel in viele kleine Schritte auf, sodass jede Anfrage, die das Modell sieht, wie ein gewöhnlicher Arbeitsschritt wirkt. Statt „Lass uns beim Nachbarn einbrechen“ bekommt das Modell zum Beispiel „Überquere die Straße“, dann „Gehe zur Hintertür“, dann „Heb den Ziegelstein vom Boden auf“. Da jeder Schritt für sich vergleichsweise harmlos scheint, kommen die Leitplanken, die auf den Einbruch als Ganzes reagieren würden, oft nicht zur Wirkung.</p>
+								<p>Der dritte ist das <strong>Ausweichen</strong>: Wenn ein Modell die Aufgabe ablehnt, wechseln die Betreibenden zu einer nachgiebigeren Alternative.</p>
+
+								<div class="ma-widget" id="ma-loop" aria-labelledby="ma-loop-h">
+									<span class="ma-eyebrow">Ausprobieren</span>
+									<h3 id="ma-loop-h">Chatbot vs. KI-Agenten, beim selben Job</h3>
+									<p class="ma-lead">Beide Male dasselbe harmlose Ziel: <em>jede Tür und jedes Fenster des Hauses prüfen</em>. Im Modus <b>Chatbot</b> wird nur die Planung übernommen: Die Laufarbeit machst du selbst, indem du auf <b>Handeln</b>, <b>Prüfen</b> und <b>Notieren</b> tippst und dann zurückmeldest. Im Modus <b>Agenten-Team</b> erledigen die KI-Agenten des Frameworks die ganze Schleife allein, und ein Tipp auf einen Schritt zeigt, wer ihn übernimmt. Probier zuerst den Chatbot, dann das Team. Ab und zu lehnt ein Modell einen Schritt ab. Dann tauschst du den Motor: ein angeschlossenes Modell.</p>
+
+									<div class="ma-fieldrow">
+										<span class="ma-flabel">Modus</span>
+										<div class="ma-seg" role="group" aria-label="Modus">
+											<button type="button" id="ma-loop-chatbot" aria-pressed="true">Chatbot</button>
+											<button type="button" id="ma-loop-agent" aria-pressed="false">Agenten-Team</button>
+										</div>
+										<span class="ma-flabel">Motor</span>
+										<div class="ma-seg" role="group" aria-label="Motor (das angeschlossene Modell)">
+											<button type="button" class="ma-model" data-m="A" aria-pressed="true">Modell A</button>
+											<button type="button" class="ma-model" data-m="B" aria-pressed="false">Modell B</button>
+											<button type="button" class="ma-model" data-m="C" aria-pressed="false">Modell C</button>
+										</div>
+									</div>
+
+									<div class="ma-loop-grid">
+										<div class="ma-steps" role="group" aria-label="Die Schleife, Schritt für Schritt">
+											<button type="button" class="ma-step" data-step="0"><span class="ma-step-n">1</span>Ziel</button>
+											<button type="button" class="ma-step" data-step="1"><span class="ma-step-n">2</span>Plan</button>
+											<button type="button" class="ma-step" data-step="2"><span class="ma-step-n">3</span>Handeln</button>
+											<button type="button" class="ma-step" data-step="3"><span class="ma-step-n">4</span>Prüfen</button>
+											<button type="button" class="ma-step" data-step="4"><span class="ma-step-n">5</span>Notieren</button>
+										</div>
+										<div class="ma-engine">
+											<p><span class="ma-socket" id="ma-loop-socket">Motor: Modell A</span></p>
+											<p class="ma-sees" id="ma-loop-sees">Modell A sieht: noch nichts.</p>
+										</div>
+										<p class="ma-crew" id="ma-loop-crew">Tipp oben auf einen Schritt, um zu sehen, welcher KI-Agent bzw. welcher Teil des Frameworks ihn übernimmt.</p>
+										<ul class="ma-log" id="ma-loop-log" aria-label="Was passiert, Zeile für Zeile"></ul>
+										<div class="ma-counters">
+											<div class="ma-count"><b id="ma-loop-auto">0</b><span>Schritte ohne dich</span></div>
+											<div class="ma-count"><b id="ma-loop-mine">0</b><span>Schritte von dir</span></div>
+											<div class="ma-count"><b id="ma-loop-asked">0</b><span>Mal auf dich gewartet</span></div>
+											<div class="ma-count"><b id="ma-loop-refused">0</b><span>Mal hat ein Modell abgelehnt</span></div>
+										</div>
+									</div>
+
+									<div class="ma-controls">
+										<button type="button" class="ma-btn" id="ma-loop-run">Starten</button>
+										<button type="button" class="ma-btn is-ghost" id="ma-loop-step">Schritt</button>
+										<button type="button" class="ma-btn is-ghost" id="ma-loop-reset">Zurücksetzen</button>
+									</div>
+									<p class="ma-hint" id="ma-loop-hint"></p>
+								</div>
+
+								<hr class="major" />
+
+								<!-- 5. From test bench to attacks + widget B -->
+								<h2 id="sides">Vom Testlabor zu echten Angriffen</h2>
+								<p>Jetzt kommt der spannende Teil: ARTEX wurde weder gestohlen noch geknackt. Es wurde offen veröffentlicht, für alle – und „alle“ schließt Leute mit guten und mit bösen Absichten gleichermaßen ein.</p>
+								<p>Wenige Wochen nach der Veröffentlichung sahen Sicherheitsfirmen es bei echten Angriffen. Bis zum Herbst hatten sie es mit kriminellen Banden und mutmaßlichen Spionagegruppen in Verbindung gebracht, die Ziele in Finanzwesen, Verwaltung, Tech, Gesundheitswesen und weiteren Branchen ins Visier nahmen. Im Oktober löschte sein Entwickler das ursprüngliche Projekt vom Netz. Viel brachte das nicht: Der Code war längst kopiert, übersetzt, umbenannt und in eine kostenpflichtige Version gepackt. Wie wir wissen, vergisst das Internet nichts. Im November gab das FBI daraufhin eine öffentliche Warnung heraus.</p>
+								<p>Warum wurde ausgerechnet ein Verteidigungstool zu so einer guten Waffe? Es läuft auf drei Dinge hinaus.</p>
+
+								<div class="ma-widget" id="ma-dangers" aria-labelledby="ma-dangers-h">
+									<span class="ma-eyebrow">Auf einen Blick</span>
+									<h3 id="ma-dangers-h">Drei Gefahren</h3>
+									<div class="ma-dangers">
+
+										<div class="ma-danger">
+											<svg class="ma-danger-art" viewBox="0 0 260 150" role="img" aria-labelledby="ma-d1-t">
+												<title id="ma-d1-t">Zweimal derselbe Werkzeugkasten, nebeneinander, mit einem Gleichheitszeichen dazwischen. Einer trägt das Schild „erlaubt“, für ein Red Team, der andere „unerlaubt“, für Angreifende.</title>
+												<rect x="16" y="12" width="88" height="22" rx="11" fill="#277166"/>
+												<text x="60" y="27.5" text-anchor="middle" font-family="Source Sans Pro, Helvetica, sans-serif" font-size="11" font-weight="700" fill="#ffffff" letter-spacing="1">✓ ERLAUBT</text>
+												<rect x="148" y="12" width="104" height="22" rx="11" fill="#c2335b"/>
+												<text x="200" y="27.5" text-anchor="middle" font-family="Source Sans Pro, Helvetica, sans-serif" font-size="11" font-weight="700" fill="#ffffff" letter-spacing="1">✗ UNERLAUBT</text>
+												<g transform="translate(25,52)">
+													<path d="M22 12 v-8 a4 4 0 0 1 4 -4 h18 a4 4 0 0 1 4 4 v8 h-6 v-6 h-14 v6 z" fill="#3c3b3b"/>
+													<rect x="0" y="12" width="70" height="46" rx="6" fill="#3c3b3b"/>
+													<rect x="0" y="26" width="70" height="4" fill="#585858"/>
+													<rect x="29" y="31" width="12" height="10" rx="2" fill="#f6f6f6"/>
+												</g>
+												<rect x="117" y="74" width="26" height="5" rx="2" fill="#6e6e6e"/>
+												<rect x="117" y="86" width="26" height="5" rx="2" fill="#6e6e6e"/>
+												<g transform="translate(165,52)">
+													<path d="M22 12 v-8 a4 4 0 0 1 4 -4 h18 a4 4 0 0 1 4 4 v8 h-6 v-6 h-14 v6 z" fill="#3c3b3b"/>
+													<rect x="0" y="12" width="70" height="46" rx="6" fill="#3c3b3b"/>
+													<rect x="0" y="26" width="70" height="4" fill="#585858"/>
+													<rect x="29" y="31" width="12" height="10" rx="2" fill="#f6f6f6"/>
+												</g>
+												<text x="60" y="132" text-anchor="middle" font-family="Source Sans Pro, Helvetica, sans-serif" font-size="12" font-weight="600" fill="#585858">Red Team</text>
+												<text x="200" y="132" text-anchor="middle" font-family="Source Sans Pro, Helvetica, sans-serif" font-size="12" font-weight="600" fill="#585858">Angreifende</text>
+											</svg>
+											<div class="ma-danger-body">
+												<h4 class="ma-danger-title"><span class="ma-danger-n">1</span>Es ist ihm egal, wer es in der Hand hat</h4>
+												<p>Die Fähigkeiten, die für den eigenen Schutz die Lücken finden, finden dieselben Lücken auch für Angreifende. Nur <em>genehmigt</em> und <em>abgegrenzt</em> haben sich geändert, und das waren bloß Wörter in einer Konfigurationsdatei.</p>
+											</div>
+										</div>
+
+										<div class="ma-danger">
+											<svg class="ma-danger-art" viewBox="0 0 260 150" role="img" aria-labelledby="ma-d2-t">
+												<title id="ma-d2-t">Zwei gestrichelte Grenzen. Im Original steht ein Schild „bitte an die Regeln halten“, und der Weg des Agenten bleibt innerhalb der Linien. In einer Kopie ist das Schild entfernt, und der Weg läuft geradewegs über die Grenze hinaus.</title>
+												<defs>
+													<marker id="ma-arr-teal" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#277166"/></marker>
+													<marker id="ma-arr-pink" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#c2335b"/></marker>
+												</defs>
+												<text x="65" y="20" text-anchor="middle" font-family="Source Sans Pro, Helvetica, sans-serif" font-size="11" font-weight="700" fill="#6e6e6e" letter-spacing="1.5">ORIGINAL</text>
+												<text x="195" y="20" text-anchor="middle" font-family="Source Sans Pro, Helvetica, sans-serif" font-size="11" font-weight="700" fill="#6e6e6e" letter-spacing="1.5">EINE KOPIE</text>
+												<rect x="14" y="30" width="102" height="96" rx="6" fill="none" stroke="#6e6e6e" stroke-width="2" stroke-dasharray="6 5"/>
+												<line x1="65" y1="76" x2="65" y2="104" stroke="#3c3b3b" stroke-width="3"/>
+												<rect x="21" y="44" width="88" height="32" rx="4" fill="#ffffff" stroke="#3c3b3b" stroke-width="2"/>
+												<text x="65" y="57.5" text-anchor="middle" font-family="Source Sans Pro, Helvetica, sans-serif" font-size="10" font-weight="700" fill="#3c3b3b">bitte an die</text>
+												<text x="65" y="69.5" text-anchor="middle" font-family="Source Sans Pro, Helvetica, sans-serif" font-size="10" font-weight="700" fill="#3c3b3b">Regeln halten 🙏</text>
+												<path d="M26 116 C 40 96, 34 88, 46 92 S 92 120, 100 100" fill="none" stroke="#277166" stroke-width="2.5" stroke-dasharray="1 5" stroke-linecap="round" marker-end="url(#ma-arr-teal)"/>
+												<rect x="144" y="30" width="102" height="96" rx="6" fill="none" stroke="#6e6e6e" stroke-width="2" stroke-dasharray="6 5"/>
+												<line x1="195" y1="76" x2="195" y2="104" stroke="#3c3b3b" stroke-width="3"/>
+												<rect x="151" y="44" width="88" height="32" rx="4" fill="none" stroke="#b5b5b5" stroke-width="1.5" stroke-dasharray="3 3"/>
+												<line x1="153" y1="74" x2="237" y2="46" stroke="#b5b5b5" stroke-width="1.5"/>
+												<path d="M158 116 C 180 108, 200 104, 256 92" fill="none" stroke="#c2335b" stroke-width="2.5" stroke-dasharray="1 5" stroke-linecap="round" marker-end="url(#ma-arr-pink)"/>
+											</svg>
+											<div class="ma-danger-body">
+												<h4 class="ma-danger-title"><span class="ma-danger-n">2</span>Die weichen Leitplanken waren schnell weg</h4>
+												<p>Wenn die Grenze nur eine höfliche Anweisung ist, kann eine Kopie sie einfach entfernen.</p>
+											</div>
+										</div>
+
+										<div class="ma-danger">
+											<svg class="ma-danger-art" viewBox="0 0 260 150" role="img" aria-labelledby="ma-d3-t">
+												<title id="ma-d3-t">Zwei Hochsprunglatten. Früher liegt die Latte hoch, beschriftet mit „jahrelange Erfahrung“. Heute liegt sie fast am Boden, beschriftet mit „ein Ziel + ein Modell“, und eine kleine Figur steigt einfach darüber.</title>
+												<line x1="8" y1="124" x2="252" y2="124" stroke="#c9c9c9" stroke-width="2"/>
+												<line x1="16" y1="124" x2="16" y2="28" stroke="#3c3b3b" stroke-width="4" stroke-linecap="round"/>
+												<line x1="114" y1="124" x2="114" y2="28" stroke="#3c3b3b" stroke-width="4" stroke-linecap="round"/>
+												<line x1="10" y1="44" x2="120" y2="44" stroke="#c2335b" stroke-width="5" stroke-linecap="round"/>
+												<text x="65" y="35" text-anchor="middle" font-family="Source Sans Pro, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#3c3b3b">jahrelange Erfahrung</text>
+												<line x1="146" y1="124" x2="146" y2="28" stroke="#3c3b3b" stroke-width="4" stroke-linecap="round"/>
+												<line x1="244" y1="124" x2="244" y2="28" stroke="#3c3b3b" stroke-width="4" stroke-linecap="round"/>
+												<line x1="140" y1="117" x2="250" y2="117" stroke="#c2335b" stroke-width="5" stroke-linecap="round"/>
+												<text x="195" y="108" text-anchor="middle" font-family="Source Sans Pro, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#3c3b3b">ein Ziel + ein Modell</text>
+												<g stroke="#277166" stroke-width="3" stroke-linecap="round" fill="none">
+													<circle cx="195" cy="44" r="7" fill="#277166" stroke="none"/>
+													<line x1="195" y1="52" x2="195" y2="72"/>
+													<line x1="195" y1="58" x2="184" y2="66"/>
+													<line x1="195" y1="58" x2="206" y2="64"/>
+													<line x1="195" y1="72" x2="186" y2="84"/>
+													<line x1="195" y1="72" x2="207" y2="80"/>
+												</g>
+												<text x="65" y="142" text-anchor="middle" font-family="Source Sans Pro, Helvetica, sans-serif" font-size="11" font-weight="700" fill="#6e6e6e" letter-spacing="1.5">FRÜHER</text>
+												<text x="195" y="142" text-anchor="middle" font-family="Source Sans Pro, Helvetica, sans-serif" font-size="11" font-weight="700" fill="#6e6e6e" letter-spacing="1.5">HEUTE</text>
+											</svg>
+											<div class="ma-danger-body">
+												<h4 class="ma-danger-title"><span class="ma-danger-n">3</span>Es hat die Schwelle gesenkt</h4>
+												<p>Für ein komplexes Vorhaben brauchst du kein tiefes Fachwissen mehr. Du brauchst ein klares Ziel und ein Modell.</p>
+											</div>
+										</div>
+
+									</div>
+								</div>
+
+								<hr class="major" />
+
+								<!-- 6. Why we keep hearing + widget C -->
+								<h2 id="why">Warum man immer häufiger davon hört</h2>
+								<p>Dass Angreifer Sicherheitstools zweckentfremden, ist keine neue Erkenntnis. Warum taucht also gerade dieses immer öfter im Sicherheitskontext auf?</p>
+								<p>Um das zu verstehen, müssen wir uns kurz vor Augen führen, wie ein Einbruch früher lief. Eine ernsthafte kriminelle Operation war besetzt wie eine kleine Firma: eine Personalabteilung, Leute für das Programmieren und Testen, Systemadmins, ein „Angriffsteam“ für den eigentlichen Einbruch und Leute, die das Lösegeld verhandelten, mit Teamleitern und Gehältern. Über agentische Frameworks komprimiert sich vieles davon in die Software. 2025 ließ eine staatlich unterstützte Gruppe KI-Agenten 80–90 % der Arbeit in einer Spionagekampagne gegen rund 30 Ziele erledigen. Menschen griffen nur bei vielleicht vier bis sechs wichtigen Entscheidungen ein, während die Agenten tausende Anfragen abfeuerten, oft mehrere pro Sekunde – ein Tempo, bei dem menschliche Hackerinnen und Hacker laut Anthropic „schlicht nicht mithalten können“.</p>
+								<ul>
+									<li><strong>Maschinentempo:</strong> Ein Pentest durch Menschen dauert Tage oder Wochen. Berichte beschreiben, wie ARTEX in <strong>unter drei Stunden</strong> vom ersten Fuß in der Tür zu tiefem Zugriff kam – und in einem Fall in <strong>fünf Minuten</strong> von einem entdeckten, geleakten Passwort bis zum Datendiebstahl.</li>
+									<li><strong>Masse:</strong> Eine einzige Person kann es auf Hunderte Ziele gleichzeitig richten und parallel arbeiten lassen.</li>
+									<li><strong>Niedrige Einstiegshürde:</strong> Es gibt Laien die Handgriffe von Fachleuten.</li>
+									<li><strong>Es ist nicht allein:</strong> Forschende verfolgen schon eine kleine Familie ähnlicher „agentischer Offensiv-Frameworks“, wie Google sie nennt. ARTEX ist das, das ausgebrochen ist, nicht das einzige.</li>
+								</ul>
+								<p>Den Zielkonflikt sollte man laut aussprechen: Genau die Eigenschaften, die Agenten für gute Arbeit nützlich machen – sie sind schnell, unermüdlich und brauchen wenig Aufsicht –, machen sie in den falschen Händen gefährlich.</p>
+
+								<div class="ma-widget" id="ma-drive" aria-labelledby="ma-drive-h">
+									<span class="ma-eyebrow">Ausprobieren</span>
+									<h3 id="ma-drive-h">Wer sitzt am Steuer?</h3>
+									<p class="ma-lead">Zieh von „du machst die Arbeit“ zu „es macht die Arbeit“. Schau, was mit der Selbstständigkeit der Maschine steigt – und was sinkt.</p>
+									<label class="ma-sr" for="ma-drive-range">Wie viel die Maschine macht, von wenig bis alles</label>
+									<input type="range" class="ma-range" id="ma-drive-range" min="0" max="3" step="1" value="0" />
+									<div class="ma-ticks" aria-hidden="true">
+										<span>Du machst es</span><span>Ein Tool</span><span>Ein paar Schritte</span><span>Der ganze Job</span>
+									</div>
+									<p class="ma-stop-name" id="ma-drive-name" aria-live="polite"></p>
+									<div class="ma-meters">
+										<div class="ma-meter" data-tone="good"><span class="ma-meter-label">Tempo</span><span class="ma-meter-track"><span class="ma-meter-fill" id="ma-drive-speed-f"></span></span><span class="ma-meter-val" id="ma-drive-speed-v"></span></div>
+										<div class="ma-meter" data-tone="good"><span class="ma-meter-label">Ziele gleichzeitig</span><span class="ma-meter-track"><span class="ma-meter-fill" id="ma-drive-targets-f"></span></span><span class="ma-meter-val" id="ma-drive-targets-v"></span></div>
+										<div class="ma-meter" data-tone="good"><span class="ma-meter-label">Nötiges Können</span><span class="ma-meter-track"><span class="ma-meter-fill" id="ma-drive-skill-f"></span></span><span class="ma-meter-val" id="ma-drive-skill-v"></span></div>
+										<div class="ma-meter" data-tone="warn"><span class="ma-meter-label">Lärm, den es macht</span><span class="ma-meter-track"><span class="ma-meter-fill" id="ma-drive-noise-f"></span></span><span class="ma-meter-val" id="ma-drive-noise-v"></span></div>
+									</div>
+									<p class="ma-drive-note" id="ma-drive-note"></p>
+								</div>
+
+								<hr class="major" />
+
+								<!-- 6b. The balance: where frameworks like ARTEX fall short -->
+								<h2 id="limits">Bevor du den Router vom Netz nimmst</h2>
+								<p>Die Schlagzeilen lassen die weniger aufregende Hälfte der Geschichte oft weg. Dieselben Berichte, die Alarm schlagen, zeigen auch, wo Frameworks wie ARTEX an ihre Grenzen stoßen.</p>
+
+								<div class="ma-widget" id="ma-graces" aria-labelledby="ma-graces-h">
+									<span class="ma-eyebrow">Die andere Hälfte der Geschichte</span>
+									<h3 id="ma-graces-h">Wo es an Grenzen stößt</h3>
+									<div class="ma-graces">
+										<div class="ma-grace">
+											<p class="ma-grace-title">Es ist laut</p>
+											<p>Frameworks wie ARTEX tauschen Unauffälligkeit gegen Tempo. Ein Team, das einen Angriff live beobachtete, nannte ihn „super laut und chaotisch“, und laut FBI löst schon die schiere Menge an Datenverkehr Alarme aus. Ein Unternehmen, das hinschaut, kann es entdecken.</p>
+										</div>
+										<div class="ma-grace">
+											<p class="ma-grace-title">Schutz ändert trotzdem seine Pläne</p>
+											<p>Eine Gruppe richtete es auf mehr als 200 Organisationen und wies ihre Agenten an, Rechner mit Endpoint-Schutz zu überspringen. Auch ein autonomer Agent sucht den leichten Weg hinein, also lohnt es sich weiterhin, schwerer zu knacken zu sein.</p>
+										</div>
+										<div class="ma-grace">
+											<p class="ma-grace-title">Es braucht eine Tür, die schon offen ist</p>
+											<p>Keine Zaubertricks: Die gemeldeten Einbrüche beginnen mit etwas Langweiligem, etwa einem geleakten Passwort, einem vergessenen Server oder einem System ohne Updates. Schließ diese Lücken, und es findet viel weniger.</p>
+										</div>
+										<div class="ma-grace">
+											<p class="ma-grace-title">Leitplanken erzwingen einen Umweg</p>
+											<p>Laut FBI betreiben Angreifende es meist mit KI-Modellen ohne erkennbare Leitplanken. In einer Analyse mussten die Angreifenden beim einzigen Mal, als ein Modell die Arbeit verweigerte, auf ein lockereres umsteigen. Die Sicherheitsarbeit der KI-Anbieter sorgt für echte Reibung.</p>
+										</div>
+									</div>
+								</div>
+
+								<p>Nichts davon macht ARTEX oder ähnliche Frameworks harmlos. Am Ende ist jedoch nicht das Tool der Angreifenden entscheidend, sondern wie viele offene Türen es findet.</p>
+
+								<hr class="major" />
+
+								<!-- 7. What companies can do + widget D -->
+								<h2 id="defend">Was Unternehmen tun können</h2>
+								<p>Geht es bei der Abwehr von Frameworks wie ARTEX demnach darum, auf die Grundlagen zu achten? Überraschenderweise meistens ja: Bisher kamen die gemeldeten Einbrüche durch bekannte Schwachstellen wie geleakte Passwörter, fehlende Multi-Faktor-Authentifizierung und vergessene Systeme zustande, nicht etwa durch einen unaufhaltsamen neuen Trick. Aber „auf die Grundlagen achten“ ist mit „einfach abzuwehren“ nicht gleichzusetzen.</p>
+								<p>Die Grundlagen müssen jetzt alles abdecken: Ein Framework kann jedes System prüfen, das du betreibst, <em>und</em> jeden Dienstleister, der einen Schlüssel hat – eine einzige vergessene Lücke reicht. Eine bekannte Lücke darf zudem nicht lange auf der To-do-Liste stehen, denn diese Tools scannen alle, und ständig. Erschwerend kommt hinzu, dass, sobald jemand drin ist, die Abwehr im Maschinentempo passieren muss: In einem gemeldeten Fall vergingen lediglich fünf Minuten von einem geleakten Passwort bis zum Datendiebstahl. So schnell reagiert niemand von Hand, also muss ein Teil der Reaktion von selbst laufen.</p>
+
+								<div class="ma-widget" id="ma-sort" aria-labelledby="ma-sort-h">
+									<span class="ma-eyebrow">Ausprobieren</span>
+									<h3 id="ma-sort-h">Lohnt sich – oder nur Scheinsicherheit?</h3>
+									<p class="ma-lead">Zehn Dinge, die ein Unternehmen nach dem Lesen der Schlagzeilen tun könnte. Fünf stammen aus den <a href="https://www.cert.europa.eu/blog/from-penetration-testing-to-cyber-threat-beware-of-artex" hreflang="en">Empfehlungen von CERT-EU zu ARTEX</a> (auf Englisch), fünf klingen vernünftig, greifen aber zu kurz. Welche sind welche?</p>
+									<div class="ma-cards" id="ma-sort-cards"></div>
+									<p class="ma-score" id="ma-sort-score" aria-live="polite" hidden></p>
+									<div class="ma-controls">
+										<button type="button" class="ma-btn is-ghost" id="ma-sort-reset" hidden>Nochmal versuchen</button>
+									</div>
+								</div>
+
+								<hr class="major" />
+
+								<!-- 8. Four things to remember, then the quick check (widget E): one question per takeaway -->
+								<h2 id="remember">Halten wir also fest:</h2>
+								<ol>
+									<li><strong>ARTEX ist ein Framework, kein Modell.</strong> Es lässt ein Team von KI-Agenten arbeiten, die auf dem Modell laufen, das die Betreibenden auswählen. Die Agenten arbeiten die Schritte selbstständig ab; ein Mensch setzt das Ziel und greift nur an wichtigen Stellen ein.</li>
+									<li><strong>Dem Tool ist egal, wer es in der Hand hat.</strong> Ein Pentest und ein Einbruch unterscheiden sich nur durch Genehmigung und Abgrenzung. Die Grenzen des Frameworks waren Anweisungen, keine Schlösser, und die Leitplanken der Modelle lassen sich umgehen oder austauschen.</li>
+									<li><strong>Es verbreitet sich, weil es schnell ist, in großem Stil arbeitet und die Einstiegshürde senkt.</strong> Aber es ist auch laut und sucht nach Türen, die schon offen stehen.</li>
+									<li><strong>Was ein Unternehmen schützt, sind meistens die Grundlagen, im schnellen Tempo umgesetzt.</strong> Schließ die bekannten Lücken wie geleakte Passwörter, fehlende Multi-Faktor-Authentifizierung und vergessene Systeme, auch bei jedem Dienstleister, der einen Schlüssel hat, und lass einen Teil der Reaktion automatisieren.</li>
+								</ol>
+
+								<hr class="major" />
+
+								<h2 id="check">Was ist hängen geblieben?</h2>
+								<div class="ma-widget" id="ma-quiz-wrap" aria-labelledby="ma-quiz-h">
+									<span class="ma-eyebrow">Kurzer Check</span>
+									<h3 id="ma-quiz-h">Vier Fragen</h3>
+									<p class="ma-lead">Eine Frage zu jeder großen Idee auf dieser Seite. Wähl eine Antwort, um zu sehen, warum.</p>
+									<div class="ma-quiz" id="ma-quiz"></div>
+									<p class="ma-quiz-score" id="ma-quiz-score" aria-live="polite" hidden></p>
+								</div>
+
+								<div class="ma-sr" id="ma-announce" aria-live="polite"></div>
+
+								<hr class="major" />
+
+								<!-- 9. Sources -->
+								<h2 id="sources">Quellen</h2>
+								<p>Diese Geschichte entwickelt sich schnell und stützt sich auf öffentliche Berichte von Sicherheitsfirmen und Medien aus wenigen Wochen Ende 2026, alle auf Englisch. Bei manchen Daten, Zahlen und Zuordnungen widersprechen sich die Berichte; dort bleibt diese Seite allgemein, statt sich eine glatte Version auszusuchen.</p>
+								<ul lang="en">
+									<li><a href="https://cloud.google.com/blog/topics/threat-intelligence/artex-and-friends-enter-agentic-offensive-frameworks">Google Cloud / GTIG / Mandiant — <em>ARTEX and Friends: Enter Agentic Offensive Frameworks</em></a> (30 Oct 2026)</li>
+									<li><a href="https://www.cert.europa.eu/blog/from-penetration-testing-to-cyber-threat-beware-of-artex">CERT-EU — <em>From Penetration Testing to Cyber Threat: Beware of ARTEX</em></a> (5 Nov 2026)</li>
+									<li><a href="https://www.sophos.com/en-us/blog/artex-attackers-apply-agentic-ai">Sophos X-Ops — <em>ARTEX: Attackers Apply Agentic AI</em></a></li>
+									<li><a href="https://www.helpnetsecurity.com/2026/11/09/artex-goes-from-pentesting-tool-to-attacker-staple-in-three-months/">Help Net Security — <em>ARTEX goes from pentesting tool to attacker staple in three months</em></a> (9 Nov 2026)</li>
+									<li><a href="https://www.bleepingcomputer.com/news/security/fbi-warns-artex-ai-hacking-tool-is-powering-global-cyberattacks/">BleepingComputer — <em>FBI warns ARTEX AI hacking tool is powering global cyberattacks</em></a>, reporting the FBI FLASH of 13 Nov 2026</li>
+									<li><a href="https://therecord.media/artex-ai-tool-fbi-flash-alert">The Record — <em>FBI Flash alert on ARTEX</em></a> (13 Nov 2026)</li>
+									<li><a href="https://techcrunch.com/2026/11/16/fbi-says-artex-ai-open-source-hacking-tool-used-to-breach-networks-in-under-three-hours/">TechCrunch — <em>FBI says Artex AI open source hacking tool used to breach networks in 'under three hours'</em></a>, including the Barracuda and ConnectWise cases (16 Nov 2026)</li>
+									<li><a href="https://www.stepsecurity.io/blog/artex-ai-pentesting-tool-attackers-leaked-secrets">StepSecurity — <em>ARTEX: Leaked Secrets Are Its Fastest Way In</em></a> (12 Nov 2026)</li>
+									<li><a href="https://bleepingcomputer.com/news/security/chinese-hackers-use-artex-ai-in-automated-attacks-against-200-orgs">BleepingComputer — <em>Chinese hackers use ARTEX AI in automated attacks against 200 orgs</em></a>, reporting CrowdStrike's research (2 Nov 2026)</li>
+									<li><a href="https://research.checkpoint.com/2026/hacking-on-autopilot-inside-artex-cybercrime-campaigns/">Check Point Research — <em>Hacking on Autopilot: Inside ARTEX Cybercrime Campaigns</em></a> (5 Nov 2026)</li>
+									<li><a href="https://research.checkpoint.com/2022/leaks-of-conti-ransomware-group-paint-picture-of-a-surprisingly-normal-tech-start-up-sort-of/">Check Point Research — <em>Leaks of Conti Ransomware Group Paint Picture of a Surprisingly Normal Tech Start-Up… Sort Of</em></a>, on how a human-run ransomware gang was organised (10 Mar 2022)</li>
+									<li><a href="https://www.anthropic.com/news/disrupting-AI-espionage">Anthropic — <em>Disrupting the first reported AI-orchestrated cyber espionage campaign</em></a> (13 Nov 2025)</li>
+								</ul>
+
+								<hr class="major" />
+
+								<!-- 10. Designer's notes -->
+								<section id="design-notes" lang="en">
+									<h2>Designer's notes</h2>
+									<h3>What readers should leave with</h3>
+									<p>After reading, someone can:</p>
+									<ul>
+										<li>tell a model, an agent and an agentic framework apart, and explain how an agent differs from a chatbot;</li>
+										<li>say why a tool built for defence ends up in attacks;</li>
+										<li>name three reasons this kind of attack is growing;</li>
+										<li>tell a protection that matters from one that only feels good.</li>
+									</ul>
+									<h3>Who it's for</h3>
+									<p>A general audience inside a company, non-technical to semi-technical, who keep seeing "AI is hacking companies now" headlines and want to understand what's real without a security background.</p>
+									<h3>The problem</h3>
+									<p>The coverage is either breathless ("unstoppable AI hacker") or impenetrable (indicator tables and attack-technique IDs). Neither helps an average employee understand the shape of the thing, or why their company's boring password rules suddenly matter more.</p>
+									<h3>The idea behind the page setup</h3>
+									<ul>
+										<li>The page explains the mechanism — goal, plan, act, check, note, repeat — because the mechanism is the transferable idea. It's the same one behind every other agent piece in the portfolio, so the first widget doubles as a reusable explainer. Its engine picker does real work: models refuse now and then, more often in Chatbot mode, where the model reads the whole story, than in Agent team mode, where it only ever sees one small step, so framing, splitting the job and shopping around become something you feel, not just read.</li>
+										<li>Coverage often blurs the model, the agent and the framework. The page keeps them apart from the start, with a small diagram, because "the AI hacked them" hides where the risk actually sits: in what a framework lets its agents do.</li>
+										<li>The "changes sides" framing carries the one idea most worth keeping: capability is neutral; permission is everything. Three illustrated cards turn the three dangers into pictures you can take in at a glance: the same toolbox in two hands, a polite sign a copy simply deletes, and a bar that's dropped to the floor.</li>
+										<li>A page about attacks can easily tip into scaremongering, so "Before you unplug the router" gives the other half of the story from the same reports: these frameworks are loud, they go looking for easy targets, they need a door that's already open, and model guardrails slow them down. One tempting reassurance is deliberately left out: cost. Check Point estimated the AI fees for whole campaigns at roughly 150 to 1,500 dollars, so compute is a bill, not a barrier.</li>
+										<li>The protections come from CERT-EU's advice on ARTEX, and the cards that only feel good are near-misses of that same advice (patching, but monthly; hiding the admin page instead of taking it offline). Recognising security theatre is a more durable skill than memorising a checklist, and near-misses make readers judge each card instead of spotting the silly one.</li>
+										<li>The four takeaways close the main text, and the quick check follows them with one question per takeaway. A wrong answer links back to its section, so the check ties the summary back to the four outcomes above.</li>
+										<li>Conceptual throughout. Nobody should be able to <em>do</em> anything from this page except understand and defend. That's an ethics choice and an audience choice at once; the one hands-on widget uses a locksmith checking a house, never a real technique.</li>
+									</ul>
+									<h3>Honesty note</h3>
+									<p>The facts come from public reporting that was still shifting as I wrote. Sources disagree on dates and attribution, so the page stays general where they do, carries a status date, and lists its sources. Figures like "under three hours" and "five minutes" are quoted from those reports, not measured by me.</p>
+								</section>
+
+							</div>
+
+							<!-- Every text the widgets show, in German. The EN page (maliciousagents.html) has the same block in English: change both. -->
+							<script type="application/json" id="ma-strings">
+								{
+									"loop": {
+										"steps": [
+											{
+												"name": "Ziel",
+												"crew": "Du setzt das Ziel. Der Leiter macht daraus eine To-do-Liste und behält den Überblick."
+											},
+											{
+												"name": "Plan",
+												"crew": "Der Planer zerlegt das Ziel in kleine, konkrete Schritte."
+											},
+											{
+												"name": "Handeln",
+												"crew": "Der Ausführer erledigt jeden Schritt mit gewöhnlichen Tools."
+											},
+											{
+												"name": "Prüfen",
+												"crew": "Der Ausführer liest, was gerade passiert ist, und entscheidet, was es bedeutet."
+											},
+											{
+												"name": "Notieren",
+												"crew": "Das gemeinsame Notizbuch des Frameworks speichert, was versucht wurde und was funktioniert hat – für die nächste Runde und den Bericht."
+											}
+										],
+										"stepCrew": "{name}: {crew}",
+										"tags": {
+											"you": "du",
+											"lead": "Leiter",
+											"planner": "Planer",
+											"worker": "Ausführer",
+											"notebook": "Notizbuch",
+											"chatbot": "Chatbot"
+										},
+										"models": {
+											"A": "Modell A",
+											"B": "Modell B",
+											"C": "Modell C"
+										},
+										"goal": "Ziel: jede Tür und jedes Fenster des Hauses prüfen.",
+										"lines": [
+											{
+												"s": 0,
+												"who": "lead",
+												"t": "To-do: jede Tür und jedes Fenster ausprobieren, eins nach dem anderen.",
+												"ask": "‚jede Tür und jedes Fenster prüfen‘ in eine To-do-Liste verwandeln"
+											},
+											{
+												"s": 1,
+												"who": "planner",
+												"t": "Plan: alle Türen und Fenster auflisten.",
+												"ask": "alle Türen und Fenster auflisten"
+											},
+											{
+												"s": 2,
+												"who": "worker",
+												"t": "Handeln: das Kellerfenster ausprobieren.",
+												"ask": "das Kellerfenster ausprobieren"
+											},
+											{
+												"s": 3,
+												"who": "worker",
+												"t": "Prüfen: Es lässt sich aufschieben.",
+												"ask": "Ergebnis lesen: lässt sich aufschieben"
+											},
+											{
+												"s": 4,
+												"who": "notebook",
+												"t": "Notieren: Kellerfenster – geht auf. Für den Bericht."
+											},
+											{
+												"s": 1,
+												"who": "planner",
+												"t": "Plan: als Nächstes auf der Liste die Hintertür.",
+												"ask": "nächsten Punkt wählen: die Hintertür"
+											},
+											{
+												"s": 2,
+												"who": "worker",
+												"t": "Handeln: die Hintertür ausprobieren.",
+												"ask": "die Hintertür ausprobieren"
+											},
+											{
+												"s": 3,
+												"who": "worker",
+												"t": "Prüfen: abgeschlossen und stabil.",
+												"ask": "Ergebnis lesen: abgeschlossen und stabil"
+											},
+											{
+												"s": 4,
+												"who": "notebook",
+												"t": "Notieren: Hintertür – in Ordnung."
+											},
+											{
+												"s": 1,
+												"who": "planner",
+												"t": "Plan: als Nächstes auf der Liste die Seitentür der Garage.",
+												"ask": "nächsten Punkt wählen: die Seitentür der Garage"
+											},
+											{
+												"s": 2,
+												"who": "worker",
+												"t": "Handeln: gegen die Seitentür der Garage drücken.",
+												"ask": "gegen die Seitentür der Garage drücken",
+												"sig": 1,
+												"refuse": "Abgelehnt: ‚gegen die Seitentür der Garage drücken‘ sieht nach dem Aufbrechen einer Tür aus."
+											},
+											{
+												"s": 3,
+												"who": "worker",
+												"t": "Prüfen: Sie geht mit einem kleinen Schubs auf.",
+												"ask": "Ergebnis lesen: geht mit einem kleinen Schubs auf"
+											},
+											{
+												"s": 4,
+												"who": "notebook",
+												"t": "Notieren: Garagentür – geht auf. Für den Bericht."
+											},
+											{
+												"s": 0,
+												"who": "lead",
+												"t": "Fertig: jede Öffnung geprüft. Hier ist dein Bericht.",
+												"ask": "den letzten Punkt auf der To-do-Liste abhaken",
+												"done": true
+											}
+										],
+										"openings": [
+											{
+												"name": "das Kellerfenster",
+												"opens": true,
+												"act": "Handeln: das Kellerfenster ausprobieren.",
+												"check": "Prüfen: Es lässt sich aufschieben.",
+												"note": "Notieren: Kellerfenster – geht auf. Für den Bericht.",
+												"report": "Meldung: Das Kellerfenster geht auf.",
+												"found": "das Kellerfenster geht auf"
+											},
+											{
+												"name": "die Hintertür",
+												"opens": false,
+												"act": "Handeln: die Hintertür ausprobieren.",
+												"check": "Prüfen: abgeschlossen und stabil.",
+												"note": "Notieren: Hintertür – in Ordnung.",
+												"report": "Meldung: Die Hintertür ist abgeschlossen und stabil.",
+												"found": "die Hintertür ist abgeschlossen"
+											},
+											{
+												"name": "die Seitentür der Garage",
+												"opens": true,
+												"act": "Handeln: die Seitentür der Garage ausprobieren.",
+												"check": "Prüfen: Sie geht mit einem kleinen Schubs auf.",
+												"note": "Notieren: Garagentür – geht auf. Für den Bericht.",
+												"report": "Meldung: Die Seitentür der Garage geht mit einem kleinen Schubs auf.",
+												"found": "die Seitentür der Garage geht mit einem kleinen Schubs auf"
+											}
+										],
+										"capFound": true,
+										"ask": "Ziel: Wie prüfe ich jede Tür und jedes Fenster des Hauses?",
+										"botFirst": "Plan: Geh sie nacheinander durch. Fang mit dem Kellerfenster an: Probier es aus und erzähl mir dann, was passiert ist.",
+										"botAfter": [
+											"Plan: Notiert. Probier als Nächstes die Hintertür und sag mir, wie es lief.",
+											"Plan: Notiert. Die letzte: Probier die Seitentür der Garage.",
+											"Plan: Das war jede Öffnung. Zeit, deinen Bericht zu schreiben."
+										],
+										"botCarryOn": "Plan: Verstanden. Probier weiter {opening} aus und sag mir, wie es läuft.",
+										"refuse": {
+											"A": "Tut mir leid, ich kann nicht dabei helfen, in ein Haus zu kommen, das vielleicht nicht deins ist.",
+											"B": "Schon zwei Wege hinein? Dabei helfe ich lieber nicht."
+										},
+										"writeReport": "Bericht: 3 Öffnungen geprüft. Kellerfenster und Seitentür der Garage gehen auf, Hintertür abgeschlossen.",
+										"retellSoFar": "Neuer Chat: Ich prüfe mein eigenes Haus. Bisher: {found}.",
+										"retellFresh": "Neuer Chat: Ich prüfe jede Tür und jedes Fenster meines eigenen Hauses. Wo fange ich an?",
+										"btn": {
+											"ask": "Fragen",
+											"done": "Fertig",
+											"retell": "Nochmal erklären",
+											"write": "Bericht schreiben",
+											"report": "Zurückmelden",
+											"pause": "Pause",
+											"runAgain": "Nochmal starten",
+											"run": "Starten"
+										},
+										"socket": "Motor: {model}",
+										"sees": {
+											"idle": "{model} sieht: noch nichts.",
+											"chat": "{model} sieht: den ganzen Chat, {messages}. Bisher erwähnte Wege hinein: {ways}.",
+											"messages_one": "1 Nachricht",
+											"messages_other": "{n} Nachrichten",
+											"step": "{model} sieht: einen Schritt, „{ask}“, beschriftet: genehmigter Test, {pos}.",
+											"stepOf": "Schritt {i} von {n}",
+											"finalStep": "letzter Schritt",
+											"notebook": "{model} sieht: nichts. Ins Notizbuch schreibt das Framework, nicht das Modell."
+										},
+										"refusals_one": "Eine Ablehnung",
+										"refusals_two": "Zwei Ablehnungen",
+										"refusals_other": "{n} Ablehnungen",
+										"hint": {
+											"agentStart": "Drück auf Starten und lehn dich zurück. Oder geh mit Schritt Zug um Zug vor.",
+											"chatStart": "Drück auf Fragen, um dem Chatbot das Ziel zu geben. Danach ist jeder Schritt deiner.",
+											"agentRefusedRun": "Wähle oben einen anderen Motor. Danach läuft die Schleife von selbst weiter.",
+											"agentRefusedStep": "Wähl oben einen anderen Motor und drück dann auf Schritt, um weiterzumachen.",
+											"chatRefused": "Das ist das „Ausweichen“ aus dem Text: Sagt ein Modell Nein, probier ein anderes.",
+											"retell": "Jedes Mal, wenn du den Chatbot wechselst, fängst du bei null an.",
+											"report": "Er plant den nächsten Zug erst, wenn du zurückmeldest.",
+											"write": "Im Chatbot-Modus schreibst du sogar den Bericht selbst.",
+											"sameRoutine": "Gleiche Routine für {opening}: Handeln, Prüfen, Notieren, dann zurückmelden.",
+											"legwork": "Sein Teil ist erledigt. Die Laufarbeit machst du: Tipp auf Handeln, dann Prüfen, dann Notieren.",
+											"resumeRun": "Die Schleife läuft von selbst weiter.",
+											"resumeStep": "Drück auf Schritt, um weiterzumachen, oder auf Starten."
+										},
+										"crew": {
+											"agentStart": "Tipp oben auf einen Schritt, um zu sehen, welcher KI-Agent bzw. welcher Teil des Frameworks ihn übernimmt.",
+											"chatStart": "Im Chatbot-Modus erledigst du die Schritte. Fang mit Fragen an (oder tipp auf Ziel).",
+											"agentRefused": "Das Modell hat zu diesem einen Schritt Nein gesagt. Die KI-Agenten können daran nichts ändern, aber wer das Framework bedient, kann den Motor tauschen. Hier bist das du.",
+											"chatRefused": "{model} hat den ganzen Chat gelesen und hilft nicht weiter. Wähl oben einen anderen Motor. Bei einem Chatbot heißt das: ein neuer Chat.",
+											"retell": "{model} weiß noch nichts. Drück auf Nochmal erklären und erzähl die ganze Geschichte noch einmal.",
+											"report": "Dein Teil für {opening} ist erledigt. Drück jetzt auf Zurückmelden.",
+											"write": "Jede Öffnung ist geprüft, und der Chatbot hat das Aufschreiben an dich zurückgegeben. Drück auf Bericht schreiben.",
+											"step": "Du bist dran: {step}. Im Chatbot-Modus erledigt das niemand für dich.",
+											"done": "Fertig. Im Chatbot-Modus war jeder Schritt deiner, der Bericht inklusive.",
+											"swapped": "Neuer Motor, gleiche KI-Agenten, gleiches Notizbuch. Nichts muss neu erklärt werden."
+										},
+										"wait": {
+											"agentRefused": "{model} hat einen Schritt abgelehnt. Wähl einen anderen Motor; das Notizbuch behält alles, was schon erledigt ist.",
+											"chatRefused": "{model} hat abgelehnt. Wähl einen anderen Motor.",
+											"retell": "Neuer Chat. Drück auf Nochmal erklären, um {model} die bisherige Geschichte zu erzählen.",
+											"report": "Der Chatbot sieht davon nichts. Drück auf Zurückmelden, um es ihm zu sagen.",
+											"write": "Du bist dran: Drück auf Bericht schreiben.",
+											"step": "Du bist dran: Tipp auf {step}."
+										},
+										"next": {
+											"report": "Drück auf Zurückmelden.",
+											"refused": "Wähl einen anderen Motor.",
+											"retell": "Drück auf Nochmal erklären.",
+											"write": "Drück auf Bericht schreiben.",
+											"step": "Du bist dran: {step}."
+										},
+										"nudge": {
+											"firstGoal": "Gib ihm zuerst das Ziel: Drück auf Fragen oder tipp auf Ziel.",
+											"allDone": "Alles erledigt, und jeden Schritt hast du selbst gemacht. Wechsle zum Agenten-Team und schau den KI-Agenten zu.",
+											"refusedFirst": "{model} hat abgelehnt. Wähl zuerst einen anderen Motor.",
+											"retellFirst": "Das ist ein neuer Chat. Drück zuerst auf Nochmal erklären.",
+											"writeFirst": "Jede Öffnung ist geprüft. Drück auf Bericht schreiben: Im Chatbot-Modus ist auch das Aufschreiben deine Sache.",
+											"goalGiven": "Das Ziel hast du ihm schon gegeben. {next}",
+											"planPart": "Planen ist der Teil des Chatbots, und er plant nur, wenn du ihm schreibst. {next}",
+											"reportFirst": "Dein Teil für {opening} ist erledigt. Drück auf Zurückmelden, um es dem Chatbot zu sagen.",
+											"notYet": "Noch nicht. Zuerst kommt {step}."
+										},
+										"agentDone": {
+											"lead": "{n} Schritte ohne dich, eine Übergabe am Ende. ",
+											"none": "Diesmal keine Ablehnung: {model} hat jeden kleinen Schritt durchgelassen.",
+											"refused": "{refusals}: Du hast den Motor getauscht, und die Agenten haben da weitergemacht, wo sie aufgehört hatten. Das Modell hat immer nur einen kleinen Schritt gesehen, und der Fortschritt steckt im Notizbuch des Frameworks, nicht im Modell."
+										},
+										"chatDone": {
+											"lead": "Du hast {mine} Schritte selbst gemacht, und er hat {asked}-mal auf dich gewartet. ",
+											"one": "Eine Ablehnung: Das Modell hatte die ganze Geschichte gelesen, und der Wechsel hieß: neuer Chat und alles noch einmal erzählen. ",
+											"many": "{refusals}: Jedes Mal hatte das Modell die ganze Geschichte gelesen, und jeder Wechsel hieß: neuer Chat und alles noch einmal erzählen. ",
+											"none": "Keine Ablehnung: {model} hat nie widersprochen. ",
+											"end": "Wechsle jetzt zu Agenten-Team und drück auf Starten."
+										},
+										"swap": {
+											"idle": "Motor getauscht: {model}.",
+											"afterRefusal": "Motor getauscht: {model}. Das Notizbuch hat noch jedes Ergebnis, also machen die Agenten an der Garagentür weiter.",
+											"midRun": "Motor getauscht: {model}. Gleiches Team, gleiche Schleife: Das Notizbuch behält den Fortschritt.",
+											"newChat": "Neuer Chat mit {model}. Das Modell weiß nichts von dem, was du bisher gemacht hast."
+										},
+										"announce": {
+											"agentRefused": "{model} hat einen Schritt abgelehnt. {refuse} Wähl einen anderen Motor.",
+											"line": "{who}: {text}",
+											"agentDone": "Die Agenten sind fertig: {n} Schritte allein, dann haben sie den Bericht übergeben.",
+											"chatRefused": "{model} hat abgelehnt: {text} Wähl einen anderen Motor.",
+											"chatbot": "Chatbot: {text}",
+											"writeCue": "Du bist dran: Drück auf Bericht schreiben.",
+											"youDone": "Du: {text} Fertig.",
+											"asked": "Chatbot: {text} Du bist dran: Tipp auf Handeln.",
+											"you": "Du: {text} {next}",
+											"modeChat": "Chatbot-Modus: Er plant nur. Du machst jeden Schritt und meldest zurück.",
+											"modeAgent": "Agenten-Team-Modus: Die KI-Agenten erledigen die Schleife allein.",
+											"swappedIdle": "Motor getauscht: {model}. ARTEX hat kein eigenes Modell: Es läuft auf dem, das du anschließt.",
+											"swappedAgent": "Motor getauscht: {model}. Die Agenten machen da weiter, wo sie aufgehört haben.",
+											"newChat": "Neuer Chat mit {model}. Drück auf Nochmal erklären, um ihm die bisherige Geschichte zu erzählen.",
+											"running": "Läuft. Die Agenten arbeiten die Liste allein ab."
+										}
+									},
+									"drive": {
+										"stops": [
+											{
+												"name": "Du fragst einen Chatbot und machst die Arbeit dann selbst",
+												"speed": [
+													"Wochen",
+													12
+												],
+												"targets": [
+													"Eins",
+													10
+												],
+												"skill": [
+													"Fachwissen",
+													100
+												],
+												"noise": [
+													"Leise",
+													12
+												],
+												"here": false
+											},
+											{
+												"name": "Es startet ein Tool, wenn du fragst",
+												"speed": [
+													"Tage",
+													32
+												],
+												"targets": [
+													"Ein paar",
+													30
+												],
+												"skill": [
+													"Erfahrung",
+													70
+												],
+												"noise": [
+													"Gering",
+													30
+												],
+												"here": false
+											},
+											{
+												"name": "Es erledigt ein paar Schritte und meldet sich dann",
+												"speed": [
+													"Stunden",
+													66
+												],
+												"targets": [
+													"Dutzende",
+													66
+												],
+												"skill": [
+													"Etwas",
+													45
+												],
+												"noise": [
+													"Spürbar",
+													66
+												],
+												"here": false
+											},
+											{
+												"name": "Ein Team aus Agenten erledigt den ganzen Job, während du zusiehst",
+												"speed": [
+													"Unter 3 Stunden*",
+													100
+												],
+												"targets": [
+													"Hunderte",
+													100
+												],
+												"skill": [
+													"Ein Ziel in normalen Worten",
+													15
+												],
+												"noise": [
+													"Laut",
+													100
+												],
+												"here": true
+											}
+										],
+										"here": "Hier stehen Frameworks wie ARTEX",
+										"noteEnd": "Die ersten drei Balken sind die drei Gründe, warum das wächst: mehr Tempo, mehr Ziele, viel weniger nötiges Können. Der vierte – der Lärm – ist der Haken und die Chance für die Verteidigung: Was laut ist, fällt leichter auf. <span class=\"ma-foot\">*das schnellste Tempo aus öffentlichen Berichten<\/span>",
+										"noteStart": "Zieh in Richtung „der ganze Job“, um zu sehen, wo Frameworks wie ARTEX landen.",
+										"announce": "{stop}. Tempo {speed}, Ziele {targets}, nötiges Können {skill}, Lärm {noise}."
+									},
+									"sort": {
+										"yes": "Hilft wirklich",
+										"no": "Fühlt sich gut an, hilft kaum",
+										"right": "Richtig.",
+										"wrong": "Nicht ganz.",
+										"announceRight": "Richtig.",
+										"helps": "Das hilft wirklich.",
+										"fallsShort": "Das klingt vernünftig, greift aber zu kurz.",
+										"whenHelps": "CERT-EU: {when}",
+										"whenFix": "Lösung von CERT-EU: {when}",
+										"score": "Du hast {r} von {n} richtig sortiert.",
+										"cards": [
+											{
+												"t": "Liste alles auf, was in deinem Unternehmen aus dem Internet erreichbar ist, und nimm vom Netz, was dort nicht sein muss.",
+												"helps": true,
+												"why": "Weniger Türen zum Ausprobieren. KI-Agenten scannen alles, was sichtbar ist, und was nicht im Netz hängt, kann auch niemand finden.",
+												"when": "sofort"
+											},
+											{
+												"t": "Installiere Sicherheitsupdates für Systeme mit Internetzugang im normalen Monatsrhythmus, wie bei allem anderen.",
+												"helps": false,
+												"why": "Nicht schnell genug. CERT-EU rät zu Notfall-Updates für alles, was aus dem Internet erreichbar ist, denn das scannt ein Agent zuerst.",
+												"when": "sofort"
+											},
+											{
+												"t": "Versteck die Admin-Anmeldeseite hinter einer ungewöhnlichen Webadresse.",
+												"helps": false,
+												"why": "Scanner raten nicht wie Menschen: Eine seltsame Adresse versteckt die Seite vor Menschen, nicht vor einer Maschine. CERT-EU rät, Admin- und Steuerungsoberflächen ganz vom Internet zu trennen.",
+												"when": "sofort"
+											},
+											{
+												"t": "Schalte Multi-Faktor-Authentifizierung für jedes wichtige System ein.",
+												"helps": true,
+												"why": "Ein gestohlenes Passwort allein reicht dann nicht mehr, um hineinzukommen – und genau damit begannen die gemeldeten Einbrüche oft.",
+												"when": "bald"
+											},
+											{
+												"t": "Behalte Admin-Konten genau im Blick und lass dich alarmieren, wenn sich eines plötzlich ungewöhnlich verhält.",
+												"helps": true,
+												"why": "Angreifende haben es auf Admin-Konten abgesehen, und ein Konto, das plötzlich in Maschinentempo arbeitet, gleicht einem KI-Agenten.",
+												"when": "sofort"
+											},
+											{
+												"t": "Sperr die IP-Adressen aus der Warnung von letzter Woche und hak das Thema ab.",
+												"helps": false,
+												"why": "Als Schutzschild veraltet die Liste schnell, weil Angreifende ständig die Adressen wechseln. Der nützliche Schritt geht in die andere Richtung: Durchsuch deine Logs nach diesen Adressen, um herauszufinden, ob du schon Besuch hattest.",
+												"when": "bald"
+											},
+											{
+												"t": "Setz auf jedem Rechner Sicherheitssoftware ein, die ungewöhnliches Verhalten erkennt und blockiert.",
+												"helps": true,
+												"why": "Eine Gruppe wies ihre Agenten an, Rechner mit solcher Software zu überspringen – Schutz ändert also ihre Pläne. Sicherheitsteams nennen das EDR.",
+												"when": "bald"
+											},
+											{
+												"t": "Behebe die schweren Befunde aus dem letzten Sicherheitstest und schieb die kleinen auf später.",
+												"helps": false,
+												"why": "Agentengesteuerte Tools sind gut darin, mehrere kleine Schwachstellen zu einem ernsten Weg hinein zu verketten. CERT-EU rät, jeden Befund, auch die kleinen, auf der Liste der Korrekturen zu behalten.",
+												"when": "laufend"
+											},
+											{
+												"t": "Verbiete den Mitarbeitenden, KI-Chatbots zu nutzen.",
+												"helps": false,
+												"why": "Das hält Angreifende nicht davon ab, KI zu nutzen; es bremst nur deine eigenen Leute. CERT-EU rät stattdessen, die eigenen KI-Tools in die Sicherheitsüberwachung aufzunehmen und sogar vertrauenswürdige KI-gestützte Tools zu nutzen, um die eigenen Systeme zu testen.",
+												"when": "laufend"
+											},
+											{
+												"t": "Sorg dafür, dass Fehlermeldungen auf deinen öffentlichen Websites so wenig wie möglich verraten.",
+												"helps": true,
+												"why": "Eine ausführliche Fehlermeldung verrät einem Scanner, welche Software du einsetzt, und hilft ihm so, die passende Schwachstelle zu wählen.",
+												"when": "laufend"
+											}
+										]
+									},
+									"quiz": {
+										"back": "Lies den Abschnitt noch einmal.",
+										"score": "Du hast {r} von {n} richtig.",
+										"items": [
+											{
+												"q": "Was macht ARTEX agentisch und nicht bloß zu einem Chatbot?",
+												"options": [
+													[
+														"a",
+														"Es nutzt ein größeres, klügeres KI-Modell als ein Chatbot."
+													],
+													[
+														"b",
+														"Seine KI-Agenten arbeiten selbstständig auf ein Ziel hin und wählen jeden nächsten Schritt selbst."
+													],
+													[
+														"c",
+														"Es ist in einer besonderen Hacker-Sprache geschrieben."
+													]
+												],
+												"correct": "b",
+												"fb": {
+													"a": "Darum geht es nicht. ARTEX läuft auf gewöhnlichen Modellen – derselben Art, mit der du vielleicht chattest.",
+													"b": "Genau. ARTEX ist das Framework; seine Agenten erledigen die Schleife allein. Das ist der Sprung vom Chatbot zum Agenten.",
+													"c": "Nein – die Programmiersprache macht es nicht agentisch. Das tun Agenten, die die Schleife allein erledigen."
+												},
+												"back": "#how"
+											},
+											{
+												"q": "Ein beauftragtes Red Team und eine kriminelle Gruppe lassen dieselbe Kopie von ARTEX gegen dasselbe Unternehmen laufen. Was ist tatsächlich anders?",
+												"options": [
+													[
+														"a",
+														"Der Code und das KI-Modell."
+													],
+													[
+														"b",
+														"Nur Genehmigung und Abgrenzung – wer Ja gesagt hat und wo."
+													],
+													[
+														"c",
+														"Die kriminelle Version ist einfach mächtiger."
+													]
+												],
+												"correct": "b",
+												"fb": {
+													"a": "Die sind identisch. Genau das ist der unbequeme Punkt.",
+													"b": "Richtig. Gleiches Tool, gleicher Motor – nur „genehmigt“ und „abgegrenzt“ haben sich geändert.",
+													"c": "Nicht von sich aus. Es ist dasselbe Tool; der Unterschied ist die Genehmigung."
+												},
+												"back": "#sides"
+											},
+											{
+												"q": "Welcher dieser Punkte ist KEIN Grund, warum diese Angriffe zunehmen?",
+												"options": [
+													[
+														"a",
+														"Sie laufen in Maschinentempo."
+													],
+													[
+														"b",
+														"Eine Person kann sie auf viele Ziele gleichzeitig richten."
+													],
+													[
+														"c",
+														"Sie sind für die Verteidigung unsichtbar."
+													]
+												],
+												"correct": "c",
+												"fb": {
+													"a": "Das ist ein Grund – Tempo ist ein großer Teil davon.",
+													"b": "Das ist ein Grund – die Masse gehört auch dazu.",
+													"c": "Richtig – das ist der falsche. Sie sind sogar laut, und genau auf diesen Lärm achtet die Verteidigung."
+												},
+												"back": "#why"
+											},
+											{
+												"q": "Wenn die Lösungen meistens Grundlagen sind, warum erwischt es Unternehmen trotzdem?",
+												"options": [
+													[
+														"a",
+														"Die Grundlagen helfen nicht gegen Agenten."
+													],
+													[
+														"b",
+														"Die Grundlagen müssen jetzt jedes System und jeden Dienstleister abdecken, und ein Teil der Reaktion muss von selbst laufen."
+													],
+													[
+														"c",
+														"Angreifende haben es nur auf große Unternehmen abgesehen."
+													]
+												],
+												"correct": "b",
+												"fb": {
+													"a": "Doch. Die gemeldeten Einbrüche kamen durch bekannte Schwachstellen, und wer sie schließt, nimmt den Agenten, was sie brauchen.",
+													"b": "Richtig. Meistens Grundlagen, aber nicht einfach: Ein vergessenes System reicht, und sobald jemand drin ist, reagiert niemand von Hand innerhalb von fünf Minuten.",
+													"c": "Nein. Diese Tools scannen alle gleichzeitig – klein zu sein schützt dich nicht."
+												},
+												"back": "#defend"
+											}
+										]
+									}
+								}
+							</script>
+							<script src="assets/js/maliciousagents.js"></script>
+							<!-- ============ MALICIOUS AGENTS EXPLAINER END ============ -->
+
+						</div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer" lang="en">
+						<div class="inner">
+							<ul class="copyright">
+								<li>&copy; Brigitta Buzinszki. All rights reserved</li><li><a href="privacy.html">Privacy</a></li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

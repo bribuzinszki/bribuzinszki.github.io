@@ -1,0 +1,272 @@
+/*
+	ARTEX explainer: shared styles for maliciousagents.html (EN) and maliciousagents-de.html (DE).
+	Everything is scoped under #ma-module with --ma-* tokens, so the surrounding prose keeps the template styles.
+	The in-widget resets are deliberately low-specificity (#ma-module button { all: unset } and
+	#ma-module :where(.ma-widget) :where(p, h3, ul, li, label)), so every #ma-module .ma-x component rule beats them.
+*/
+/* Palette borrowed from inference-exercise.html; tokens only, so the surrounding prose keeps the template styling. */
+#ma-module {
+	--ma-fg: #585858;
+	--ma-fg-bold: #3c3b3b;
+	--ma-fg-light: #6e6e6e;
+	--ma-bg: #ffffff;
+	--ma-bg-alt: #f6f6f6;
+	--ma-dark: #333333;
+	--ma-border: #c9c9c9;
+	--ma-pink: #c2335b;
+	--ma-blue: #0c6ea7;
+	--ma-teal: #277166;
+	--ma-amber: #9a6a00;
+	--ma-radius: 4px;
+}
+#ma-module .ma-hero { display: flex; align-items: center; gap: 2em; }
+#ma-module .ma-hero-text { flex: 1 1 auto; min-width: 0; }
+#ma-module .ma-hero-art { flex: 0 0 160px; margin: 0 0 2em 0; }
+#ma-module .ma-hero-art svg { display: block; width: 100%; height: auto; }
+#ma-module .ma-hero-art .ma-blink { opacity: 0; animation: ma-blink 6s step-end infinite; }
+@keyframes ma-blink { 0%, 100% { opacity: 0; } 93% { opacity: 1; } 95% { opacity: 0; } }
+#ma-module .ma-status { color: var(--ma-fg-light); font-size: 0.85em; font-style: italic; }
+#ma-module .ma-aside {
+	margin: 1.5em 0; padding: 0.9em 1.1em; border-left: 4px solid var(--ma-border);
+	background: var(--ma-bg-alt); border-radius: 0 var(--ma-radius) var(--ma-radius) 0; font-size: 0.95em;
+}
+
+/* ---- The interactive widgets ---- */
+#ma-module .ma-widget {
+	font-family: 'Source Sans Pro', Helvetica, sans-serif;
+	font-weight: 300; line-height: 1.6; letter-spacing: normal; text-align: left;
+	color: var(--ma-fg); background: var(--ma-bg-alt);
+	border: 1px solid var(--ma-border); border-radius: var(--ma-radius);
+	padding: 1.3em 1.4em; margin: 1.8em 0 2.4em 0;
+}
+#ma-module .ma-widget *, #ma-module .ma-widget *::before, #ma-module .ma-widget *::after { box-sizing: border-box; }
+/* Reset the template's p/h3/ul/li/label styles inside widgets. :where() keeps this at the specificity of #ma-module alone,
+   so every component rule (#ma-module .ma-x) still wins over it. */
+#ma-module :where(.ma-widget) :where(p, h3, ul, li, label) {
+	margin: 0; padding: 0; font: inherit; color: inherit; list-style: none; letter-spacing: normal; text-transform: none;
+}
+#ma-module .ma-widget b, #ma-module .ma-widget strong { font-weight: 700; color: var(--ma-fg-bold); }
+#ma-module .ma-widget a { color: var(--ma-fg-bold); border-bottom: 1px dotted currentColor; text-decoration: none; }
+#ma-module .ma-widget a:hover { color: var(--ma-pink) !important; border-bottom-color: transparent; }
+#ma-module button { all: unset; box-sizing: border-box; font-family: inherit; }
+#ma-module .ma-widget [hidden] { display: none !important; }
+#ma-module .ma-widget :focus-visible { outline: 2px solid var(--ma-pink); outline-offset: 2px; border-radius: 2px; }
+#ma-module .ma-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+#ma-module .ma-eyebrow { display: block; font-size: 0.68em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.22em; color: var(--ma-fg-light); margin-bottom: 0.3em; }
+#ma-module .ma-widget h3 { font-size: 1.1em; font-weight: 700; color: var(--ma-fg-bold); margin-bottom: 0.2em; }
+#ma-module .ma-lead { margin-bottom: 1.1em !important; }
+
+/* Shared controls */
+#ma-module .ma-btn {
+	display: inline-flex; align-items: center; gap: 0.4em; cursor: pointer;
+	padding: 0.5em 1em; border-radius: var(--ma-radius); font-weight: 600; font-size: 0.95em;
+	color: #ffffff !important; background: var(--ma-dark); transition: background 0.15s, opacity 0.15s;
+}
+#ma-module .ma-btn:hover:not(:disabled) { background: #000; }
+#ma-module .ma-btn.is-ghost { color: var(--ma-fg-bold) !important; background: var(--ma-bg); box-shadow: inset 0 0 0 1px var(--ma-border); }
+#ma-module .ma-btn.is-ghost:hover:not(:disabled) { box-shadow: inset 0 0 0 2px var(--ma-pink); background: var(--ma-bg); }
+#ma-module .ma-btn:disabled { opacity: 0.4; cursor: default; }
+#ma-module .ma-controls { display: flex; flex-wrap: wrap; gap: 0.5em; align-items: center; margin-top: 1em; }
+
+/* Segmented toggle (mode + model) */
+#ma-module .ma-seg { display: inline-flex; border: 1px solid var(--ma-border); border-radius: var(--ma-radius); overflow: hidden; background: var(--ma-bg); }
+#ma-module .ma-seg button { padding: 0.45em 0.9em; cursor: pointer; font-size: 0.9em; font-weight: 600; color: var(--ma-fg) !important; }
+#ma-module .ma-seg button + button { border-left: 1px solid var(--ma-border); }
+#ma-module .ma-seg button[aria-pressed="true"] { background: var(--ma-dark); color: #fff !important; }
+#ma-module .ma-fieldrow { display: flex; flex-wrap: wrap; gap: 0.5em 1.2em; align-items: center; margin-bottom: 1em; }
+#ma-module .ma-fieldrow .ma-flabel { font-size: 0.8em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ma-fg-light); }
+
+/* Widget A: the agent loop */
+#ma-module .ma-loop-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.1em; }
+#ma-module .ma-steps { display: flex; flex-wrap: wrap; gap: 0.5em; }
+#ma-module .ma-step {
+	flex: 1 1 5.5em; min-width: 5.5em; cursor: pointer; text-align: center; padding: 0.55em 0.4em;
+	background: var(--ma-bg); border-radius: var(--ma-radius); box-shadow: inset 0 0 0 1px var(--ma-border);
+	font-size: 0.85em; font-weight: 600; color: var(--ma-fg) !important; transition: box-shadow 0.15s, background 0.15s, transform 0.15s;
+}
+#ma-module .ma-step .ma-step-n { display: block; font-size: 0.72em; color: var(--ma-fg-light); }
+#ma-module .ma-step:hover { box-shadow: inset 0 0 0 2px var(--ma-pink); }
+#ma-module .ma-step.is-active { background: var(--ma-teal); color: #fff !important; box-shadow: inset 0 0 0 2px var(--ma-teal); transform: translateY(-2px); }
+#ma-module .ma-step.is-active .ma-step-n { color: rgba(255,255,255,0.8); }
+#ma-module .ma-socket {
+	display: inline-flex; align-items: center; gap: 0.5em; padding: 0.4em 0.8em; border-radius: 999px;
+	background: var(--ma-bg); box-shadow: inset 0 0 0 1px var(--ma-blue); color: var(--ma-blue) !important; font-size: 0.85em; font-weight: 700;
+}
+#ma-module .ma-socket::before { content: "🔌"; }
+#ma-module .ma-engine { display: flex; flex-wrap: wrap; align-items: center; gap: 0.45em 0.9em; }
+#ma-module .ma-sees { flex: 1 1 16em; min-width: 0; font-size: 0.85em; line-height: 1.4; color: var(--ma-blue) !important; }
+#ma-module .ma-crew { min-height: 2.6em; padding: 0.6em 0.8em; background: var(--ma-bg); border-radius: var(--ma-radius); font-size: 0.9em; border-left: 3px solid var(--ma-teal); }
+#ma-module .ma-log {
+	margin: 0; padding: 0.7em 0.9em; background: var(--ma-dark); color: #e9e9e9; border-radius: var(--ma-radius);
+	font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size: 0.82em; line-height: 1.55;
+	min-height: 7.5em; max-height: 13em; overflow-y: auto;
+}
+#ma-module .ma-log li { display: flex; align-items: baseline; gap: 0.6em; padding: 0.08em 0; animation: ma-in 0.25s ease-out both; }
+#ma-module .ma-log li.is-goal { color: #7bd0c1; font-weight: 700; }
+#ma-module .ma-log li.is-you { color: #f6b3c4; }
+#ma-module .ma-log li.is-dim { color: #b5b5b5; font-style: italic; }
+#ma-module .ma-log .ma-wait { color: #f2c14e; }
+#ma-module .ma-log li.is-refused { color: #ff9e8f; }
+#ma-module .ma-log .ma-tag { flex: 0 0 7em; color: #a8b8b5; }
+#ma-module .ma-hint { margin-top: 0.8em; font-size: 0.9em; color: var(--ma-fg-light); }
+#ma-module .ma-counters { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.6em; }
+#ma-module .ma-count {
+	text-align: center; padding: 0.6em 0.4em; background: var(--ma-bg); border-radius: var(--ma-radius); box-shadow: inset 0 0 0 1px var(--ma-border);
+}
+#ma-module .ma-count b { display: block; font-size: 1.8em; line-height: 1; color: var(--ma-fg-bold); }
+#ma-module .ma-count span { display: block; margin-top: 0.25em; font-size: 0.8em; line-height: 1.3; color: var(--ma-fg-light); }
+/* "Your move" cue on the chip or button the reader needs next (chatbot mode) */
+#ma-module .ma-step.is-next, #ma-module .ma-btn.is-next { position: relative; }
+#ma-module .ma-step.is-next { box-shadow: inset 0 0 0 2px var(--ma-pink); color: var(--ma-pink) !important; }
+#ma-module .ma-step.is-next .ma-step-n { color: var(--ma-pink); }
+#ma-module .ma-step.is-next::after, #ma-module .ma-btn.is-next::after {
+	content: ""; position: absolute; inset: -5px; border: 2px solid var(--ma-pink); border-radius: 7px;
+	pointer-events: none; animation: ma-ring 1.6s ease-out infinite;
+}
+@keyframes ma-ring { 0% { opacity: 1; transform: scale(0.99); } 70% { opacity: 0; transform: scale(1.04); } 100% { opacity: 0; } }
+/* After a refusal the cue sits on the whole engine picker. .ma-seg clips an ::after ring (overflow: hidden), so this uses an outline. */
+#ma-module .ma-seg.is-next { outline: 2px solid var(--ma-pink); outline-offset: 3px; animation: ma-pulse 1.6s ease-in-out infinite; }
+@keyframes ma-pulse { 0%, 100% { outline-color: var(--ma-pink); } 50% { outline-color: rgba(194, 51, 91, 0.25); } }
+
+/* Model / agent / framework diagram (HTML + CSS, no script). Colour key: model = blue (same as the engine pill
+   in the loop widget), agent = teal, framework = dark outline. */
+#ma-module .ma-layers { display: flex; align-items: center; gap: 0.8em; }
+#ma-module .ma-fw { flex: 1 1 auto; min-width: 0; padding: 0.9em 1em 1em; background: var(--ma-bg); border: 2px solid var(--ma-dark); border-radius: 8px; }
+#ma-module .ma-fw-label { margin-bottom: 0.7em; font-size: 0.72em; font-weight: 900; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ma-fg-bold); }
+#ma-module .ma-fw-agents { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5em; }
+#ma-module .ma-agent {
+	padding: 0.5em 0.4em; text-align: center; border-radius: var(--ma-radius); font-weight: 700;
+	background: rgba(39,113,102,0.08); box-shadow: inset 0 0 0 2px var(--ma-teal); color: var(--ma-teal);
+}
+#ma-module .ma-agent-k { display: block; font-size: 0.66em; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+#ma-module .ma-fw-parts { display: flex; flex-wrap: wrap; gap: 0.4em; margin-top: 0.7em; }
+#ma-module .ma-part { padding: 0.2em 0.65em; border-radius: 999px; font-size: 0.8em; background: var(--ma-bg-alt); box-shadow: inset 0 0 0 1px var(--ma-border); color: var(--ma-fg); }
+#ma-module .ma-plug { flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; font-size: 0.75em; font-weight: 700; color: var(--ma-fg-light); }
+#ma-module .ma-plug::after { content: "→"; font-size: 1.9em; line-height: 1; color: var(--ma-dark); }
+#ma-module .ma-llm { flex: 0 0 9.5em; padding: 1.1em 0.8em; text-align: center; border-radius: 8px; background: var(--ma-blue); color: #fff; }
+#ma-module .ma-llm-label { font-weight: 700; }
+#ma-module .ma-llm-sub { margin-top: 0.2em; font-size: 0.8em; opacity: 0.9; }
+#ma-module .ma-defs { display: grid; gap: 0.7em; grid-template-columns: minmax(0, 1fr); margin-top: 1.1em; }
+#ma-module .ma-def { padding: 0.75em 0.9em; background: var(--ma-bg); border-radius: var(--ma-radius); border-top: 4px solid var(--ma-dark); font-size: 0.93em; }
+#ma-module .ma-def.is-model { border-top-color: var(--ma-blue); }
+#ma-module .ma-def.is-agent { border-top-color: var(--ma-teal); }
+#ma-module .ma-def-term { color: var(--ma-fg-bold); }
+
+/* The three dangers: illustrated cards (static SVG) */
+#ma-module .ma-dangers { display: grid; gap: 0.9em; grid-template-columns: repeat(auto-fit, minmax(15em, 1fr)); }
+#ma-module .ma-danger {
+	display: flex; flex-direction: column; gap: 0.8em; padding: 1em 1em 1.1em;
+	background: var(--ma-bg); border-radius: var(--ma-radius); box-shadow: inset 0 0 0 1px var(--ma-border); border-top: 4px solid var(--ma-pink);
+}
+#ma-module .ma-danger-art { display: block; width: 100%; height: auto; max-width: 22em; margin: 0 auto; }
+#ma-module .ma-danger-title {
+	display: flex; align-items: baseline; gap: 0.5em; margin: 0 0 0.35em 0; padding: 0;
+	font-size: 1.05em; font-weight: 700; line-height: 1.3; letter-spacing: normal; text-transform: none; color: var(--ma-fg-bold);
+}
+#ma-module .ma-danger-n {
+	flex: 0 0 auto; display: inline-grid; place-items: center; width: 1.5em; height: 1.5em; border-radius: 50%;
+	background: var(--ma-pink); color: #fff; font-size: 0.78em; font-weight: 900; transform: translateY(-0.1em);
+}
+#ma-module .ma-danger-body p { font-size: 0.95em; }
+
+/* The balance: where it falls short */
+#ma-module .ma-graces { display: grid; gap: 0.8em; grid-template-columns: minmax(0, 1fr); }
+#ma-module .ma-grace {
+	padding: 0.9em 1em; background: var(--ma-bg); border-radius: var(--ma-radius);
+	box-shadow: inset 0 0 0 1px var(--ma-border); border-left: 4px solid var(--ma-teal);
+}
+#ma-module .ma-grace-title { margin-bottom: 0.3em; font-weight: 700; color: var(--ma-fg-bold); }
+#ma-module .ma-grace p:not(.ma-grace-title) { font-size: 0.95em; }
+
+/* Widget C: the slider */
+#ma-module .ma-range { width: 100%; margin: 0.4em 0 0.2em; accent-color: var(--ma-pink); }
+#ma-module .ma-ticks { display: flex; justify-content: space-between; font-size: 0.72em; color: var(--ma-fg-light); margin-bottom: 0.9em; }
+#ma-module .ma-ticks span { flex: 1; text-align: center; }
+#ma-module .ma-ticks span:first-child { text-align: left; }
+#ma-module .ma-ticks span:last-child { text-align: right; }
+#ma-module .ma-stop-name { font-weight: 700; color: var(--ma-fg-bold); font-size: 1.05em; }
+#ma-module .ma-stop-name .ma-here { display: inline-block; margin-left: 0.5em; font-size: 0.72em; font-weight: 700; color: #fff; background: var(--ma-pink); padding: 0.1em 0.5em; border-radius: 999px; vertical-align: middle; }
+#ma-module .ma-meters { display: grid; gap: 0.7em; margin-top: 1em; }
+#ma-module .ma-meter { display: grid; grid-template-columns: 9em minmax(0, 1fr) auto; gap: 0.6em; align-items: center; }
+#ma-module .ma-meter-label { font-size: 0.85em; font-weight: 700; color: var(--ma-fg-light); }
+#ma-module .ma-meter-track { height: 0.7em; background: var(--ma-bg); border-radius: 999px; box-shadow: inset 0 0 0 1px var(--ma-border); overflow: hidden; }
+#ma-module .ma-meter-fill { display: block; height: 100%; width: 0; border-radius: 999px; background: var(--ma-teal); transition: width 0.3s ease; }
+#ma-module .ma-meter[data-tone="warn"] .ma-meter-fill { background: var(--ma-pink); }
+#ma-module .ma-meter-val { font-size: 0.85em; font-weight: 700; color: var(--ma-fg-bold); text-align: right; min-width: 7em; }
+#ma-module .ma-drive-note { margin-top: 1em !important; font-size: 0.9em; }
+
+/* Widget D: the sort */
+#ma-module .ma-cards { display: grid; gap: 0.7em; grid-template-columns: minmax(0, 1fr); }
+#ma-module .ma-card { padding: 0.8em 0.9em; background: var(--ma-bg); border-radius: var(--ma-radius); box-shadow: inset 0 0 0 1px var(--ma-border); }
+#ma-module .ma-card-text { font-weight: 600; color: var(--ma-fg-bold); margin-bottom: 0.6em !important; }
+#ma-module .ma-card-actions { display: flex; flex-wrap: wrap; gap: 0.5em; }
+#ma-module .ma-pick { padding: 0.4em 0.8em; border-radius: var(--ma-radius); cursor: pointer; font-size: 0.85em; font-weight: 600; color: var(--ma-fg) !important; background: var(--ma-bg-alt); box-shadow: inset 0 0 0 1px var(--ma-border); }
+#ma-module .ma-pick:hover:not(:disabled) { box-shadow: inset 0 0 0 2px var(--ma-pink); }
+#ma-module .ma-pick:disabled { cursor: default; opacity: 0.6; }
+#ma-module .ma-card.is-correct { box-shadow: inset 0 0 0 2px var(--ma-teal); }
+#ma-module .ma-card.is-wrong { box-shadow: inset 0 0 0 2px var(--ma-pink); }
+#ma-module .ma-why { margin-top: 0.6em !important; font-size: 0.88em; padding: 0.5em 0.7em; border-radius: var(--ma-radius); animation: ma-in 0.3s ease-out both; }
+#ma-module .ma-card.is-correct .ma-why { background: rgba(39,113,102,0.08); border-left: 3px solid var(--ma-teal); }
+#ma-module .ma-card.is-wrong .ma-why { background: rgba(194,51,91,0.06); border-left: 3px solid var(--ma-pink); }
+#ma-module .ma-why .ma-verdict { font-weight: 700; }
+#ma-module .ma-why .ma-when { display: inline-block; margin-left: 0.4em; padding: 0.05em 0.55em; border-radius: 999px; font-size: 0.85em; font-weight: 700; white-space: nowrap; box-shadow: inset 0 0 0 1px var(--ma-border); color: var(--ma-fg-bold); }
+#ma-module .ma-score { margin-top: 1em; font-weight: 700; color: var(--ma-fg-bold); }
+
+/* Widget E: quiz */
+#ma-module .ma-quiz { display: grid; gap: 1.1em; }
+#ma-module .ma-q { display: grid; gap: 0.55em; }
+#ma-module .ma-q-title { font-weight: 700; color: var(--ma-fg-bold); line-height: 1.4; }
+#ma-module .ma-options { display: grid; gap: 0.4em; }
+#ma-module .ma-option {
+	display: block; padding: 0.55em 0.9em; border-radius: var(--ma-radius); cursor: pointer;
+	color: var(--ma-fg) !important; background: var(--ma-bg); box-shadow: inset 0 0 0 1px var(--ma-border); transition: box-shadow 0.15s;
+}
+#ma-module .ma-option:hover:not(:disabled) { box-shadow: inset 0 0 0 2px var(--ma-pink); }
+#ma-module .ma-option:disabled { cursor: default; }
+#ma-module .ma-option.is-correct { background: rgba(39,113,102,0.08); box-shadow: inset 0 0 0 2px var(--ma-teal); }
+#ma-module .ma-option.is-wrong { background: rgba(194,51,91,0.06); box-shadow: inset 0 0 0 2px var(--ma-pink); }
+#ma-module .ma-feedback { padding: 0.7em 0.9em; border-left: 4px solid; border-radius: 0 var(--ma-radius) var(--ma-radius) 0; font-size: 0.9em; animation: ma-in 0.3s ease-out both; }
+#ma-module .ma-feedback.is-correct { border-color: var(--ma-teal); background: rgba(39,113,102,0.08); }
+#ma-module .ma-feedback.is-wrong { border-color: var(--ma-pink); background: rgba(194,51,91,0.06); }
+#ma-module .ma-quiz-score { margin-top: 0.4em; font-weight: 700; color: var(--ma-fg-bold); }
+
+@keyframes ma-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+@media (min-width: 701px) {
+	#ma-module .ma-cards, #ma-module .ma-graces { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	#ma-module .ma-defs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+	#ma-module .ma-layers { flex-direction: column; align-items: stretch; }
+	#ma-module .ma-plug { flex-direction: row; justify-content: center; gap: 0.4em; }
+	#ma-module .ma-plug::after { content: "↓"; font-size: 1.5em; }
+	#ma-module .ma-counters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	#ma-module .ma-llm { flex-basis: auto; }
+}
+@media (max-width: 480px) {
+	#ma-module .ma-meter { grid-template-columns: minmax(0, 1fr) auto; }
+	#ma-module .ma-meter-track { grid-column: 1 / -1; order: 3; }
+	#ma-module .ma-log .ma-tag { flex-basis: auto; }
+}
+@media (max-width: 600px) {
+	#ma-module .ma-hero { flex-direction: column; align-items: flex-start; gap: 0; }
+	#ma-module .ma-hero-art { order: -1; flex: none; width: 96px; margin: 0 0 1em 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+	#ma-module .ma-hero-art .ma-blink { animation: none; }
+	#ma-module .ma-log li, #ma-module .ma-why, #ma-module .ma-feedback { animation: none !important; }
+	#ma-module .ma-step.is-active { transform: none; }
+	#ma-module .ma-step.is-next::after, #ma-module .ma-btn.is-next::after { animation: none; opacity: 1; }
+	#ma-module .ma-seg.is-next { animation: none; }
+	#ma-module .ma-meter-fill { transition: none; }
+}
+
+/* Footnote inside the slider note (was an inline style). */
+#ma-module .ma-foot { color: var(--ma-fg-light); }
+
+/* Status line + EN | DE switch under the title. */
+#ma-module .ma-meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35em 1.25em; margin: 0 0 2em 0; }
+#ma-module .ma-meta .ma-status { margin: 0; }
+#ma-module .ma-lang { display: flex; align-items: baseline; gap: 0.45em; font-size: 0.85em; color: var(--ma-fg-light); }
+#ma-module .ma-lang a { font-weight: 700; letter-spacing: 0.06em; }
+#ma-module .ma-lang a[aria-current="page"] { color: var(--ma-fg-bold); border-bottom-color: transparent; }
